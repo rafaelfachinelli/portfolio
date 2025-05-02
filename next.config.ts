@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'http://profile.rafaelfachinelli.com',
-        port: '3000',
+        port: '8080',
       },	
     ],
   },
