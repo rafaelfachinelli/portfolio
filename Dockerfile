@@ -12,6 +12,8 @@ RUN npm install
 COPY ./ ./
 
 # Build the application
+RUN chown -R node:node /app
+USER node
 RUN npm run build
 
 # Production Stage
