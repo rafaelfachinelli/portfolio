@@ -3,39 +3,31 @@ FROM node:23-slim AS build
 
 WORKDIR /app
 
-# Instala dependências
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copia o código
-COPY . .
+COPY ./ ./
 
-# Garante que o diretório de saída tenha permissões certas
-RUN rm -rf .next && npm run build
+# Build como root
+RUN npm run build
+
+# Agora garanta que a pasta inteira está com o user certo
+RUN chown -R 1001:1001 /app
 
 # Production Stage
 FROM node:23-slim AS production
 
 WORKDIR /app
-
 ENV NODE_ENV=production
-
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
-# Copia arquivos gerados já com permissões corretas
-COPY --from=build /app/package.json ./
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
-COPY --from=build /app/server.js ./
-COPY --from=build /app/start.sh ./
+COPY --from=build /app /app
 
-# Permissões do script de inicialização
+COPY ./start.sh ./
 RUN chmod +x ./start.sh
 
-# Só agora troca para o usuário não root
 USER nextjs
-
 EXPOSE 8080
-
+ENV PORT=8080
+ENV HOSTNAME="0.0.0.0"
 CMD ["./start.sh"]
