@@ -31,7 +31,9 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Install curl for health checks
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+# Create a non-root user and group
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/* \
+	&& addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
 # Copy only the necessary files from the build stage
 COPY --from=build /app/package.json ./
