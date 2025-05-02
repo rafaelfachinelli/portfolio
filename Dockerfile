@@ -1,5 +1,21 @@
-# Use the official Node.js 23 image as the base image
-FROM node:23-slim AS base
+# Build Stage
+FROM node:23-slim AS build
+
+# Set the working directory
+WORKDIR /app
+
+# Install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy application source code
+COPY ./ ./
+
+# Build the application
+RUN npm run build
+
+# Production Stage
+FROM node:23-slim AS production
 
 # Set the working directory
 WORKDIR /app
@@ -9,30 +25,24 @@ ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
-COPY ./node_modules ./node_modules
-COPY ./public ./public
+# Copy only the necessary files from the build stage
+COPY --from=build /app/package.json ./
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
+COPY --from=build /app/server.js ./
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --chown=nextjs:nodejs ./.next/standalone ./
-COPY --chown=nextjs:nodejs ./.next/static ./.next/static
-COPY --chown=nextjs:nodejs ./server.js ./
+# Adjust permissions for start.sh before switching to the nextjs user
+COPY ./start.sh ./
+RUN chmod +x ./start.sh
 
-# Custom server.js file to serve the standalone output
-COPY --chown=nextjs:nodejs ./dist/server.js ./
-
+# Switch to the nextjs user after setting permissions
 USER nextjs
 
 EXPOSE 8080
 
 # server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/next-config-js/output
 ENV PORT=8080
 ENV HOSTNAME="0.0.0.0"
 
-# Use a custom start script to run the server
-COPY --chown=nextjs:nodejs ./start.sh ./
-RUN chmod +x ./start.sh
-
-# Use the start.sh script to run the server
 CMD ["./start.sh"]
