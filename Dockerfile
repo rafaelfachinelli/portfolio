@@ -12,9 +12,9 @@ RUN npm install
 COPY ./ ./
 
 # Build the application
-RUN chown -R node:node /app
-USER node
-RUN rm -rf .next && npm run build
+RUN npm run build
+
+RUN chown -R 1001:1001 /app
 
 # Production Stage
 FROM node:23-slim AS production
