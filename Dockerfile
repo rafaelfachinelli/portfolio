@@ -1,13 +1,12 @@
 # Build Stage
 FROM node:23-slim AS build
 
-USER node
 WORKDIR /app
 
 COPY --chown=node:node package.json package-lock.json ./
 RUN npm install
 
-COPY --chown=node:node ./ ./
+COPY ./ ./
 
 RUN npm run build
 
