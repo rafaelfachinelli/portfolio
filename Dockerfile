@@ -3,25 +3,20 @@
 # -------------------
 FROM node:23-slim AS build
 
-# Create a non-root user for building
-RUN addgroup --system builduser && adduser --system --ingroup builduser builduser
-
 # Set working directory
 WORKDIR /app
 
 # Copy dependencies and install them as builduser
-COPY --chown=builduser:builduser package.json package-lock.json ./
-USER builduser
+COPY package.json package-lock.json ./
 RUN npm install
 
 # Copy application source code with correct permissions
-COPY --chown=builduser:builduser . .
+COPY . .
 
 # Build the Next.js application
 RUN npm run build
 
-# Switch to root to fix permissions for nextjs user in the final image
-USER root
+# Create a non-root user and group
 RUN chown -R 1001:1001 /app/.next
 
 # -------------------
