@@ -14,7 +14,7 @@ COPY ./ ./
 # Build the application
 RUN chown -R node:node /app
 USER node
-RUN npm run build
+RUN rm -rf .next && npm run build
 
 # Production Stage
 FROM node:23-slim AS production
