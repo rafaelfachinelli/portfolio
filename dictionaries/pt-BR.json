@@ -1,7 +1,7 @@
 {
   "pages": {
     "home": {
-      "title": "Olá, sou Rafael Fachinelli",
+      "title": "Olá, eu sou Rafael Fachinelli",
       "description": "Sou um desenvolvedor de software com experiência em várias tecnologias."
     },
     "projects": {
@@ -27,10 +27,53 @@
   },
   "components": {
     "navbar": {
-      "home": "Início",
-      "about": "Sobre",
-      "projects": "Projetos",
-      "contact": "Contato"
+      "options": {
+        "home": {
+          "title": "Início"
+        },
+        "about": {
+          "title": "Sobre",
+          "items": {
+            "me": {
+              "title": "Sobre Mim",
+              "description": "Uma visão detalhada da minha experiência profissional, habilidades e formação."
+            },
+            "resume": {
+              "title": "Currículo",
+              "description": "Uma breve introdução sobre mim, minha formação e meus interesses."
+            },
+            "timeline": {
+              "title": "Linha do Tempo",
+              "description": "Veja minha linha do tempo profissional para acompanhar minha progressão de carreira e marcos importantes."
+            }
+          }
+        },
+        "projects": {
+          "title": "Projetos",
+          "items": {
+            "leroy-merlin-instala": {
+              "title": "Leroy Merlin Instala",
+              "description": "Uma aplicação web para gerenciar e agendar instalações de produtos vendidos pela Leroy Merlin."
+            },
+            "markit3d": {
+              "title": "Markit3D",
+              "description": "Página inicial para um serviço de impressão 3D que oferece uma ampla gama de produtos."
+            },
+            "flex-sewing-machine": {
+              "title": "Flex Máquina de Costura",
+              "description": "Um projeto que apresenta uma máquina de costura com recursos avançados e capacidades."
+            },
+            "more": {
+              "title": "Mais projetos...",
+              "description": "Uma coleção de vários projetos e aplicações."
+            }
+          }
+        },
+        "contact": {
+          "title": "Contato",
+          "description": "Entre em contato comigo"
+        }
+      }
     },
     "footer": {
       "rights": "© {year} Rafael Fachinelli | Portfólio. Todos os direitos reservados."

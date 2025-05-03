@@ -27,10 +27,53 @@
   },
   "components": {
     "navbar": {
-      "home": "Home",
-      "about": "About",
-      "projects": "Projects",
-      "contact": "Contact"
+      "options": {
+        "home": {
+          "title": "Home"
+        },
+        "about": {
+          "title": "About",
+          "items": {
+            "me": {
+              "title": "About Me",
+              "description": "A detailed overview of my professional experience, skills, and education."
+            },
+            "resume": {
+              "title": "Resume",
+              "description": "A brief introduction about myself, my background, and my interests."
+            },
+            "timeline": {
+              "title": "Timeline",
+              "description": "View my professional timeline to see my career progression and key milestones.A visual representation of my journey, showcasing key milestones and achievements."
+            }
+          }
+        },
+        "projects": {
+          "title": "Projects",
+          "items": {
+            "leroy-merlin-instala": {
+              "title": "Leroy Merlin Instala",
+              "description": "A web application for managing and scheduling installations of products sold by Leroy Merlin."
+            },
+            "markit3d": {
+              "title": "Markit3D",
+              "description": "Landing page for a 3D printing service that offers a wide range of products."
+            },
+            "flex-sewing-machine": {
+              "title": "Flex Sewing Machine",
+              "description": "A project showcasing a sewing machine with advanced features and capabilities."
+            },
+            "more": {
+              "title": "More projects...",
+              "description": "A collection of various projects and applications."
+            }
+          }
+        },
+        "contact": {
+          "title": "Contact",
+          "description": "Get in touch with me"
+        }
+      }
     },
     "footer": {
       "rights": "© {year} Rafael Fachinelli | Portfolio. All rights reserved."
