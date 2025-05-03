@@ -1,26 +1,39 @@
 {
-  "home": {
-    "welcome": "Oi, eu sou Rafael Fachinelli",
-    "description": "Sou um desenvolvedor de software com experiência em várias tecnologias."
+  "pages": {
+    "home": {
+      "title": "Início",
+      "description": "Bem-vindo ao meu portfólio. Sou um desenvolvedor de software com paixão por criar soluções inovadoras."
+    },
+    "projects": {
+      "title": "Projetos",
+      "description": "Explore meus projetos e veja as tecnologias com as quais trabalhei."
+    },
+    "about": {
+      "title": "Sobre Mim",
+      "description": "Saiba mais sobre minha formação, habilidades e experiência.",
+      "resume": {
+        "title": "Currículo",
+        "description": "Baixe meu currículo para ver minha trajetória profissional e habilidades."
+      },
+      "timeline": {
+        "title": "Linha do Tempo",
+        "description": "Veja minha linha do tempo profissional para acompanhar minha progressão de carreira e marcos importantes."
+      }
+    },
+    "contact": {
+      "title": "Contato",
+      "description": "Entre em contato comigo para colaborações ou dúvidas."
+    }
   },
-  "work": {
-    "title": "Meu Trabalho",
-    "description": "Aqui estão alguns dos projetos em que trabalhei."
-  },
-  "about": {
-    "title": "Sobre Mim",
-    "description": "Saiba mais sobre minha experiência e habilidades."
-  },
-  "contact": {
-    "title": "Contate-me",
-    "description": "Sinta-se à vontade para entrar em contato para colaborações ou dúvidas."
-  },
-  "navbar": {
-    "title": "Meu Portfólio",
-    "home": "Início",
-    "about": "Sobre",
-    "work": "Trabalho",
-    "contact": "Contato",
-    "works": "Trabalhos"
+  "components": {
+    "navbar": {
+      "home": "Início",
+      "about": "Sobre",
+      "projects": "Projetos",
+      "contact": "Contato"
+    },
+    "footer": {
+      "description": "© 2025 Rafael Fachinelli. Todos os direitos reservados."
+    }
   }
 }

@@ -1,7 +1,9 @@
-import '../globals.css';
-import { Navbar } from '@/components/ui/navbar';
+import '@/app/globals.css';
 import { getDictionary } from '../../../get-dictionary';
 import { Locale } from '../../../i18n-config';
+import { Navbar } from '@/components/layout/navbar';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { MainContent } from '@/components/layout/content';
 
 export default async function RootLayout({
   children,
@@ -15,9 +17,11 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
-      <body className="min-h-screen bg-gray-100 text-gray-900">
-        <Navbar lang={lang} dictionary={dictionary} />
-        {children}
+      <body className="min-h-screen antialiased">
+        <LanguageProvider lang={lang} dictionary={dictionary}>
+          <Navbar />
+          <MainContent>{children}</MainContent>
+        </LanguageProvider>
       </body>
     </html>
   );

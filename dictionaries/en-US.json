@@ -1,26 +1,39 @@
 {
-  "home": {
-    "welcome": "Hi, I'm Rafael Fachinelli",
-    "description": "I'm a software developer with experience in various technologies."
+  "pages": {
+    "home": {
+      "title": "Home",
+      "description": "Welcome to my portfolio. I'm a software developer with a passion for creating innovative solutions."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Explore my projects and see the technologies I've worked with."
+    },
+    "about": {
+      "title": "About Me",
+      "description": "Learn more about my background, skills, and experience.",
+      "resume": {
+        "title": "Resume",
+        "description": "Download my resume to see my professional journey and skills."
+      },
+      "timeline": {
+        "title": "Timeline",
+        "description": "View my professional timeline to see my career progression and key milestones."
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with me for collaborations or inquiries."
+    }
   },
-  "work": {
-    "title": "My Work",
-    "description": "Here are some of the projects I've worked on."
-  },
-  "about": {
-    "title": "About Me",
-    "description": "Learn more about my background and skills."
-  },
-  "contact": {
-    "title": "Contact Me",
-    "description": "Feel free to reach out for collaborations or inquiries."
-  },
-  "navbar": {
-    "title": "My Portfolio",
-    "home": "Home",
-    "about": "About",
-    "work": "Work",
-    "works": "Works",
-    "contact": "Contact"
+  "components": {
+    "navbar": {
+      "home": "Home",
+      "about": "About",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "footer": {
+      "description": "© 2025 Rafael Fachinelli. All rights reserved."
+    }
   }
 }
