@@ -2,5 +2,25 @@
   "home": {
     "welcome": "Hi, I'm Rafael Fachinelli",
     "description": "I'm a software developer with experience in various technologies."
+  },
+  "work": {
+    "title": "My Work",
+    "description": "Here are some of the projects I've worked on."
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Learn more about my background and skills."
+  },
+  "contact": {
+    "title": "Contact Me",
+    "description": "Feel free to reach out for collaborations or inquiries."
+  },
+  "navbar": {
+    "title": "My Portfolio",
+    "home": "Home",
+    "about": "About",
+    "work": "Work",
+    "works": "Works",
+    "contact": "Contact"
   }
 }
