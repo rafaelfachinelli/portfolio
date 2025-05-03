@@ -33,7 +33,7 @@
       "contact": "Contato"
     },
     "footer": {
-      "description": "© 2025 Rafael Fachinelli. Todos os direitos reservados."
+      "rights": "© {year} Rafael Fachinelli | Portfólio. Todos os direitos reservados."
     }
   }
 }

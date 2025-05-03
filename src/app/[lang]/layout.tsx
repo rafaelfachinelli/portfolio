@@ -4,6 +4,7 @@ import { Locale } from '../../../i18n-config';
 import { Navbar } from '@/components/layout/navbar';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { MainContent } from '@/components/layout/content';
+import { Footer } from '@/components/layout/footer';
 
 export default async function RootLayout({
   children,
@@ -21,6 +22,7 @@ export default async function RootLayout({
         <LanguageProvider lang={lang} dictionary={dictionary}>
           <Navbar />
           <MainContent>{children}</MainContent>
+          <Footer dictionary={dictionary} />
         </LanguageProvider>
       </body>
     </html>

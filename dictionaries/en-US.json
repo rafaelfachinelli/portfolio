@@ -33,7 +33,7 @@
       "contact": "Contact"
     },
     "footer": {
-      "description": "© 2025 Rafael Fachinelli. All rights reserved."
+      "rights": "© {year} Rafael Fachinelli | Portfolio. All rights reserved."
     }
   }
 }
