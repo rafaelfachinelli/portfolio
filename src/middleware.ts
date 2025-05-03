@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-import { i18n } from "../i18n-config";
+import { i18n } from '../i18n-config';
 
-import { match as matchLocale } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
+import { match as matchLocale } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
@@ -16,7 +16,7 @@ function getLocale(request: NextRequest): string | undefined {
 
   // Use negotiator and intl-localematcher to get best locale
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales,
+    locales
   );
 
   const locale = matchLocale(languages, locales, i18n.defaultLocale);
@@ -28,7 +28,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = i18n.locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  )
+  );
 
   // Ensure `_next` paths are completely ignored by the middleware
   if (pathname.startsWith('/_next')) {
@@ -36,12 +36,16 @@ export function middleware(request: NextRequest) {
   }
 
   // Ensure requests for files in the `public` directory are ignored
-  if (pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith('/logo_1024x1024.png')) {
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/logo_1024x1024.png')
+  ) {
     return NextResponse.next();
   }
 
   // Use the browser's language to dynamically set the default locale
-  if (pathname === "/") {
+  if (pathname === '/') {
     const locale = getLocale(request) || i18n.defaultLocale;
     return NextResponse.redirect(new URL(`/${locale}`, request.url));
   }
@@ -50,7 +54,10 @@ export function middleware(request: NextRequest) {
   if (!pathnameHasLocale) {
     const locale = getLocale(request) || i18n.defaultLocale;
     return NextResponse.redirect(
-      new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url)
+      new URL(
+        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
+        request.url
+      )
     );
   }
 
@@ -60,20 +67,15 @@ export function middleware(request: NextRequest) {
     [
       '/manifest.json',
       '/favicon.ico',
-      'file.svg',
-      'globe.svg',
-      'next.svg',
-      'vercel.svg',
-      'window.svg',
+      '/images/logo_1024x1024.png',
       // Your other files in `public`
     ].includes(pathname)
   )
-    return
+    return;
 
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) =>
-      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
   // Redirect if there is no locale
@@ -84,16 +86,13 @@ export function middleware(request: NextRequest) {
     // The new URL is now /en-US/products
     return NextResponse.redirect(
       new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-        request.url,
-      ),
+        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
+        request.url
+      )
     );
   }
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next).*)',
-    '/((?!api).*)',
-  ],
+  matcher: ['/((?!_next).*)', '/((?!api).*)'],
 };
