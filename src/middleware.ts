@@ -36,7 +36,7 @@ export function middleware(request: NextRequest) {
   }
 
   // Ensure requests for files in the `public` directory are ignored
-  if (pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith('/next.svg') || pathname.startsWith('/vercel.svg') || pathname.startsWith('/file.svg') || pathname.startsWith('/globe.svg') || pathname.startsWith('/window.svg')) {
+  if (pathname.startsWith('/_next') || pathname.startsWith('/favicon.ico') || pathname.startsWith('/next.svg')) {
     return NextResponse.next();
   }
 

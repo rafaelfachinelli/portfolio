@@ -1,4 +1,6 @@
 {
-    "greeting": "Oi",
-    "farewell": "Tchau"
+  "home": {
+    "welcome": "Oi, eu sou Rafael Fachinelli",
+    "description": "Sou um desenvolvedor de software com experiência em várias tecnologias."
   }
+}
