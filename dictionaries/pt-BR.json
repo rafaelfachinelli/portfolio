@@ -94,6 +94,16 @@
       "dark": "Escuro",
       "light": "Claro",
       "system": "Sistema"
+    },
+    "languageSwitcher": {
+      "options": {
+        "en": {
+          "title": "Inglês"
+        },
+        "pt": {
+          "title": "Português"
+        }
+      }
     }
   },
   "commons": {

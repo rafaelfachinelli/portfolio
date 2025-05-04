@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/navigation-menu'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+import { LanguageSwitcher } from '../ui/language-switcher'
 import { ThemeSwitcher } from '../ui/theme-switcher'
 
 export function Navbar() {
@@ -107,7 +108,8 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <ThemeSwitcher className="ml-auto" />
+        <LanguageSwitcher className="mr-4 ml-auto" />
+        <ThemeSwitcher />
       </div>
     </div>
   )

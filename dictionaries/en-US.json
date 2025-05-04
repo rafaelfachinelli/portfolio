@@ -93,6 +93,16 @@
       "dark": "Dark",
       "light": "Light",
       "system": "System"
+    },
+    "languageSwitcher": {
+      "options": {
+        "en": {
+          "title": "English"
+        },
+        "pt": {
+          "title": "Portuguese"
+        }
+      }
     }
   },
   "commons": {
