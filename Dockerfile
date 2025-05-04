@@ -1,7 +1,7 @@
 # -------------------
 # BUILD STAGE
 # -------------------
-FROM node:23-slim AS build
+FROM node:23-slim AS builder
 
 # Set working directory
 WORKDIR /app
@@ -35,13 +35,14 @@ ENV NODE_ENV=production
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/* \
 	&& addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
-# Copy only the necessary files from the build stage
-COPY --from=build /app/package.json ./
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
-COPY --from=build /app/public ./public
-COPY --from=build /app/server.js ./
+# Copy only the necessary files from the builder stage
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/server.js ./
+COPY --from=builder /app/next.config.js ./
 
 # Copy and prepare the start script
 COPY ./start.sh ./
