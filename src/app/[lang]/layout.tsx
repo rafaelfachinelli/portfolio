@@ -1,22 +1,22 @@
-import '@/app/globals.css';
+import '@/app/globals.css'
 
-import { MainContent } from '@/components/layout/content';
-import { Footer } from '@/components/layout/footer';
-import { Navbar } from '@/components/layout/navbar';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { Footer } from '@/components/layout/footer'
+import { MainContent } from '@/components/layout/main-content'
+import { Navbar } from '@/components/layout/navbar'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 
-import { getDictionary } from '../../../get-dictionary';
-import { Locale } from '../../../i18n-config';
+import { getDictionary } from '../../../get-dictionary'
+import { Locale } from '../../../i18n-config'
 
 export default async function RootLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  children: React.ReactNode
+  params: Promise<{ lang: Locale }>
 }) {
-  const { lang } = await params;
-  const dictionary = await getDictionary(lang);
+  const { lang } = await params
+  const dictionary = await getDictionary(lang)
 
   return (
     <html lang={lang}>
@@ -28,5 +28,5 @@ export default async function RootLayout({
         </LanguageProvider>
       </body>
     </html>
-  );
+  )
 }

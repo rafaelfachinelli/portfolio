@@ -1,16 +1,11 @@
-'use client';
+import { TimelinePageContent } from '@/components/pages/about/timeline/timeline-page.content'
 
-import { useLanguage } from '@/contexts/LanguageContext';
+export async function generateMetadata() {
+  return {
+    title: 'Rafael Fachinelli | Timeline',
+  }
+}
 
 export default function Page() {
-  const { dictionary } = useLanguage();
-
-  return (
-    <div>
-      <h1 className="text-4xl font-bold">
-        {dictionary.pages.about.timeline.title}
-      </h1>
-      <p className="text-lg">{dictionary.pages.about.timeline.description}</p>
-    </div>
-  );
+  return <TimelinePageContent />
 }

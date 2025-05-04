@@ -1,14 +1,11 @@
-'use client';
+import { MePageContent } from '@/components/pages/about/me/me-page.content'
 
-import { useLanguage } from '@/contexts/LanguageContext';
+export async function generateMetadata() {
+  return {
+    title: 'Rafael Fachinelli | About Me',
+  }
+}
 
 export default function Page() {
-  const { dictionary } = useLanguage();
-
-  return (
-    <div>
-      <h1 className="text-4xl font-bold">{dictionary.pages.about.title}</h1>
-      <p className="text-lg">{dictionary.pages.about.description}</p>
-    </div>
-  );
+  return <MePageContent />
 }

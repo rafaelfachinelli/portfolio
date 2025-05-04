@@ -1,14 +1,11 @@
-'use client';
+import { FlexSewingMachinePageContent } from '@/components/pages/projects/flex-sewing-machine/flex-sewing-machine-page-content'
 
-import { useLanguage } from '@/contexts/LanguageContext';
+export async function generateMetadata() {
+  return {
+    title: 'Rafael Fachinelli | Projects | Flex Sewing Machine',
+  }
+}
 
 export default function Page() {
-  const { dictionary } = useLanguage();
-
-  return (
-    <div>
-      <h1 className="text-4xl font-bold">{dictionary.pages.projects.title}</h1>
-      <p className="text-lg">{dictionary.pages.projects.description}</p>
-    </div>
-  );
+  return <FlexSewingMachinePageContent />
 }

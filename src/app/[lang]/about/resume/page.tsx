@@ -1,16 +1,11 @@
-'use client';
+import { ResumePageContent } from '@/components/pages/about/resume/resume-page-content'
 
-import { useLanguage } from '@/contexts/LanguageContext';
+export async function generateMetadata() {
+  return {
+    title: 'Rafael Fachinelli | Resume',
+  }
+}
 
 export default function Page() {
-  const { dictionary } = useLanguage();
-
-  return (
-    <div>
-      <h1 className="text-4xl font-bold">
-        {dictionary.pages.about.resume.title}
-      </h1>
-      <p className="text-lg">{dictionary.pages.about.resume.description}</p>
-    </div>
-  );
+  return <ResumePageContent />
 }
