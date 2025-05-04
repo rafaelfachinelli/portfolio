@@ -1,18 +1,18 @@
-import { Dictionary } from '../../../get-dictionary';
+import { Dictionary } from '../../../get-dictionary'
 
 type FooterProps = Readonly<{
-  dictionary: Dictionary;
-}>;
+  dictionary: Dictionary
+}>
 
 export function Footer({ dictionary }: FooterProps) {
   return (
-    <footer className="flex items-center justify-center w-full h-16 border-t">
-      <p className="text-sm text-muted-foreground select-none">
+    <footer className="flex h-16 w-full items-center justify-center border-t">
+      <p className="text-muted-foreground text-center text-sm select-none">
         {dictionary.components.footer.rights.replace(
           '{year}',
-          new Date().getFullYear().toString()
+          new Date().getFullYear().toString(),
         )}
       </p>
     </footer>
-  );
+  )
 }
