@@ -10,8 +10,18 @@
       "description": "Explore my projects and see the technologies I've worked with."
     },
     "about": {
-      "title": "About Me",
-      "description": "Learn more about my background, skills, and experience.",
+      "me": {
+        "title": "About Me",
+        "description": "Learn more about my background, skills, and experience.",
+        "content": [
+          "I'm a Tech Lead at Leroy Merlin (through Develcode). I have more than four years of experience where I work with the languages and tools HTML5, CSS3, JavaScript, React, GitHub, Datadog and others.",
+          "My main skills are the development of websites, web applications, static sites with good clean code practices, performance, unit tests, debugging techniques, project documentation and production of tutorials.",
+          "I am also responsible for semantic versioning of the project, controlling environments and deployment with GitHub Actions, and planning and demonstrating deliveries.",
+          "Furthermore, I participated in the implementation of observability in Datadog RUM in React applications, contributing to improving the user experience and optimizing application resources.",
+          "I have a degree in Systems Analysis and Development from FATEC and an IT technician from ETEC. I am passionate about web application development and automation, and I am always looking to learn new technologies and methodologies.",
+          "I am a committed, creative, and collaborative professional, who likes to work as a team and solve problems. I am proud to have been awarded at two innovation events, Ideathon and Inovathon São Paulo, where I presented solutions to the challenges of the digital environment and culture and tourism. My goal is to continue developing solutions that generate value for customers and society."
+        ]
+      },
       "resume": {
         "title": "Resume",
         "description": "Download my resume to see my professional journey and skills."

@@ -10,8 +10,19 @@
       "description": "Explore meus projetos e veja as tecnologias com as quais trabalhei."
     },
     "about": {
-      "title": "Sobre Mim",
-      "description": "Saiba mais sobre minha formação, habilidades e experiência.",
+      "me": {
+        "title": "Sobre Mim",
+        "description": "Saiba mais sobre minha formação, habilidades e experiência.",
+        "content": [
+          "Sou Tech Lead na Leroy Merlin (pela Develcode). Possuo mais de quatro anos de experiência trabalhando com as linguagens e ferramentas HTML5, CSS3, JavaScript, React, GitHub, Datadog e outras.",
+          "Minhas principais habilidades são o desenvolvimento de sites, aplicações web, sites estáticos com boas práticas de código limpo, performance, testes unitários, técnicas de depuração, documentação do projeto e produção de tutoriais.",
+          "Também sou responsável pelo versionamento semântico do projeto, controle de ambientes e implantação com GitHub Actions, além de planejamento e demonstração de entregas.",
+          "Além disso, participei da implementação de observabilidade no Datadog RUM em aplicações React, contribuindo para a melhoria da experiência do usuário e otimização dos recursos da aplicação.",
+          "Sou formado em Análise e Desenvolvimento de Sistemas pela FATEC e técnico em TI pela ETEC. Sou apaixonado por desenvolvimento e automação de aplicações web e estou sempre em busca de aprender novas tecnologias e metodologias.",
+          "Sou um profissional comprometido, criativo e colaborativo, que gosta de trabalhar em equipe e solucionar problemas. Tenho orgulho de ter sido premiado em dois eventos de inovação, o Ideathon e o Inovathon São Paulo, onde apresentei soluções para os desafios do ambiente digital e da cultura e do turismo. Meu objetivo é continuar desenvolvendo soluções que gerem valor para os clientes e para a sociedade.",
+          "Além disso, estou sempre em busca de novos desafios e oportunidades para expandir meu conhecimento e habilidades, contribuindo para o crescimento da equipe e da empresa."
+        ]
+      },
       "resume": {
         "title": "Currículo",
         "description": "Baixe meu currículo para ver minha trajetória profissional e habilidades."
