@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 import AnimatedTextCycle from '@/components/ui/animated-text-cycle'
 import { PageContent } from '@/components/ui/page-content'
 import { useLanguage } from '@/contexts/LanguageContext'
