@@ -14,7 +14,7 @@ export function HomePageContent() {
     personalitiesText.split('{personality}')
 
   return (
-    <PageContent>
+    <PageContent className="gap-4">
       <div className="text-center text-2xl sm:text-left sm:text-4xl">
         {beforePlaceholder}
         <AnimatedTextCycle
