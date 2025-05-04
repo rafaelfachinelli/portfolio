@@ -4,6 +4,7 @@ import {
   Contact,
   ExternalLink,
   Github,
+  Home,
   Info,
   Instagram,
   Linkedin,
@@ -116,6 +117,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </Link>
       </SidebarHeader>
       <SidebarContent>
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                tooltip={dictionary.components.navbar.options.home.title}
+                asChild
+              >
+                <Link
+                  href={`/${lang}`}
+                  className="flex items-center"
+                  onClick={toggleSidebar}
+                >
+                  <Home />
+                  <span>{dictionary.components.navbar.options.home.title}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
         <NavMain items={getData().navMain} />
         <NavProjects projects={getData().projects} />
         <SidebarGroup>
