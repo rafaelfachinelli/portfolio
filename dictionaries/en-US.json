@@ -2,7 +2,8 @@
   "pages": {
     "home": {
       "title": "Hi, I'm Rafael Fachinelli",
-      "description": "I'm a software developer with experience in various technologies."
+      "description": "I'm a software developer with experience in various technologies.",
+      "personalities": "My {personality} transform your business"
     },
     "projects": {
       "title": "Projects",
@@ -78,5 +79,15 @@
     "footer": {
       "rights": "© {year} Rafael Fachinelli | Portfolio. All rights reserved."
     }
+  },
+  "commons": {
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again later.",
+    "experience": "experience",
+    "collaboration": "collaboration",
+    "leadership": "leadership",
+    "communication": "communication",
+    "adaptability": "adaptability",
+    "innovation": "innovation"
   }
 }

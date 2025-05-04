@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "esbuild": "^0.25.3",
+    "framer-motion": "^12.9.4",
     "lucide-react": "^0.507.0",
     "negotiator": "^1.0.0",
     "next": "15.3.1",

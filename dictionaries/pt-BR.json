@@ -2,7 +2,8 @@
   "pages": {
     "home": {
       "title": "Olá, eu sou Rafael Fachinelli",
-      "description": "Sou um desenvolvedor de software com experiência em várias tecnologias."
+      "description": "Sou um desenvolvedor de software com experiência em várias tecnologias.",
+      "personalities": "Minha {personality} transforma seu negócio"
     },
     "projects": {
       "title": "Projetos",
@@ -78,5 +79,15 @@
     "footer": {
       "rights": "© {year} Rafael Fachinelli | Portfólio. Todos os direitos reservados."
     }
+  },
+  "commons": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro. Tente novamente mais tarde.",
+    "experience": "experiência",
+    "collaboration": "colaboração",
+    "leadership": "liderança",
+    "communication": "comunicação",
+    "adaptability": "adaptabilidade",
+    "innovation": "inovação"
   }
 }

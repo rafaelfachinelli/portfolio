@@ -1,9 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 type MainContentProps = Readonly<{
-  children: React.ReactNode;
-}>;
+  children: React.ReactNode
+}>
 
 export function MainContent({ children }: MainContentProps) {
-  return <main className="p-4 min-h-screen">{children}</main>;
+  return (
+    <main className="mx-auto min-h-screen max-w-[1024px] p-4">{children}</main>
+  )
 }
