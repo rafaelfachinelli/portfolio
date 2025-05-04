@@ -14,7 +14,7 @@ export function HomePageContent() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 p-4 sm:gap-8 sm:p-8">
-      <h1 className={'text-center text-2xl sm:text-left sm:text-5xl'}>
+      <h1 className={'text-center text-2xl sm:text-left sm:text-4xl'}>
         {beforePlaceholder}
         <AnimatedTextCycle
           words={[
