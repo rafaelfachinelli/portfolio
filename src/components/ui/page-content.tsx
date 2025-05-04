@@ -7,8 +7,6 @@ interface PageContentProps {
 
 export function PageContent({ className, children }: PageContentProps) {
   return (
-    <div className={cn('flex flex-col gap-8 overflow-hidden', className)}>
-      {children}
-    </div>
+    <div className={cn('flex flex-col gap-4 pt-8', className)}>{children}</div>
   )
 }
