@@ -5,7 +5,12 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   env: {},
   images: {
-    domains: ['flagcdn.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+      },
+    ],
   },
 }
 

@@ -14,7 +14,7 @@ export function MePageContent() {
         description={dictionary.pages.about.me.description}
       />
 
-      <PageContent>
+      <PageContent className="gap-4">
         {dictionary.pages.about.me.content.map((paragraph, index) => (
           <p key={index} className="text-justify">
             {paragraph}
