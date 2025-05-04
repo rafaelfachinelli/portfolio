@@ -21,7 +21,7 @@ export function Navbar() {
   const { lang, dictionary } = useLanguage()
 
   return (
-    <div className="sticky top-0 z-50 flex items-center justify-center p-2 shadow-md">
+    <div className="bg-background sticky top-0 z-50 flex items-center justify-center p-2 shadow-md">
       <div className="flex w-full max-w-[1024px] items-center justify-start">
         <Link href={`/${lang}`} className="flex items-center">
           <Image
