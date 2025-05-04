@@ -3,6 +3,7 @@ import '@/app/globals.css'
 import { Footer } from '@/components/layout/footer'
 import { MainContent } from '@/components/layout/main-content'
 import { Navbar } from '@/components/layout/navbar'
+import { ThemeProvider } from '@/components/ui/theme-provider'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
 import { getDictionary } from '../../../get-dictionary'
@@ -20,12 +21,19 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
-      <body className="min-h-screen antialiased">
-        <LanguageProvider lang={lang} dictionary={dictionary}>
-          <Navbar />
-          <MainContent>{children}</MainContent>
-          <Footer dictionary={dictionary} />
-        </LanguageProvider>
+      <body className="min-h-screen max-w-screen antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LanguageProvider lang={lang} dictionary={dictionary}>
+            <Navbar />
+            <MainContent>{children}</MainContent>
+            <Footer dictionary={dictionary} />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

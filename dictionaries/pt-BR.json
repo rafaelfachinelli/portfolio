@@ -78,6 +78,11 @@
     },
     "footer": {
       "rights": "© {year} Rafael Fachinelli | Portfólio. Todos os direitos reservados."
+    },
+    "themeSwitcher": {
+      "dark": "Escuro",
+      "light": "Claro",
+      "system": "Sistema"
     }
   },
   "commons": {

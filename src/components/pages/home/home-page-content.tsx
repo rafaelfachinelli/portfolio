@@ -25,7 +25,7 @@ export function HomePageContent() {
             dictionary.commons.adaptability,
             dictionary.commons.innovation,
           ]}
-          interval={3000}
+          interval={2000}
         />
         {afterPlaceholder}
       </h1>

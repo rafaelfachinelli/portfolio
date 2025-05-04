@@ -15,11 +15,13 @@ import {
 } from '@/components/ui/navigation-menu'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+import { ThemeSwitcher } from '../ui/theme-switcher'
+
 export function Navbar() {
   const { lang, dictionary } = useLanguage()
 
   return (
-    <div className="bg-background sticky top-0 z-50 flex items-center justify-center p-2 shadow-md">
+    <div className="sticky top-0 z-50 flex items-center justify-center p-2 shadow-md">
       <div className="flex w-full max-w-[1024px] items-center justify-start">
         <Link href={`/${lang}`} className="flex items-center">
           <Image
@@ -106,6 +108,7 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <ThemeSwitcher className="ml-auto" />
       </div>
     </div>
   )
