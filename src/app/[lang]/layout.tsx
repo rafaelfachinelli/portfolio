@@ -1,6 +1,6 @@
 import '@/app/globals.css'
 
-import { AppSidebar } from '@/components/layout/app-sidebar'
+import { AppSidebar } from '@/components/layout/app-sidebar/app-sidebar'
 import { Footer } from '@/components/layout/footer'
 import { MainContent } from '@/components/layout/main-content'
 import { Navbar } from '@/components/layout/navbar'

@@ -1,0 +1,135 @@
+'use client'
+
+import { Contact, Info, type LucideIcon, Presentation } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import * as React from 'react'
+
+import { NavMain } from '@/components/layout/app-sidebar/nav-main'
+import { NavProjects } from '@/components/layout/app-sidebar/nav-projects'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from '@/components/ui/sidebar'
+import { useLanguage } from '@/contexts/LanguageContext'
+
+export type SidebarOption = {
+  title?: string
+  name?: string
+  url?: string
+  icon?: LucideIcon
+  isActive?: boolean
+  items?: {
+    title: string
+    url: string
+  }[]
+}
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { lang, dictionary } = useLanguage()
+  const { toggleSidebar } = useSidebar()
+
+  const getData = (): {
+    navMain: SidebarOption[]
+    projects: SidebarOption[]
+  } => {
+    return {
+      navMain: [
+        {
+          title: dictionary.components.navbar.options.about.title,
+          icon: Info,
+          isActive: true,
+          items: [
+            {
+              title: dictionary.components.navbar.options.about.items.me.title,
+              url: `/${lang}/about/me`,
+            },
+            {
+              title:
+                dictionary.components.navbar.options.about.items.resume.title,
+              url: `/${lang}/about/resume`,
+            },
+            {
+              title:
+                dictionary.components.navbar.options.about.items.timeline.title,
+              url: `/${lang}/about/timeline`,
+            },
+          ],
+        },
+      ],
+      projects: [
+        {
+          name: dictionary.components.navbar.options.projects.items[
+            'leroy-merlin-instala'
+          ].title,
+          url: `/${lang}/projects/leroy-merlin-instala`,
+          icon: Presentation,
+        },
+        {
+          name: dictionary.components.navbar.options.projects.items[
+            'flex-sewing-machine'
+          ].title,
+          url: `/${lang}/projects/flex-sewing-machine`,
+          icon: Presentation,
+        },
+        {
+          name: dictionary.components.navbar.options.projects.items['markit3d']
+            .title,
+          url: `/${lang}/projects/markit3d`,
+          icon: Presentation,
+        },
+      ],
+    }
+  }
+
+  return (
+    <Sidebar {...props}>
+      <SidebarHeader>
+        <Link
+          href={`/${lang}`}
+          className="flex items-center justify-center"
+          onClick={toggleSidebar}
+        >
+          <Image
+            src="/logo_1024x1024.png"
+            alt="RFL"
+            width={40}
+            height={40}
+            className="min-h-9 min-w-9 md:mr-2 md:block"
+          />
+        </Link>
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={getData().navMain} />
+        <NavProjects projects={getData().projects} />
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                tooltip={dictionary.components.navbar.options.contact.title}
+                asChild
+              >
+                <Link
+                  href={`/${lang}/contact`}
+                  className="flex items-center"
+                  onClick={toggleSidebar}
+                >
+                  <Contact />
+                  <span>
+                    {dictionary.components.navbar.options.contact.title}
+                  </span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  )
+}

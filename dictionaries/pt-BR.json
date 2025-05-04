@@ -76,7 +76,7 @@
               "description": "Um projeto que apresenta uma máquina de costura com recursos avançados e capacidades."
             },
             "more": {
-              "title": "Mais projetos...",
+              "title": "Mais",
               "description": "Uma coleção de vários projetos e aplicações."
             }
           }
@@ -118,6 +118,8 @@
     "leadership": "liderança",
     "communication": "comunicação",
     "adaptability": "adaptabilidade",
-    "innovation": "inovação"
+    "innovation": "inovação",
+    "details": "detalhes",
+    "brief": "resumo"
   }
 }

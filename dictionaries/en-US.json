@@ -75,7 +75,7 @@
               "description": "A project showcasing a sewing machine with advanced features and capabilities."
             },
             "more": {
-              "title": "More projects...",
+              "title": "More",
               "description": "A collection of various projects and applications."
             }
           }
@@ -117,6 +117,8 @@
     "leadership": "leadership",
     "communication": "communication",
     "adaptability": "adaptability",
-    "innovation": "innovation"
+    "innovation": "innovation",
+    "details": "details",
+    "brief": "brief"
   }
 }
