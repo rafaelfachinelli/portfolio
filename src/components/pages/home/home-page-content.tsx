@@ -15,7 +15,7 @@ export function HomePageContent() {
 
   return (
     <PageContent>
-      <div className={'w-fit text-center text-2xl sm:text-left sm:text-4xl'}>
+      <div className="text-center text-2xl sm:text-left sm:text-4xl">
         {beforePlaceholder}
         <AnimatedTextCycle
           words={[

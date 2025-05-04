@@ -73,7 +73,7 @@ export default function AnimatedTextCycle({
         ref={measureRef}
         aria-hidden="true"
         className="pointer-events-none absolute opacity-0"
-        style={{ visibility: 'hidden' }}
+        style={{ visibility: 'hidden', top: '-9999px', left: '-9999px' }}
       >
         {words.map(word => (
           <span key={word} className={`font-bold ${className}`}>
