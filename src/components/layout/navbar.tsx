@@ -29,7 +29,7 @@ export function Navbar() {
           className="mt-1 mr-2 min-h-9 min-w-9"
         />
       </Link>
-      <NavigationMenu>
+      <NavigationMenu delayDuration={0}>
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
