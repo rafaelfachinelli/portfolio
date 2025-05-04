@@ -38,8 +38,8 @@ export function LanguageSwitcher({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem className="cursor-pointer">
-            <Link href={getNewPath('en')} className="flex items-center">
+          <Link href={getNewPath('en')} className="flex items-center">
+            <DropdownMenuItem className="w-full cursor-pointer">
               <Image
                 src="https://flagcdn.com/w40/us.png"
                 alt="en"
@@ -48,10 +48,10 @@ export function LanguageSwitcher({
                 className="mr-2 inline-block"
               />
               {dictionary.components.languageSwitcher.options.en.title}
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">
-            <Link href={getNewPath('pt')} className="flex items-center">
+            </DropdownMenuItem>
+          </Link>
+          <Link href={getNewPath('pt')} className="flex items-center">
+            <DropdownMenuItem className="w-full cursor-pointer">
               <Image
                 src="https://flagcdn.com/w40/br.png"
                 alt="pt"
@@ -60,8 +60,8 @@ export function LanguageSwitcher({
                 className="mr-2 inline-block"
               />
               {dictionary.components.languageSwitcher.options.pt.title}
-            </Link>
-          </DropdownMenuItem>
+            </DropdownMenuItem>
+          </Link>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
