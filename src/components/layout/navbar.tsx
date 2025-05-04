@@ -1,32 +1,32 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
+import * as React from 'react'
 
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
+  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-  NavigationMenuLink,
-} from '@/components/ui/navigation-menu';
-import { useLanguage } from '@/contexts/LanguageContext';
-import Image from 'next/image';
+} from '@/components/ui/navigation-menu'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export function Navbar() {
-  const { lang, dictionary } = useLanguage();
+  const { lang, dictionary } = useLanguage()
 
   return (
-    <div className="flex sticky top-0 z-50 bg-background p-2 shadow-md">
+    <div className="bg-background sticky top-0 z-50 flex p-2 shadow-md">
       <Link href={`/${lang}`} className="flex items-center">
         <Image
           src="/logo_1024x1024.png"
           alt="RFL"
           width={40}
           height={40}
-          className="mt-1 mr-2"
+          className="mt-1 mr-2 min-h-9 min-w-9"
         />
       </Link>
       <NavigationMenu>
@@ -43,19 +43,19 @@ export function Navbar() {
               {dictionary.components.navbar.options.about.title}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {Object.entries(
-                  dictionary.components.navbar.options.about.items
+                  dictionary.components.navbar.options.about.items,
                 ).map(([key, item]) => (
                   <NavigationMenuLink asChild key={key}>
                     <Link
                       href={`/${lang}/about/${key}`}
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                     >
-                      <div className="text-sm font-medium leading-none">
+                      <div className="text-sm leading-none font-medium">
                         {item.title}
                       </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                      <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                         {item.description}
                       </p>
                     </Link>
@@ -69,19 +69,19 @@ export function Navbar() {
               {dictionary.components.navbar.options.projects.title}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {Object.entries(
-                  dictionary.components.navbar.options.projects.items
+                  dictionary.components.navbar.options.projects.items,
                 ).map(([key, project]) => (
                   <NavigationMenuLink asChild key={key}>
                     <Link
                       href={`/${lang}/projects/${key}`}
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                     >
-                      <div className="text-sm font-medium leading-none">
+                      <div className="text-sm leading-none font-medium">
                         {project.title}
                       </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                      <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                         {project.description}
                       </p>
                     </Link>
@@ -103,5 +103,5 @@ export function Navbar() {
         </NavigationMenuList>
       </NavigationMenu>
     </div>
-  );
+  )
 }

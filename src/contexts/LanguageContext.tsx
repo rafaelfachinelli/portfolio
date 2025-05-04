@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext } from 'react';
+
 import { Dictionary } from '../../get-dictionary';
 import { Locale } from '../../i18n-config';
 
