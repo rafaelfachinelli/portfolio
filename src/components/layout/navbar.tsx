@@ -15,24 +15,28 @@ import {
 import { useLanguage } from '@/contexts/LanguageContext'
 
 import { LanguageSwitcher } from '../ui/language-switcher'
+import { SidebarTrigger } from '../ui/sidebar'
 import { ThemeSwitcher } from '../ui/theme-switcher'
 
 export function Navbar() {
   const { lang, dictionary } = useLanguage()
 
   return (
-    <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center border-b p-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:border-b-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
+    <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center border-b px-4 py-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:border-b-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
       <div className="flex w-full max-w-[1024px] items-center justify-center">
-        <Link href={`/${lang}`} className="flex items-center">
-          <Image
-            src="/logo_1024x1024.png"
-            alt="RFL"
-            width={40}
-            height={40}
-            className="mt-1 mr-2 min-h-9 min-w-9"
-          />
-        </Link>
-        <NavigationMenu delayDuration={0}>
+        <SidebarTrigger className="flex cursor-pointer items-center justify-center border p-4 md:hidden" />
+        <div className="flex w-full items-center justify-center md:w-fit md:justify-start">
+          <Link href={`/${lang}`} className="flex items-center justify-center">
+            <Image
+              src="/logo_1024x1024.png"
+              alt="RFL"
+              width={40}
+              height={40}
+              className="min-h-9 min-w-9 md:mr-2 md:block"
+            />
+          </Link>
+        </div>
+        <NavigationMenu delayDuration={0} className="hidden md:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
@@ -108,7 +112,7 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <LanguageSwitcher className="mr-4 ml-auto" />
+        <LanguageSwitcher className="mr-2 ml-auto" />
         <ThemeSwitcher />
       </div>
     </div>

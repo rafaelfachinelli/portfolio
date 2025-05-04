@@ -28,7 +28,11 @@ export function LanguageSwitcher({
     <div className={className}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="cursor-pointer">
+          <Button
+            variant="outline"
+            size="icon"
+            className="cursor-pointer rounded-full"
+          >
             <Image
               src={`https://flagcdn.com/w40/${lang === 'en' ? 'us' : 'br'}.png`}
               alt={lang}

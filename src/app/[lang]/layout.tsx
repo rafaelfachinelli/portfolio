@@ -1,8 +1,10 @@
 import '@/app/globals.css'
 
+import { AppSidebar } from '@/components/layout/app-sidebar'
 import { Footer } from '@/components/layout/footer'
 import { MainContent } from '@/components/layout/main-content'
 import { Navbar } from '@/components/layout/navbar'
+import { SidebarProvider } from '@/components/ui/sidebar'
 import { ThemeProvider } from '@/components/ui/theme-provider'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
@@ -29,9 +31,14 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <LanguageProvider lang={lang} dictionary={dictionary}>
-            <Navbar />
-            <MainContent>{children}</MainContent>
-            <Footer dictionary={dictionary} />
+            <SidebarProvider defaultOpen={false}>
+              <div className="flex w-full flex-col">
+                <Navbar />
+                <AppSidebar />
+                <MainContent>{children}</MainContent>
+                <Footer dictionary={dictionary} />
+              </div>
+            </SidebarProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>
