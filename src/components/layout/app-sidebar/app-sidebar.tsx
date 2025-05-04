@@ -1,6 +1,15 @@
 'use client'
 
-import { Contact, Info, type LucideIcon, Presentation } from 'lucide-react'
+import {
+  Contact,
+  ExternalLink,
+  Github,
+  Info,
+  Instagram,
+  Linkedin,
+  type LucideIcon,
+  Presentation,
+} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as React from 'react'
@@ -10,6 +19,7 @@ import { NavProjects } from '@/components/layout/app-sidebar/nav-projects'
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
@@ -130,6 +140,55 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Github" asChild>
+              <Link
+                href="https://github.com/rafaelfachinelli"
+                className="flex items-center"
+                onClick={toggleSidebar}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github />
+                <span>Github</span>
+                <ExternalLink className="ml-auto h-4 w-4" />
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="LinkedIn" asChild>
+              <Link
+                href="https://www.linkedin.com/in/rafaelfachinelli/"
+                className="flex items-center"
+                onClick={toggleSidebar}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin />
+                <span>LinkedIn</span>
+                <ExternalLink className="ml-auto h-4 w-4" />
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Instagram" asChild>
+              <Link
+                href="https://www.instagram.com/rafaelfachinelli/"
+                className="flex items-center"
+                onClick={toggleSidebar}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram />
+                <span>Instagram</span>
+                <ExternalLink className="ml-auto h-4 w-4" />
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   )
 }
