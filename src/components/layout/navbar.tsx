@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import * as React from 'react'
 
 import {
   NavigationMenu,
@@ -21,8 +20,8 @@ export function Navbar() {
   const { lang, dictionary } = useLanguage()
 
   return (
-    <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b p-2 backdrop-blur">
-      <div className="flex w-full max-w-[1024px] items-center justify-start">
+    <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center border-b p-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:border-b-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
+      <div className="flex w-full max-w-[1024px] items-center justify-center">
         <Link href={`/${lang}`} className="flex items-center">
           <Image
             src="/logo_1024x1024.png"

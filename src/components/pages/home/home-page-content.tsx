@@ -3,6 +3,7 @@
 import React from 'react'
 
 import AnimatedTextCycle from '@/components/ui/animated-text-cycle'
+import { PageContent } from '@/components/ui/page-content'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function HomePageContent() {
@@ -13,8 +14,8 @@ export function HomePageContent() {
     personalitiesText.split('{personality}')
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 p-4 sm:gap-8 sm:p-8">
-      <h1 className={'text-center text-2xl sm:text-left sm:text-4xl'}>
+    <PageContent>
+      <div className={'w-fit text-center text-2xl sm:text-left sm:text-4xl'}>
         {beforePlaceholder}
         <AnimatedTextCycle
           words={[
@@ -28,7 +29,7 @@ export function HomePageContent() {
           interval={2000}
         />
         {afterPlaceholder}
-      </h1>
+      </div>
 
       <p className="text-center text-4xl font-bold sm:text-left sm:text-5xl">
         {dictionary.pages.home.title}
@@ -36,6 +37,6 @@ export function HomePageContent() {
       <p className="text-center text-2xl font-semibold sm:text-left sm:text-4xl">
         {dictionary.pages.home.description}
       </p>
-    </div>
+    </PageContent>
   )
 }

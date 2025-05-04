@@ -12,10 +12,10 @@ import { Locale } from '../../../i18n-config'
 export default async function RootLayout({
   children,
   params,
-}: {
+}: Readonly<{
   children: React.ReactNode
   params: Promise<{ lang: Locale }>
-}) {
+}>) {
   const { lang } = await params
   const dictionary = await getDictionary(lang)
 
