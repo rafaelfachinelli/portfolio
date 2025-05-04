@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import {
   DropdownMenu,
@@ -17,10 +18,10 @@ export function LanguageSwitcher({
   className,
 }: Readonly<{ className?: string }>) {
   const { lang, dictionary } = useLanguage()
+  const pathname = usePathname()
 
   const getNewPath = (newLang: string) => {
-    const currentPath = window.location.pathname
-    return currentPath.replace(`/${lang}`, `/${newLang}`)
+    return pathname.replace(`/${lang}`, `/${newLang}`)
   }
 
   return (
