@@ -1,5 +1,6 @@
 'use client'
 
+import { Contact, Home, Info, Presentation } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -32,7 +33,7 @@ export function Navbar() {
               alt="RFL"
               width={40}
               height={40}
-              className="min-h-9 min-w-9 md:mr-2 md:block"
+              className="min-h-9 min-w-9 md:mr-8 md:block"
             />
           </Link>
         </div>
@@ -44,12 +45,14 @@ export function Navbar() {
                   href={`/${lang}`}
                   className={navigationMenuTriggerStyle()}
                 >
+                  <Home className="mr-2 h-4 w-4" />
                   {dictionary.components.navbar.options.home.title}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
+                <Info className="mr-2 h-4 w-4" />
                 {dictionary.components.navbar.options.about.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -76,6 +79,7 @@ export function Navbar() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
+                <Presentation className="mr-2 h-4 w-4" />
                 {dictionary.components.navbar.options.projects.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -106,6 +110,7 @@ export function Navbar() {
                   href={`/${lang}/contact`}
                   className={navigationMenuTriggerStyle()}
                 >
+                  <Contact className="mr-2 h-4 w-4" />
                   {dictionary.components.navbar.options.contact.title}
                 </Link>
               </NavigationMenuLink>

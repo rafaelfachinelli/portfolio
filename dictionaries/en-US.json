@@ -108,6 +108,10 @@
   "commons": {
     "loading": "Loading...",
     "error": "An error occurred. Please try again later.",
+    "underConstructionAlert": {
+      "title": "Under Construction",
+      "description": "This page is under construction. Stay tuned for updates!"
+    },
     "experience": "experience",
     "collaboration": "collaboration",
     "leadership": "leadership",

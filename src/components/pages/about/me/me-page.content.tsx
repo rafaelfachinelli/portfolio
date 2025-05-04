@@ -2,6 +2,7 @@
 
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
+import { UnderConstructionPageAlert } from '@/components/under-construction-page-alert'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function MePageContent() {
@@ -20,6 +21,8 @@ export function MePageContent() {
             {paragraph}
           </p>
         ))}
+
+        <UnderConstructionPageAlert />
       </PageContent>
     </>
   )
