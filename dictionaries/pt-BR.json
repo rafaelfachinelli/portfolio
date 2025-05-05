@@ -29,7 +29,101 @@
       },
       "timeline": {
         "title": "Linha do Tempo",
-        "description": "Veja minha linha do tempo profissional para acompanhar minha progressão de carreira e marcos importantes."
+        "description": "Veja minha linha do tempo profissional para acompanhar minha progressão de carreira e marcos importantes.",
+        "content": [
+          {
+            "role": "Tech Lead",
+            "company": "Leroy Merlin",
+            "duration": "Agosto 2024 - Presente",
+            "location": "São Paulo, São Paulo, Brasil",
+            "responsibilities": [
+              "Planejamento e distribuição de atividades (SCRUM)",
+              "Criação de diagramas C4",
+              "Desenvolvimento de microsserviços com arquitetura orientada a eventos (EDA)",
+              "Melhorias nos processos de CI/CD com Github Actions",
+              "Suporte ao projeto com mais de 40 microsserviços"
+            ]
+          },
+          {
+            "role": "Desenvolvedor Frontend",
+            "company": "Leroy Merlin",
+            "duration": "Janeiro 2022 - Setembro 2024",
+            "location": "São Paulo, São Paulo, Brasil",
+            "responsibilities": [
+              "Desenvolvimento de projetos usando React (Páginas estáticas, aplicações web PWA)",
+              "Desenvolvimento com boas práticas (Clean Code)",
+              "Técnicas de performance e depuração em React",
+              "Documentação de projetos e produção de tutoriais",
+              "Versionamento semântico do projeto",
+              "Controle de ambientes e deploy com Github Actions",
+              "Planejamento e demonstração de entregas",
+              "Implementação de observabilidade no Datadog Rum em aplicações React",
+              "Cobertura de testes unitários com Jest",
+              "Chat de comunicação em tempo real com Firebase",
+              "Desenvolvimento Innersource"
+            ]
+          },
+          {
+            "role": "Desenvolvedor Júnior",
+            "company": "Leroy Merlin",
+            "duration": "Fevereiro 2021 - Janeiro 2022",
+            "location": "São Paulo, São Paulo, Brasil",
+            "responsibilities": [
+              "Desenvolvimento front-end com HTML5, CSS3, JavaScript e React",
+              "Desenvolvimento back-end com JAVA, Spring Boot, Lombok, MySQL e Oracle",
+              "Trabalho com metodologia ágil SCRUM",
+              "Documentação de projetos e disseminação de conhecimento"
+            ]
+          },
+          {
+            "role": "Desenvolvedor de Sistemas",
+            "company": "FLEX Máquinas de Costura e Automação",
+            "duration": "Agosto 2018 - Janeiro 2023",
+            "location": "Ferraz de Vasconcelos, São Paulo",
+            "responsibilities": [
+              "Identificação de requisitos do cliente",
+              "Documentação de projetos (UML)",
+              "Design de produtos",
+              "Programação embarcada com C/C++",
+              "Desenvolvimento de MVP"
+            ]
+          },
+          {
+            "role": "Operador de Máquina",
+            "company": "Daneva Máq. e Condutores Elétricos LTDA.",
+            "duration": "Fevereiro 2015 - Novembro 2016",
+            "location": "Poá, São Paulo, Brasil",
+            "responsibilities": [
+              "Configuração de máquinas para corte de cabos planos e circulares",
+              "Programação da máquina de corte de acordo com as características do produto",
+              "Produção horária cronometrada",
+              "Trabalho em linha de produção industrial"
+            ]
+          },
+          {
+            "role": "Assistente de Produção",
+            "company": "Daneva Máq. e Condutores Elétricos LTDA.",
+            "duration": "Julho 2014 - Janeiro 2015",
+            "location": "Poá, São Paulo, Brasil",
+            "responsibilities": [
+              "Organização do ambiente",
+              "Conhecimento de linhas e setores de produção",
+              "Testes de qualidade de produtos",
+              "Embalagem e envio de produtos para expedição"
+            ]
+          },
+          {
+            "role": "Instrutor de Informática",
+            "company": "Grupo Easycomp - Qualificando os brasileiros",
+            "duration": "Janeiro 2013 - Junho 2013",
+            "location": "Ferraz de Vasconcelos, São Paulo, Brasil",
+            "responsibilities": [
+              "Organização e avaliação de arquivos de alunos",
+              "Manutenção de redes de computadores",
+              "Apoio no aprendizado dos alunos"
+            ]
+          }
+        ]
       }
     },
     "contact": {

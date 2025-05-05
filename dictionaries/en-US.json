@@ -28,7 +28,101 @@
       },
       "timeline": {
         "title": "Timeline",
-        "description": "View my professional timeline to see my career progression and key milestones."
+        "description": "View my professional timeline to see my career progression and key milestones.",
+        "content": [
+          {
+            "role": "Tech Lead",
+            "company": "Leroy Merlin",
+            "duration": "August 2024 - Present",
+            "location": "São Paulo, São Paulo, Brazil",
+            "responsibilities": [
+              "Planning and distribution of activities (SCRUM)",
+              "Creation of C4 diagrams",
+              "Development of microservices with event-driven architecture (EDA)",
+              "Improvements to CI/CD processes with Github Actions",
+              "Project support with 40+ microservices"
+            ]
+          },
+          {
+            "role": "Frontend Developer",
+            "company": "Leroy Merlin",
+            "duration": "January 2022 - September 2024",
+            "location": "São Paulo, São Paulo, Brazil",
+            "responsibilities": [
+              "Development of projects using React (Static pages, PWA web applications)",
+              "Development with good practices (Clean Code)",
+              "Performance and debugging techniques in React",
+              "Project documentation and production of tutorials",
+              "Semantic versioning of the project",
+              "Control environments and deploy with Github Actions",
+              "Planning and demonstration of deliveries",
+              "Implementation of observability in Datadog Rum in React applications",
+              "Unit test coverage with Jest",
+              "Real-time communication chat with Firebase",
+              "Innersource Development"
+            ]
+          },
+          {
+            "role": "Junior Developer",
+            "company": "Leroy Merlin",
+            "duration": "February 2021 - January 2022",
+            "location": "São Paulo, São Paulo, Brazil",
+            "responsibilities": [
+              "Front-end development with HTML5, CSS3, JavaScript and React",
+              "Back-end development with JAVA, Spring Boot, Lombok, MySQL and Oracle",
+              "Working with agile SCRUM methodology",
+              "Project documentation and knowledge dissemination"
+            ]
+          },
+          {
+            "role": "System Developer",
+            "company": "FLEX Máquinas de Costura e Automação",
+            "duration": "August 2018 - January 2023",
+            "location": "Ferraz de Vasconcelos, São Paulo",
+            "responsibilities": [
+              "Identification of customer requirements",
+              "Project documentation (UML)",
+              "Product design",
+              "Embedded programming with C/C++",
+              "MVP development"
+            ]
+          },
+          {
+            "role": "Machine Operator",
+            "company": "Daneva Máq. e Condutores Elétricos LTDA.",
+            "duration": "February 2015 - November 2016",
+            "location": "Poá, São Paulo, Brazil",
+            "responsibilities": [
+              "Machine configuration for cutting flat and circular cables",
+              "Programming of the cutting machine according to the product characteristics",
+              "Timed hourly production",
+              "Work on an industrial production line"
+            ]
+          },
+          {
+            "role": "Production Assistant",
+            "company": "Daneva Máq. e Condutores Elétricos LTDA.",
+            "duration": "July 2014 - January 2015",
+            "location": "Poá, São Paulo, Brazil",
+            "responsibilities": [
+              "Environment organization",
+              "Knowledge of production lines and sectors",
+              "Product quality tests",
+              "Packing and sending products to the expedition"
+            ]
+          },
+          {
+            "role": "Computing Instructor",
+            "company": "Grupo Easycomp - Qualificando os brasileiros",
+            "duration": "January 2013 - June 2013",
+            "location": "Ferraz de Vasconcelos, São Paulo, Brazil",
+            "responsibilities": [
+              "Organization and evaluation of student files",
+              "Maintenance of computer networks",
+              "Support in student learning"
+            ]
+          }
+        ]
       }
     },
     "contact": {
