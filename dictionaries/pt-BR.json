@@ -123,7 +123,11 @@
               "Apoio no aprendizado dos alunos"
             ]
           }
-        ]
+        ],
+        "timeFormat": {
+          "years": "{count}a",
+          "months": "{count}m"
+        }
       }
     },
     "contact": {
@@ -214,6 +218,7 @@
     "adaptability": "adaptabilidade",
     "innovation": "inovação",
     "details": "detalhes",
-    "brief": "resumo"
+    "brief": "resumo",
+    "present": "presente"
   }
 }

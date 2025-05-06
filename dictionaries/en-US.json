@@ -122,7 +122,11 @@
               "Support in student learning"
             ]
           }
-        ]
+        ],
+        "timeFormat": {
+          "years": "{count}y",
+          "months": "{count}m"
+        }
       }
     },
     "contact": {
@@ -213,6 +217,7 @@
     "adaptability": "adaptability",
     "innovation": "innovation",
     "details": "details",
-    "brief": "brief"
+    "brief": "brief",
+    "present": "present"
   }
 }
