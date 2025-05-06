@@ -1,8 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 import {
   DropdownMenu,
@@ -19,9 +18,15 @@ export function LanguageSwitcher({
 }: Readonly<{ className?: string }>) {
   const { lang, dictionary } = useLanguage()
   const pathname = usePathname()
+  const router = useRouter()
 
   const getNewPath = (newLang: string) => {
     return pathname.replace(`/${lang}`, `/${newLang}`)
+  }
+
+  const handleLanguageChange = (newLang: string) => {
+    const newPath = getNewPath(newLang)
+    router.push(newPath, { scroll: false })
   }
 
   return (
@@ -43,30 +48,32 @@ export function LanguageSwitcher({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <Link href={getNewPath('en')} className="flex items-center">
-            <DropdownMenuItem className="w-full cursor-pointer">
-              <Image
-                src="https://flagcdn.com/w40/us.png"
-                alt="en"
-                width={16}
-                height={16}
-                className="mr-2 inline-block"
-              />
-              {dictionary.components.languageSwitcher.options.en.title}
-            </DropdownMenuItem>
-          </Link>
-          <Link href={getNewPath('pt')} className="flex items-center">
-            <DropdownMenuItem className="w-full cursor-pointer">
-              <Image
-                src="https://flagcdn.com/w40/br.png"
-                alt="pt"
-                width={16}
-                height={16}
-                className="mr-2 inline-block"
-              />
-              {dictionary.components.languageSwitcher.options.pt.title}
-            </DropdownMenuItem>
-          </Link>
+          <DropdownMenuItem
+            className="flex w-full cursor-pointer items-center"
+            onClick={() => handleLanguageChange('en')}
+          >
+            <Image
+              src="https://flagcdn.com/w40/us.png"
+              alt="en"
+              width={16}
+              height={16}
+              className="mr-2 inline-block"
+            />
+            {dictionary.components.languageSwitcher.options.en.title}
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="flex w-full cursor-pointer items-center"
+            onClick={() => handleLanguageChange('pt')}
+          >
+            <Image
+              src="https://flagcdn.com/w40/br.png"
+              alt="pt"
+              width={16}
+              height={16}
+              className="mr-2 inline-block"
+            />
+            {dictionary.components.languageSwitcher.options.pt.title}
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
