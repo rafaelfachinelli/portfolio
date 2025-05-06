@@ -75,7 +75,7 @@ export function TimelinePageContent() {
 
     const years = Math.floor(totalMonths / 12)
     const months = totalMonths % 12
-    return `${years > 0 ? `${years}y ` : ''}${months}m`
+    return `${years > 0 ? `${years}${dictionary.pages.about.timeline.timeFormat.years} ` : ''}${months > 0 ? `${months}${dictionary.pages.about.timeline.timeFormat.months}` : ''}`
   }
 
   const motionAnimationProps = {
@@ -103,9 +103,19 @@ export function TimelinePageContent() {
               <h3 className="flex items-center gap-2 text-lg font-bold">
                 <Building2 />
                 <span>{group.company}</span>
-                <span className="text-sm text-gray-500">
-                  ({calculateTotalTime(group.roles)})
-                </span>
+                <div className="ml-2 flex items-center gap-1 whitespace-nowrap">
+                  <motion.div
+                    whileInView={{ rotate: 360 }}
+                    initial={{ rotate: 0 }}
+                    className="flex items-center justify-center"
+                    transition={{ duration: 1 }}
+                  >
+                    <Clock className="h-3 w-3 text-sky-600 dark:text-sky-300" />
+                  </motion.div>
+                  <span className="text-sm text-sky-600 dark:text-sky-300">
+                    {calculateTotalTime(group.roles)}
+                  </span>
+                </div>
               </h3>
               <p className="mt-1 flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                 <MapPin className="h-3 w-3" />
