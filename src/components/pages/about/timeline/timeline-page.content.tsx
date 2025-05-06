@@ -121,7 +121,7 @@ export function TimelinePageContent() {
                 </div>
               </div>
               <p className="mt-1 flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
-                <MapPin className="h-3 w-3" />
+                <MapPin className="h-3 w-3 text-red-500" />
                 <span>{group.location}</span>
               </p>
               {group.roles.map(role => (
