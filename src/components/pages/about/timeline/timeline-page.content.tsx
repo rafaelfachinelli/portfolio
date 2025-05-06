@@ -6,6 +6,7 @@ import { Building2, Clock, MapPin } from 'lucide-react'
 
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
+import { Separator } from '@/components/ui/separator'
 import { UnderConstructionPageAlert } from '@/components/under-construction-page-alert'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { capitalizeFirstLetter } from '@/lib/utils'
@@ -100,9 +101,11 @@ export function TimelinePageContent() {
               className="mb-4"
               {...motionAnimationProps}
             >
-              <h3 className="flex items-center gap-2 text-lg font-bold">
-                <Building2 />
-                <span>{group.company}</span>
+              <div className="flex items-center justify-between gap-2 md:justify-start">
+                <h3 className="flex items-center gap-2 text-lg font-bold">
+                  <Building2 />
+                  <span>{group.company}</span>
+                </h3>
                 <div className="ml-2 flex items-center gap-1 whitespace-nowrap">
                   <motion.div
                     whileInView={{ rotate: 360 }}
@@ -110,13 +113,13 @@ export function TimelinePageContent() {
                     className="flex items-center justify-center"
                     transition={{ duration: 1 }}
                   >
-                    <Clock className="h-3 w-3 text-sky-600 dark:text-sky-300" />
+                    <Clock className="h-3 w-3 text-sky-700 dark:text-sky-500" />
                   </motion.div>
-                  <span className="text-sm text-sky-600 dark:text-sky-300">
+                  <span className="text-sm text-sky-700 dark:text-sky-500">
                     {calculateTotalTime(group.roles)}
                   </span>
                 </div>
-              </h3>
+              </div>
               <p className="mt-1 flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                 <MapPin className="h-3 w-3" />
                 <span>{group.location}</span>
@@ -124,13 +127,17 @@ export function TimelinePageContent() {
               {group.roles.map(role => (
                 <motion.div
                   key={role.role}
-                  className="mt-2 ml-6"
+                  className="relative mt-2 ml-6"
                   {...motionAnimationProps}
                   transition={{
                     ...motionAnimationProps.transition,
                     delay: 0.2,
                   }}
                 >
+                  <Separator
+                    orientation="vertical"
+                    className="absolute top-0 -left-[18px] h-full bg-sky-700 dark:bg-sky-500"
+                  />
                   <h4 className="text-md font-semibold">{role.role}</h4>
                   <p className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                     <Clock className="h-3 w-3" />
