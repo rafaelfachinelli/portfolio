@@ -25,14 +25,15 @@ function getLocale(request: NextRequest): string | undefined {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  // Ensure `_next` paths and API routes are completely ignored by the middleware
+  if (pathname.startsWith('/_next') || pathname.startsWith('/api')) {
+    return NextResponse.next()
+  }
+
   const pathnameHasLocale = i18n.locales.some(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
-
-  // Ensure `_next` paths are completely ignored by the middleware
-  if (pathname.startsWith('/_next')) {
-    return NextResponse.next()
-  }
 
   // Ensure requests for files in the `public` directory are ignored
   if (
@@ -95,5 +96,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next).*)', '/((?!api).*)'],
+  matcher: ['/((?!_next|api).*)'],
 }

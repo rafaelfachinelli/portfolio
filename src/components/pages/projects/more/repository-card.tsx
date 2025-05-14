@@ -3,7 +3,7 @@
 import { ExternalLink, Github, Radio } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -30,7 +30,6 @@ export interface Repository {
   html_url: string
   description: string | null
   stargazers_count: number
-  forks_count: number
   open_issues_count: number
   language: string | null
   updated_at: string
@@ -48,12 +47,50 @@ interface RepositoryCardProps {
 }
 
 export function RepositoryCard({ repository }: RepositoryCardProps) {
-  const { dictionary, lang } = useLanguage()
+  const { dictionary } = useLanguage()
   const [imgSrc, setImgSrc] = useState(
     `https://raw.githubusercontent.com/${repository.owner.login}/${repository.name}/${repository.default_branch}/.github/banner.svg`,
   )
+  const [commitCount, setCommitCount] = useState<number | null>(null)
+  const [isLoadingCommits, setIsLoadingCommits] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  console.log({ lang })
+  useEffect(() => {
+    async function fetchCommitCount() {
+      try {
+        const response = await fetch(
+          `/api/github/commits?repo=${repository.name}`,
+        )
+
+        if (!response.ok) {
+          const data = await response.json()
+          if (data.error === 'rate_limit') {
+            setError('rate_limit')
+          } else {
+            setError('unknown')
+          }
+          return
+        }
+
+        const data = await response.json()
+        setCommitCount(data.commitCount)
+      } catch (error) {
+        console.error('Error fetching commit count:', error)
+        setError('unknown')
+      } finally {
+        setIsLoadingCommits(false)
+      }
+    }
+
+    fetchCommitCount()
+  }, [repository.name])
+
+  const renderCommitCount = () => {
+    if (isLoadingCommits) return '...'
+    if (error === 'rate_limit') return '∞'
+    if (error) return '-'
+    return commitCount
+  }
 
   return (
     <Card className="flex h-full flex-col justify-between">
@@ -64,7 +101,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
         height={128}
         className="h-32 w-full rounded-t bg-gray-100 object-center p-2"
         priority={true}
-        onError={() => setImgSrc(`/images/fallback-banner.svg`)}
+        onError={() => setImgSrc('/images/fallback-banner.svg')}
       />
       <CardHeader>
         <div className="flex items-center justify-between">
@@ -90,9 +127,9 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
           </div>
           <div className="flex flex-col">
             <span className="font-medium">
-              {dictionary.pages.projects.repositories.card.forks}
+              {dictionary.pages.projects.repositories.card.commits}
             </span>
-            <span>{repository.forks_count}</span>
+            <span>{renderCommitCount()}</span>
           </div>
           <div className="flex flex-col">
             <span className="font-medium">

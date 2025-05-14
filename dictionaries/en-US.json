@@ -15,7 +15,7 @@
           "livePreview": "Live Preview",
           "viewRepository": "View Repository",
           "stars": "Stars",
-          "forks": "Forks",
+          "commits": "Commits",
           "issues": "Issues",
           "updated": "Updated: {date}",
           "noDescription": "No description available",

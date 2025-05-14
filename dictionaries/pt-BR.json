@@ -15,7 +15,7 @@
           "livePreview": "Visualizar",
           "viewRepository": "Ver Repositório",
           "stars": "Estrelas",
-          "forks": "Forks",
+          "commits": "Commits",
           "issues": "Issues",
           "updated": "Atualizado: {date}",
           "noDescription": "Nenhuma descrição disponível",

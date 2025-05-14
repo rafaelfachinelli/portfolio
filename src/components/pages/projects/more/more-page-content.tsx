@@ -15,17 +15,19 @@ export function MorePageContent() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const username = 'rafaelfachinelli'
-
   useEffect(() => {
     async function fetchRepositories() {
       try {
         setIsLoading(true)
-        const response = await fetch(
-          `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
-        )
+        const response = await fetch('/api/github/repositories')
 
         if (!response.ok) {
+          const data = await response.json()
+          if (data.error === 'rate_limit') {
+            throw new Error(
+              'GitHub API rate limit exceeded. Please try again later.',
+            )
+          }
           throw new Error(`GitHub API error: ${response.status}`)
         }
 
