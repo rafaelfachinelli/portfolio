@@ -129,7 +129,9 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
                       className="flex w-full items-center justify-center gap-2"
                       onClick={e => !repository.homepage && e.preventDefault()}
                     >
-                      <Radio className="h-4 w-4 animate-pulse text-red-500" />
+                      <Radio
+                        className={`h-4 w-4 ${!repository.homepage ? 'text-muted-foreground' : 'animate-pulse text-red-500'}`}
+                      />
                       {dictionary.pages.projects.repositories.card.livePreview}
                       <ExternalLink className="ml-auto h-4 w-4" />
                     </Link>
