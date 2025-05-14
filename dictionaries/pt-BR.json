@@ -7,7 +7,21 @@
     },
     "projects": {
       "title": "Projetos",
-      "description": "Explore meus projetos e veja as tecnologias com as quais trabalhei."
+      "description": "Explore meus projetos e veja as tecnologias com as quais trabalhei.",
+      "repositories": {
+        "title": "Repositórios GitHub",
+        "description": "Exibindo {count} repositórios públicos",
+        "card": {
+          "livePreview": "Visualizar",
+          "viewRepository": "Ver Repositório",
+          "stars": "Estrelas",
+          "forks": "Forks",
+          "issues": "Issues",
+          "updated": "Atualizado: {date}",
+          "noDescription": "Nenhuma descrição disponível",
+          "livePreviewNotAvailable": "Visualização não disponível para este repositório."
+        }
+      }
     },
     "about": {
       "me": {

@@ -7,7 +7,21 @@
     },
     "projects": {
       "title": "Projects",
-      "description": "Explore my projects and see the technologies I've worked with."
+      "description": "Explore my projects and see the technologies I've worked with.",
+      "repositories": {
+        "title": "GitHub Repositories",
+        "description": "Displaying {count} public repositories",
+        "card": {
+          "livePreview": "Live Preview",
+          "viewRepository": "View Repository",
+          "stars": "Stars",
+          "forks": "Forks",
+          "issues": "Issues",
+          "updated": "Updated: {date}",
+          "noDescription": "No description available",
+          "livePreviewNotAvailable": "Live preview not available for this repository."
+        }
+      }
     },
     "about": {
       "me": {

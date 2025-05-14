@@ -1,4 +1,4 @@
-import { MorePageContent } from '@/components/pages/projects/more/more-page-content.tsx'
+import { MorePageContent } from '@/components/pages/projects/more/more-page-content'
 
 export async function generateMetadata() {
   return {
