@@ -1,6 +1,8 @@
 'use client'
 
+import { LoaderCircle } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import React from 'react'
 
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
@@ -56,10 +58,26 @@ export function MorePageContent() {
 
       <PageContent className="gap-4">
         <div className="mb-8 text-center">
-          <h1 className="mb-2 text-3xl font-bold">GitHub Repositories</h1>
-          <p className="text-muted-foreground">
-            Displaying {repositories.length} public repositories
-          </p>
+          <h1 className="mb-2 text-3xl font-bold">
+            {dictionary.pages.projects.repositories.title}
+          </h1>
+          <div className="flex items-center justify-center gap-2">
+            <p className="text-muted-foreground flex items-center gap-1">
+              {dictionary.pages.projects.repositories.description
+                .split('{count}')
+                .map((part, index, array) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < array.length - 1 &&
+                      (isLoading ? (
+                        <LoaderCircle className="h-5 w-5 animate-spin" />
+                      ) : (
+                        repositories.length.toString()
+                      ))}
+                  </React.Fragment>
+                ))}
+            </p>
+          </div>
         </div>
 
         {isLoading && (
@@ -70,13 +88,17 @@ export function MorePageContent() {
 
         {error && (
           <div className="bg-destructive/15 text-destructive mb-6 rounded-lg p-4">
-            <p>Error loading repositories: {error}</p>
+            <p>
+              {dictionary.commons.error}: {error}
+            </p>
           </div>
         )}
 
         {!isLoading && !error && repositories.length === 0 && (
           <div className="p-8 text-center">
-            <p className="text-muted-foreground">No repositories found.</p>
+            <p className="text-muted-foreground">
+              {dictionary.pages.projects.repositories.card.noDescription}
+            </p>
           </div>
         )}
 
