@@ -153,7 +153,7 @@ export function MorePageContent() {
         {!isLoading && !error && repositories.length === 0 && (
           <div className="p-8 text-center">
             <p className="text-muted-foreground">
-              {dictionary.pages.projects.repositories.filters.notFound}
+              {dictionary.pages.projects.repositories.notFound}
             </p>
           </div>
         )}

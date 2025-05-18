@@ -13,7 +13,6 @@
         "description": "Displaying {count} public repositories",
         "notFound": "No repositories found.",
         "filters": {
-          "notFound": "No repositories found.",
           "labels": {
             "type": "Type",
             "preview": "Preview",
