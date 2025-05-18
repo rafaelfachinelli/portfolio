@@ -17,9 +17,13 @@
           "stars": "Stars",
           "commits": "Commits",
           "issues": "Issues",
+          "created": "Created: {date}",
           "updated": "Updated: {date}",
           "noDescription": "No description available",
-          "livePreviewNotAvailable": "Live preview not available for this repository."
+          "livePreviewNotAvailable": "Live preview not available for this repository.",
+          "studyProjectBadgeDescription": "This is a study project. It may not be fully functional or optimized for production use.",
+          "eventProjectBadgeDescription": "This project was developed during an event. It may not be fully functional or optimized for production use.",
+          "portfolioProjectBadgeDescription": "This project is part of my portfolio. It showcases my skills and may not be fully functional or optimized for production use."
         }
       }
     },
@@ -232,6 +236,9 @@
     "innovation": "innovation",
     "details": "details",
     "brief": "brief",
-    "present": "present"
+    "present": "present",
+    "study": "Study",
+    "event": "Event",
+    "portfolio": "Portfolio"
   }
 }

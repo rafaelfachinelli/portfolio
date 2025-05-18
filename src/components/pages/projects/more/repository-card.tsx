@@ -1,9 +1,30 @@
 'use client'
 
-import { ExternalLink, Github, Radio } from 'lucide-react'
+import {
+  Briefcase,
+  ExternalLink,
+  Github,
+  GraduationCap,
+  Radio,
+  Trophy,
+} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { JSX, useEffect, useState } from 'react'
+import { FaJava } from 'react-icons/fa6'
+import {
+  SiCss3,
+  SiDart,
+  SiGo,
+  SiHtml5,
+  SiJavascript,
+  SiKotlin,
+  SiPhp,
+  SiPython,
+  SiRuby,
+  SiRust,
+  SiTypescript,
+} from 'react-icons/si'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -40,6 +61,8 @@ export interface Repository {
     html_url: string
   }
   homepage?: string | null
+  created_at: string
+  topics: string[]
 }
 
 interface RepositoryCardProps {
@@ -54,6 +77,35 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
   const [commitCount, setCommitCount] = useState<number | null>(null)
   const [isLoadingCommits, setIsLoadingCommits] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const isStudyProject = repository.topics?.includes('study')
+  const isEventProject = repository.topics?.includes('event')
+  const isPortfolioProject = repository.topics?.includes('portfolio')
+
+  const iconComponentMap: Record<string, JSX.Element> = {
+    javascript: <SiJavascript className="text-yellow-400" size={14} />,
+    js: <SiJavascript className="text-yellow-400" size={14} />,
+    typescript: <SiTypescript className="text-blue-500" size={14} />,
+    ts: <SiTypescript className="text-blue-500" size={14} />,
+    html: <SiHtml5 className="text-orange-600" size={14} />,
+    html5: <SiHtml5 className="text-orange-600" size={14} />,
+    css: <SiCss3 className="text-blue-400" size={14} />,
+    css3: <SiCss3 className="text-blue-400" size={14} />,
+    java: <FaJava className="text-[#F89820]" size={14} />,
+    python: <SiPython className="text-yellow-500" size={14} />,
+    php: <SiPhp className="text-indigo-500" size={14} />,
+    go: <SiGo className="text-cyan-500" size={14} />,
+    ruby: <SiRuby className="text-red-500" size={14} />,
+    kotlin: <SiKotlin className="text-purple-400" size={14} />,
+    dart: <SiDart className="text-cyan-700" size={14} />,
+    rust: <SiRust className="text-orange-800" size={14} />,
+  }
+
+  const getIconComponent = (lang?: string | null) => {
+    if (!lang) return null
+    const key = lang.toLowerCase().replace(/\s/g, '')
+    return iconComponentMap[key] || null
+  }
 
   useEffect(() => {
     async function fetchCommitCount() {
@@ -93,23 +145,71 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
   }
 
   return (
-    <Card className="flex h-full flex-col justify-between">
-      <Image
-        src={imgSrc}
-        alt={`${repository.name} banner`}
-        width={600}
-        height={128}
-        className="h-32 w-full rounded-t bg-gray-100 object-center p-2"
-        priority={true}
-        onError={() => setImgSrc('/images/fallback-banner.svg')}
-      />
+    <Card className={`flex h-full flex-col justify-between border`}>
+      <div className="relative">
+        <Image
+          src={imgSrc}
+          alt={`${repository.name} banner`}
+          width={600}
+          height={128}
+          className="h-32 w-full rounded-t bg-gray-100 object-center p-2"
+          priority={true}
+          onError={() => setImgSrc('/images/fallback-banner.svg')}
+        />
+        {(isStudyProject || isEventProject || isPortfolioProject) && (
+          <div className="absolute top-2 right-2">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Badge
+                    variant="secondary"
+                    className={`hover:bg-opacity-90 flex items-center gap-1 text-white select-none ${
+                      isEventProject
+                        ? 'bg-purple-500 hover:bg-purple-600'
+                        : isPortfolioProject
+                          ? 'bg-green-500 hover:bg-green-600'
+                          : 'bg-blue-500 hover:bg-blue-600'
+                    }`}
+                  >
+                    {isEventProject ? (
+                      <Trophy className="h-3 w-3" />
+                    ) : isPortfolioProject ? (
+                      <Briefcase className="h-3 w-3" />
+                    ) : (
+                      <GraduationCap className="h-3 w-3" />
+                    )}
+                    {isEventProject
+                      ? dictionary.commons.event
+                      : isPortfolioProject
+                        ? dictionary.commons.portfolio
+                        : dictionary.commons.study}
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {isEventProject
+                    ? dictionary.pages.projects.repositories.card
+                        .eventProjectBadgeDescription
+                    : isPortfolioProject
+                      ? dictionary.pages.projects.repositories.card
+                          .portfolioProjectBadgeDescription
+                      : dictionary.pages.projects.repositories.card
+                          .studyProjectBadgeDescription}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        )}
+      </div>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="w-full truncate text-xl font-bold md:max-w-52">
-            {repository.name}
+          <CardTitle className="flex w-full items-center gap-2 text-xl font-bold lg:max-w-48">
+            <span className="truncate">{repository.name}</span>
           </CardTitle>
           {repository.language && (
-            <Badge variant="outline">{repository.language}</Badge>
+            <Badge variant="outline" className="flex items-center gap-1">
+              {getIconComponent(repository.language)}
+              <span>{repository.language}</span>
+            </Badge>
           )}
         </div>
         <CardDescription className="mt-2">
@@ -140,11 +240,19 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-between border-t pt-4">
-        <div className="text-muted-foreground text-xs">
-          {dictionary.pages.projects.repositories.card.updated.replace(
-            '{date}',
-            new Date(repository.updated_at).toLocaleDateString(),
-          )}
+        <div className="mr-2 flex flex-col items-start gap-2">
+          <span className="text-muted-foreground text-xs">
+            {dictionary.pages.projects.repositories.card.created.replace(
+              '{date}',
+              new Date(repository.created_at).toLocaleDateString(),
+            )}
+          </span>
+          <span className="text-muted-foreground text-xs">
+            {dictionary.pages.projects.repositories.card.updated.replace(
+              '{date}',
+              new Date(repository.updated_at).toLocaleDateString(),
+            )}
+          </span>
         </div>
         <div className="flex flex-col items-center gap-2">
           <TooltipProvider>

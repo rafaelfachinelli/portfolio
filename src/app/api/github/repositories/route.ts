@@ -5,7 +5,7 @@ const GITHUB_USERNAME = 'rafaelfachinelli'
 export async function GET() {
   try {
     const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=created&direction=asc`,
       {
         headers: {
           Accept: 'application/vnd.github.v3+json',
@@ -31,7 +31,12 @@ export async function GET() {
     }
 
     const data = await response.json()
-    return NextResponse.json(data)
+    // Filter out repositories with "no-exposed-to-site" topic
+    const filteredData = data.filter(
+      (repo: { topics: string[] }) =>
+        !repo.topics?.includes('not-exposed-on-website'),
+    )
+    return NextResponse.json(filteredData)
   } catch (error) {
     console.error('Error fetching repositories:', error)
     return NextResponse.json(
