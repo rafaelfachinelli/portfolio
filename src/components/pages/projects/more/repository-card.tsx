@@ -10,13 +10,12 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -61,50 +60,10 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
   const [imgSrc, setImgSrc] = useState(
     `https://raw.githubusercontent.com/${repository.owner.login}/${repository.name}/${repository.default_branch}/.github/banner.svg`,
   )
-  const [commitCount, setCommitCount] = useState<number | null>(null)
-  const [isLoadingCommits, setIsLoadingCommits] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   const isStudyProject = repository.topics?.includes('study')
   const isEventProject = repository.topics?.includes('event')
   const isPortfolioProject = repository.topics?.includes('portfolio')
-
-  useEffect(() => {
-    async function fetchCommitCount() {
-      try {
-        const response = await fetch(
-          `/api/github/commits?repo=${repository.name}`,
-        )
-
-        if (!response.ok) {
-          const data = await response.json()
-          if (data.error === 'rate_limit') {
-            setError('rate_limit')
-          } else {
-            setError('unknown')
-          }
-          return
-        }
-
-        const data = await response.json()
-        setCommitCount(data.commitCount)
-      } catch (error) {
-        console.error('Error fetching commit count:', error)
-        setError('unknown')
-      } finally {
-        setIsLoadingCommits(false)
-      }
-    }
-
-    fetchCommitCount()
-  }, [repository.name])
-
-  const renderCommitCount = () => {
-    if (isLoadingCommits) return '...'
-    if (error === 'rate_limit') return '∞'
-    if (error) return '-'
-    return commitCount
-  }
 
   return (
     <Card className={`flex h-full flex-col justify-between border`}>
@@ -179,28 +138,6 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
             dictionary.pages.projects.repositories.card.noDescription}
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="text-muted-foreground grid grid-cols-3 gap-4 text-sm">
-          <div className="flex flex-col">
-            <span className="font-medium">
-              {dictionary.pages.projects.repositories.card.stars}
-            </span>
-            <span>{repository.stargazers_count}</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-medium">
-              {dictionary.pages.projects.repositories.card.commits}
-            </span>
-            <span>{renderCommitCount()}</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-medium">
-              {dictionary.pages.projects.repositories.card.issues}
-            </span>
-            <span>{repository.open_issues_count}</span>
-          </div>
-        </div>
-      </CardContent>
       <CardFooter className="flex items-center justify-between border-t pt-4">
         <div className="mr-2 flex flex-col items-start gap-2">
           <span className="text-muted-foreground text-xs">
