@@ -11,6 +11,41 @@
       "repositories": {
         "title": "GitHub Repositories",
         "description": "Displaying {count} public repositories",
+        "filters": {
+          "notFound": "No repositories found.",
+          "labels": {
+            "type": "Type",
+            "preview": "Preview",
+            "language": "Language",
+            "year": "Year"
+          },
+          "type": {
+            "all": "All Types",
+            "portfolio": "Portfolio",
+            "event": "Event",
+            "study": "Study",
+            "others": "Others",
+            "search": "Search type...",
+            "notFound": "No type found."
+          },
+          "preview": {
+            "all": "All Previews",
+            "yes": "With Preview",
+            "no": "Without Preview",
+            "search": "Search preview...",
+            "notFound": "No preview option found."
+          },
+          "language": {
+            "all": "All Languages",
+            "search": "Search language...",
+            "notFound": "No language found."
+          },
+          "year": {
+            "all": "All Years",
+            "search": "Search year...",
+            "notFound": "No year found."
+          }
+        },
         "card": {
           "livePreview": "Live Preview",
           "viewRepository": "View Repository",

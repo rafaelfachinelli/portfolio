@@ -10,21 +10,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { JSX, useEffect, useState } from 'react'
-import { FaJava } from 'react-icons/fa6'
-import {
-  SiCss3,
-  SiDart,
-  SiGo,
-  SiHtml5,
-  SiJavascript,
-  SiKotlin,
-  SiPhp,
-  SiPython,
-  SiRuby,
-  SiRust,
-  SiTypescript,
-} from 'react-icons/si'
+import React, { useEffect, useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -42,6 +28,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { getLanguageConfig } from '@/config/languages'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export interface Repository {
@@ -81,31 +68,6 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
   const isStudyProject = repository.topics?.includes('study')
   const isEventProject = repository.topics?.includes('event')
   const isPortfolioProject = repository.topics?.includes('portfolio')
-
-  const iconComponentMap: Record<string, JSX.Element> = {
-    javascript: <SiJavascript className="text-yellow-400" size={14} />,
-    js: <SiJavascript className="text-yellow-400" size={14} />,
-    typescript: <SiTypescript className="text-blue-500" size={14} />,
-    ts: <SiTypescript className="text-blue-500" size={14} />,
-    html: <SiHtml5 className="text-orange-600" size={14} />,
-    html5: <SiHtml5 className="text-orange-600" size={14} />,
-    css: <SiCss3 className="text-blue-400" size={14} />,
-    css3: <SiCss3 className="text-blue-400" size={14} />,
-    java: <FaJava className="text-[#F89820]" size={14} />,
-    python: <SiPython className="text-yellow-500" size={14} />,
-    php: <SiPhp className="text-indigo-500" size={14} />,
-    go: <SiGo className="text-cyan-500" size={14} />,
-    ruby: <SiRuby className="text-red-500" size={14} />,
-    kotlin: <SiKotlin className="text-purple-400" size={14} />,
-    dart: <SiDart className="text-cyan-700" size={14} />,
-    rust: <SiRust className="text-orange-800" size={14} />,
-  }
-
-  const getIconComponent = (lang?: string | null) => {
-    if (!lang) return null
-    const key = lang.toLowerCase().replace(/\s/g, '')
-    return iconComponentMap[key] || null
-  }
 
   useEffect(() => {
     async function fetchCommitCount() {
@@ -207,7 +169,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
           </CardTitle>
           {repository.language && (
             <Badge variant="outline" className="flex items-center gap-1">
-              {getIconComponent(repository.language)}
+              {getLanguageConfig(repository.language)?.icon}
               <span>{repository.language}</span>
             </Badge>
           )}

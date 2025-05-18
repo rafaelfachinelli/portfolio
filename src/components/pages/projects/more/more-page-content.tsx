@@ -1,19 +1,22 @@
 'use client'
 
 import { LoaderCircle } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
-import { UnderConstructionPageAlert } from '@/components/under-construction-page-alert'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+import { Filters } from './filters'
 import { Repository, RepositoryCard } from './repository-card'
 
 export function MorePageContent() {
   const { dictionary } = useLanguage()
+  const searchParams = useSearchParams()
   const [repositories, setRepositories] = useState<Repository[]>([])
+  const [allRepositories, setAllRepositories] = useState<Repository[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -21,7 +24,8 @@ export function MorePageContent() {
     async function fetchRepositories() {
       try {
         setIsLoading(true)
-        const response = await fetch('/api/github/repositories')
+        // Fetch all repositories initially
+        const response = await fetch(`/api/github/repositories`)
 
         if (!response.ok) {
           const data = await response.json()
@@ -33,8 +37,8 @@ export function MorePageContent() {
           throw new Error(`GitHub API error: ${response.status}`)
         }
 
-        const data = await response.json()
-        setRepositories(data)
+        const data: Repository[] = await response.json()
+        setAllRepositories(data)
         setError(null)
       } catch (err) {
         setError(
@@ -49,6 +53,57 @@ export function MorePageContent() {
     fetchRepositories()
   }, [])
 
+  // Effect to filter repositories whenever allRepositories or searchParams change
+  useEffect(() => {
+    if (allRepositories.length === 0) return
+
+    let filteredRepositories = [...allRepositories]
+
+    // Apply filters based on searchParams
+    const type = searchParams.get('type')
+    const preview = searchParams.get('preview')
+    const language = searchParams.get('language')
+    const year = searchParams.get('year')
+
+    if (type && type !== 'all') {
+      if (type === 'others') {
+        filteredRepositories = filteredRepositories.filter(
+          repo =>
+            !repo.topics?.includes('portfolio') &&
+            !repo.topics?.includes('event') &&
+            !repo.topics?.includes('study'),
+        )
+      } else {
+        filteredRepositories = filteredRepositories.filter(repo =>
+          repo.topics?.includes(type),
+        )
+      }
+    }
+
+    if (preview && preview !== 'all') {
+      filteredRepositories = filteredRepositories.filter(
+        repo =>
+          (preview === 'yes' && repo.homepage) ||
+          (preview === 'no' && !repo.homepage),
+      )
+    }
+
+    if (language && language !== 'all') {
+      filteredRepositories = filteredRepositories.filter(
+        repo => repo.language === language,
+      )
+    }
+
+    if (year && year !== 'all') {
+      const yearNum = parseInt(year)
+      filteredRepositories = filteredRepositories.filter(
+        repo => new Date(repo.created_at).getFullYear() === yearNum,
+      )
+    }
+
+    setRepositories(filteredRepositories)
+  }, [allRepositories, searchParams]) // Depends on allRepositories and searchParams
+
   return (
     <>
       <PageTitle
@@ -57,10 +112,17 @@ export function MorePageContent() {
       />
 
       <PageContent className="gap-4">
-        <div className="mb-8 text-center">
+        <div className="mb-6 text-center">
           <h1 className="mb-2 text-3xl font-bold">
             {dictionary.pages.projects.repositories.title}
           </h1>
+        </div>
+
+        <div className="mb-6">
+          <Filters allRepositories={allRepositories} disabled={isLoading} />
+        </div>
+
+        {repositories.length > 0 && (
           <div className="flex items-center justify-center gap-2">
             <p className="text-muted-foreground flex items-center gap-1">
               {dictionary.pages.projects.repositories.description
@@ -78,12 +140,6 @@ export function MorePageContent() {
                 ))}
             </p>
           </div>
-        </div>
-
-        {isLoading && (
-          <div className="flex h-64 items-center justify-center">
-            <div className="border-primary h-12 w-12 animate-spin rounded-full border-b-2"></div>
-          </div>
         )}
 
         {error && (
@@ -97,18 +153,27 @@ export function MorePageContent() {
         {!isLoading && !error && repositories.length === 0 && (
           <div className="p-8 text-center">
             <p className="text-muted-foreground">
-              {dictionary.pages.projects.repositories.card.noDescription}
+              {dictionary.pages.projects.repositories.filters.notFound}
             </p>
           </div>
         )}
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {repositories.map(repo => (
-            <RepositoryCard key={repo.id} repository={repo} />
-          ))}
-        </div>
-
-        <UnderConstructionPageAlert />
+        {isLoading ? (
+          <div className="flex min-h-[400px] items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+              <LoaderCircle className="text-primary h-8 w-8 animate-spin" />
+              <p className="text-muted-foreground text-sm">
+                {dictionary.commons.loading}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {repositories.map(repo => (
+              <RepositoryCard key={repo.id} repository={repo} />
+            ))}
+          </div>
+        )}
       </PageContent>
     </>
   )
