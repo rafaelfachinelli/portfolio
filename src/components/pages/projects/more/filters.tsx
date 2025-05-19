@@ -80,6 +80,10 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
   )
 
   const hasFilterSelected = () => {
+    return countFilters() > 0
+  }
+
+  const countFilters = () => {
     const params = new URLSearchParams(searchParams.toString())
     let count = 0
     for (const [, value] of params.entries()) {
@@ -87,8 +91,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
         count++
       }
     }
-
-    return count > 0
+    return count
   }
 
   const updateFilter = (name: string, value: string) => {
@@ -99,16 +102,25 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
   return (
     <Sheet open={openSheet} onOpenChange={setOpenSheet}>
       <SheetTrigger asChild>
-        <Button variant="outline" className="cursor-pointer select-none">
+        <Button
+          variant="outline"
+          className="relative cursor-pointer select-none"
+        >
           <Filter className="h-4 w-4" />
           {dictionary.pages.projects.repositories.filters.title}
+          {hasFilterSelected() && (
+            <span className="absolute top-0 left-0 translate-x-5.5 translate-y-2 rounded-full bg-red-500 p-1 text-xs font-bold text-white" />
+          )}
         </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle className="flex items-center gap-2">
+          <SheetTitle className="relative flex items-center gap-2">
             <Filter className="h-4 w-4" />
             {dictionary.pages.projects.repositories.filters.title}
+            {hasFilterSelected() && (
+              <span className="absolute top-0 left-0 translate-x-2.5 translate-y-0.5 rounded-full bg-red-500 p-1 text-xs font-bold text-white" />
+            )}
           </SheetTitle>
         </SheetHeader>
         <div className="flex flex-col items-center justify-center gap-4 px-4">
