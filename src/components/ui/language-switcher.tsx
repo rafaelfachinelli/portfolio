@@ -36,7 +36,7 @@ export function LanguageSwitcher({
           <Button
             variant="outline"
             size="icon"
-            className="cursor-pointer rounded-full"
+            className="cursor-pointer rounded-full select-none"
           >
             <Image
               src={`https://flagcdn.com/w40/${lang === 'en' ? 'us' : 'br'}.png`}

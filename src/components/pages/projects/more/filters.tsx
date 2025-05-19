@@ -3,38 +3,42 @@
 import {
   Briefcase,
   Calendar,
-  Check,
-  ChevronsUpDown,
+  Filter,
   GraduationCap,
   Radio,
   Search,
   Shapes,
+  Trash,
   Trophy,
+  X,
 } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '@/components/ui/command'
 import { Label } from '@/components/ui/label'
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
 import { getLanguageConfig } from '@/config/languages'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 import { Repository } from './repository-card'
 
-interface FiltersProps {
+export interface FiltersProps {
   allRepositories: Repository[]
   disabled?: boolean
 }
@@ -43,10 +47,8 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
   const { dictionary } = useLanguage()
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [openType, setOpenType] = useState(false)
-  const [openPreview, setOpenPreview] = useState(false)
-  const [openLanguage, setOpenLanguage] = useState(false)
-  const [openYear, setOpenYear] = useState(false)
+
+  const [openSheet, setOpenSheet] = useState(false)
 
   // Get all unique languages from all repositories
   const allLanguages = Array.from(
@@ -77,450 +79,328 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
     [searchParams],
   )
 
+  const hasFilterSelected = () => {
+    const params = new URLSearchParams(searchParams.toString())
+    let count = 0
+    for (const [, value] of params.entries()) {
+      if (value !== 'all') {
+        count++
+      }
+    }
+
+    return count > 0
+  }
+
   const updateFilter = (name: string, value: string) => {
     if (disabled) return
     router.push(`?${createQueryString(name, value)}`)
   }
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4">
-      {/* Type Filter */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="type-filter">
-          {dictionary.pages.projects.repositories.filters.labels.type}:
-        </Label>
-        <Popover
-          open={openType && !disabled}
-          onOpenChange={disabled ? undefined : setOpenType}
-        >
-          <PopoverTrigger asChild>
-            <Button
-              id="type-filter"
-              variant="outline"
-              role="combobox"
-              aria-expanded={openType}
-              className="w-[200px] justify-between"
+    <Sheet open={openSheet} onOpenChange={setOpenSheet}>
+      <SheetTrigger asChild>
+        <Button variant="outline" className="cursor-pointer select-none">
+          <Filter className="h-4 w-4" />
+          {dictionary.pages.projects.repositories.filters.title}
+        </Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle className="flex items-center gap-2">
+            <Filter className="h-4 w-4" />
+            {dictionary.pages.projects.repositories.filters.title}
+          </SheetTitle>
+        </SheetHeader>
+        <div className="flex flex-col items-center justify-center gap-4 px-4">
+          {/* Type Filter */}
+          <div className="flex w-full flex-col gap-2">
+            <Label htmlFor="type-filter">
+              {dictionary.pages.projects.repositories.filters.labels.type}:
+            </Label>
+            <Select
+              value={searchParams.get('type') || 'all'}
+              onValueChange={value => updateFilter('type', value)}
               disabled={disabled}
             >
-              <div className="flex items-center gap-2">
-                {searchParams.get('type') === 'portfolio' && (
-                  <Briefcase className="h-3 w-3 text-green-500" />
-                )}
-                {searchParams.get('type') === 'event' && (
-                  <Trophy className="h-3 w-3 text-purple-500" />
-                )}
-                {searchParams.get('type') === 'study' && (
-                  <GraduationCap className="h-3 w-3 text-blue-500" />
-                )}
-                {searchParams.get('type') === 'others' && (
-                  <Shapes className="h-3 w-3 text-red-500" />
-                )}
-                {!searchParams.get('type') ||
-                  (searchParams.get('type') === 'all' && (
-                    <Search className="text-muted-foreground h-3 w-3" />
-                  ))}
-                {searchParams.get('type')
-                  ? dictionary.pages.projects.repositories.filters.type[
-                      searchParams.get('type') as
-                        | 'portfolio'
-                        | 'event'
-                        | 'study'
-                        | 'others'
-                    ] || dictionary.pages.projects.repositories.filters.type.all
-                  : dictionary.pages.projects.repositories.filters.type.all}
-              </div>
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[200px] p-0">
-            <Command>
-              <CommandInput
-                placeholder={
-                  dictionary.pages.projects.repositories.filters.type.search
-                }
-              />
-              <CommandEmpty>
-                {dictionary.pages.projects.repositories.filters.type.notFound}
-              </CommandEmpty>
-              <CommandGroup>
-                <CommandItem
+              <SelectTrigger id="type-filter" className="w-full cursor-pointer">
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    {searchParams.get('type') === 'portfolio' && (
+                      <Briefcase className="h-3 w-3 text-green-500" />
+                    )}
+                    {searchParams.get('type') === 'event' && (
+                      <Trophy className="h-3 w-3 text-purple-500" />
+                    )}
+                    {searchParams.get('type') === 'study' && (
+                      <GraduationCap className="h-3 w-3 text-blue-500" />
+                    )}
+                    {searchParams.get('type') === 'others' && (
+                      <Shapes className="h-3 w-3 text-red-500" />
+                    )}
+                    {!searchParams.get('type') ||
+                      (searchParams.get('type') === 'all' && (
+                        <Search className="text-muted-foreground h-3 w-3" />
+                      ))}
+                    {searchParams.get('type')
+                      ? dictionary.pages.projects.repositories.filters.type[
+                          searchParams.get('type') as
+                            | 'portfolio'
+                            | 'event'
+                            | 'study'
+                            | 'others'
+                        ] ||
+                        dictionary.pages.projects.repositories.filters.type.all
+                      : dictionary.pages.projects.repositories.filters.type.all}
+                  </div>
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem
                   value="all"
-                  onSelect={() => {
-                    updateFilter('type', 'all')
-                    setOpenType(false)
-                  }}
-                  className="gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      !searchParams.get('type') ||
-                      searchParams.get('type') === 'all'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Search className="text-muted-foreground h-3 w-3" />
-                  {dictionary.pages.projects.repositories.filters.type.all}
-                </CommandItem>
-                <CommandItem
+                  <div className="flex items-center gap-2">
+                    <Search className="text-muted-foreground h-3 w-3" />
+                    {dictionary.pages.projects.repositories.filters.type.all}
+                  </div>
+                </SelectItem>
+                <SelectItem
                   value="portfolio"
-                  onSelect={() => {
-                    updateFilter('type', 'portfolio')
-                    setOpenType(false)
-                  }}
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      searchParams.get('type') === 'portfolio'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Briefcase className="h-3 w-3 text-green-500" />
-                  {
-                    dictionary.pages.projects.repositories.filters.type
-                      .portfolio
-                  }
-                </CommandItem>
-                <CommandItem
+                  <div className="flex items-center gap-2">
+                    <Briefcase className="h-3 w-3 text-green-500" />
+                    {
+                      dictionary.pages.projects.repositories.filters.type
+                        .portfolio
+                    }
+                  </div>
+                </SelectItem>
+                <SelectItem
                   value="event"
-                  onSelect={() => {
-                    updateFilter('type', 'event')
-                    setOpenType(false)
-                  }}
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      searchParams.get('type') === 'event'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Trophy className="h-3 w-3 text-purple-500" />
-                  {dictionary.pages.projects.repositories.filters.type.event}
-                </CommandItem>
-                <CommandItem
+                  <div className="flex items-center gap-2">
+                    <Trophy className="h-3 w-3 text-purple-500" />
+                    {dictionary.pages.projects.repositories.filters.type.event}
+                  </div>
+                </SelectItem>
+                <SelectItem
                   value="study"
-                  onSelect={() => {
-                    updateFilter('type', 'study')
-                    setOpenType(false)
-                  }}
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      searchParams.get('type') === 'study'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <GraduationCap className="h-3 w-3 text-blue-500" />
-                  {dictionary.pages.projects.repositories.filters.type.study}
-                </CommandItem>
-                <CommandItem
+                  <div className="flex items-center gap-2">
+                    <GraduationCap className="h-3 w-3 text-blue-500" />
+                    {dictionary.pages.projects.repositories.filters.type.study}
+                  </div>
+                </SelectItem>
+                <SelectItem
                   value="others"
-                  onSelect={() => {
-                    updateFilter('type', 'others')
-                    setOpenType(false)
-                  }}
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      searchParams.get('type') === 'others'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Shapes className="h-3 w-3 text-red-500" />
-                  {dictionary.pages.projects.repositories.filters.type.others}
-                </CommandItem>
-              </CommandGroup>
-            </Command>
-          </PopoverContent>
-        </Popover>
-      </div>
+                  <div className="flex items-center gap-2">
+                    <Shapes className="h-3 w-3 text-red-500" />
+                    {dictionary.pages.projects.repositories.filters.type.others}
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-      {/* Preview Filter */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="preview-filter">
-          {dictionary.pages.projects.repositories.filters.labels.preview}:
-        </Label>
-        <Popover
-          open={openPreview && !disabled}
-          onOpenChange={disabled ? undefined : setOpenPreview}
-        >
-          <PopoverTrigger asChild>
-            <Button
-              id="preview-filter"
-              variant="outline"
-              role="combobox"
-              aria-expanded={openPreview}
-              className="w-[200px] justify-between"
+          {/* Preview Filter */}
+          <div className="flex w-full flex-col gap-2">
+            <Label htmlFor="preview-filter">
+              {dictionary.pages.projects.repositories.filters.labels.preview}:
+            </Label>
+            <Select
+              value={searchParams.get('preview') || 'all'}
+              onValueChange={value => updateFilter('preview', value)}
               disabled={disabled}
             >
-              <div className="flex items-center gap-2">
-                {searchParams.get('preview') === 'yes' && (
-                  <Radio className="h-4 w-4 animate-pulse text-red-500" />
-                )}
-                {searchParams.get('preview') === 'no' && (
-                  <Radio className="text-muted-foreground h-4 w-4" />
-                )}
-                {!searchParams.get('preview') ||
-                  (searchParams.get('preview') === 'all' && (
+              <SelectTrigger
+                id="preview-filter"
+                className="w-full cursor-pointer"
+              >
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    {searchParams.get('preview') === 'yes' && (
+                      <Radio className="h-4 w-4 animate-pulse text-red-500" />
+                    )}
+                    {searchParams.get('preview') === 'no' && (
+                      <Radio className="text-muted-foreground h-4 w-4" />
+                    )}
+                    {!searchParams.get('preview') ||
+                      (searchParams.get('preview') === 'all' && (
+                        <Search className="text-muted-foreground h-3 w-3" />
+                      ))}
+                    {searchParams.get('preview')
+                      ? dictionary.pages.projects.repositories.filters.preview[
+                          searchParams.get('preview') as 'yes' | 'no'
+                        ] ||
+                        dictionary.pages.projects.repositories.filters.preview
+                          .all
+                      : dictionary.pages.projects.repositories.filters.preview
+                          .all}
+                  </div>
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem
+                  value="all"
+                  className="hover:bg-muted cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
                     <Search className="text-muted-foreground h-3 w-3" />
-                  ))}
-                {searchParams.get('preview')
-                  ? dictionary.pages.projects.repositories.filters.preview[
-                      searchParams.get('preview') as 'yes' | 'no'
-                    ] ||
-                    dictionary.pages.projects.repositories.filters.preview.all
-                  : dictionary.pages.projects.repositories.filters.preview.all}
-              </div>
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[200px] p-0">
-            <Command>
-              <CommandInput
-                placeholder={
-                  dictionary.pages.projects.repositories.filters.preview.search
-                }
-              />
-              <CommandEmpty>
-                {
-                  dictionary.pages.projects.repositories.filters.preview
-                    .notFound
-                }
-              </CommandEmpty>
-              <CommandGroup>
-                <CommandItem
-                  value="all"
-                  onSelect={() => {
-                    updateFilter('preview', 'all')
-                    setOpenPreview(false)
-                  }}
-                >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      !searchParams.get('preview') ||
-                      searchParams.get('preview') === 'all'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Search className="text-muted-foreground h-3 w-3" />
-                  {dictionary.pages.projects.repositories.filters.preview.all}
-                </CommandItem>
-                <CommandItem
+                    {dictionary.pages.projects.repositories.filters.preview.all}
+                  </div>
+                </SelectItem>
+                <SelectItem
                   value="yes"
-                  onSelect={() => {
-                    updateFilter('preview', 'yes')
-                    setOpenPreview(false)
-                  }}
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      searchParams.get('preview') === 'yes'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Radio className="h-4 w-4 animate-pulse text-red-500" />
-                  {dictionary.pages.projects.repositories.filters.preview.yes}
-                </CommandItem>
-                <CommandItem
+                  <div className="flex items-center gap-2">
+                    <Radio className="h-4 w-4 animate-pulse text-red-500" />
+                    {dictionary.pages.projects.repositories.filters.preview.yes}
+                  </div>
+                </SelectItem>
+                <SelectItem
                   value="no"
-                  onSelect={() => {
-                    updateFilter('preview', 'no')
-                    setOpenPreview(false)
-                  }}
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      searchParams.get('preview') === 'no'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Radio className="text-muted-foreground h-4 w-4" />
-                  {dictionary.pages.projects.repositories.filters.preview.no}
-                </CommandItem>
-              </CommandGroup>
-            </Command>
-          </PopoverContent>
-        </Popover>
-      </div>
+                  <div className="flex items-center gap-2">
+                    <Radio className="text-muted-foreground h-4 w-4" />
+                    {dictionary.pages.projects.repositories.filters.preview.no}
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-      {/* Language Filter */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="language-filter">
-          {dictionary.pages.projects.repositories.filters.labels.language}:
-        </Label>
-        <Popover
-          open={openLanguage && !disabled}
-          onOpenChange={disabled ? undefined : setOpenLanguage}
-        >
-          <PopoverTrigger asChild>
-            <Button
-              id="language-filter"
-              variant="outline"
-              role="combobox"
-              aria-expanded={openLanguage}
-              className="w-[200px] justify-between"
+          {/* Language Filter */}
+          <div className="flex w-full flex-col gap-2">
+            <Label htmlFor="language-filter">
+              {dictionary.pages.projects.repositories.filters.labels.language}:
+            </Label>
+            <Select
+              value={searchParams.get('language') || 'all'}
+              onValueChange={value => updateFilter('language', value)}
               disabled={disabled}
             >
-              <div className="flex items-center gap-2">
-                {searchParams.get('language') &&
-                  getLanguageConfig(searchParams.get('language'))?.icon}
-                {searchParams.get('language') ||
-                  dictionary.pages.projects.repositories.filters.language.all}
-              </div>
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[200px] p-0">
-            <Command>
-              <CommandInput
-                placeholder={
-                  dictionary.pages.projects.repositories.filters.language.search
-                }
-              />
-              <CommandEmpty>
-                {
-                  dictionary.pages.projects.repositories.filters.language
-                    .notFound
-                }
-              </CommandEmpty>
-              <CommandGroup>
-                <CommandItem
+              <SelectTrigger
+                id="language-filter"
+                className="w-full cursor-pointer"
+              >
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    {searchParams.get('language') &&
+                      getLanguageConfig(searchParams.get('language'))?.icon}
+                    {searchParams.get('language') ||
+                      dictionary.pages.projects.repositories.filters.language
+                        .all}
+                  </div>
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem
                   value="all"
-                  onSelect={() => {
-                    updateFilter('language', 'all')
-                    setOpenLanguage(false)
-                  }}
-                  className="gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 text-green-500 ${
-                      !searchParams.get('language') ||
-                      searchParams.get('language') === 'all'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Search className="text-muted-foreground h-3 w-3" />
-                  {dictionary.pages.projects.repositories.filters.language.all}
-                </CommandItem>
+                  <div className="flex items-center gap-2">
+                    <Search className="text-muted-foreground h-3 w-3" />
+                    {
+                      dictionary.pages.projects.repositories.filters.language
+                        .all
+                    }
+                  </div>
+                </SelectItem>
                 {allLanguages.map(language => {
                   const languageConfig = getLanguageConfig(language)
                   return (
-                    <CommandItem
+                    <SelectItem
                       key={language}
                       value={language}
-                      onSelect={() => {
-                        updateFilter('language', language)
-                        setOpenLanguage(false)
-                      }}
-                      className="gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+                      className="hover:bg-muted cursor-pointer"
                     >
-                      <Check
-                        className={`h-4 w-4 text-green-500 ${
-                          searchParams.get('language') === language
-                            ? 'opacity-100'
-                            : 'opacity-0'
-                        }`}
-                      />
-                      {languageConfig?.icon}
-                      <span>{language}</span>
-                    </CommandItem>
+                      <div className="flex items-center gap-2">
+                        {languageConfig?.icon}
+                        <span>{language}</span>
+                      </div>
+                    </SelectItem>
                   )
                 })}
-              </CommandGroup>
-            </Command>
-          </PopoverContent>
-        </Popover>
-      </div>
+              </SelectContent>
+            </Select>
+          </div>
 
-      {/* Year Filter */}
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="year-filter">
-          {dictionary.pages.projects.repositories.filters.labels.year}:
-        </Label>
-        <Popover
-          open={openYear && !disabled}
-          onOpenChange={disabled ? undefined : setOpenYear}
-        >
-          <PopoverTrigger asChild>
-            <Button
-              id="year-filter"
-              variant="outline"
-              role="combobox"
-              aria-expanded={openYear}
-              className="w-[200px] justify-between"
+          {/* Year Filter */}
+          <div className="flex w-full flex-col gap-2">
+            <Label htmlFor="year-filter">
+              {dictionary.pages.projects.repositories.filters.labels.year}:
+            </Label>
+            <Select
+              value={searchParams.get('year') || 'all'}
+              onValueChange={value => updateFilter('year', value)}
               disabled={disabled}
             >
-              <div className="flex items-center gap-2">
-                {searchParams.get('year') ||
-                  dictionary.pages.projects.repositories.filters.year.all}
-              </div>
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[200px] p-0">
-            <Command>
-              <CommandInput
-                placeholder={
-                  dictionary.pages.projects.repositories.filters.year.search
-                }
-              />
-              <CommandEmpty>
-                {dictionary.pages.projects.repositories.filters.year.notFound}
-              </CommandEmpty>
-              <CommandGroup>
-                <CommandItem
+              <SelectTrigger id="year-filter" className="w-full cursor-pointer">
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    {searchParams.get('year') ||
+                      dictionary.pages.projects.repositories.filters.year.all}
+                  </div>
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem
                   value="all"
-                  onSelect={() => {
-                    updateFilter('year', 'all')
-                    setOpenYear(false)
-                  }}
+                  className="hover:bg-muted cursor-pointer"
                 >
-                  <Check
-                    className={`h-4 w-4 ${
-                      !searchParams.get('year') ||
-                      searchParams.get('year') === 'all'
-                        ? 'opacity-100'
-                        : 'opacity-0'
-                    }`}
-                  />
-                  <Search className="text-muted-foreground h-3 w-3" />
-                  {dictionary.pages.projects.repositories.filters.year.all}
-                </CommandItem>
+                  <div className="flex items-center gap-2">
+                    <Search className="text-muted-foreground h-3 w-3" />
+                    {dictionary.pages.projects.repositories.filters.year.all}
+                  </div>
+                </SelectItem>
                 {allYears.map(year => (
-                  <CommandItem
+                  <SelectItem
                     key={year}
                     value={year.toString()}
-                    onSelect={() => {
-                      updateFilter('year', year.toString())
-                      setOpenYear(false)
-                    }}
+                    className="hover:bg-muted cursor-pointer"
                   >
                     <div className="flex items-center gap-2">
-                      <Check
-                        className={`h-4 w-4 ${
-                          searchParams.get('year') === year.toString()
-                            ? 'opacity-100'
-                            : 'opacity-0'
-                        }`}
-                      />
                       <Calendar className="text-muted-foreground h-3 w-3" />
                       <span>{year}</span>
                     </div>
-                  </CommandItem>
+                  </SelectItem>
                 ))}
-              </CommandGroup>
-            </Command>
-          </PopoverContent>
-        </Popover>
-      </div>
-    </div>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="mt-8 flex w-full flex-wrap items-center justify-between gap-4">
+            <Button
+              variant="outline"
+              className="w-full cursor-pointer select-none"
+              onClick={() => {
+                if (disabled) return
+                router.push('?')
+              }}
+              disabled={disabled || !hasFilterSelected()}
+            >
+              <Trash className="h-4 w-4 text-blue-500" />
+              {dictionary.pages.projects.repositories.filters.buttons.clear}
+            </Button>
+            <SheetClose asChild>
+              <Button
+                variant="outline"
+                className="w-full cursor-pointer select-none"
+              >
+                <X className="h-4 w-4 text-red-500" />
+                {dictionary.pages.projects.repositories.filters.buttons.close}
+              </Button>
+            </SheetClose>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
   )
 }

@@ -84,7 +84,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
                 <TooltipTrigger asChild>
                   <Badge
                     variant="secondary"
-                    className={`hover:bg-opacity-90 flex items-center gap-1 text-white select-none ${
+                    className={`hover:bg-opacity-90 flex cursor-help items-center gap-1 text-white select-none ${
                       isEventProject
                         ? 'bg-purple-500 hover:bg-purple-600'
                         : isPortfolioProject

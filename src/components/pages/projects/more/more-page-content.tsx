@@ -53,13 +53,11 @@ export function MorePageContent() {
     fetchRepositories()
   }, [])
 
-  // Effect to filter repositories whenever allRepositories or searchParams change
   useEffect(() => {
     if (allRepositories.length === 0) return
 
     let filteredRepositories = [...allRepositories]
 
-    // Apply filters based on searchParams
     const type = searchParams.get('type')
     const preview = searchParams.get('preview')
     const language = searchParams.get('language')
@@ -102,7 +100,7 @@ export function MorePageContent() {
     }
 
     setRepositories(filteredRepositories)
-  }, [allRepositories, searchParams]) // Depends on allRepositories and searchParams
+  }, [allRepositories, searchParams])
 
   return (
     <>
@@ -112,35 +110,30 @@ export function MorePageContent() {
       />
 
       <PageContent className="gap-4">
-        <div className="mb-6 text-center">
-          <h1 className="mb-2 text-3xl font-bold">
-            {dictionary.pages.projects.repositories.title}
-          </h1>
-        </div>
+        <h1 className="text-center text-3xl font-bold">
+          {dictionary.pages.projects.repositories.title}
+        </h1>
 
-        <div className="mb-6">
+        <div className="flex items-center justify-center gap-4">
+          <p className="text-muted-foreground flex items-center gap-1">
+            {dictionary.pages.projects.repositories.description
+              .split('{count}')
+              .map((part, index, array) => (
+                <React.Fragment key={index}>
+                  {part}
+                  {index < array.length - 1 &&
+                    (isLoading ? (
+                      <LoaderCircle className="h-5 w-5 animate-spin" />
+                    ) : (
+                      <span className="text-primary font-bold">
+                        {repositories.length.toString()}
+                      </span>
+                    ))}
+                </React.Fragment>
+              ))}
+          </p>
           <Filters allRepositories={allRepositories} disabled={isLoading} />
         </div>
-
-        {repositories.length > 0 && (
-          <div className="flex items-center justify-center gap-2">
-            <p className="text-muted-foreground flex items-center gap-1">
-              {dictionary.pages.projects.repositories.description
-                .split('{count}')
-                .map((part, index, array) => (
-                  <React.Fragment key={index}>
-                    {part}
-                    {index < array.length - 1 &&
-                      (isLoading ? (
-                        <LoaderCircle className="h-5 w-5 animate-spin" />
-                      ) : (
-                        repositories.length.toString()
-                      ))}
-                  </React.Fragment>
-                ))}
-            </p>
-          </div>
-        )}
 
         {error && (
           <div className="bg-destructive/15 text-destructive mb-6 rounded-lg p-4">

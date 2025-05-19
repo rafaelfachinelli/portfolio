@@ -10,40 +10,37 @@
       "description": "Explore meus projetos e veja as tecnologias com as quais trabalhei.",
       "repositories": {
         "title": "Repositórios GitHub",
-        "description": "Exibindo {count} repositórios públicos",
+        "description": "Exibindo {count} repositório(s) público(s).",
         "notFound": "Nenhum repositório encontrado.",
         "filters": {
+          "title": "Filtros",
           "labels": {
             "type": "Tipo",
             "preview": "Visualização",
             "language": "Linguagem",
             "year": "Ano"
           },
+          "buttons": {
+            "clear": "Limpar",
+            "close": "Fechar"
+          },
           "type": {
             "all": "Todos",
             "portfolio": "Portfólio",
             "event": "Evento",
             "study": "Estudo",
-            "others": "Outros",
-            "search": "Buscar tipo...",
-            "notFound": "Nenhum tipo encontrado."
+            "others": "Outros"
           },
           "preview": {
             "all": "Todos",
             "yes": "Com Visualização",
-            "no": "Sem Visualização",
-            "search": "Buscar visualização...",
-            "notFound": "Nenhuma opção de preview encontrada."
+            "no": "Sem Visualização"
           },
           "language": {
-            "all": "Todos",
-            "search": "Buscar linguagem...",
-            "notFound": "Nenhuma linguagem encontrada."
+            "all": "Todos"
           },
           "year": {
-            "all": "Todos",
-            "search": "Buscar ano...",
-            "notFound": "Nenhum ano encontrado."
+            "all": "Todos"
           }
         },
         "card": {
