@@ -1,10 +1,11 @@
 'use client'
 
-import { LoaderCircle } from 'lucide-react'
+import { Loader, RefreshCw } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
+import { Button } from '@/components/ui/button'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -20,36 +21,34 @@ export function MorePageContent() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    async function fetchRepositories() {
-      try {
-        setIsLoading(true)
-        // Fetch all repositories initially
-        const response = await fetch(`/api/github/repositories`)
+  async function fetchRepositories() {
+    try {
+      setIsLoading(true)
+      // Fetch all repositories initially
+      const response = await fetch(`/api/github/repositories`)
 
-        if (!response.ok) {
-          const data = await response.json()
-          if (data.error === 'rate_limit') {
-            throw new Error(
-              'GitHub API rate limit exceeded. Please try again later.',
-            )
-          }
-          throw new Error(`GitHub API error: ${response.status}`)
+      if (!response.ok) {
+        const data = await response.json()
+        if (data.error === 'rate_limit') {
+          throw new Error(
+            'GitHub API rate limit exceeded. Please try again later.',
+          )
         }
-
-        const data: Repository[] = await response.json()
-        setAllRepositories(data)
-        setError(null)
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : 'An unknown error occurred',
-        )
-        console.error(err)
-      } finally {
-        setIsLoading(false)
+        throw new Error(`GitHub API error: ${response.status}`)
       }
-    }
 
+      const data: Repository[] = await response.json()
+      setAllRepositories(data)
+      setError(null)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred')
+      console.error(err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
     fetchRepositories()
   }, [])
 
@@ -114,25 +113,36 @@ export function MorePageContent() {
           {dictionary.pages.projects.repositories.title}
         </h1>
 
-        <div className="flex items-center justify-center gap-4">
-          <p className="text-muted-foreground flex items-center gap-1">
-            {dictionary.pages.projects.repositories.description
-              .split('{count}')
-              .map((part, index, array) => (
-                <React.Fragment key={index}>
-                  {part}
-                  {index < array.length - 1 &&
-                    (isLoading ? (
-                      <LoaderCircle className="h-5 w-5 animate-spin" />
-                    ) : (
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex w-full items-center justify-center gap-4 sm:w-1/2 md:w-fit">
+            <Filters allRepositories={allRepositories} disabled={isLoading} />
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={fetchRepositories}
+              disabled={isLoading}
+              className="cursor-pointer rounded-full select-none"
+            >
+              <RefreshCw
+                className={`h-4 w-4 transition-all duration-300 ease-in-out ${isLoading ? 'animate-spin text-blue-500' : ''}`}
+              />
+            </Button>
+          </div>
+          <p className="text-muted-foreground w-full text-center sm:w-fit">
+            {!isLoading &&
+              dictionary.pages.projects.repositories.description
+                .split('{count}')
+                .map((part, index, array) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < array.length - 1 && (
                       <span className="text-primary font-bold">
                         {repositories.length.toString()}
                       </span>
-                    ))}
-                </React.Fragment>
-              ))}
+                    )}
+                  </React.Fragment>
+                ))}
           </p>
-          <Filters allRepositories={allRepositories} disabled={isLoading} />
         </div>
 
         {error && (
@@ -153,8 +163,8 @@ export function MorePageContent() {
 
         {isLoading ? (
           <div className="flex min-h-[400px] items-center justify-center">
-            <div className="flex flex-col items-center gap-4">
-              <LoaderCircle className="text-primary h-8 w-8 animate-spin" />
+            <div className="flex flex-col items-center gap-2">
+              <Loader className="h-8 w-8 animate-spin text-blue-500" />
               <p className="text-muted-foreground text-sm">
                 {dictionary.commons.loading}
               </p>

@@ -104,22 +104,25 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
       <SheetTrigger asChild>
         <Button
           variant="outline"
-          className="relative cursor-pointer select-none"
+          className="w-full cursor-pointer select-none"
+          disabled={disabled}
         >
-          <Filter className="h-4 w-4" />
+          <div className="relative">
+            <Filter className="h-4 w-4" />
+            {hasFilterSelected() && (
+              <span className="absolute -top-0.5 -right-0.5 rounded-full bg-red-500 p-1 text-xs font-bold" />
+            )}
+          </div>
           {dictionary.pages.projects.repositories.filters.title}
-          {hasFilterSelected() && (
-            <span className="absolute top-0 left-0 translate-x-5.5 translate-y-2 rounded-full bg-red-500 p-1 text-xs font-bold text-white" />
-          )}
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="w-full max-w-3xs">
         <SheetHeader>
           <SheetTitle className="relative flex items-center gap-2">
             <Filter className="h-4 w-4" />
             {dictionary.pages.projects.repositories.filters.title}
             {hasFilterSelected() && (
-              <span className="absolute top-0 left-0 translate-x-2.5 translate-y-0.5 rounded-full bg-red-500 p-1 text-xs font-bold text-white" />
+              <span className="absolute top-0 left-0 translate-x-2.5 translate-y-0.5 rounded-full bg-red-500 p-1 text-xs font-bold" />
             )}
           </SheetTitle>
         </SheetHeader>
