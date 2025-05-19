@@ -1,5 +1,6 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import { Loader, RefreshCw } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -19,10 +20,14 @@ export function MorePageContent() {
   const [repositories, setRepositories] = useState<Repository[]>([])
   const [allRepositories, setAllRepositories] = useState<Repository[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   async function fetchRepositories() {
     try {
+      setIsRefreshing(true)
+      // Add a small delay to allow exit animations to complete
+      await new Promise(resolve => setTimeout(resolve, 300))
       setIsLoading(true)
       // Fetch all repositories initially
       const response = await fetch(`/api/github/repositories`)
@@ -45,6 +50,7 @@ export function MorePageContent() {
       console.error(err)
     } finally {
       setIsLoading(false)
+      setIsRefreshing(false)
     }
   }
 
@@ -114,7 +120,7 @@ export function MorePageContent() {
         </h1>
 
         <div className="flex flex-col items-center justify-center gap-4">
-          <div className="flex w-full items-center justify-center gap-4 sm:w-1/2 md:w-fit">
+          <div className="flex items-center justify-center gap-4">
             <Filters allRepositories={allRepositories} disabled={isLoading} />
             <Button
               variant="outline"
@@ -128,7 +134,7 @@ export function MorePageContent() {
               />
             </Button>
           </div>
-          <p className="text-muted-foreground w-full text-center sm:w-fit">
+          <p className="text-muted-foreground w-full text-center">
             {!isLoading &&
               dictionary.pages.projects.repositories.description
                 .split('{count}')
@@ -162,20 +168,40 @@ export function MorePageContent() {
         )}
 
         {isLoading ? (
-          <div className="flex min-h-[400px] items-center justify-center">
+          <motion.div
+            className="flex min-h-[400px] items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          >
             <div className="flex flex-col items-center gap-2">
               <Loader className="h-8 w-8 animate-spin text-blue-500" />
               <p className="text-muted-foreground text-sm">
                 {dictionary.commons.loading}
               </p>
             </div>
-          </div>
+          </motion.div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {repositories.map(repo => (
-              <RepositoryCard key={repo.id} repository={repo} />
-            ))}
-          </div>
+          <motion.div
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            layout
+          >
+            <AnimatePresence mode="popLayout">
+              {!isRefreshing &&
+                repositories.map(repo => (
+                  <motion.div
+                    key={repo.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.2, ease: 'easeInOut' }}
+                  >
+                    <RepositoryCard repository={repo} />
+                  </motion.div>
+                ))}
+            </AnimatePresence>
+          </motion.div>
         )}
       </PageContent>
     </>
