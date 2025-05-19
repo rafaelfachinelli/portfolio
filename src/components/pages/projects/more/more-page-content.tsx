@@ -20,7 +20,7 @@ export function MorePageContent() {
   const [repositories, setRepositories] = useState<Repository[]>([])
   const [allRepositories, setAllRepositories] = useState<Repository[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   async function fetchRepositories() {
