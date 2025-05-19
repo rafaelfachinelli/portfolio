@@ -26,8 +26,10 @@ export function MorePageContent() {
   async function fetchRepositories() {
     try {
       setIsRefreshing(true)
-      // Add a small delay to allow exit animations to complete
-      await new Promise(resolve => setTimeout(resolve, 300))
+      // Only add delay if we're refreshing (not on initial load)
+      if (allRepositories.length > 0) {
+        await new Promise(resolve => setTimeout(resolve, 300))
+      }
       setIsLoading(true)
       // Fetch all repositories initially
       const response = await fetch(`/api/github/repositories`)
@@ -170,7 +172,7 @@ export function MorePageContent() {
         {isLoading ? (
           <motion.div
             className="flex min-h-[400px] items-center justify-center"
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
           >
