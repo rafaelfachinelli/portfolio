@@ -5,6 +5,7 @@ import {
   ExternalLink,
   Github,
   GraduationCap,
+  Loader,
   Radio,
   Trophy,
 } from 'lucide-react'
@@ -55,28 +56,44 @@ interface RepositoryCardProps {
   repository: Repository
 }
 
+const BANNER_SIZE = {
+  width: 600,
+  height: 128,
+}
+const BANNER_FALLBACK = '/images/fallback-banner.svg'
+
 export function RepositoryCard({ repository }: RepositoryCardProps) {
   const { dictionary } = useLanguage()
   const [imgSrc, setImgSrc] = useState(
     `https://raw.githubusercontent.com/${repository.owner.login}/${repository.name}/${repository.default_branch}/.github/banner.svg`,
   )
+  const [isLoadingImage, setIsLoadingImage] = useState(true)
 
   const isStudyProject = repository.topics?.includes('study')
   const isEventProject = repository.topics?.includes('event')
   const isPortfolioProject = repository.topics?.includes('portfolio')
 
   return (
-    <Card className={`flex h-full flex-col justify-between border`}>
+    <Card className={`flex min-h-[360px] flex-col border py-0 pb-6`}>
       <div className="relative">
         <Image
           src={imgSrc}
           alt={`${repository.name} banner`}
-          width={600}
-          height={128}
-          className="h-32 w-full rounded-t bg-gray-100 object-center p-2"
+          width={BANNER_SIZE.width}
+          height={BANNER_SIZE.height}
+          className="h-20 w-full rounded-t-xl bg-gray-100 object-center p-2 select-none"
           priority={true}
-          onError={() => setImgSrc('/images/fallback-banner.svg')}
+          onLoad={() => setIsLoadingImage(false)}
+          onError={() => {
+            setImgSrc(BANNER_FALLBACK)
+            setIsLoadingImage(false)
+          }}
         />
+        {isLoadingImage && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Loader className="h-8 w-8 animate-spin text-blue-500" />
+          </div>
+        )}
         {(isStudyProject || isEventProject || isPortfolioProject) && (
           <div className="absolute top-2 right-2">
             <TooltipProvider>
@@ -133,13 +150,13 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
             </Badge>
           )}
         </div>
-        <CardDescription className="mt-2">
+        <CardDescription className="mt-2 text-justify">
           {repository.description ||
             dictionary.pages.projects.repositories.card.noDescription}
         </CardDescription>
       </CardHeader>
-      <CardFooter className="flex items-center justify-between border-t pt-4">
-        <div className="mr-2 flex flex-col items-start gap-2">
+      <CardFooter className="mt-auto border-t pt-4">
+        <div className="mr-2 flex w-full flex-col justify-between gap-2">
           <span className="text-muted-foreground text-xs">
             {dictionary.pages.projects.repositories.card.created.replace(
               '{date}',

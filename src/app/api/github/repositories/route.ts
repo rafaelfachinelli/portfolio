@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     const year = searchParams.get('year')
 
     const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=created&direction=asc`,
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=created&direction=desc`,
       {
         headers: {
           Accept: 'application/vnd.github.v3+json',
