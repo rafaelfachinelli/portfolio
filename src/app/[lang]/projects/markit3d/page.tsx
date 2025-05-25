@@ -1,4 +1,4 @@
-import { Markit3DPageContent } from '@/components/pages/projects/markit3d/markit3d-page-content.tsx'
+import { Markit3DPageContent } from '@/components/pages/projects/markit3d/markit3d-page-content'
 
 export async function generateMetadata() {
   return {
