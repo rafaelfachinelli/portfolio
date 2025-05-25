@@ -16,12 +16,10 @@ export function PersonalManifestoPageContent() {
         description={translation.pages.about.personalManifesto.description}
       />
 
-      <PageContent className="gap-2">
+      <PageContent className="gap-2 text-justify">
         {translation.pages.about.personalManifesto.content.map(
           (paragraph: string, index: number) => (
-            <p key={index} className="text-justify">
-              <ReactMarkdown>{paragraph}</ReactMarkdown>
-            </p>
+            <ReactMarkdown key={index}>{paragraph}</ReactMarkdown>
           ),
         )}
       </PageContent>
