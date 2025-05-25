@@ -74,7 +74,19 @@
       },
       "resume": {
         "title": "Resume",
-        "description": "Download my resume to see my professional journey and skills."
+        "description": "Download my resume to see my professional journey and skills.",
+        "download": "Download Resume",
+        "downloadDescription": "Click the button below to download my resume in PDF format.",
+        "name": "Rafael Lima Amaral Fachinelli",
+        "file": {
+          "name": "rafael-fachinelli-resume.pdf"
+        },
+        "position": "Tech Lead",
+        "sections": {
+          "resume": "Resume",
+          "professionalExperience": "Professional Experience",
+          "skills": "Skills and competencies"
+        }
       },
       "timeline": {
         "title": "Timeline",
@@ -126,7 +138,7 @@
           },
           {
             "role": "System Developer",
-            "company": "FLEX Máquinas de Costura e Automação",
+            "company": "FLEX Sewing Machine and Automation",
             "duration": "August 2018 - January 2023",
             "location": "Ferraz de Vasconcelos, São Paulo",
             "responsibilities": [
@@ -139,7 +151,7 @@
           },
           {
             "role": "Machine Operator",
-            "company": "Daneva Máq. e Condutores Elétricos LTDA.",
+            "company": "Daneva Machine and Electrical Conductors LTDA.",
             "duration": "February 2015 - November 2016",
             "location": "Poá, São Paulo, Brazil",
             "responsibilities": [
@@ -151,7 +163,7 @@
           },
           {
             "role": "Production Assistant",
-            "company": "Daneva Máq. e Condutores Elétricos LTDA.",
+            "company": "Daneva Machine and Electrical Conductors LTDA.",
             "duration": "July 2014 - January 2015",
             "location": "Poá, São Paulo, Brazil",
             "responsibilities": [
@@ -163,7 +175,7 @@
           },
           {
             "role": "Computing Instructor",
-            "company": "Grupo Easycomp - Qualificando os brasileiros",
+            "company": "Easycomp Group - Qualifying Brazilians",
             "duration": "January 2013 - June 2013",
             "location": "Ferraz de Vasconcelos, São Paulo, Brazil",
             "responsibilities": [
@@ -289,6 +301,7 @@
     "present": "present",
     "study": "Study",
     "event": "Event",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "at": "at"
   }
 }

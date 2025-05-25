@@ -30,6 +30,8 @@
     "date-fns": "^4.1.0",
     "esbuild": "^0.25.3",
     "framer-motion": "^12.9.4",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "lucide-react": "^0.507.0",
     "negotiator": "^1.0.0",
     "next": "15.3.1",

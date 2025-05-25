@@ -75,7 +75,19 @@
       },
       "resume": {
         "title": "Currículo",
-        "description": "Baixe meu currículo para ver minha trajetória profissional e habilidades."
+        "description": "Baixe meu currículo para ver minha trajetória profissional e habilidades.",
+        "download": "Baixar Currículo",
+        "downloadDescription": "Clique no botão abaixo para baixar meu currículo em PDF.",
+        "name": "Rafael Lima Amaral Fachinelli",
+        "position": "Líder Técnico",
+        "file": {
+          "name": "rafael-fachinelli-curriculo.pdf"
+        },
+        "sections": {
+          "resume": "Resumo",
+          "professionalExperience": "Experiência Profissional",
+          "skills": "Habilidades e Competências"
+        }
       },
       "timeline": {
         "title": "Linha do Tempo",
@@ -290,6 +302,7 @@
     "present": "presente",
     "study": "Estudo",
     "event": "Evento",
-    "portfolio": "Portfólio"
+    "portfolio": "Portfólio",
+    "at": "em"
   }
 }

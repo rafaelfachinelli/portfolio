@@ -2,8 +2,9 @@
 
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
-import { UnderConstructionPageAlert } from '@/components/under-construction-page-alert'
 import { useLanguage } from '@/contexts/LanguageContext'
+
+import { ResumeDownloadButton } from './resume-download-button'
 
 export function ResumePageContent() {
   const { translation } = useLanguage()
@@ -16,7 +17,9 @@ export function ResumePageContent() {
       />
 
       <PageContent className="gap-4">
-        <UnderConstructionPageAlert />
+        <div className="flex justify-center">
+          <ResumeDownloadButton />
+        </div>
       </PageContent>
     </>
   )

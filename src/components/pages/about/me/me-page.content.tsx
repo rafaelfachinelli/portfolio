@@ -1,5 +1,7 @@
 'use client'
 
+import ReactMarkdown from 'react-markdown'
+
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 import { UnderConstructionPageAlert } from '@/components/under-construction-page-alert'
@@ -15,14 +17,10 @@ export function MePageContent() {
         description={translation.pages.about.me.description}
       />
 
-      <PageContent className="gap-4">
-        {translation.pages.about.me.content.map(
-          (paragraph: string, index: number) => (
-            <p key={index} className="text-justify">
-              {paragraph}
-            </p>
-          ),
-        )}
+      <PageContent className="gap-4 text-justify">
+        {translation.pages.about.me.content.map((paragraph, index) => (
+          <ReactMarkdown key={index}>{paragraph}</ReactMarkdown>
+        ))}
 
         <UnderConstructionPageAlert />
       </PageContent>
