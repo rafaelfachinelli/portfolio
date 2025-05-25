@@ -6,13 +6,13 @@ import { UnderConstructionPageAlert } from '@/components/under-construction-page
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function ContactPageContent() {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
 
   return (
     <>
       <PageTitle
-        title={dictionary.pages.contact.title}
-        description={dictionary.pages.contact.description}
+        title={translation.pages.contact.title}
+        description={translation.pages.contact.description}
       />
 
       <PageContent className="gap-4">

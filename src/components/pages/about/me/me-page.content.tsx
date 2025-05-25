@@ -6,21 +6,23 @@ import { UnderConstructionPageAlert } from '@/components/under-construction-page
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function MePageContent() {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
 
   return (
     <>
       <PageTitle
-        title={dictionary.pages.about.me.title}
-        description={dictionary.pages.about.me.description}
+        title={translation.pages.about.me.title}
+        description={translation.pages.about.me.description}
       />
 
       <PageContent className="gap-4">
-        {dictionary.pages.about.me.content.map((paragraph, index) => (
-          <p key={index} className="text-justify">
-            {paragraph}
-          </p>
-        ))}
+        {translation.pages.about.me.content.map(
+          (paragraph: string, index: number) => (
+            <p key={index} className="text-justify">
+              {paragraph}
+            </p>
+          ),
+        )}
 
         <UnderConstructionPageAlert />
       </PageContent>

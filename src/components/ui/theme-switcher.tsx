@@ -19,7 +19,7 @@ interface ThemeToggleProps {
 
 export function ThemeSwitcher({ className }: ThemeToggleProps) {
   const { setTheme } = useTheme()
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
 
   return (
     <div className={className}>
@@ -40,19 +40,19 @@ export function ThemeSwitcher({ className }: ThemeToggleProps) {
             onClick={() => setTheme('light')}
             className="cursor-pointer"
           >
-            {dictionary.components.themeSwitcher.light}
+            {translation.components.themeSwitcher.light}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setTheme('dark')}
             className="cursor-pointer"
           >
-            {dictionary.components.themeSwitcher.dark}
+            {translation.components.themeSwitcher.dark}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setTheme('system')}
             className="cursor-pointer"
           >
-            {dictionary.components.themeSwitcher.system}
+            {translation.components.themeSwitcher.system}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

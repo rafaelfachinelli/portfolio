@@ -43,7 +43,7 @@ export type SidebarOption = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { lang, dictionary } = useLanguage()
+  const { lang, translation } = useLanguage()
   const { toggleSidebar } = useSidebar()
 
   const getData = (): {
@@ -53,27 +53,28 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return {
       navMain: [
         {
-          title: dictionary.components.navbar.options.about.title,
+          title: translation.components.navbar.options.about.title,
           icon: Info,
           isActive: true,
           items: [
             {
-              title: dictionary.components.navbar.options.about.items.me.title,
+              title: translation.components.navbar.options.about.items.me.title,
               url: `/${lang}/about/me`,
             },
             {
               title:
-                dictionary.components.navbar.options.about.items.resume.title,
+                translation.components.navbar.options.about.items.resume.title,
               url: `/${lang}/about/resume`,
             },
             {
               title:
-                dictionary.components.navbar.options.about.items.timeline.title,
+                translation.components.navbar.options.about.items.timeline
+                  .title,
               url: `/${lang}/about/timeline`,
             },
             {
               title:
-                dictionary.components.navbar.options.about.items[
+                translation.components.navbar.options.about.items[
                   'personal-manifesto'
                 ].title,
               url: `/${lang}/about/personal-manifesto`,
@@ -83,21 +84,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       ],
       projects: [
         {
-          name: dictionary.components.navbar.options.projects.items[
+          name: translation.components.navbar.options.projects.items[
             'leroy-merlin-instala'
           ].title,
           url: `/${lang}/projects/leroy-merlin-instala`,
           icon: Presentation,
         },
         {
-          name: dictionary.components.navbar.options.projects.items[
+          name: translation.components.navbar.options.projects.items[
             'flex-sewing-machine'
           ].title,
           url: `/${lang}/projects/flex-sewing-machine`,
           icon: Presentation,
         },
         {
-          name: dictionary.components.navbar.options.projects.items['markit3d']
+          name: translation.components.navbar.options.projects.items['markit3d']
             .title,
           url: `/${lang}/projects/markit3d`,
           icon: Presentation,
@@ -128,7 +129,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
-                tooltip={dictionary.components.navbar.options.home.title}
+                tooltip={translation.components.navbar.options.home.title}
                 asChild
               >
                 <Link
@@ -137,7 +138,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   onClick={toggleSidebar}
                 >
                   <Home />
-                  <span>{dictionary.components.navbar.options.home.title}</span>
+                  <span>
+                    {translation.components.navbar.options.home.title}
+                  </span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -149,7 +152,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
-                tooltip={dictionary.components.navbar.options.contact.title}
+                tooltip={translation.components.navbar.options.contact.title}
                 asChild
               >
                 <Link
@@ -159,7 +162,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 >
                   <Contact />
                   <span>
-                    {dictionary.components.navbar.options.contact.title}
+                    {translation.components.navbar.options.contact.title}
                   </span>
                 </Link>
               </SidebarMenuButton>

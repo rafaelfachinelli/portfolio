@@ -32,10 +32,10 @@ export interface TimelineEntry {
 }
 
 export function TimelinePageContent() {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
 
   const groupedTimeline: GroupedTimelineEntry[] =
-    dictionary.pages.about.timeline.content
+    translation.pages.about.timeline.content
       .reduce((acc: GroupedTimelineEntry[], entry: TimelineEntry) => {
         const existingGroup = acc.find(group => group.company === entry.company)
         if (existingGroup) {
@@ -68,7 +68,7 @@ export function TimelinePageContent() {
       const [start, end] = role.duration.split(' - ')
       const startDate = new Date(start)
       const endDate =
-        end === capitalizeFirstLetter(dictionary.commons.present)
+        end === capitalizeFirstLetter(translation.commons.present)
           ? new Date()
           : new Date(end)
       return sum + differenceInMonths(endDate, startDate)
@@ -76,7 +76,7 @@ export function TimelinePageContent() {
 
     const years = Math.floor(totalMonths / 12)
     const months = totalMonths % 12
-    return `${years > 0 ? `${years}${dictionary.pages.about.timeline.timeFormat.years} ` : ''}${months > 0 ? `${months}${dictionary.pages.about.timeline.timeFormat.months}` : ''}`
+    return `${years > 0 ? `${years}${translation.pages.about.timeline.timeFormat.years} ` : ''}${months > 0 ? `${months}${translation.pages.about.timeline.timeFormat.months}` : ''}`
   }
 
   const motionAnimationProps = {
@@ -89,8 +89,8 @@ export function TimelinePageContent() {
   return (
     <>
       <PageTitle
-        title={dictionary.pages.about.timeline.title}
-        description={dictionary.pages.about.timeline.description}
+        title={translation.pages.about.timeline.title}
+        description={translation.pages.about.timeline.description}
       />
 
       <PageContent className="relative gap-4">

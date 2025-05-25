@@ -16,7 +16,7 @@ import { Button } from './button'
 export function LanguageSwitcher({
   className,
 }: Readonly<{ className?: string }>) {
-  const { lang, dictionary } = useLanguage()
+  const { lang, translation } = useLanguage()
   const pathname = usePathname()
   const router = useRouter()
 
@@ -59,7 +59,7 @@ export function LanguageSwitcher({
               height={16}
               className="mr-2 inline-block"
             />
-            {dictionary.components.languageSwitcher.options.en.title}
+            {translation.components.languageSwitcher.options.en.title}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex w-full cursor-pointer items-center"
@@ -72,7 +72,7 @@ export function LanguageSwitcher({
               height={16}
               className="mr-2 inline-block"
             />
-            {dictionary.components.languageSwitcher.options.pt.title}
+            {translation.components.languageSwitcher.options.pt.title}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

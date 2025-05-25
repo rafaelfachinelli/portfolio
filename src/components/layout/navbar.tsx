@@ -20,7 +20,7 @@ import { SidebarTrigger } from '../ui/sidebar'
 import { ThemeSwitcher } from '../ui/theme-switcher'
 
 export function Navbar() {
-  const { lang, dictionary } = useLanguage()
+  const { lang, translation } = useLanguage()
 
   return (
     <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center border-b px-4 py-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:border-b-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
@@ -46,19 +46,19 @@ export function Navbar() {
                   className={navigationMenuTriggerStyle()}
                 >
                   <Home className="mr-2 h-4 w-4" />
-                  {dictionary.components.navbar.options.home.title}
+                  {translation.components.navbar.options.home.title}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
                 <Info className="mr-2 h-4 w-4" />
-                {dictionary.components.navbar.options.about.title}
+                {translation.components.navbar.options.about.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   {Object.entries(
-                    dictionary.components.navbar.options.about.items,
+                    translation.components.navbar.options.about.items,
                   ).map(([key, item]) => (
                     <NavigationMenuLink asChild key={key}>
                       <Link
@@ -80,12 +80,12 @@ export function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>
                 <Presentation className="mr-2 h-4 w-4" />
-                {dictionary.components.navbar.options.projects.title}
+                {translation.components.navbar.options.projects.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   {Object.entries(
-                    dictionary.components.navbar.options.projects.items,
+                    translation.components.navbar.options.projects.items,
                   ).map(([key, project]) => (
                     <NavigationMenuLink asChild key={key}>
                       <Link
@@ -111,7 +111,7 @@ export function Navbar() {
                   className={navigationMenuTriggerStyle()}
                 >
                   <Contact className="mr-2 h-4 w-4" />
-                  {dictionary.components.navbar.options.contact.title}
+                  {translation.components.navbar.options.contact.title}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>

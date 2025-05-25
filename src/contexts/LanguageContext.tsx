@@ -1,44 +1,44 @@
-'use client';
+'use client'
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react'
 
-import { Dictionary } from '../../get-dictionary';
-import { Locale } from '../../i18n-config';
+import { Translation } from '../../get-translation'
+import { Locale } from '../../i18n-config'
 
 type LanguageContextType = {
-  lang: Locale;
-  dictionary: Dictionary;
-};
+  lang: Locale
+  translation: Translation
+}
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
-);
+  undefined,
+)
 
 export const LanguageProvider = ({
   lang,
-  dictionary,
+  translation,
   children,
 }: {
-  lang: Locale;
-  dictionary: Dictionary;
-  children: React.ReactNode;
+  lang: Locale
+  translation: Translation
+  children: React.ReactNode
 }) => {
   const contextValue = React.useMemo(
-    () => ({ lang, dictionary }),
-    [lang, dictionary]
-  );
+    () => ({ lang, translation }),
+    [lang, translation],
+  )
 
   return (
     <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
-  );
-};
+  )
+}
 
 export const useLanguage = () => {
-  const context = useContext(LanguageContext);
+  const context = useContext(LanguageContext)
   if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error('useLanguage must be used within a LanguageProvider')
   }
-  return context;
-};
+  return context
+}

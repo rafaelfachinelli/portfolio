@@ -15,7 +15,7 @@ import { Filters } from './filters'
 import { Repository, RepositoryCard } from './repository-card'
 
 export function MorePageContent() {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
   const searchParams = useSearchParams()
   const [repositories, setRepositories] = useState<Repository[]>([])
   const [allRepositories, setAllRepositories] = useState<Repository[]>([])
@@ -112,13 +112,13 @@ export function MorePageContent() {
   return (
     <>
       <PageTitle
-        title={dictionary.pages.projects.title}
-        description={dictionary.pages.projects.description}
+        title={translation.pages.projects.title}
+        description={translation.pages.projects.description}
       />
 
       <PageContent className="gap-4">
         <h1 className="text-center text-3xl font-bold">
-          {dictionary.pages.projects.repositories.title}
+          {translation.pages.projects.repositories.title}
         </h1>
 
         <div className="flex flex-col items-center justify-center gap-4">
@@ -138,7 +138,7 @@ export function MorePageContent() {
           </div>
           <p className="text-muted-foreground w-full text-center">
             {!isLoading &&
-              dictionary.pages.projects.repositories.description
+              translation.pages.projects.repositories.description
                 .split('{count}')
                 .map((part, index, array) => (
                   <React.Fragment key={index}>
@@ -156,7 +156,7 @@ export function MorePageContent() {
         {error && (
           <div className="bg-destructive/15 text-destructive mb-6 rounded-lg p-4">
             <p>
-              {dictionary.commons.error}: {error}
+              {translation.commons.error}: {error}
             </p>
           </div>
         )}
@@ -164,7 +164,7 @@ export function MorePageContent() {
         {!isLoading && !error && repositories.length === 0 && (
           <div className="p-8 text-center">
             <p className="text-muted-foreground">
-              {dictionary.pages.projects.repositories.notFound}
+              {translation.pages.projects.repositories.notFound}
             </p>
           </div>
         )}
@@ -179,7 +179,7 @@ export function MorePageContent() {
             <div className="flex flex-col items-center gap-2">
               <Loader className="h-8 w-8 animate-spin text-blue-500" />
               <p className="text-muted-foreground text-sm">
-                {dictionary.commons.loading}
+                {translation.commons.loading}
               </p>
             </div>
           </motion.div>

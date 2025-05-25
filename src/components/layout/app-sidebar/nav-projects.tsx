@@ -30,12 +30,12 @@ interface NavProjectsProps {
 
 export function NavProjects({ projects }: NavProjectsProps) {
   const { isMobile, toggleSidebar } = useSidebar()
-  const { lang, dictionary } = useLanguage()
+  const { lang, translation } = useLanguage()
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>
-        {dictionary.components.navbar.options.projects.title}
+        {translation.components.navbar.options.projects.title}
       </SidebarGroupLabel>
       <SidebarMenu>
         {projects.map(item => (
@@ -70,7 +70,7 @@ export function NavProjects({ projects }: NavProjectsProps) {
                   >
                     <Eye className="text-muted-foreground" />
                     <span>
-                      {capitalizeFirstLetter(dictionary.commons.brief)}
+                      {capitalizeFirstLetter(translation.commons.brief)}
                     </span>
                   </Link>
                 </DropdownMenuItem>
@@ -83,7 +83,7 @@ export function NavProjects({ projects }: NavProjectsProps) {
                   >
                     <BookUser className="text-muted-foreground" />
                     <span>
-                      {capitalizeFirstLetter(dictionary.commons.details)}
+                      {capitalizeFirstLetter(translation.commons.details)}
                     </span>
                   </Link>
                 </DropdownMenuItem>
@@ -100,7 +100,10 @@ export function NavProjects({ projects }: NavProjectsProps) {
             >
               <MoreHorizontal className="text-sidebar-foreground/70" />
               <span>
-                {dictionary.components.navbar.options.projects.items.more.title}
+                {
+                  translation.components.navbar.options.projects.items.more
+                    .title
+                }
               </span>
             </Link>
           </SidebarMenuButton>

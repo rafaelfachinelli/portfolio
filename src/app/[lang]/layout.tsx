@@ -8,7 +8,7 @@ import { SidebarProvider } from '@/components/ui/sidebar'
 import { ThemeProvider } from '@/components/ui/theme-provider'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
-import { getDictionary } from '../../../get-dictionary'
+import { getTranslation } from '../../../get-translation'
 import { Locale } from '../../../i18n-config'
 
 export default async function RootLayout({
@@ -19,7 +19,7 @@ export default async function RootLayout({
   params: Promise<{ lang: Locale }>
 }>) {
   const { lang } = await params
-  const dictionary = await getDictionary(lang)
+  const translation = await getTranslation(lang)
 
   return (
     <html lang={lang}>
@@ -30,13 +30,13 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider lang={lang} dictionary={dictionary}>
+          <LanguageProvider lang={lang} translation={translation}>
             <SidebarProvider defaultOpen={false}>
               <div className="flex w-full flex-col">
                 <Navbar />
                 <AppSidebar />
                 <MainContent>{children}</MainContent>
-                <Footer dictionary={dictionary} />
+                <Footer translation={translation} />
               </div>
             </SidebarProvider>
           </LanguageProvider>

@@ -44,7 +44,7 @@ export interface FiltersProps {
 }
 
 export function Filters({ allRepositories, disabled }: FiltersProps) {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -113,14 +113,14 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
               <span className="absolute -top-0.5 -right-0.5 rounded-full bg-red-500 p-1 text-xs font-bold" />
             )}
           </div>
-          {dictionary.pages.projects.repositories.filters.title}
+          {translation.pages.projects.repositories.filters.title}
         </Button>
       </SheetTrigger>
       <SheetContent className="w-full max-w-3xs">
         <SheetHeader>
           <SheetTitle className="relative flex items-center gap-2">
             <Filter className="h-4 w-4" />
-            {dictionary.pages.projects.repositories.filters.title}
+            {translation.pages.projects.repositories.filters.title}
             {hasFilterSelected() && (
               <span className="absolute top-0 left-0 translate-x-2.5 translate-y-0.5 rounded-full bg-red-500 p-1 text-xs font-bold" />
             )}
@@ -130,7 +130,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
           {/* Type Filter */}
           <div className="flex w-full flex-col gap-2">
             <Label htmlFor="type-filter">
-              {dictionary.pages.projects.repositories.filters.labels.type}:
+              {translation.pages.projects.repositories.filters.labels.type}:
             </Label>
             <Select
               value={searchParams.get('type') || 'all'}
@@ -157,15 +157,16 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                         <Search className="text-muted-foreground h-3 w-3" />
                       ))}
                     {searchParams.get('type')
-                      ? dictionary.pages.projects.repositories.filters.type[
+                      ? translation.pages.projects.repositories.filters.type[
                           searchParams.get('type') as
                             | 'portfolio'
                             | 'event'
                             | 'study'
                             | 'others'
                         ] ||
-                        dictionary.pages.projects.repositories.filters.type.all
-                      : dictionary.pages.projects.repositories.filters.type.all}
+                        translation.pages.projects.repositories.filters.type.all
+                      : translation.pages.projects.repositories.filters.type
+                          .all}
                   </div>
                 </SelectValue>
               </SelectTrigger>
@@ -176,7 +177,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <Search className="text-muted-foreground h-3 w-3" />
-                    {dictionary.pages.projects.repositories.filters.type.all}
+                    {translation.pages.projects.repositories.filters.type.all}
                   </div>
                 </SelectItem>
                 <SelectItem
@@ -186,7 +187,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                   <div className="flex items-center gap-2">
                     <Briefcase className="h-3 w-3 text-green-500" />
                     {
-                      dictionary.pages.projects.repositories.filters.type
+                      translation.pages.projects.repositories.filters.type
                         .portfolio
                     }
                   </div>
@@ -197,7 +198,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <Trophy className="h-3 w-3 text-purple-500" />
-                    {dictionary.pages.projects.repositories.filters.type.event}
+                    {translation.pages.projects.repositories.filters.type.event}
                   </div>
                 </SelectItem>
                 <SelectItem
@@ -206,7 +207,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <GraduationCap className="h-3 w-3 text-blue-500" />
-                    {dictionary.pages.projects.repositories.filters.type.study}
+                    {translation.pages.projects.repositories.filters.type.study}
                   </div>
                 </SelectItem>
                 <SelectItem
@@ -215,7 +216,10 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <Shapes className="h-3 w-3 text-red-500" />
-                    {dictionary.pages.projects.repositories.filters.type.others}
+                    {
+                      translation.pages.projects.repositories.filters.type
+                        .others
+                    }
                   </div>
                 </SelectItem>
               </SelectContent>
@@ -225,7 +229,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
           {/* Preview Filter */}
           <div className="flex w-full flex-col gap-2">
             <Label htmlFor="preview-filter">
-              {dictionary.pages.projects.repositories.filters.labels.preview}:
+              {translation.pages.projects.repositories.filters.labels.preview}:
             </Label>
             <Select
               value={searchParams.get('preview') || 'all'}
@@ -249,12 +253,12 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                         <Search className="text-muted-foreground h-3 w-3" />
                       ))}
                     {searchParams.get('preview')
-                      ? dictionary.pages.projects.repositories.filters.preview[
+                      ? translation.pages.projects.repositories.filters.preview[
                           searchParams.get('preview') as 'yes' | 'no'
                         ] ||
-                        dictionary.pages.projects.repositories.filters.preview
+                        translation.pages.projects.repositories.filters.preview
                           .all
-                      : dictionary.pages.projects.repositories.filters.preview
+                      : translation.pages.projects.repositories.filters.preview
                           .all}
                   </div>
                 </SelectValue>
@@ -266,7 +270,10 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <Search className="text-muted-foreground h-3 w-3" />
-                    {dictionary.pages.projects.repositories.filters.preview.all}
+                    {
+                      translation.pages.projects.repositories.filters.preview
+                        .all
+                    }
                   </div>
                 </SelectItem>
                 <SelectItem
@@ -275,7 +282,10 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <Radio className="h-4 w-4 animate-pulse text-red-500" />
-                    {dictionary.pages.projects.repositories.filters.preview.yes}
+                    {
+                      translation.pages.projects.repositories.filters.preview
+                        .yes
+                    }
                   </div>
                 </SelectItem>
                 <SelectItem
@@ -284,7 +294,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <Radio className="text-muted-foreground h-4 w-4" />
-                    {dictionary.pages.projects.repositories.filters.preview.no}
+                    {translation.pages.projects.repositories.filters.preview.no}
                   </div>
                 </SelectItem>
               </SelectContent>
@@ -294,7 +304,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
           {/* Language Filter */}
           <div className="flex w-full flex-col gap-2">
             <Label htmlFor="language-filter">
-              {dictionary.pages.projects.repositories.filters.labels.language}:
+              {translation.pages.projects.repositories.filters.labels.language}:
             </Label>
             <Select
               value={searchParams.get('language') || 'all'}
@@ -310,7 +320,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                     {searchParams.get('language') &&
                       getLanguageConfig(searchParams.get('language'))?.icon}
                     {searchParams.get('language') ||
-                      dictionary.pages.projects.repositories.filters.language
+                      translation.pages.projects.repositories.filters.language
                         .all}
                   </div>
                 </SelectValue>
@@ -323,7 +333,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                   <div className="flex items-center gap-2">
                     <Search className="text-muted-foreground h-3 w-3" />
                     {
-                      dictionary.pages.projects.repositories.filters.language
+                      translation.pages.projects.repositories.filters.language
                         .all
                     }
                   </div>
@@ -350,7 +360,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
           {/* Year Filter */}
           <div className="flex w-full flex-col gap-2">
             <Label htmlFor="year-filter">
-              {dictionary.pages.projects.repositories.filters.labels.year}:
+              {translation.pages.projects.repositories.filters.labels.year}:
             </Label>
             <Select
               value={searchParams.get('year') || 'all'}
@@ -361,7 +371,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 <SelectValue>
                   <div className="flex items-center gap-2">
                     {searchParams.get('year') ||
-                      dictionary.pages.projects.repositories.filters.year.all}
+                      translation.pages.projects.repositories.filters.year.all}
                   </div>
                 </SelectValue>
               </SelectTrigger>
@@ -372,7 +382,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 >
                   <div className="flex items-center gap-2">
                     <Search className="text-muted-foreground h-3 w-3" />
-                    {dictionary.pages.projects.repositories.filters.year.all}
+                    {translation.pages.projects.repositories.filters.year.all}
                   </div>
                 </SelectItem>
                 {allYears.map(year => (
@@ -402,7 +412,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
               disabled={disabled || !hasFilterSelected()}
             >
               <Trash className="h-4 w-4 text-blue-500" />
-              {dictionary.pages.projects.repositories.filters.buttons.clear}
+              {translation.pages.projects.repositories.filters.buttons.clear}
             </Button>
             <SheetClose asChild>
               <Button
@@ -410,7 +420,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                 className="w-full cursor-pointer select-none"
               >
                 <X className="h-4 w-4 text-red-500" />
-                {dictionary.pages.projects.repositories.filters.buttons.close}
+                {translation.pages.projects.repositories.filters.buttons.close}
               </Button>
             </SheetClose>
           </div>

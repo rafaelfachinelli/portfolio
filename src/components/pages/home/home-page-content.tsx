@@ -5,9 +5,9 @@ import { PageContent } from '@/components/ui/page-content'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function HomePageContent() {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
 
-  const personalitiesText = dictionary.pages.home.personalities
+  const personalitiesText = translation.pages.home.personalities
   const [beforePlaceholder, afterPlaceholder] =
     personalitiesText.split('{personality}')
 
@@ -17,12 +17,12 @@ export function HomePageContent() {
         {beforePlaceholder}
         <AnimatedTextCycle
           words={[
-            dictionary.commons.experience,
-            dictionary.commons.collaboration,
-            dictionary.commons.leadership,
-            dictionary.commons.communication,
-            dictionary.commons.adaptability,
-            dictionary.commons.innovation,
+            translation.commons.experience,
+            translation.commons.collaboration,
+            translation.commons.leadership,
+            translation.commons.communication,
+            translation.commons.adaptability,
+            translation.commons.innovation,
           ]}
           interval={2000}
         />
@@ -30,10 +30,10 @@ export function HomePageContent() {
       </div>
 
       <p className="text-center text-4xl font-bold sm:text-left sm:text-5xl">
-        {dictionary.pages.home.title}
+        {translation.pages.home.title}
       </p>
       <p className="text-center text-2xl font-semibold sm:text-left sm:text-4xl">
-        {dictionary.pages.home.description}
+        {translation.pages.home.description}
       </p>
     </PageContent>
   )

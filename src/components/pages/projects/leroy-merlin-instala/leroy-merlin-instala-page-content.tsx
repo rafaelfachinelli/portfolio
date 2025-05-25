@@ -6,13 +6,13 @@ import { UnderConstructionPageAlert } from '@/components/under-construction-page
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function LeroyMerlinInstalaPageContent() {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
 
   return (
     <>
       <PageTitle
-        title={dictionary.pages.projects.title}
-        description={dictionary.pages.projects.description}
+        title={translation.pages.projects.title}
+        description={translation.pages.projects.description}
       />
 
       <PageContent className="gap-4">

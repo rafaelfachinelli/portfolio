@@ -63,7 +63,7 @@ const BANNER_SIZE = {
 const BANNER_FALLBACK = '/images/fallback-banner.svg'
 
 export function RepositoryCard({ repository }: RepositoryCardProps) {
-  const { dictionary } = useLanguage()
+  const { translation } = useLanguage()
   const [imgSrc, setImgSrc] = useState(
     `https://raw.githubusercontent.com/${repository.owner.login}/${repository.name}/${repository.default_branch}/.github/banner.svg`,
   )
@@ -117,20 +117,20 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
                       <GraduationCap className="h-3 w-3" />
                     )}
                     {isEventProject
-                      ? dictionary.commons.event
+                      ? translation.commons.event
                       : isPortfolioProject
-                        ? dictionary.commons.portfolio
-                        : dictionary.commons.study}
+                        ? translation.commons.portfolio
+                        : translation.commons.study}
                   </Badge>
                 </TooltipTrigger>
                 <TooltipContent>
                   {isEventProject
-                    ? dictionary.pages.projects.repositories.card
+                    ? translation.pages.projects.repositories.card
                         .eventProjectBadgeDescription
                     : isPortfolioProject
-                      ? dictionary.pages.projects.repositories.card
+                      ? translation.pages.projects.repositories.card
                           .portfolioProjectBadgeDescription
-                      : dictionary.pages.projects.repositories.card
+                      : translation.pages.projects.repositories.card
                           .studyProjectBadgeDescription}
                 </TooltipContent>
               </Tooltip>
@@ -152,19 +152,19 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
         </div>
         <CardDescription className="mt-2 text-justify">
           {repository.description ||
-            dictionary.pages.projects.repositories.card.noDescription}
+            translation.pages.projects.repositories.card.noDescription}
         </CardDescription>
       </CardHeader>
       <CardFooter className="mt-auto border-t pt-4">
         <div className="mr-2 flex w-full flex-col justify-between gap-2">
           <span className="text-muted-foreground text-xs">
-            {dictionary.pages.projects.repositories.card.created.replace(
+            {translation.pages.projects.repositories.card.created.replace(
               '{date}',
               new Date(repository.created_at).toLocaleDateString(),
             )}
           </span>
           <span className="text-muted-foreground text-xs">
-            {dictionary.pages.projects.repositories.card.updated.replace(
+            {translation.pages.projects.repositories.card.updated.replace(
               '{date}',
               new Date(repository.updated_at).toLocaleDateString(),
             )}
@@ -193,7 +193,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
                       <Radio
                         className={`h-4 w-4 ${!repository.homepage ? 'text-muted-foreground' : 'animate-pulse text-red-500'}`}
                       />
-                      {dictionary.pages.projects.repositories.card.livePreview}
+                      {translation.pages.projects.repositories.card.livePreview}
                       <ExternalLink className="ml-auto h-4 w-4" />
                     </Link>
                   </Button>
@@ -202,7 +202,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
               {!repository.homepage && (
                 <TooltipContent side="top">
                   {
-                    dictionary.pages.projects.repositories.card
+                    translation.pages.projects.repositories.card
                       .livePreviewNotAvailable
                   }
                 </TooltipContent>
@@ -217,7 +217,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
               className="flex w-full items-center justify-center gap-2"
             >
               <Github className="h-4 w-4" />
-              {dictionary.pages.projects.repositories.card.viewRepository}
+              {translation.pages.projects.repositories.card.viewRepository}
               <ExternalLink className="ml-auto h-4 w-4" />
             </Link>
           </Button>
