@@ -1,4 +1,4 @@
-import { LeroyMerlinInstalaPageContent } from '@/components/pages/projects/leroy-merlin-instala/leroy-merlin-instala-page-content.tsx'
+import { LeroyMerlinInstalaPageContent } from '@/components/pages/projects/leroy-merlin-instala/leroy-merlin-instala-page-content'
 
 export async function generateMetadata() {
   return {
