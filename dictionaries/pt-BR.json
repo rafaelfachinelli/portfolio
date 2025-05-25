@@ -178,6 +178,20 @@
           "years": "a",
           "months": "m"
         }
+      },
+      "personalManifesto": {
+        "title": "Manifesto Pessoal",
+        "description": "Meus valores e princípios fundamentais que guiam meu trabalho e minha vida.",
+        "content": [
+          "Eu não busco ser perfeito. Busco ser inteiro.",
+          "Quero compreender antes de julgar, construir antes de criticar, e sentir antes de decidir.",
+          "Minha mente funciona como um sistema: gosto de ver a lógica, os fluxos, os padrões. Mas meu coração não aceita automatismos. Ele me puxa de volta para o sentido — para o que é justo, humano, verdadeiro.",
+          "Eu me cobro, porque me importo. Cuido dos detalhes, porque sei o peso das consequências. Às vezes isso me sobrecarrega. Mas não me arrependo de tentar fazer direito.",
+          "Eu observo o mundo com atenção. Gosto de silêncios bem colocados, conversas honestas e ideias que têm base. Gosto de criar coisas que falem por mim, que expressem o que não cabe em palavras.",
+          "Não quero controlar tudo — quero compreender melhor.",
+          "Não quero convencer todo mundo — quero ser compreendido.",
+          "E se algo que eu faço toca alguém, então valeu a pena."
+        ]
       }
     },
     "contact": {
@@ -196,7 +210,7 @@
           "items": {
             "me": {
               "title": "Sobre Mim",
-              "description": "Uma visão detalhada da minha experiência profissional, habilidades e formação."
+              "description": "Uma visão detalhada da minha experiência profissional, habilidades e educação."
             },
             "resume": {
               "title": "Currículo",
@@ -204,7 +218,11 @@
             },
             "timeline": {
               "title": "Linha do Tempo",
-              "description": "Veja minha linha do tempo profissional para acompanhar minha progressão de carreira e marcos importantes."
+              "description": "Visualize minha linha do tempo profissional para ver minha progressão de carreira e marcos importantes."
+            },
+            "personal-manifesto": {
+              "title": "Manifesto Pessoal",
+              "description": "Meus valores e princípios fundamentais que guiam meu trabalho e minha vida."
             }
           }
         },

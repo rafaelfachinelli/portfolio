@@ -71,6 +71,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 dictionary.components.navbar.options.about.items.timeline.title,
               url: `/${lang}/about/timeline`,
             },
+            {
+              title:
+                dictionary.components.navbar.options.about.items[
+                  'personal-manifesto'
+                ].title,
+              url: `/${lang}/about/personal-manifesto`,
+            },
           ],
         },
       ],
