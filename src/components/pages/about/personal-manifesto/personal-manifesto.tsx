@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Scroll } from 'lucide-react'
 import { Merriweather } from 'next/font/google'
 import ReactMarkdown from 'react-markdown'
 
@@ -42,6 +43,7 @@ export function PersonalManifestoPageContent() {
   return (
     <>
       <PageTitle
+        icon={Scroll}
         title={translation.pages.about.personalManifesto.title}
         description={translation.pages.about.personalManifesto.description}
       />
