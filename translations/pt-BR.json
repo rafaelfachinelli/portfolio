@@ -3,7 +3,16 @@
     "home": {
       "title": "Olá, eu sou Rafael Fachinelli",
       "description": "Sou um desenvolvedor de software com experiência em várias tecnologias.",
-      "personalities": "Minha {personality} transforma seu negócio"
+      "personalities": "Minha {personality} transforma seu negócio",
+      "projectsTitle": "Meus Projetos",
+      "projectsOverview": "Explore uma seleção do meu trabalho e projetos pessoais, mostrando várias tecnologias e habilidades.",
+      "viewProjectsButton": "Ver Projetos",
+      "aboutMeTitle": "Sobre Mim",
+      "aboutMeOverview": "Saiba mais sobre minha formação, habilidades e experiência.",
+      "viewAboutButton": "Saber Mais",
+      "contactTitle": "Contato",
+      "contactOverview": "Entre em contato comigo para colaborações ou dúvidas.",
+      "contactButton": "Entrar em Contato"
     },
     "projects": {
       "title": "Projetos",

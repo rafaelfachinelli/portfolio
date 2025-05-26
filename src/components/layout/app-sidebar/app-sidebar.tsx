@@ -3,13 +3,15 @@
 import {
   Contact,
   ExternalLink,
+  File,
+  FlagTriangleRight,
   Github,
   Home,
   Info,
   Instagram,
   Linkedin,
-  type LucideIcon,
   Presentation,
+  Scroll,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -34,9 +36,10 @@ export type SidebarOption = {
   title?: string
   name?: string
   url?: string
-  icon?: LucideIcon
+  icon?: React.ReactNode
   isActive?: boolean
   items?: {
+    icon?: React.ReactNode
     title: string
     url: string
   }[]
@@ -54,25 +57,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       navMain: [
         {
           title: translation.components.navbar.options.about.title,
-          icon: Info,
+          icon: <Info className="!text-blue-500" />,
           isActive: true,
           items: [
             {
+              icon: <Info className="!text-blue-500" />,
               title: translation.components.navbar.options.about.items.me.title,
               url: `/${lang}/about/me`,
             },
             {
+              icon: <File className="!text-blue-500" />,
               title:
                 translation.components.navbar.options.about.items.resume.title,
               url: `/${lang}/about/resume`,
             },
             {
+              icon: <FlagTriangleRight className="!text-blue-500" />,
               title:
                 translation.components.navbar.options.about.items.timeline
                   .title,
               url: `/${lang}/about/timeline`,
             },
             {
+              icon: <Scroll className="!text-blue-500" />,
               title:
                 translation.components.navbar.options.about.items[
                   'personal-manifesto'
@@ -84,24 +91,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       ],
       projects: [
         {
+          icon: <Presentation className="!text-blue-500" />,
           name: translation.components.navbar.options.projects.items[
             'leroy-merlin-instala'
           ].title,
           url: `/${lang}/projects/leroy-merlin-instala`,
-          icon: Presentation,
         },
         {
+          icon: <Presentation className="!text-blue-500" />,
           name: translation.components.navbar.options.projects.items[
             'flex-sewing-machine'
           ].title,
           url: `/${lang}/projects/flex-sewing-machine`,
-          icon: Presentation,
         },
         {
+          icon: <Presentation className="!text-blue-500" />,
           name: translation.components.navbar.options.projects.items['markit3d']
             .title,
           url: `/${lang}/projects/markit3d`,
-          icon: Presentation,
         },
       ],
     }
@@ -137,7 +144,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   className="flex items-center"
                   onClick={toggleSidebar}
                 >
-                  <Home />
+                  <Home className="text-blue-500" />
                   <span>
                     {translation.components.navbar.options.home.title}
                   </span>
@@ -146,7 +153,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
-        <NavMain items={getData().navMain} />
+        <NavMain options={getData().navMain} />
         <NavProjects projects={getData().projects} />
         <SidebarGroup>
           <SidebarMenu>
@@ -160,7 +167,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   className="flex items-center"
                   onClick={toggleSidebar}
                 >
-                  <Contact />
+                  <Contact className="text-blue-500" />
                   <span>
                     {translation.components.navbar.options.contact.title}
                   </span>
@@ -196,7 +203,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Linkedin />
+                <Linkedin className="text-blue-500" />
                 <span>LinkedIn</span>
                 <ExternalLink className="ml-auto h-4 w-4" />
               </Link>
@@ -211,7 +218,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Instagram />
+                <Instagram className="text-pink-500" />
                 <span>Instagram</span>
                 <ExternalLink className="ml-auto h-4 w-4" />
               </Link>

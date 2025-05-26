@@ -1,8 +1,11 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { Contact, Home, Info, Presentation } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import {
   NavigationMenu,
@@ -21,6 +24,14 @@ import { ThemeSwitcher } from '../ui/theme-switcher'
 
 export function Navbar() {
   const { lang, translation } = useLanguage()
+  const [homeAnimationKey, setHomeAnimationKey] = useState(0)
+  const pathname = usePathname()
+
+  useEffect(() => {
+    if (pathname === `/${lang}`) {
+      setHomeAnimationKey(prevKey => prevKey + 1)
+    }
+  }, [pathname, lang])
 
   return (
     <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center border-b px-4 py-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:border-b-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
@@ -28,13 +39,28 @@ export function Navbar() {
         <SidebarTrigger className="flex cursor-pointer items-center justify-center border p-4 md:hidden" />
         <div className="flex w-full items-center justify-center md:w-fit md:justify-start">
           <Link href={`/${lang}`} className="flex items-center justify-center">
-            <Image
-              src="/logo_1024x1024.png"
-              alt="RFL"
-              width={40}
-              height={40}
-              className="min-h-9 min-w-9 md:mr-8 md:block"
-            />
+            <motion.div
+              key={homeAnimationKey}
+              initial={{ rotateX: 0 }}
+              animate={{ rotateX: 360 }}
+              transition={{
+                duration: 0.7,
+                ease: 'easeInOut',
+                repeat: 0,
+              }}
+              style={{
+                transformStyle: 'preserve-3d',
+                perspective: '1000px',
+              }}
+            >
+              <Image
+                src="/logo_1024x1024.png"
+                alt="RFL"
+                width={40}
+                height={40}
+                className="min-h-9 min-w-9 md:mr-8 md:block"
+              />
+            </motion.div>
           </Link>
         </div>
         <NavigationMenu delayDuration={0} className="hidden md:flex">
@@ -45,14 +71,14 @@ export function Navbar() {
                   href={`/${lang}`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Home className="mr-2 h-4 w-4" />
+                  <Home className="mr-2 h-4 w-4 text-blue-500" />
                   {translation.components.navbar.options.home.title}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Info className="mr-2 h-4 w-4" />
+                <Info className="mr-2 h-4 w-4 text-blue-500" />
                 {translation.components.navbar.options.about.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -79,7 +105,7 @@ export function Navbar() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Presentation className="mr-2 h-4 w-4" />
+                <Presentation className="mr-2 h-4 w-4 text-blue-500" />
                 {translation.components.navbar.options.projects.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -110,7 +136,7 @@ export function Navbar() {
                   href={`/${lang}/contact`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Contact className="mr-2 h-4 w-4" />
+                  <Contact className="mr-2 h-4 w-4 text-blue-500" />
                   {translation.components.navbar.options.contact.title}
                 </Link>
               </NavigationMenuLink>

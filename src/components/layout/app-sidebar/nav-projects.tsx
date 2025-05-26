@@ -2,6 +2,7 @@
 
 import { BookUser, Eye, MoreHorizontal } from 'lucide-react'
 import Link from 'next/link'
+import React from 'react'
 
 import {
   DropdownMenu,
@@ -38,16 +39,16 @@ export function NavProjects({ projects }: NavProjectsProps) {
         {translation.components.navbar.options.projects.title}
       </SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map(item => (
-          <SidebarMenuItem key={item.name}>
+        {projects.map(({ name, url, icon: Icon }) => (
+          <SidebarMenuItem key={name}>
             <SidebarMenuButton asChild>
               <Link
-                href={item.url ?? '/'}
+                href={url ?? '#'}
                 className="flex items-center"
                 onClick={toggleSidebar}
               >
-                {item.icon && <item.icon />}
-                <span>{item.name}</span>
+                {Icon && Icon}
+                <span>{name}</span>
               </Link>
             </SidebarMenuButton>
             <DropdownMenu>
@@ -64,8 +65,8 @@ export function NavProjects({ projects }: NavProjectsProps) {
               >
                 <DropdownMenuItem className="cursor-pointer" asChild>
                   <Link
-                    href={item.url ?? '/'}
-                    className="flex items-center"
+                    href={url ?? '#'}
+                    className="hover:bg-foreground/10 flex items-center"
                     onClick={toggleSidebar}
                   >
                     <Eye className="text-muted-foreground" />
@@ -77,8 +78,8 @@ export function NavProjects({ projects }: NavProjectsProps) {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer" asChild>
                   <Link
-                    href={item.url ?? '/'}
-                    className="flex items-center"
+                    href={url ?? '#'}
+                    className="hover:bg-foreground/10 flex items-center"
                     onClick={toggleSidebar}
                   >
                     <BookUser className="text-muted-foreground" />
@@ -92,13 +93,13 @@ export function NavProjects({ projects }: NavProjectsProps) {
           </SidebarMenuItem>
         ))}
         <SidebarMenuItem>
-          <SidebarMenuButton className="text-sidebar-foreground/70" asChild>
+          <SidebarMenuButton asChild>
             <Link
               href={`/${lang}/projects/more`}
               className="flex items-center"
               onClick={toggleSidebar}
             >
-              <MoreHorizontal className="text-sidebar-foreground/70" />
+              <MoreHorizontal className="text-blue-500" />
               <span>
                 {
                   translation.components.navbar.options.projects.items.more

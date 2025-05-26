@@ -1,5 +1,6 @@
 'use client'
 
+import { Info } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 
 import { PageContent } from '@/components/ui/page-content'
@@ -13,6 +14,7 @@ export function MePageContent() {
   return (
     <>
       <PageTitle
+        icon={Info}
         title={translation.pages.about.me.title}
         description={translation.pages.about.me.description}
       />

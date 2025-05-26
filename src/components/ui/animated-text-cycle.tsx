@@ -98,7 +98,7 @@ export default function AnimatedTextCycle({
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={currentIndex}
-            className={`inline-block font-bold ${className}`}
+            className={`inline-block font-bold ${className} text-blue-500`}
             variants={containerVariants}
             initial="hidden"
             animate="visible"

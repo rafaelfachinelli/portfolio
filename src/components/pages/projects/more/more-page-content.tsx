@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { Loader, RefreshCw } from 'lucide-react'
+import { Loader, Presentation, RefreshCw } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import React from 'react'
@@ -112,6 +112,7 @@ export function MorePageContent() {
   return (
     <>
       <PageTitle
+        icon={Presentation}
         title={translation.pages.projects.title}
         description={translation.pages.projects.description}
       />

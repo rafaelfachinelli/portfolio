@@ -2,7 +2,7 @@
 
 import { differenceInMonths } from 'date-fns'
 import { motion } from 'framer-motion'
-import { Building2, Clock, MapPin } from 'lucide-react'
+import { Building2, Clock, FlagTriangleRight, MapPin } from 'lucide-react'
 
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
@@ -89,6 +89,7 @@ export function TimelinePageContent() {
   return (
     <>
       <PageTitle
+        icon={FlagTriangleRight}
         title={translation.pages.about.timeline.title}
         description={translation.pages.about.timeline.description}
       />
