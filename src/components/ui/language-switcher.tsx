@@ -37,16 +37,21 @@ export function LanguageSwitcher({
           <Button
             variant="outline"
             size="icon"
-            className="cursor-pointer overflow-hidden rounded-full select-none"
+            className="relative cursor-pointer overflow-hidden rounded-full select-none"
           >
             <AnimatePresence mode="wait">
               <motion.div
                 key={lang}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.2 }}
-                className="h-full w-full"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -100, opacity: 0 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 25,
+                  duration: 0.3,
+                }}
+                className="absolute inset-0"
               >
                 <Image
                   src={`https://flagcdn.com/w160/${lang === 'en' ? 'us' : 'br'}.png`}
@@ -66,7 +71,7 @@ export function LanguageSwitcher({
             onClick={() => handleLanguageChange('en')}
           >
             <motion.div
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ x: 5 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
               <Image
@@ -84,7 +89,7 @@ export function LanguageSwitcher({
             onClick={() => handleLanguageChange('pt')}
           >
             <motion.div
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ x: 5 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
               <Image
