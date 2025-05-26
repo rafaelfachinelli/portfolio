@@ -217,7 +217,37 @@
     },
     "contact": {
       "title": "Contato",
-      "description": "Entre em contato comigo para colaborações ou dúvidas."
+      "description": "Entre em contato comigo para colaborações ou dúvidas.",
+      "info": {
+        "title": "Informações de Contato",
+        "description": "Sinta-se à vontade para entrar em contato através de qualquer um desses canais"
+      },
+      "form": {
+        "title": "Envie-me uma mensagem",
+        "description": "Retornarei o contato o mais breve possível",
+        "fields": {
+          "name": {
+            "label": "Nome",
+            "placeholder": "Seu nome"
+          },
+          "email": {
+            "label": "E-mail",
+            "placeholder": "seu.email@exemplo.com"
+          },
+          "message": {
+            "label": "Mensagem",
+            "placeholder": "Sua mensagem"
+          }
+        },
+        "validation": {
+          "name": "O nome deve ser preenchido.",
+          "email": "O e-mail deve ser preenchido.",
+          "emailInvalid": "Por favor, insira um endereço de e-mail válido.",
+          "message": "A mensagem deve ter pelo menos 5 caracteres.",
+          "send": "Clique para enviar sua mensagem."
+        },
+        "submit": "Enviar Mensagem"
+      }
     }
   },
   "components": {

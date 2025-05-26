@@ -87,22 +87,22 @@ export function ContactPageContent() {
 
   const getValidationMessage = () => {
     if (!validateField(formData.name)) {
-      return 'Name must be filled out.'
+      return translation.pages.contact.form.validation.name
     }
 
     if (!validateField(formData.email)) {
-      return 'Email must be filled out.'
+      return translation.pages.contact.form.validation.email
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      return 'Please enter a valid email address.'
+      return translation.pages.contact.form.validation.emailInvalid
     }
 
     if (!validateField(formData.message)) {
-      return 'Message must be at least 5 characters.'
+      return translation.pages.contact.form.validation.message
     }
 
-    return 'Click to send your message.'
+    return translation.pages.contact.form.validation.send
   }
 
   return (
@@ -124,9 +124,9 @@ export function ContactPageContent() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
+                <CardTitle>{translation.pages.contact.info.title}</CardTitle>
                 <CardDescription>
-                  Feel free to reach out through any of these channels
+                  {translation.pages.contact.info.description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -184,9 +184,9 @@ export function ContactPageContent() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
-                <CardTitle>Send me a message</CardTitle>
+                <CardTitle>{translation.pages.contact.form.title}</CardTitle>
                 <CardDescription>
-                  I&apos;ll get back to you as soon as possible
+                  {translation.pages.contact.form.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -197,11 +197,14 @@ export function ContactPageContent() {
                     transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                   >
                     <Label htmlFor="name">
-                      Name <span className="text-red-500">*</span>
+                      {translation.pages.contact.form.fields.name.label}{' '}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="name"
-                      placeholder="Your name"
+                      placeholder={
+                        translation.pages.contact.form.fields.name.placeholder
+                      }
                       value={formData.name}
                       onChange={handleInputChange}
                       required
@@ -214,12 +217,15 @@ export function ContactPageContent() {
                     transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                   >
                     <Label htmlFor="email">
-                      Email <span className="text-red-500">*</span>
+                      {translation.pages.contact.form.fields.email.label}{' '}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="your.email@example.com"
+                      placeholder={
+                        translation.pages.contact.form.fields.email.placeholder
+                      }
                       value={formData.email}
                       onChange={handleInputChange}
                       required
@@ -231,11 +237,15 @@ export function ContactPageContent() {
                     transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                   >
                     <Label htmlFor="message">
-                      Message <span className="text-red-500">*</span>
+                      {translation.pages.contact.form.fields.message.label}{' '}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Textarea
                       id="message"
-                      placeholder="Your message"
+                      placeholder={
+                        translation.pages.contact.form.fields.message
+                          .placeholder
+                      }
                       className="min-h-[120px]"
                       value={formData.message}
                       onChange={handleInputChange}
@@ -266,7 +276,7 @@ export function ContactPageContent() {
                             disabled={!isFormValid}
                           >
                             <Send className="mr-2 h-4 w-4" />
-                            Send Message
+                            {translation.pages.contact.form.submit}
                           </Button>
                         </motion.div>
                       </TooltipTrigger>

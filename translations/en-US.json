@@ -216,7 +216,37 @@
     },
     "contact": {
       "title": "Contact",
-      "description": "Get in touch with me for collaborations or inquiries."
+      "description": "Get in touch with me for collaborations or inquiries.",
+      "info": {
+        "title": "Contact Information",
+        "description": "Feel free to reach out through any of these channels"
+      },
+      "form": {
+        "title": "Send me a message",
+        "description": "I'll get back to you as soon as possible",
+        "fields": {
+          "name": {
+            "label": "Name",
+            "placeholder": "Your name"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "your.email@example.com"
+          },
+          "message": {
+            "label": "Message",
+            "placeholder": "Your message"
+          }
+        },
+        "validation": {
+          "name": "Name must be filled out.",
+          "email": "Email must be filled out.",
+          "emailInvalid": "Please enter a valid email address.",
+          "message": "Message must be at least 5 characters.",
+          "send": "Click to send your message."
+        },
+        "submit": "Send Message"
+      }
     }
   },
   "components": {
