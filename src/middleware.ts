@@ -40,7 +40,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/_next') ||
     pathname.startsWith('/favicon.ico') ||
     pathname.startsWith('/logo_1024x1024.png') ||
-    pathname.endsWith('fallback-banner.svg')
+    pathname.endsWith('fallback-banner.svg') ||
+    pathname.endsWith('resume.png')
   ) {
     return NextResponse.next()
   }

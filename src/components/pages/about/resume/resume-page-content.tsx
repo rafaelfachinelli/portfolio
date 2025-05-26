@@ -19,10 +19,8 @@ export function ResumePageContent() {
         description={translation.pages.about.resume.description}
       />
 
-      <PageContent className="gap-4">
-        <div className="flex justify-center">
-          <ResumeDownloadButton />
-        </div>
+      <PageContent className="items-center gap-4">
+        <ResumeDownloadButton />
       </PageContent>
     </>
   )

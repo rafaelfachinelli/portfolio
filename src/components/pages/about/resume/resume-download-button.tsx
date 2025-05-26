@@ -1,7 +1,9 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import jsPDF from 'jspdf'
 import { Download } from 'lucide-react'
+import Image from 'next/image'
 
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -171,7 +173,28 @@ export function ResumeDownloadButton() {
   }
 
   return (
-    <div className="border-muted flex w-full max-w-[400px] flex-col items-center justify-center gap-4 rounded-md border p-4">
+    <div className="border-muted flex w-full flex-col items-center justify-center gap-4 rounded-md border bg-slate-950 p-4">
+      <motion.div
+        animate={{
+          y: [0, -10, 0],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          ease: 'easeInOut',
+        }}
+      >
+        <Image
+          src="/images/resume/resume.png"
+          alt={translation.pages.about.resume.title}
+          width={200}
+          height={400}
+          priority
+          className="select-none"
+          title="Rafael Fachinelli"
+        />
+      </motion.div>
       <p className="text-muted-foreground text-center text-sm">
         {translation.pages.about.resume.downloadDescription}
       </p>
