@@ -1,5 +1,6 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -36,14 +37,26 @@ export function LanguageSwitcher({
           <Button
             variant="outline"
             size="icon"
-            className="cursor-pointer rounded-full select-none"
+            className="cursor-pointer overflow-hidden rounded-full select-none"
           >
-            <Image
-              src={`https://flagcdn.com/w40/${lang === 'en' ? 'us' : 'br'}.png`}
-              alt={lang}
-              width={16}
-              height={16}
-            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={lang}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2 }}
+                className="h-full w-full"
+              >
+                <Image
+                  src={`https://flagcdn.com/w160/${lang === 'en' ? 'us' : 'br'}.png`}
+                  alt={lang}
+                  width={120}
+                  height={24}
+                  className="h-full w-full rounded-full object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
             <span className="sr-only">Toggle language</span>
           </Button>
         </DropdownMenuTrigger>
@@ -52,26 +65,36 @@ export function LanguageSwitcher({
             className="flex w-full cursor-pointer items-center"
             onClick={() => handleLanguageChange('en')}
           >
-            <Image
-              src="https://flagcdn.com/w40/us.png"
-              alt="en"
-              width={16}
-              height={16}
-              className="mr-2 inline-block"
-            />
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            >
+              <Image
+                src="https://flagcdn.com/w40/us.png"
+                alt="en"
+                width={16}
+                height={16}
+                className="mr-2 inline-block"
+              />
+            </motion.div>
             {translation.components.languageSwitcher.options.en.title}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex w-full cursor-pointer items-center"
             onClick={() => handleLanguageChange('pt')}
           >
-            <Image
-              src="https://flagcdn.com/w40/br.png"
-              alt="pt"
-              width={16}
-              height={16}
-              className="mr-2 inline-block"
-            />
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            >
+              <Image
+                src="https://flagcdn.com/w40/br.png"
+                alt="pt"
+                width={16}
+                height={16}
+                className="mr-2 inline-block"
+              />
+            </motion.div>
             {translation.components.languageSwitcher.options.pt.title}
           </DropdownMenuItem>
         </DropdownMenuContent>
