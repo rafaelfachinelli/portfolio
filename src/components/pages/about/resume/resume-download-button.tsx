@@ -2,14 +2,16 @@
 
 import { motion } from 'framer-motion'
 import jsPDF from 'jspdf'
-import { Download } from 'lucide-react'
+import { Download, Loader } from 'lucide-react'
 import Image from 'next/image'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function ResumeDownloadButton() {
   const { translation } = useLanguage()
+  const [isLoadingImage, setIsLoadingImage] = useState(true)
 
   const generatePDF = () => {
     const doc = new jsPDF('p', 'mm', 'a4') // Use millimeters and A4 size
@@ -184,6 +186,7 @@ export function ResumeDownloadButton() {
           repeatType: 'reverse',
           ease: 'easeInOut',
         }}
+        className="relative"
       >
         <Image
           src="/images/resume/resume.png"
@@ -193,7 +196,16 @@ export function ResumeDownloadButton() {
           priority
           className="select-none"
           title="Rafael Fachinelli"
+          onLoad={() => setIsLoadingImage(false)}
+          onError={() => {
+            setIsLoadingImage(false)
+          }}
         />
+        {isLoadingImage && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Loader className="h-8 w-8 animate-spin text-blue-500" />
+          </div>
+        )}
       </motion.div>
       <p className="text-muted-foreground text-center text-sm">
         {translation.pages.about.resume.downloadDescription}

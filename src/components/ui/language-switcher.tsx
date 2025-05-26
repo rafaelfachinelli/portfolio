@@ -51,14 +51,14 @@ export function LanguageSwitcher({
                   damping: 25,
                   duration: 0.3,
                 }}
-                className="absolute inset-0"
+                className="flex items-center justify-center"
               >
                 <Image
-                  src={`https://flagcdn.com/w160/${lang === 'en' ? 'us' : 'br'}.png`}
+                  src={`https://flagcdn.com/w40/${lang === 'en' ? 'us' : 'br'}.png`}
                   alt={lang}
-                  width={120}
-                  height={24}
-                  className="h-full w-full rounded-full object-cover"
+                  width={20}
+                  height={20}
+                  className="h-5 w-5 rounded-full object-cover"
                 />
               </motion.div>
             </AnimatePresence>

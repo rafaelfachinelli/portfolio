@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun, SunMoon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import * as React from 'react'
 
@@ -27,7 +27,6 @@ export function ThemeSwitcher({ className }: ThemeToggleProps) {
         className="relative cursor-pointer overflow-hidden rounded-full"
       >
         <motion.div
-          initial={false}
           animate={{
             rotate: theme === 'dark' ? 0 : 90,
             scale: theme === 'dark' ? 1 : 0,
@@ -45,7 +44,6 @@ export function ThemeSwitcher({ className }: ThemeToggleProps) {
           <Moon className="h-[1.2rem] w-[1.2rem]" />
         </motion.div>
         <motion.div
-          initial={false}
           animate={{
             rotate: theme === 'light' ? 0 : -90,
             scale: theme === 'light' ? 1 : 0,
@@ -61,6 +59,23 @@ export function ThemeSwitcher({ className }: ThemeToggleProps) {
           className="absolute inset-0 flex items-center justify-center"
         >
           <Sun className="h-[1.2rem] w-[1.2rem]" />
+        </motion.div>
+        <motion.div
+          animate={{
+            rotate: theme === 'system' ? 0 : -90,
+            scale: theme === 'system' ? 1 : 0,
+            opacity: theme === 'system' ? 1 : 0,
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 300,
+            damping: 25,
+            duration: 0.3,
+            ease: 'easeInOut',
+          }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <SunMoon className="h-[1.2rem] w-[1.2rem]" />
         </motion.div>
         <span className="sr-only">Toggle theme</span>
       </Button>
