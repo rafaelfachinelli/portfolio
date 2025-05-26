@@ -144,7 +144,7 @@ export function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
         <LanguageSwitcher className="mr-2 ml-auto flex" />
-        <ThemeSwitcher />
+        <ThemeSwitcher className="flex" />
       </div>
     </div>
   )

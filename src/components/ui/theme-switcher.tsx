@@ -1,61 +1,69 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import * as React from 'react'
 
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { useLanguage } from '@/contexts/LanguageContext'
 
 interface ThemeToggleProps {
   readonly className?: string
 }
 
 export function ThemeSwitcher({ className }: ThemeToggleProps) {
-  const { setTheme } = useTheme()
-  const { translation } = useLanguage()
+  const { theme, setTheme } = useTheme()
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
 
   return (
     <div className={className}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="cursor-pointer rounded-full"
-          >
-            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem
-            onClick={() => setTheme('light')}
-            className="cursor-pointer"
-          >
-            {translation.components.themeSwitcher.light}
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => setTheme('dark')}
-            className="cursor-pointer"
-          >
-            {translation.components.themeSwitcher.dark}
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => setTheme('system')}
-            className="cursor-pointer"
-          >
-            {translation.components.themeSwitcher.system}
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={toggleTheme}
+        className="relative cursor-pointer overflow-hidden rounded-full"
+      >
+        <motion.div
+          initial={false}
+          animate={{
+            rotate: theme === 'dark' ? 0 : 90,
+            scale: theme === 'dark' ? 1 : 0,
+            opacity: theme === 'dark' ? 1 : 0,
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 300,
+            damping: 25,
+            duration: 0.3,
+            ease: 'easeInOut',
+          }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <Moon className="h-[1.2rem] w-[1.2rem]" />
+        </motion.div>
+        <motion.div
+          initial={false}
+          animate={{
+            rotate: theme === 'light' ? 0 : -90,
+            scale: theme === 'light' ? 1 : 0,
+            opacity: theme === 'light' ? 1 : 0,
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 300,
+            damping: 25,
+            duration: 0.3,
+            ease: 'easeInOut',
+          }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <Sun className="h-[1.2rem] w-[1.2rem]" />
+        </motion.div>
+        <span className="sr-only">Toggle theme</span>
+      </Button>
     </div>
   )
 }
