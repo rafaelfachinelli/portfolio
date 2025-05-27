@@ -6,7 +6,7 @@ type FooterProps = Readonly<{
 
 export function Footer({ translation }: FooterProps) {
   return (
-    <footer className="flex h-16 w-full items-center justify-center border-t">
+    <footer className="bg-background flex h-16 w-full items-center justify-center">
       <p className="text-muted-foreground text-center text-sm select-none">
         {translation.components.footer.rights.replace(
           '{year}',

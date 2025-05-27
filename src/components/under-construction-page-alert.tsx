@@ -11,7 +11,7 @@ export function UnderConstructionPageAlert() {
   const { translation } = useLanguage()
 
   return (
-    <Alert variant="warning" className="mx-auto w-fit select-none">
+    <Alert variant="warning" className="mx-auto w-fit border-0 select-none">
       <Construction className="mr-2 h-4 w-4" />
       <AlertTitle>
         {translation.commons.underConstructionAlert.title}

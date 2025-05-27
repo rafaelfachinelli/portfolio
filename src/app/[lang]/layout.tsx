@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/footer'
 import { MainContent } from '@/components/layout/main-content'
 import { Navbar } from '@/components/layout/navbar'
 import { SidebarProvider } from '@/components/ui/sidebar'
+import { SpaceBackground } from '@/components/ui/space-background'
 import { ThemeProvider } from '@/components/ui/theme-provider'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
               <div className="flex w-full flex-col">
                 <Navbar />
                 <AppSidebar />
+                <SpaceBackground />
                 <MainContent>{children}</MainContent>
                 <Footer translation={translation} />
               </div>

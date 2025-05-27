@@ -34,7 +34,7 @@ export function Navbar() {
   }, [pathname, lang])
 
   return (
-    <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center border-b px-4 py-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:border-b-slate-800 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
+    <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center px-4 py-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
       <div className="flex w-full max-w-[1024px] items-center justify-center">
         <SidebarTrigger className="flex cursor-pointer items-center justify-center border p-4 md:hidden" />
         <div className="flex w-full items-center justify-center md:w-fit md:justify-start">

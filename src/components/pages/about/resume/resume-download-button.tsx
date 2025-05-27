@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export function ResumeDownloadButton() {
@@ -175,7 +176,7 @@ export function ResumeDownloadButton() {
   }
 
   return (
-    <div className="border-muted flex w-full flex-col items-center justify-center gap-4 rounded-md border bg-slate-950 p-4">
+    <Card className="mb-4 w-full border-0 bg-white p-6 backdrop-blur-sm dark:bg-black/50">
       <motion.div
         animate={{
           y: [0, -10, 0],
@@ -186,7 +187,7 @@ export function ResumeDownloadButton() {
           repeatType: 'reverse',
           ease: 'easeInOut',
         }}
-        className="relative"
+        className="relative flex w-full items-center justify-center overflow-hidden"
       >
         <Image
           src="/images/resume/resume.png"
@@ -194,8 +195,8 @@ export function ResumeDownloadButton() {
           width={200}
           height={400}
           priority
-          className="select-none"
-          title="Rafael Fachinelli"
+          className="rounded-lg object-cover transition-transform duration-500 select-none hover:scale-105"
+          title={translation.pages.about.resume.downloadDescription}
           onLoad={() => setIsLoadingImage(false)}
           onError={() => {
             setIsLoadingImage(false)
@@ -207,7 +208,7 @@ export function ResumeDownloadButton() {
           </div>
         )}
       </motion.div>
-      <p className="text-muted-foreground text-center text-sm">
+      <p className="text-foreground text-center text-sm">
         {translation.pages.about.resume.downloadDescription}
       </p>
       <Button
@@ -219,11 +220,11 @@ export function ResumeDownloadButton() {
         {translation.pages.about.resume.download}
       </Button>
       <div className="flex w-full items-center justify-between">
-        <p className="text-muted-foreground text-sm">
+        <p className="text-foreground text-sm">
           {translation.pages.about.resume.file.name}
         </p>
-        <p className="text-muted-foreground text-sm">4.1 MB</p>
+        <p className="text-foreground text-sm">4.1 MB</p>
       </div>
-    </div>
+    </Card>
   )
 }
