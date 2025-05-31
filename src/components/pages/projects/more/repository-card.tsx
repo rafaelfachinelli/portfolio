@@ -64,7 +64,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
   const [isLoadingImage, setIsLoadingImage] = useState(true)
 
   return (
-    <Card className={`flex min-h-[360px] flex-col border py-0 pb-6`}>
+    <Card className={`flex min-h-[333px] flex-col border py-0 pb-6`}>
       <div className="relative">
         <Image
           src={imgSrc}
@@ -88,7 +88,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
       </div>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="flex w-full items-center gap-2 text-xl font-bold lg:max-w-48">
+          <CardTitle className="flex w-full items-center gap-2 text-xl font-bold lg:max-w-40">
             <span className="truncate">{repository.name}</span>
           </CardTitle>
           {repository.language && (
@@ -98,12 +98,12 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
             </Badge>
           )}
         </div>
-        <CardDescription className="mt-2 text-justify">
+        <CardDescription className="mt-2 line-clamp-2 text-justify">
           {repository.description ||
             translation.pages.projects.repositories.card.noDescription}
         </CardDescription>
       </CardHeader>
-      <CardFooter className="mt-auto border-t pt-4">
+      <CardFooter className="mt-auto border-t">
         <div className="mr-2 flex w-full flex-col justify-between gap-2">
           <span className="text-muted-foreground text-xs">
             {translation.pages.projects.repositories.card.created.replace(
