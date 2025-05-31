@@ -1,14 +1,6 @@
 'use client'
 
-import {
-  Briefcase,
-  ExternalLink,
-  Github,
-  GraduationCap,
-  Loader,
-  Radio,
-  Trophy,
-} from 'lucide-react'
+import { ExternalLink, Github, Loader, Radio } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -30,6 +22,8 @@ import {
 } from '@/components/ui/tooltip'
 import { getLanguageConfig } from '@/config/languages'
 import { useLanguage } from '@/contexts/LanguageContext'
+
+import { RepositoryTopicBadge } from './repository-topic-badge'
 
 export interface Repository {
   id: number
@@ -69,10 +63,6 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
   )
   const [isLoadingImage, setIsLoadingImage] = useState(true)
 
-  const isStudyProject = repository.topics?.includes('study')
-  const isEventProject = repository.topics?.includes('event')
-  const isPortfolioProject = repository.topics?.includes('portfolio')
-
   return (
     <Card className={`flex min-h-[360px] flex-col border py-0 pb-6`}>
       <div className="relative">
@@ -94,49 +84,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
             <Loader className="h-8 w-8 animate-spin text-blue-500" />
           </div>
         )}
-        {(isStudyProject || isEventProject || isPortfolioProject) && (
-          <div className="absolute top-2 right-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Badge
-                    variant="secondary"
-                    className={`hover:bg-opacity-90 flex cursor-help items-center gap-1 text-white select-none ${
-                      isEventProject
-                        ? 'bg-purple-500 hover:bg-purple-600'
-                        : isPortfolioProject
-                          ? 'bg-green-500 hover:bg-green-600'
-                          : 'bg-blue-500 hover:bg-blue-600'
-                    }`}
-                  >
-                    {isEventProject ? (
-                      <Trophy className="h-3 w-3" />
-                    ) : isPortfolioProject ? (
-                      <Briefcase className="h-3 w-3" />
-                    ) : (
-                      <GraduationCap className="h-3 w-3" />
-                    )}
-                    {isEventProject
-                      ? translation.commons.event
-                      : isPortfolioProject
-                        ? translation.commons.portfolio
-                        : translation.commons.study}
-                  </Badge>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {isEventProject
-                    ? translation.pages.projects.repositories.card
-                        .eventProjectBadgeDescription
-                    : isPortfolioProject
-                      ? translation.pages.projects.repositories.card
-                          .portfolioProjectBadgeDescription
-                      : translation.pages.projects.repositories.card
-                          .studyProjectBadgeDescription}
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-        )}
+        <RepositoryTopicBadge topics={repository.topics} />
       </div>
       <CardHeader>
         <div className="flex items-center justify-between">
