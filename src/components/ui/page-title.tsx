@@ -16,7 +16,7 @@ export function PageTitle({
         <h1 className="text-4xl font-bold">{title}</h1>
       </div>
       {description && (
-        <p className="text-lg text-gray-500 dark:text-gray-400">
+        <p className="text-center text-lg text-gray-500 dark:text-gray-400">
           {description}
         </p>
       )}
