@@ -94,10 +94,10 @@ export function HomePageContent() {
 
   const featuredProjects = [
     {
-      href: `/${lang}/projects/leroy-merlin-instala`,
-      title: home.featuredProjects.leroyMerlinInstala.title,
-      description: home.featuredProjects.leroyMerlinInstala.description,
-      tags: home.featuredProjects.leroyMerlinInstala.tags,
+      href: `/${lang}/projects/instalacoes-e-reformas`,
+      title: home.featuredProjects.instalacoesEReformas.title,
+      description: home.featuredProjects.instalacoesEReformas.description,
+      tags: home.featuredProjects.instalacoesEReformas.tags,
     },
     {
       href: `/${lang}/projects/markit3d`,

@@ -23,24 +23,15 @@ function getLocale(request: NextRequest): string | undefined {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
+  const isPublicAsset = /\.[^/]+$/.test(pathname)
 
-  if (pathname.startsWith('/_next') || pathname.startsWith('/api')) {
+  if (pathname.startsWith('/_next') || pathname.startsWith('/api') || isPublicAsset) {
     return NextResponse.next()
   }
 
   const pathnameHasLocale = i18n.locales.some(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
-
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/favicon.ico') ||
-    pathname.startsWith('/logo_1024x1024.png') ||
-    pathname.endsWith('fallback-banner.svg') ||
-    pathname.endsWith('resume.png')
-  ) {
-    return NextResponse.next()
-  }
 
   if (pathname === '/') {
     const locale = getLocale(request) || i18n.defaultLocale
@@ -56,17 +47,6 @@ export function proxy(request: NextRequest) {
       ),
     )
   }
-
-  if (
-    [
-      '/manifest.json',
-      '/favicon.ico',
-      '/images/logo_1024x1024.png',
-      '/images/fallback-banner.svg',
-    ].includes(pathname)
-  )
-    return
-
   const pathnameIsMissingLocale = i18n.locales.every(
     locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
   )
@@ -84,6 +64,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|api).*)'],
+  matcher: ['/((?!api|_next).*)'],
 }
 

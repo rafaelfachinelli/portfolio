@@ -42,7 +42,7 @@
       "clients": {
         "leroyMerlin": {
           "name": "Leroy Merlin",
-          "description": "Tech leadership and engineering support for large-scale digital commerce and operations."
+          "description": "Tech leadership and engineering support for the Instalacoes e Reformas ecosystem and other large-scale digital operations."
         },
         "markit3d": {
           "name": "Markit3D",
@@ -57,10 +57,10 @@
       "projectsTitle": "Projects that show range and business context",
       "projectsOverview": "A quick shortlist for recruiters who want to understand my mix of product work, technical depth, and delivery ownership.",
       "featuredProjects": {
-        "leroyMerlinInstala": {
-          "title": "Leroy Merlin Instala",
-          "description": "A project tied to installation journeys and customer-facing operations, where reliability and clarity matter.",
-          "tags": ["React", "PWA", "Delivery", "Enterprise"]
+        "instalacoesEReformas": {
+          "title": "Instalações e Reformas",
+          "description": "Case study about technical leadership in a service ecosystem involving partner onboarding, orchestration, observability, and delivery quality.",
+          "tags": ["Tech Lead", "React", "Spring Boot", "GCP"]
         },
         "markit3d": {
           "title": "Markit3D",
@@ -136,6 +136,158 @@
           "eventProjectBadgeDescription": "This project was developed during an event. It may not be fully functional or optimized for production use.",
           "portfolioProjectBadgeDescription": "This project is part of my portfolio. It showcases my skills and may not be fully functional or optimized for production use."
         }
+      },
+      "instalacoesEReformas": {
+        "title": "Instalações e Reformas",
+        "description": "Case study of a service platform ecosystem at Leroy Merlin, covering partner onboarding, customer journeys, orchestration, observability, and technical leadership.",
+        "hero": {
+          "eyebrow": "Leroy Merlin ecosystem",
+          "subtitle": "A service ecosystem for selling, scheduling, and operating installations and home reforms with reliability across customer, partner, and internal journeys.",
+          "summary": "This case study reflects the point in my career where I moved from frontend ownership into broader technical leadership, working across backend, infrastructure, observability, release discipline, and product delivery for a business-critical ecosystem.",
+          "highlights": [
+            "40+ microservices",
+            "Tech lead role",
+            "React + Spring Boot",
+            "Observability and CI/CD"
+          ],
+          "logoAlt": "Leroy Merlin logo"
+        },
+        "overview": {
+          "title": "Project overview",
+          "intro": "An ecosystem built to connect customers, partner professionals, and Leroy Merlin operations around service delivery.",
+          "paragraphs": [
+            "Instalacoes e Reformas was not just a single frontend application. It was a broader service ecosystem involving public pages, operational flows, partner onboarding, and internal tools that supported how installations and reforms were offered and executed.",
+            "The project required product thinking, technical consistency, and operational reliability because the experience touched different types of users and depended on stable communication between multiple services and teams."
+          ]
+        },
+        "businessProblem": {
+          "title": "Business problem",
+          "intro": "The challenge was to make service operations understandable, scalable, and trustworthy for everyone involved.",
+          "paragraphs": [
+            "Selling a service is more complex than selling a physical product. The platform needed to communicate trust, explain the service clearly, support operational rules, and create flows that worked for customers, business stakeholders, and partner professionals.",
+            "That meant reducing friction in acquisition and onboarding journeys while also giving the internal ecosystem enough structure to evolve without creating operational chaos."
+          ]
+        },
+        "scopeAndComplexity": {
+          "title": "Scope and complexity",
+          "intro": "The complexity came from scale, integration, and the fact that the ecosystem blended product, operations, and architecture concerns.",
+          "paragraphs": [
+            "My work eventually touched more than 40 microservices and multiple frontend experiences. It was a context where changes in one part of the ecosystem could affect partner flows, customer communication, or internal operations.",
+            "The platform also had to support different environments, release flows, and technical decisions across a growing architecture, which made engineering discipline as important as feature delivery."
+          ],
+          "items": [
+            "Customer-facing flows and public pages connected to service acquisition",
+            "Partner and onboarding experiences with operational dependencies",
+            "Distributed architecture with frontend and backend services evolving in parallel",
+            "Cross-team coordination involving product, engineering, and business stakeholders"
+          ]
+        },
+        "myRole": {
+          "title": "My role in the project",
+          "intro": "I started in the frontend and grew into a tech lead role with broader responsibility for delivery quality and technical direction.",
+          "paragraphs": [
+            "Over time, I stopped being focused only on UI implementation and started supporting the ecosystem from a wider engineering perspective. I worked on frontend architecture, backend participation with Java and Spring Boot, infrastructure support on Google Cloud Platform, and observability initiatives.",
+            "I also supported technical decisions, helped organize codebases and folder structures, contributed to cleaner engineering standards, and worked closely with the team to keep the ecosystem maintainable while delivery kept moving."
+          ],
+          "items": [
+            "Technical leadership for service evolution and cross-team delivery",
+            "Hands-on contribution in React/Next.js frontend applications",
+            "Backend support in Java and Spring Boot microservices",
+            "Guidance on architecture, clean code, and implementation standards"
+          ]
+        },
+        "architecture": {
+          "title": "Architecture and technologies",
+          "intro": "The ecosystem combined modern frontend delivery with backend services, observability, and release automation.",
+          "paragraphs": [
+            "On the frontend, I worked with React-based applications, public pages, and operational experiences that needed clarity, performance, and maintainability. On the backend side, I participated in Java and Spring Boot services, helping with structure, clean code, and technical direction.",
+            "The operational side of the project also involved environment organization, semantic versioning, GitHub Actions workflows, Datadog monitoring, and support for event-driven evolution where service communication and long-term scalability mattered."
+          ],
+          "items": [
+            "Support for Google Cloud Platform environments and application lifecycle organization",
+            "Datadog monitors for backend and frontend incidents and error visibility",
+            "GitHub Actions workflows for unit tests, pull request feedback, deploy flows, and release discipline",
+            "Technical support for diagrams, architecture discussions, and service communication improvements"
+          ],
+          "technologiesLabel": "Technologies and practices",
+          "technologies": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Java",
+            "Spring Boot",
+            "GCP",
+            "Datadog",
+            "GitHub Actions",
+            "Kafka",
+            "Semantic Versioning"
+          ]
+        },
+        "contributions": {
+          "title": "Main contributions",
+          "intro": "My contribution was not limited to one layer of the stack. It was about making the ecosystem easier to evolve and safer to operate.",
+          "paragraphs": [
+            "A large part of my work was improving engineering consistency, helping the team move faster with more confidence, and reducing ambiguity around how applications should be structured, delivered, and monitored."
+          ],
+          "items": [
+            "Supported architecture decisions across a distributed ecosystem with multiple services",
+            "Helped define clean frontend and backend structures for scalability and maintainability",
+            "Created GitHub Actions workflows for unit tests, pull request feedback, and deployment support",
+            "Organized environments and release practices with semantic versioning and clearer delivery governance",
+            "Created Datadog monitors to increase visibility into backend and frontend failures"
+          ]
+        },
+        "challenges": {
+          "title": "Challenges",
+          "intro": "The project demanded technical depth and operational awareness at the same time.",
+          "paragraphs": [
+            "One of the main challenges was balancing short-term business needs with long-term technical quality in an ecosystem with many dependencies. Another was making sure frontend, backend, and operational concerns were aligned enough that releases stayed reliable."
+          ],
+          "items": [
+            "Keeping consistency across many services, teams, and delivery cadences",
+            "Improving observability and incident awareness in a distributed environment",
+            "Supporting architecture evolution without blocking product demands",
+            "Translating technical constraints into decisions that made sense for business and operations"
+          ]
+        },
+        "results": {
+          "title": "Results and impact",
+          "intro": "The impact showed up in delivery maturity, technical reliability, and a more structured ecosystem.",
+          "paragraphs": [
+            "The work helped strengthen the quality of releases, increase visibility into failures, and improve the engineering foundation behind the service experience. That created better conditions for scaling the ecosystem and supporting ongoing product evolution.",
+            "Just as important, the project gave me a stronger ability to connect code quality, platform decisions, and operational reality in a business-facing environment."
+          ],
+          "items": [
+            "Better release discipline with clearer workflows and versioning",
+            "Improved monitoring and faster visibility into backend and frontend issues",
+            "Stronger technical standards for frontend and backend implementation",
+            "More confidence in delivery across a business-critical service ecosystem"
+          ]
+        },
+        "learnings": {
+          "title": "Learnings",
+          "intro": "This was one of the experiences that most expanded my understanding of technical leadership.",
+          "paragraphs": [
+            "I learned how much value comes from connecting architecture, observability, release discipline, and communication instead of treating them as separate concerns. I also strengthened my ability to support decisions beyond the frontend while staying practical and delivery-oriented."
+          ],
+          "items": [
+            "Leadership grows when you can connect product, engineering, and operations",
+            "Scalability depends on standards, visibility, and decision clarity as much as on code",
+            "Good technical direction reduces friction for both teams and business stakeholders",
+            "Reliable delivery is built through systems, not isolated heroics"
+          ]
+        },
+        "imageCaptions": {
+          "overview": "Public-facing service experience that helps explain the Instalações e Reformas offer and builds trust in the journey.",
+          "scopeAndComplexity": "Operational and partner-facing context showing that the ecosystem extended beyond a simple landing page into onboarding and execution flows.",
+          "results": "Service communication designed to reinforce credibility, scale, and confidence in the broader ecosystem."
+        },
+        "nextStep": {
+          "eyebrow": "How I work",
+          "title": "This is the kind of ownership I bring to new challenges",
+          "description": "If you are hiring for a senior engineer or tech lead who can move from frontend to architecture, observability, delivery quality, and business-facing execution, this project is a strong reflection of how I work.",
+          "buttonLabel": "Contact me"
+        }
       }
     },
     "about": {
@@ -143,10 +295,10 @@
         "title": "About Me",
         "description": "Learn more about my background, skills, and experience.",
         "content": [
-          "I am a software engineer and tech lead with more than five years of experience building digital products, internal platforms, and scalable services. My work has grown from frontend development into a broader technical scope that includes backend, infrastructure, observability, architecture support, and delivery leadership.",
-          "I worked across frontend, backend, and infrastructure, supporting solutions in Java with Spring Boot, frontend architecture with clean code practices, and application structure decisions for scalable services and teams.",
-          "I also worked with Google Cloud Platform, observability in Datadog, monitor creation for backend and frontend error tracking, GitHub Actions workflows for unit tests and pull request feedback, deployment pipelines, semantic versioning, and environment organization across development and production.",
-          "My main strengths include web application development, technical decision support, delivery planning, documentation, performance, debugging, unit tests, and building solutions that connect code quality with business needs.",
+          "I am a software engineer and tech lead with more than five years of experience building digital products, internal platforms, and scalable service ecosystems. My work has grown from frontend development into a broader technical scope that includes backend, infrastructure, observability, architecture support, and delivery leadership.",
+          "In recent years, I have worked in contexts where customer journeys, partner operations, and internal systems needed to evolve together. That pushed me to act across frontend architecture, Java and Spring Boot backend services, and technical decisions that balanced business needs with maintainability.",
+          "I also worked with Google Cloud Platform, observability in Datadog, monitor creation for backend and frontend error tracking, GitHub Actions workflows for unit tests, pull request feedback, deployment pipelines, semantic versioning, and environment organization across development and production.",
+          "My main strengths include web application development, technical decision support, delivery planning, communication between technical and non-technical stakeholders, debugging, quality practices, and building solutions that connect engineering discipline with business reality.",
           "I have a degree in Systems Analysis and Development from FATEC and an IT technician from ETEC. I am passionate about web application development and automation, and I am always looking to learn new technologies and methodologies.",
           "I am a committed, creative, and collaborative professional, who likes to work as a team and solve problems. I am proud to have been awarded at two innovation events, Ideathon and Inovathon São Paulo, where I presented solutions to the challenges of the digital environment and culture and tourism. My goal is to continue developing solutions that generate value for customers and society."
         ]
@@ -157,7 +309,7 @@
         "download": "Download Resume",
         "downloadDescription": "Click the button below to download my resume in PDF format.",
         "name": "Rafael Lima Amaral Fachinelli",
-        "summary": "I am a software engineer and tech lead with more than five years of experience building digital products, internal platforms, and scalable services. Over time, my work has expanded from frontend development into a broader technical scope that includes backend, infrastructure, observability, architecture support, and delivery leadership. I have worked with technologies such as React, Next.js, JavaScript, TypeScript, Node.js, Java, Spring Boot, Kafka, MySQL, Google Cloud Platform, Datadog, Docker, Kubernetes, Firebase, GitHub Actions, and CI/CD workflows. My experience includes technical leadership over more than 40 microservices, support for architectural decisions, monitor creation for backend and frontend systems, deployment and environment organization, semantic versioning, unit test automation, and the definition of engineering standards that connect code quality with business needs.",
+        "summary": "I am a software engineer and tech lead with more than five years of experience building digital products, internal platforms, and scalable service ecosystems. My background started in frontend development and expanded into backend, infrastructure, observability, architecture support, and delivery leadership. I have worked across React, Next.js, TypeScript, Java, Spring Boot, Kafka, Google Cloud Platform, Datadog, GitHub Actions, and CI/CD workflows, including technical leadership over more than 40 microservices, release discipline, monitoring, and engineering standards that connect code quality with business impact.",
         "contact": {
           "location": "Suzano, São Paulo, Brazil",
           "phone": "+55 11 94940-4833",
@@ -245,14 +397,14 @@
             "duration": "August 2024 - February 2026",
             "location": "São Paulo, São Paulo, Brazil",
             "responsibilities": [
-              "Technical leadership across more than 40 microservices, with support for architectural and implementation decisions",
-              "Backend work with Java and Spring Boot, including microservice structure and clean code guidance",
-              "Frontend architecture support, including folder structure, clean code standards, and delivery quality",
+              "Technical leadership across more than 40 microservices in the Instalacoes e Reformas ecosystem, with support for architecture and implementation decisions",
+              "Backend work with Java and Spring Boot, including microservice structure, clean code guidance, and support for service evolution",
+              "Frontend architecture support for customer journeys, partner flows, folder structure, and delivery quality",
               "Infrastructure support on Google Cloud Platform and environment organization across development and production",
-              "Observability work with Datadog, including monitors for backend and frontend error tracking",
-              "Creation of GitHub Actions workflows for unit tests, pull request feedback, deployment automation, and delivery improvements",
-              "Semantic versioning strategy, environment control, planning, and delivery demonstration",
-              "Creation of C4 diagrams and technical support for event-driven architecture initiatives"
+              "Observability work with Datadog, including monitors for backend and frontend error tracking and operational visibility",
+              "Creation of GitHub Actions workflows for unit tests, pull request feedback, deployment automation, and release improvements",
+              "Semantic versioning strategy, environment governance, planning, and delivery demonstration across multiple applications",
+              "Creation of C4 diagrams and technical support for event-driven architecture and service communication initiatives"
             ]
           },
           {
@@ -261,13 +413,13 @@
             "duration": "January 2022 - September 2024",
             "location": "São Paulo, São Paulo, Brazil",
             "responsibilities": [
-              "Development of projects using React (Static pages, PWA web applications)",
+              "Development of React projects for public pages, PWA applications, and service journeys",
               "Development with good practices (Clean Code)",
               "Performance and debugging techniques in React",
-              "Project documentation and production of tutorials",
+              "Project documentation, tutorials, and knowledge sharing for the team",
               "Semantic versioning of the project",
               "Control environments and deploy with Github Actions",
-              "Planning and demonstration of deliveries",
+              "Planning and demonstration of deliveries with product and business visibility",
               "Implementation of observability in Datadog Rum in React applications",
               "Unit test coverage with Jest",
               "Real-time communication chat with Firebase",
@@ -420,9 +572,9 @@
         "projects": {
           "title": "Projects",
           "items": {
-            "leroy-merlin-instala": {
-              "title": "Leroy Merlin Instala",
-              "description": "A web application for managing and scheduling installations of products sold by Leroy Merlin."
+            "instalacoes-e-reformas": {
+              "title": "Instalações e Reformas",
+              "description": "Case study about technical leadership in Leroy Merlin's installation and reform services ecosystem."
             },
             "markit3d": {
               "title": "Markit3D",

@@ -93,9 +93,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           icon: <Presentation className="!text-blue-500" />,
           name: translation.components.navbar.options.projects.items[
-            'leroy-merlin-instala'
+            'instalacoes-e-reformas'
           ].title,
-          url: `/${lang}/projects/leroy-merlin-instala`,
+          url: `/${lang}/projects/instalacoes-e-reformas`,
         },
         {
           icon: <Presentation className="!text-blue-500" />,
