@@ -144,6 +144,8 @@
           "eyebrow": "Leroy Merlin ecosystem",
           "subtitle": "A service ecosystem for selling, scheduling, and operating installations and home reforms with reliability across customer, partner, and internal journeys.",
           "summary": "This case study reflects the point in my career where I moved from frontend ownership into broader technical leadership, working across backend, infrastructure, observability, release discipline, and product delivery for a business-critical ecosystem.",
+          "temporalMarkLabel": "Report created at",
+          "temporalMarkDate": "2026-02-06",
           "highlights": [
             "40+ microservices",
             "Tech lead role",

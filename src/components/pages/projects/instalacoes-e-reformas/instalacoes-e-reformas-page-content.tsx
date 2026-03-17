@@ -4,6 +4,7 @@ import {
   ArrowRight,
   BookOpen,
   BriefcaseBusiness,
+  CalendarDays,
   Compass,
   Network,
   Presentation,
@@ -32,9 +33,27 @@ const SCOPE_IMAGE =
 const RESULTS_IMAGE =
   '/images/projects/instalacoes_e_reformas_leroy_merlin/evidence_3.png'
 
+function formatTemporalMarkDate(value: string, locale: string) {
+  const date = new Date(`${value}T00:00:00`)
+
+  if (Number.isNaN(date.getTime())) {
+    return value
+  }
+
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date)
+}
+
 export function InstalacoesEReformasPageContent() {
   const { lang, translation } = useLanguage()
   const project = translation.pages.projects.instalacoesEReformas
+  const formattedTemporalMarkDate = formatTemporalMarkDate(
+    project.hero.temporalMarkDate,
+    lang,
+  )
 
   return (
     <PageContent className="gap-6 pb-16">
@@ -57,6 +76,16 @@ export function InstalacoesEReformasPageContent() {
             <p className="text-muted-foreground mt-4 max-w-3xl leading-7 text-pretty">
               {project.hero.summary}
             </p>
+
+            <div className="mt-5 flex flex-wrap gap-3">
+              <div className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1.5 text-sm shadow-sm">
+                <CalendarDays className="h-4 w-4 text-blue-500" />
+                <span className="text-muted-foreground">
+                  {project.hero.temporalMarkLabel}
+                </span>
+                <span className="font-medium">{formattedTemporalMarkDate}</span>
+              </div>
+            </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
               {project.hero.highlights.map(highlight => (
