@@ -8,8 +8,8 @@
     "build": "next build && node ./.misc/build-server.js",
     "docker:build": "next build && node ./.misc/build-server.js && docker build -t lmbr-instala-developer-portal-front:local .",
     "start": "NODE_ENV=production node server.js",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -51,7 +51,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.26.0",
-    "eslint-config-next": "^15.3.1",
+    "eslint-config-next": "^16.1.7",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",

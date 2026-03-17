@@ -1,0 +1,6 @@
+<svg width="240" height="72" viewBox="0 0 240 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="72" rx="18" fill="#111827"/>
+  <circle cx="34" cy="36" r="16" fill="#60A5FA"/>
+  <path d="M28 36L34 26L40 36L34 46L28 36Z" fill="#F8FAFC"/>
+  <text x="62" y="42" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Markit3D</text>
+</svg>

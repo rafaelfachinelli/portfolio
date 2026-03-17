@@ -2,17 +2,87 @@
   "pages": {
     "home": {
       "title": "Hi, I'm Rafael Fachinelli",
-      "description": "I'm a software developer with experience in various technologies.",
-      "personalities": "My {personality} transform your business",
-      "projectsTitle": "My Projects",
-      "projectsOverview": "Explore a selection of my work and personal projects, showcasing various technologies and skills.",
-      "viewProjectsButton": "View Projects",
-      "aboutMeTitle": "About Me",
-      "aboutMeOverview": "Learn more about my background, skills, and experience.",
-      "viewAboutButton": "Learn More",
-      "contactTitle": "Contact",
-      "contactOverview": "Get in touch with me for collaborations or inquiries.",
-      "contactButton": "Get in Touch"
+      "description": "Senior software engineer and tech lead focused on reliable delivery and product impact.",
+      "intro": "Hi, I'm Rafael Fachinelli.",
+      "eyebrow": "Senior software engineer",
+      "availability": "Open to senior frontend, full-stack, and tech lead conversations",
+      "personalities": "I bring {personality} to products, teams, and delivery",
+      "heroTitle": "I build reliable web platforms and help teams deliver with confidence.",
+      "heroSubtitle": "Tech Lead with strong experience in frontend, platform evolution, and cross-functional product delivery for real businesses.",
+      "heroSupporting": "Strong background in React, Next.js, TypeScript, Java, CI/CD, observability, clean architecture, and communication with technical and non-technical stakeholders.",
+      "viewProjectsButton": "Explore projects",
+      "viewResumeButton": "Download resume",
+      "resumeCardTitle": "Resume and career summary",
+      "resumeCardDescription": "Open my resume page to download the PDF and review the main points of my professional journey.",
+      "metrics": {
+        "yearsExperience": {
+          "value": "7+",
+          "label": "Years of experience",
+          "description": "From product websites to scalable internal platforms and delivery leadership."
+        },
+        "repositories": {
+          "value": "30+",
+          "label": "Public repositories",
+          "description": "A practical GitHub history covering portfolio work, experiments, and continuous learning."
+        },
+        "microservices": {
+          "value": "40+",
+          "label": "Microservices supported",
+          "description": "Hands-on work in distributed environments with operational and delivery responsibilities."
+        },
+        "clients": {
+          "value": "3",
+          "label": "Notable brands",
+          "description": "Experience contributing to products and digital initiatives for recognized companies."
+        }
+      },
+      "clientsEyebrow": "Trusted experience",
+      "clientsTitle": "Brands and projects that help tell the story",
+      "clientsSubtitle": "A mix of enterprise delivery, product execution, and hands-on engineering with direct business visibility.",
+      "clients": {
+        "leroyMerlin": {
+          "name": "Leroy Merlin",
+          "description": "Tech leadership and engineering support for large-scale digital commerce and operations."
+        },
+        "markit3d": {
+          "name": "Markit3D",
+          "description": "Product presence and web delivery for a 3D printing business with a clear commercial focus."
+        },
+        "flex": {
+          "name": "Flex",
+          "description": "Systems, embedded software, and MVP thinking connected to industrial and automation contexts."
+        }
+      },
+      "projectsEyebrow": "Selected work",
+      "projectsTitle": "Projects that show range and business context",
+      "projectsOverview": "A quick shortlist for recruiters who want to understand my mix of product work, technical depth, and delivery ownership.",
+      "featuredProjects": {
+        "leroyMerlinInstala": {
+          "title": "Leroy Merlin Instala",
+          "description": "A project tied to installation journeys and customer-facing operations, where reliability and clarity matter.",
+          "tags": ["React", "PWA", "Delivery", "Enterprise"]
+        },
+        "markit3d": {
+          "title": "Markit3D",
+          "description": "A business-oriented website experience for a 3D printing service, focused on presentation and conversion.",
+          "tags": ["Landing Page", "Frontend", "Brand", "Conversion"]
+        },
+        "flexSewingMachine": {
+          "title": "Flex Sewing Machine",
+          "description": "A project that reflects my earlier systems and automation background, including product and MVP thinking.",
+          "tags": ["Automation", "Embedded", "MVP", "Systems"]
+        }
+      },
+      "viewProjectDetailsButton": "Project details",
+      "viewAllProjectsButton": "Browse all projects",
+      "aboutEyebrow": "Profile",
+      "aboutMeTitle": "A senior profile with technical depth and delivery ownership",
+      "aboutMeOverview": "I combine hands-on engineering with team guidance, documentation, observability, and the ability to keep deliveries moving with clarity.",
+      "viewAboutButton": "Read more about me",
+      "contactEyebrow": "Let's talk",
+      "contactTitle": "Available for the next strong challenge",
+      "contactOverview": "If you're hiring for a senior engineer or tech lead role, I'm open to conversations about impact, ownership, and long-term product quality.",
+      "contactButton": "Contact me"
     },
     "projects": {
       "title": "Projects",
@@ -73,10 +143,10 @@
         "title": "About Me",
         "description": "Learn more about my background, skills, and experience.",
         "content": [
-          "I'm a Tech Lead at Leroy Merlin (through Develcode). I have more than four years of experience where I work with the languages and tools HTML5, CSS3, JavaScript, React, GitHub, Datadog and others.",
-          "My main skills are the development of websites, web applications, static sites with good clean code practices, performance, unit tests, debugging techniques, project documentation and production of tutorials.",
-          "I am also responsible for semantic versioning of the project, controlling environments and deployment with GitHub Actions, and planning and demonstrating deliveries.",
-          "Furthermore, I participated in the implementation of observability in Datadog RUM in React applications, contributing to improving the user experience and optimizing application resources.",
+          "I am a software engineer and tech lead with more than five years of experience building digital products, internal platforms, and scalable services. My work has grown from frontend development into a broader technical scope that includes backend, infrastructure, observability, architecture support, and delivery leadership.",
+          "I worked across frontend, backend, and infrastructure, supporting solutions in Java with Spring Boot, frontend architecture with clean code practices, and application structure decisions for scalable services and teams.",
+          "I also worked with Google Cloud Platform, observability in Datadog, monitor creation for backend and frontend error tracking, GitHub Actions workflows for unit tests and pull request feedback, deployment pipelines, semantic versioning, and environment organization across development and production.",
+          "My main strengths include web application development, technical decision support, delivery planning, documentation, performance, debugging, unit tests, and building solutions that connect code quality with business needs.",
           "I have a degree in Systems Analysis and Development from FATEC and an IT technician from ETEC. I am passionate about web application development and automation, and I am always looking to learn new technologies and methodologies.",
           "I am a committed, creative, and collaborative professional, who likes to work as a team and solve problems. I am proud to have been awarded at two innovation events, Ideathon and Inovathon São Paulo, where I presented solutions to the challenges of the digital environment and culture and tourism. My goal is to continue developing solutions that generate value for customers and society."
         ]
@@ -87,14 +157,82 @@
         "download": "Download Resume",
         "downloadDescription": "Click the button below to download my resume in PDF format.",
         "name": "Rafael Lima Amaral Fachinelli",
+        "summary": "I am a software engineer and tech lead with more than five years of experience building digital products, internal platforms, and scalable services. Over time, my work has expanded from frontend development into a broader technical scope that includes backend, infrastructure, observability, architecture support, and delivery leadership. I have worked with technologies such as React, Next.js, JavaScript, TypeScript, Node.js, Java, Spring Boot, Kafka, MySQL, Google Cloud Platform, Datadog, Docker, Kubernetes, Firebase, GitHub Actions, and CI/CD workflows. My experience includes technical leadership over more than 40 microservices, support for architectural decisions, monitor creation for backend and frontend systems, deployment and environment organization, semantic versioning, unit test automation, and the definition of engineering standards that connect code quality with business needs.",
+        "contact": {
+          "location": "Suzano, São Paulo, Brazil",
+          "phone": "+55 11 94940-4833",
+          "email": "rafael.fachinelli@hotmail.com",
+          "linkedin": "linkedin.com/in/rafaelfachinelli",
+          "portfolio": "https://www.rafaelfachinelli.com"
+        },
         "file": {
           "name": "rafael-fachinelli-resume.pdf"
         },
+        "education": [
+          {
+            "institution": "MBA USP/Esalq",
+            "degree": "Postgraduate Studies, Software Engineering",
+            "period": "October 2025 - March 2027"
+          },
+          {
+            "institution": "Faculdade de Tecnologia de São Paulo - FATEC-SP",
+            "degree": "Technologist, Analysis and Systems Development",
+            "period": "January 2019 - December 2021"
+          },
+          {
+            "institution": "ETEC - State Technical School of São Paulo",
+            "degree": "Computer Technician, Computer Programming",
+            "period": "January 2013 - December 2014"
+          }
+        ],
+        "languages": [
+          "Portuguese (Native or Bilingual)",
+          "English (Limited Working)"
+        ],
+        "certifications": [
+          "Technical Leadership Training",
+          "CSS Flexbox",
+          "Kubernetes: Pods, Services and ConfigMaps",
+          "Clean Code",
+          "JavaScript: Browser Knowledge and Design Patterns"
+        ],
+        "awards": [
+          "1st Place Ideathon - Challenges in the Digital Environment",
+          "2nd Place Inovathon Sao Paulo 2020 - Culture and Tourism"
+        ],
+        "skills": [
+          "HTML5",
+          "CSS3",
+          "TailwindCSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Node.js",
+          "Java",
+          "Spring Boot",
+          "Apache Kafka",
+          "Kafka Connect",
+          "MySQL",
+          "Git",
+          "GitHub Actions",
+          "Datadog RUM",
+          "Docker",
+          "Kubernetes",
+          "Firebase",
+          "Clean Code",
+          "SCRUM",
+          "RCA"
+        ],
         "position": "Tech Lead",
         "sections": {
           "resume": "Resume",
           "professionalExperience": "Professional Experience",
-          "skills": "Skills and competencies"
+          "education": "Education",
+          "skills": "Skills and competencies",
+          "languages": "Languages",
+          "certifications": "Certifications",
+          "awards": "Honors and awards"
         }
       },
       "timeline": {
@@ -104,14 +242,17 @@
           {
             "role": "Tech Lead",
             "company": "Leroy Merlin",
-            "duration": "August 2024 - Present",
+            "duration": "August 2024 - February 2026",
             "location": "São Paulo, São Paulo, Brazil",
             "responsibilities": [
-              "Planning and distribution of activities (SCRUM)",
-              "Creation of C4 diagrams",
-              "Development of microservices with event-driven architecture (EDA)",
-              "Improvements to CI/CD processes with Github Actions",
-              "Project support with 40+ microservices"
+              "Technical leadership across more than 40 microservices, with support for architectural and implementation decisions",
+              "Backend work with Java and Spring Boot, including microservice structure and clean code guidance",
+              "Frontend architecture support, including folder structure, clean code standards, and delivery quality",
+              "Infrastructure support on Google Cloud Platform and environment organization across development and production",
+              "Observability work with Datadog, including monitors for backend and frontend error tracking",
+              "Creation of GitHub Actions workflows for unit tests, pull request feedback, deployment automation, and delivery improvements",
+              "Semantic versioning strategy, environment control, planning, and delivery demonstration",
+              "Creation of C4 diagrams and technical support for event-driven architecture initiatives"
             ]
           },
           {

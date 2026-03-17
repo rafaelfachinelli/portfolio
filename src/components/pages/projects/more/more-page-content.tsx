@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Loader, Presentation, RefreshCw } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -23,15 +23,13 @@ export function MorePageContent() {
   const [isRefreshing, setIsRefreshing] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  async function fetchRepositories() {
+  const fetchRepositories = useCallback(async () => {
     try {
       setIsRefreshing(true)
-      // Only add delay if we're refreshing (not on initial load)
       if (allRepositories.length > 0) {
         await new Promise(resolve => setTimeout(resolve, 300))
       }
       setIsLoading(true)
-      // Fetch all repositories initially
       const response = await fetch(`/api/github/repositories`)
 
       if (!response.ok) {
@@ -54,11 +52,11 @@ export function MorePageContent() {
       setIsLoading(false)
       setIsRefreshing(false)
     }
-  }
+  }, [allRepositories.length])
 
   useEffect(() => {
     fetchRepositories()
-  }, [])
+  }, [fetchRepositories])
 
   useEffect(() => {
     if (allRepositories.length === 0) return

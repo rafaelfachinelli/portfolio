@@ -10,20 +10,23 @@ import { ThemeProvider } from '@/components/ui/theme-provider'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
 import { getTranslation } from '../../../get-translation'
-import { Locale } from '../../../i18n-config'
+import { i18n, Locale } from '../../../i18n-config'
 
 export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode
-  params: Promise<{ lang: Locale }>
+  params: Promise<{ lang: string }>
 }>) {
   const { lang } = await params
-  const translation = await getTranslation(lang)
+  const locale = i18n.locales.includes(lang as Locale)
+    ? (lang as Locale)
+    : i18n.defaultLocale
+  const translation = await getTranslation(locale)
 
   return (
-    <html lang={lang}>
+    <html lang={locale} suppressHydrationWarning>
       <body className="min-h-screen max-w-screen antialiased">
         <ThemeProvider
           attribute="class"
@@ -31,7 +34,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider lang={lang} translation={translation}>
+          <LanguageProvider lang={locale} translation={translation}>
             <SidebarProvider defaultOpen={false}>
               <div className="flex w-full flex-col">
                 <Navbar />

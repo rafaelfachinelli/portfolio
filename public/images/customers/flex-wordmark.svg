@@ -1,0 +1,6 @@
+<svg width="240" height="72" viewBox="0 0 240 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="72" rx="18" fill="#0B1220"/>
+  <rect x="18" y="18" width="32" height="32" rx="8" fill="#F97316"/>
+  <path d="M27 28H41V33H32V37H39V42H32V48H27V28Z" fill="#FFF7ED"/>
+  <text x="64" y="42" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="26" font-weight="700">FLEX</text>
+</svg>

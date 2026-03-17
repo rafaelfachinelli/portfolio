@@ -2,17 +2,87 @@
   "pages": {
     "home": {
       "title": "Olá, eu sou Rafael Fachinelli",
-      "description": "Sou um desenvolvedor de software com experiência em várias tecnologias.",
-      "personalities": "Minha {personality} transforma seu negócio",
-      "projectsTitle": "Meus Projetos",
-      "projectsOverview": "Explore uma seleção do meu trabalho e projetos pessoais, mostrando várias tecnologias e habilidades.",
-      "viewProjectsButton": "Ver Projetos",
-      "aboutMeTitle": "Sobre Mim",
-      "aboutMeOverview": "Saiba mais sobre minha formação, habilidades e experiência.",
-      "viewAboutButton": "Saber Mais",
-      "contactTitle": "Contato",
-      "contactOverview": "Entre em contato comigo para colaborações ou dúvidas.",
-      "contactButton": "Entrar em Contato"
+      "description": "Engenheiro de software sênior e tech lead com foco em entrega confiável e impacto no produto.",
+      "intro": "Olá, eu sou Rafael Fachinelli.",
+      "eyebrow": "Engenheiro de software sênior",
+      "availability": "Aberto a conversas sobre vagas sênior de frontend, full-stack e tech lead",
+      "personalities": "Levo {personality} para produtos, times e entregas",
+      "heroTitle": "Construo plataformas web confiáveis e ajudo times a entregar com segurança.",
+      "heroSubtitle": "Tech Lead com forte experiência em frontend, evolução de plataforma e entrega de produtos com times multidisciplinares.",
+      "heroSupporting": "Experiência forte com React, Next.js, TypeScript, Java, CI/CD, observabilidade, arquitetura limpa e comunicação com públicos técnicos e de negócio.",
+      "viewProjectsButton": "Explorar projetos",
+      "viewResumeButton": "Baixar currículo",
+      "resumeCardTitle": "Currículo e resumo da trajetória",
+      "resumeCardDescription": "Abra minha página de currículo para baixar o PDF e revisar os principais pontos da minha trajetória profissional.",
+      "metrics": {
+        "yearsExperience": {
+          "value": "7+",
+          "label": "Anos de experiência",
+          "description": "De sites e produtos digitais a plataformas internas escaláveis e liderança de entrega."
+        },
+        "repositories": {
+          "value": "30+",
+          "label": "Repositórios públicos",
+          "description": "Um histórico prático no GitHub com projetos de portfólio, experimentos e aprendizado contínuo."
+        },
+        "microservices": {
+          "value": "40+",
+          "label": "Microsserviços acompanhados",
+          "description": "Atuação em ambientes distribuídos com responsabilidade técnica, operacional e de entrega."
+        },
+        "clients": {
+          "value": "3",
+          "label": "Marcas relevantes",
+          "description": "Experiência contribuindo para produtos e iniciativas digitais de empresas reconhecidas."
+        }
+      },
+      "clientsEyebrow": "Experiência validada",
+      "clientsTitle": "Marcas e projetos que ajudam a contar a trajetória",
+      "clientsSubtitle": "Uma combinação de entrega enterprise, execução de produto e engenharia com visibilidade direta para o negócio.",
+      "clients": {
+        "leroyMerlin": {
+          "name": "Leroy Merlin",
+          "description": "Liderança técnica e suporte de engenharia para operações digitais e jornadas de e-commerce em grande escala."
+        },
+        "markit3d": {
+          "name": "Markit3D",
+          "description": "Presença digital e entrega web para um negócio de impressão 3D com foco comercial claro."
+        },
+        "flex": {
+          "name": "Flex",
+          "description": "Sistemas, software embarcado e visão de MVP conectados a contextos industriais e de automação."
+        }
+      },
+      "projectsEyebrow": "Projetos em destaque",
+      "projectsTitle": "Projetos que mostram amplitude técnica e contexto de negócio",
+      "projectsOverview": "Uma seleção rápida para recrutadores entenderem minha combinação de produto, profundidade técnica e responsabilidade de entrega.",
+      "featuredProjects": {
+        "leroyMerlinInstala": {
+          "title": "Leroy Merlin Instala",
+          "description": "Projeto conectado a jornadas de instalação e operações voltadas ao cliente, onde confiabilidade e clareza são essenciais.",
+          "tags": ["React", "PWA", "Entrega", "Enterprise"]
+        },
+        "markit3d": {
+          "title": "Markit3D",
+          "description": "Experiência web orientada a negócio para um serviço de impressão 3D, com foco em apresentação e conversão.",
+          "tags": ["Landing Page", "Frontend", "Marca", "Conversão"]
+        },
+        "flexSewingMachine": {
+          "title": "Flex Sewing Machine",
+          "description": "Projeto que reflete minha base em sistemas e automação, incluindo visão de produto e construção de MVP.",
+          "tags": ["Automação", "Embarcados", "MVP", "Sistemas"]
+        }
+      },
+      "viewProjectDetailsButton": "Ver detalhes do projeto",
+      "viewAllProjectsButton": "Ver todos os projetos",
+      "aboutEyebrow": "Perfil",
+      "aboutMeTitle": "Um perfil sênior com profundidade técnica e responsabilidade por entrega",
+      "aboutMeOverview": "Uno execução hands-on com orientação de time, documentação, observabilidade e capacidade de manter entregas avançando com clareza.",
+      "viewAboutButton": "Ler mais sobre mim",
+      "contactEyebrow": "Vamos conversar",
+      "contactTitle": "Disponível para o próximo desafio forte",
+      "contactOverview": "Se você está contratando para uma posição sênior de engenharia ou tech lead, estou aberto a conversas sobre impacto, ownership e qualidade de produto no longo prazo.",
+      "contactButton": "Falar comigo"
     },
     "projects": {
       "title": "Projetos",
@@ -73,10 +143,10 @@
         "title": "Sobre Mim",
         "description": "Saiba mais sobre minha formação, habilidades e experiência.",
         "content": [
-          "Sou Tech Lead na Leroy Merlin (pela Develcode). Possuo mais de quatro anos de experiência trabalhando com as linguagens e ferramentas HTML5, CSS3, JavaScript, React, GitHub, Datadog e outras.",
-          "Minhas principais habilidades são o desenvolvimento de sites, aplicações web, sites estáticos com boas práticas de código limpo, performance, testes unitários, técnicas de depuração, documentação do projeto e produção de tutoriais.",
-          "Também sou responsável pelo versionamento semântico do projeto, controle de ambientes e implantação com GitHub Actions, além de planejamento e demonstração de entregas.",
-          "Além disso, participei da implementação de observabilidade no Datadog RUM em aplicações React, contribuindo para a melhoria da experiência do usuário e otimização dos recursos da aplicação.",
+          "Sou engenheiro de software e tech lead com mais de cinco anos de experiência construindo produtos digitais, plataformas internas e serviços escaláveis. Minha atuação evoluiu do desenvolvimento frontend para um escopo técnico mais amplo, incluindo backend, infraestrutura, observabilidade, apoio em arquitetura e liderança de entrega.",
+          "Trabalhei em frontend, backend e infraestrutura, apoiando soluções em Java com Spring Boot, arquitetura frontend com boas práticas de clean code e decisões de estrutura para serviços escaláveis e times de desenvolvimento.",
+          "Também atuei com Google Cloud Platform, observabilidade no Datadog, criação de monitores para rastreamento de erros em backend e frontend, workflows de GitHub Actions para testes unitários e feedback em pull requests, pipelines de deploy, versionamento semântico e organização de ambientes de desenvolvimento e produção.",
+          "Meus principais pontos fortes incluem desenvolvimento de aplicações web, apoio em decisões técnicas, planejamento de entregas, documentação, performance, depuração, testes unitários e construção de soluções que conectam qualidade técnica com necessidades de negócio.",
           "Sou formado em Análise e Desenvolvimento de Sistemas pela FATEC e técnico em TI pela ETEC. Sou apaixonado por desenvolvimento e automação de aplicações web e estou sempre em busca de aprender novas tecnologias e metodologias.",
           "Sou um profissional comprometido, criativo e colaborativo, que gosta de trabalhar em equipe e solucionar problemas. Tenho orgulho de ter sido premiado em dois eventos de inovação, o Ideathon e o Inovathon São Paulo, onde apresentei soluções para os desafios do ambiente digital e da cultura e do turismo. Meu objetivo é continuar desenvolvendo soluções que gerem valor para os clientes e para a sociedade.",
           "Além disso, estou sempre em busca de novos desafios e oportunidades para expandir meu conhecimento e habilidades, contribuindo para o crescimento da equipe e da empresa."
@@ -88,14 +158,82 @@
         "download": "Baixar Currículo",
         "downloadDescription": "Clique no botão abaixo para baixar meu currículo em PDF.",
         "name": "Rafael Lima Amaral Fachinelli",
+        "summary": "Sou engenheiro de software e tech lead com mais de cinco anos de experiência construindo produtos digitais, plataformas internas e serviços escaláveis. Ao longo do tempo, minha atuação evoluiu do desenvolvimento frontend para um escopo técnico mais amplo, incluindo backend, infraestrutura, observabilidade, apoio em arquitetura e liderança de entrega. Já trabalhei com tecnologias como React, Next.js, JavaScript, TypeScript, Node.js, Java, Spring Boot, Kafka, MySQL, Google Cloud Platform, Datadog, Docker, Kubernetes, Firebase, GitHub Actions e fluxos de CI/CD. Minha experiência inclui liderança técnica sobre mais de 40 microsserviços, apoio em decisões de arquitetura, criação de monitores para sistemas backend e frontend, deploy e organização de ambientes, versionamento semântico, automação de testes unitários e definição de padrões de engenharia que conectam qualidade de código com necessidades de negócio.",
+        "contact": {
+          "location": "Suzano, São Paulo, Brasil",
+          "phone": "+55 11 94940-4833",
+          "email": "rafael.fachinelli@hotmail.com",
+          "linkedin": "linkedin.com/in/rafaelfachinelli",
+          "portfolio": "https://www.rafaelfachinelli.com"
+        },
         "position": "Líder Técnico",
         "file": {
           "name": "rafael-fachinelli-curriculo.pdf"
         },
+        "education": [
+          {
+            "institution": "MBA USP/Esalq",
+            "degree": "Pós-graduação, Engenharia de Software",
+            "period": "Outubro 2025 - Março 2027"
+          },
+          {
+            "institution": "Faculdade de Tecnologia de São Paulo - FATEC-SP",
+            "degree": "Tecnólogo, Análise e Desenvolvimento de Sistemas",
+            "period": "Janeiro 2019 - Dezembro 2021"
+          },
+          {
+            "institution": "ETEC - Escola Técnica Estadual de São Paulo",
+            "degree": "Técnico em Informática, Programação de Computadores",
+            "period": "Janeiro 2013 - Dezembro 2014"
+          }
+        ],
+        "languages": [
+          "Português (Nativo ou bilíngue)",
+          "Inglês (Proficiência profissional limitada)"
+        ],
+        "certifications": [
+          "Treinamento Liderança Técnica",
+          "CSS Flexbox",
+          "Kubernetes: Pods, Services e ConfigMaps",
+          "Clean Code",
+          "JavaScript: Conhecendo o Browser e padrões de projeto"
+        ],
+        "awards": [
+          "1o lugar no Ideathon - Desafios do Ambiente Digital",
+          "2o lugar no Inovathon Sao Paulo 2020 - Cultura e Turismo"
+        ],
+        "skills": [
+          "HTML5",
+          "CSS3",
+          "TailwindCSS",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Node.js",
+          "Java",
+          "Spring Boot",
+          "Apache Kafka",
+          "Kafka Connect",
+          "MySQL",
+          "Git",
+          "GitHub Actions",
+          "Datadog RUM",
+          "Docker",
+          "Kubernetes",
+          "Firebase",
+          "Clean Code",
+          "SCRUM",
+          "RCA"
+        ],
         "sections": {
           "resume": "Resumo",
           "professionalExperience": "Experiência Profissional",
-          "skills": "Habilidades e Competências"
+          "education": "Formação",
+          "skills": "Habilidades e Competências",
+          "languages": "Idiomas",
+          "certifications": "Certificações",
+          "awards": "Prêmios e reconhecimentos"
         }
       },
       "timeline": {
@@ -105,14 +243,17 @@
           {
             "role": "Tech Lead",
             "company": "Leroy Merlin",
-            "duration": "Agosto 2024 - Presente",
+            "duration": "Agosto 2024 - Fevereiro 2026",
             "location": "São Paulo, São Paulo, Brasil",
             "responsibilities": [
-              "Planejamento e distribuição de atividades (SCRUM)",
-              "Criação de diagramas C4",
-              "Desenvolvimento de microsserviços com arquitetura orientada a eventos (EDA)",
-              "Melhorias nos processos de CI/CD com Github Actions",
-              "Suporte ao projeto com mais de 40 microsserviços"
+              "Liderança técnica sobre mais de 40 microsserviços, com apoio em decisões de arquitetura e implementação",
+              "Atuação em backend com Java e Spring Boot, incluindo estrutura de microsserviços e orientação de clean code",
+              "Suporte à arquitetura frontend, incluindo estrutura de pastas, padrões de clean code e qualidade de entrega",
+              "Apoio de infraestrutura em Google Cloud Platform e organização de ambientes de desenvolvimento e produção",
+              "Trabalho com observabilidade no Datadog, incluindo criação de monitores para erros em backend e frontend",
+              "Criação de workflows no GitHub Actions para testes unitários, feedback em pull requests, automação de deploy e melhorias de entrega",
+              "Estratégia de versionamento semântico, controle de ambientes, planejamento e demonstração de entregas",
+              "Criação de diagramas C4 e suporte técnico para iniciativas com arquitetura orientada a eventos"
             ]
           },
           {
