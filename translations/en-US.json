@@ -137,6 +137,12 @@
           "portfolioProjectBadgeDescription": "This project is part of my portfolio. It showcases my skills and may not be fully functional or optimized for production use."
         }
       },
+      "caseStudyNextStep": {
+        "eyebrow": "Let's talk",
+        "title": "Looking for someone who can turn context into delivery",
+        "description": "If you are hiring for a senior engineer or tech lead who combines technical depth, product awareness, and reliable execution, I am open to conversations.",
+        "buttonLabel": "Contact me"
+      },
       "instalacoesEReformas": {
         "title": "Instalações e Reformas",
         "description": "Case study of a service platform ecosystem at Leroy Merlin, covering partner onboarding, customer journeys, orchestration, observability, and technical leadership.",
@@ -288,6 +294,285 @@
           "eyebrow": "How I work",
           "title": "This is the kind of ownership I bring to new challenges",
           "description": "If you are hiring for a senior engineer or tech lead who can move from frontend to architecture, observability, delivery quality, and business-facing execution, this project is a strong reflection of how I work.",
+          "buttonLabel": "Contact me"
+        }
+      },
+      "markit3d": {
+        "title": "Markit3D",
+        "description": "Case study of a business-oriented website for a 3D printing company, focused on presentation, trust, and conversion.",
+        "hero": {
+          "eyebrow": "Commercial web project",
+          "subtitle": "A business website and digital presence for a 3D printing service, designed to present the offer clearly and support conversion.",
+          "summary": "This project represents a more presentation-driven type of frontend work, where structure, visual clarity, responsiveness, and brand communication were central to the final result.",
+          "highlights": [
+            "Frontend delivery",
+            "Business website",
+            "Brand presentation",
+            "Conversion focus"
+          ],
+          "logoAlt": "Markit3D wordmark"
+        },
+        "overview": {
+          "title": "Project overview",
+          "intro": "A website experience built to present a 3D printing business in a clear and commercial way.",
+          "paragraphs": [
+            "Markit3D was a business-facing project focused on communicating services, creating trust, and making the company easier to understand for potential customers.",
+            "Instead of operational ecosystem complexity, the challenge here was clarity: translating the business value into a clean digital presence that felt professional and easy to navigate."
+          ]
+        },
+        "businessProblem": {
+          "title": "Business problem",
+          "intro": "The site needed to explain the offer quickly and reduce friction for commercial contact.",
+          "paragraphs": [
+            "For a service business like 3D printing, a weak digital presentation can create confusion about capabilities, pricing expectations, or professional credibility.",
+            "The website needed to show the service clearly, make the brand look trustworthy, and help visitors move from curiosity to contact."
+          ]
+        },
+        "scopeAndComplexity": {
+          "title": "Scope and complexity",
+          "intro": "Smaller in system scale than enterprise projects, but still important in product communication and perceived quality.",
+          "paragraphs": [
+            "The scope centered on frontend structure, responsive layout, content organization, and brand presentation.",
+            "Even without a large distributed architecture, the project still required attention to flow, hierarchy, readability, and consistency across sections and devices."
+          ],
+          "items": [
+            "Service presentation and business positioning",
+            "Responsive layout and navigation clarity",
+            "Visual hierarchy to support conversion",
+            "TODO: add more specific delivery details from the original project"
+          ]
+        },
+        "myRole": {
+          "title": "My role in the project",
+          "intro": "I contributed from the frontend and presentation perspective, with attention to usability and visual organization.",
+          "paragraphs": [
+            "My role involved structuring the web experience in a way that balanced aesthetics, readability, and practical business communication.",
+            "That included implementation decisions, layout adjustments, and the kind of small UX refinements that make a commercial website feel more polished and trustworthy."
+          ],
+          "items": [
+            "Frontend implementation",
+            "Responsive layout adjustments",
+            "Visual and content organization",
+            "TODO: add the exact responsibilities and stack depth if needed"
+          ]
+        },
+        "architecture": {
+          "title": "Architecture and technologies",
+          "intro": "The technical side was lighter than a platform project, but still demanded clean structure and maintainable frontend delivery.",
+          "paragraphs": [
+            "The focus here was not on microservices or operational complexity, but on creating a solid frontend foundation that supported business presentation and ongoing iteration.",
+            "This kind of project still benefits from clear component structure, good styling discipline, and performance-aware implementation."
+          ],
+          "items": [
+            "Clean component organization",
+            "Responsive implementation for desktop and mobile",
+            "Attention to loading, layout stability, and content readability"
+          ],
+          "technologiesLabel": "Technologies and practices",
+          "technologies": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Responsive Design",
+            "Brand Presentation",
+            "Frontend UX"
+          ]
+        },
+        "contributions": {
+          "title": "Main contributions",
+          "intro": "The strongest contribution was turning business communication into a cleaner digital experience.",
+          "paragraphs": [
+            "Projects like this matter because the interface itself becomes part of how the company is perceived. Small improvements in hierarchy, structure, and clarity can have a direct effect on trust and contact intent."
+          ],
+          "items": [
+            "Improved service presentation and readability",
+            "Helped structure a more professional and cohesive frontend experience",
+            "Supported a clearer path from browsing to contact",
+            "TODO: add measurable outcomes or before/after impact if available"
+          ]
+        },
+        "challenges": {
+          "title": "Challenges",
+          "intro": "The main challenge was combining simplicity with enough detail to feel credible and useful.",
+          "paragraphs": [
+            "Commercial websites often fail when they either overload the visitor with information or stay too generic to be convincing.",
+            "This project required balancing concise messaging, brand presence, and enough clarity for users to understand the value of the service."
+          ],
+          "items": [
+            "Making the offer clear without visual overload",
+            "Keeping the site visually strong while still practical",
+            "Aligning presentation quality with business expectations"
+          ]
+        },
+        "results": {
+          "title": "Results and impact",
+          "intro": "The result was a stronger digital presence for a service business that depends on first impressions.",
+          "paragraphs": [
+            "The final experience supported a cleaner presentation of the company and its services, making the business easier to understand and more credible online.",
+            "It is also the kind of project that shows how frontend work can influence commercial perception, not just technical delivery."
+          ],
+          "items": [
+            "More professional business presentation",
+            "Clearer service communication",
+            "Better support for contact and conversion intent",
+            "TODO: add screenshots, metrics, or client feedback if available"
+          ]
+        },
+        "learnings": {
+          "title": "Learnings",
+          "intro": "This project reinforced how important frontend clarity is in business-oriented experiences.",
+          "paragraphs": [
+            "I strengthened the idea that visual quality alone is not enough. The structure must help people understand the service quickly, feel confidence, and know what to do next."
+          ],
+          "items": [
+            "Good frontend work also shapes business perception",
+            "Clear hierarchy is essential for commercial communication",
+            "Simple pages still require careful UX decisions"
+          ]
+        },
+        "nextStep": {
+          "eyebrow": "Project note",
+          "title": "This page is now structured as a real case study",
+          "description": "The current version already shows the project with a professional structure. I can still enrich it with screenshots, exact technologies, and measurable outcomes from the original delivery.",
+          "buttonLabel": "Contact me"
+        }
+      },
+      "flexSewingMachine": {
+        "title": "Flex Sewing Machine",
+        "description": "Case study about an earlier project that reflects my systems, automation, and MVP-oriented background.",
+        "hero": {
+          "eyebrow": "Systems and automation background",
+          "subtitle": "A project that reflects my earlier work around embedded thinking, MVP construction, and practical problem solving in an industrial context.",
+          "summary": "This project sits earlier in my trajectory and helps explain where part of my systems mindset came from: building practical solutions, thinking about constraints, and connecting implementation with real-world usage.",
+          "highlights": [
+            "Systems mindset",
+            "Automation context",
+            "MVP thinking",
+            "Problem solving"
+          ],
+          "logoAlt": "Flex wordmark"
+        },
+        "overview": {
+          "title": "Project overview",
+          "intro": "An earlier project that reflects my foundation in systems, automation, and practical product construction.",
+          "paragraphs": [
+            "Flex Sewing Machine is relevant in my portfolio because it shows another layer of my background beyond web platforms: structured problem solving in a more technical and product-oriented environment.",
+            "Even though the presentation here is still being expanded, the project helps tell the story of how I built my reasoning around systems, MVPs, and implementation discipline."
+          ]
+        },
+        "businessProblem": {
+          "title": "Business problem",
+          "intro": "The value of this project was in turning a practical need into a working technical solution.",
+          "paragraphs": [
+            "Projects in industrial or automation contexts usually demand direct thinking about usability, constraints, reliability, and how the solution will actually be used in practice.",
+            "That kind of environment shaped an important part of my problem-solving style before I moved deeper into modern web ecosystems."
+          ]
+        },
+        "scopeAndComplexity": {
+          "title": "Scope and complexity",
+          "intro": "Different from a large digital platform, but still rich in technical reasoning and execution trade-offs.",
+          "paragraphs": [
+            "The complexity here was less about scale and more about making a solution viable with the right balance of technical ambition and practical deliverability.",
+            "This kind of project naturally pushes you to think in MVP terms, validate assumptions quickly, and focus on what truly needs to work."
+          ],
+          "items": [
+            "Systems and automation context",
+            "MVP-oriented decision making",
+            "Practical implementation constraints",
+            "TODO: add the exact technical scope and project timeline"
+          ]
+        },
+        "myRole": {
+          "title": "My role in the project",
+          "intro": "My role connected implementation with a strong practical mindset.",
+          "paragraphs": [
+            "The project reflects a stage where I was building technical experience through execution, experimentation, and solution design closer to the product and system behavior itself.",
+            "It also shows the roots of the engineering discipline I later brought into frontend, backend, and technical leadership work."
+          ],
+          "items": [
+            "Implementation and solution building",
+            "MVP-oriented reasoning",
+            "Attention to viability and real-world use",
+            "TODO: add exact responsibilities from the original project"
+          ]
+        },
+        "architecture": {
+          "title": "Architecture and technologies",
+          "intro": "The project represents a more systems-oriented phase of my journey.",
+          "paragraphs": [
+            "At this stage, the most relevant aspect was not a modern distributed architecture, but the way the work strengthened my understanding of system behavior, technical constraints, and applied problem solving.",
+            "It also helped shape the pragmatic mindset I still use today when deciding what should be built first and what can evolve later."
+          ],
+          "items": [
+            "System-oriented implementation thinking",
+            "Attention to constraints and practical delivery",
+            "MVP framing and iterative improvement"
+          ],
+          "technologiesLabel": "Technologies and practices",
+          "technologies": [
+            "Systems",
+            "Automation",
+            "MVP",
+            "Embedded Thinking",
+            "Practical Problem Solving"
+          ]
+        },
+        "contributions": {
+          "title": "Main contributions",
+          "intro": "The main contribution was learning how to turn technical ideas into workable solutions under real constraints.",
+          "paragraphs": [
+            "This kind of experience matters because it trains engineering judgment. It forces you to think about trade-offs, feasibility, and how a solution behaves outside of ideal conditions."
+          ],
+          "items": [
+            "Helped shape my practical engineering mindset",
+            "Strengthened my ability to think in MVP increments",
+            "Built experience in structured technical problem solving",
+            "TODO: add more concrete output examples from this project"
+          ]
+        },
+        "challenges": {
+          "title": "Challenges",
+          "intro": "The challenge was working with less abstraction and more direct technical constraint.",
+          "paragraphs": [
+            "Compared to presentation-driven web projects, this kind of work usually exposes the implementation more directly to operational or physical limitations.",
+            "That creates a different kind of engineering discipline, one that depends on viability, testing, and practical judgment."
+          ],
+          "items": [
+            "Balancing feasibility and scope",
+            "Translating ideas into a workable MVP",
+            "Making technical choices under practical constraints"
+          ]
+        },
+        "results": {
+          "title": "Results and impact",
+          "intro": "The strongest long-term impact of this project is what it reveals about my foundation.",
+          "paragraphs": [
+            "Even before my more recent platform and technical leadership work, this experience already reflected the kind of structured thinking that would continue across my career.",
+            "It helps explain why I am comfortable moving between product goals, technical constraints, and implementation choices."
+          ],
+          "items": [
+            "Shows the origins of my systems-oriented mindset",
+            "Connects early technical execution with later product thinking",
+            "Strengthens the narrative breadth of the portfolio",
+            "TODO: add measurable or historical project outcomes if available"
+          ]
+        },
+        "learnings": {
+          "title": "Learnings",
+          "intro": "This project helped build the base that later supported my web and platform work.",
+          "paragraphs": [
+            "It reinforced the importance of pragmatic engineering, MVP sequencing, and designing with real constraints in mind instead of purely ideal architecture."
+          ],
+          "items": [
+            "Practical constraints sharpen technical judgment",
+            "MVP thinking is valuable far beyond startups",
+            "Systems reasoning remains useful even in modern web work"
+          ]
+        },
+        "nextStep": {
+          "eyebrow": "Project note",
+          "title": "This page now has the same case-study structure as the main projects",
+          "description": "I can still expand this project with more exact historical details, technologies, images, and outcomes if you want to deepen this part of the portfolio later.",
           "buttonLabel": "Contact me"
         }
       }

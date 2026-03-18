@@ -1,26 +1,20 @@
 'use client'
 
-import { Presentation } from 'lucide-react'
-
-import { PageContent } from '@/components/ui/page-content'
-import { PageTitle } from '@/components/ui/page-title'
-import { UnderConstructionPageAlert } from '@/components/under-construction-page-alert'
+import { ProjectCaseStudyPage } from '@/components/pages/projects/shared/project-case-study-page'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+const HERO_LOGO = '/images/customers/markit3d-wordmark.svg'
+
 export function Markit3DPageContent() {
-  const { translation } = useLanguage()
+  const { lang, translation } = useLanguage()
 
   return (
-    <>
-      <PageTitle
-        icon={Presentation}
-        title={translation.pages.projects.title}
-        description={translation.pages.projects.description}
-      />
-
-      <PageContent className="gap-4">
-        <UnderConstructionPageAlert />
-      </PageContent>
-    </>
+    <ProjectCaseStudyPage
+      lang={lang}
+      resumeButtonLabel={translation.pages.about.resume.download}
+      project={translation.pages.projects.markit3d}
+      nextStep={translation.pages.projects.caseStudyNextStep}
+      heroLogoSrc={HERO_LOGO}
+    />
   )
 }

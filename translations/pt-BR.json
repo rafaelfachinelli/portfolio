@@ -137,6 +137,12 @@
           "portfolioProjectBadgeDescription": "Este projeto faz parte do meu portfólio. Ele demonstra minhas habilidades e pode não estar totalmente funcional ou otimizado para uso em produção."
         }
       },
+      "caseStudyNextStep": {
+        "eyebrow": "Vamos conversar",
+        "title": "Em busca de alguém que transforma contexto em entrega",
+        "description": "Se você está contratando um engenheiro sênior ou tech lead que combina profundidade técnica, visão de produto e execução confiável, estou aberto a conversas.",
+        "buttonLabel": "Falar comigo"
+      },
       "instalacoesEReformas": {
         "title": "Instalações e Reformas",
         "description": "Case de um ecossistema de serviços da Leroy Merlin, cobrindo onboarding de parceiros, jornadas do cliente, orquestração, observabilidade e liderança técnica.",
@@ -288,6 +294,285 @@
           "eyebrow": "Como eu trabalho",
           "title": "Esse é o tipo de ownership que levo para novos desafios",
           "description": "Se você está contratando um engenheiro sênior ou tech lead que consegue transitar de frontend para arquitetura, observabilidade, qualidade de entrega e execução com contexto de negócio, este projeto representa bem a forma como atuo.",
+          "buttonLabel": "Falar comigo"
+        }
+      },
+      "markit3d": {
+        "title": "Markit3D",
+        "description": "Case de um site orientado a negócio para uma empresa de impressão 3D, com foco em apresentação, confiança e conversão.",
+        "hero": {
+          "eyebrow": "Projeto web comercial",
+          "subtitle": "Um site e uma presença digital para um serviço de impressão 3D, desenhados para apresentar a oferta com clareza e apoiar a conversão.",
+          "summary": "Este projeto representa um tipo de trabalho mais voltado à apresentação e ao posicionamento digital, em que estrutura, clareza visual, responsividade e comunicação de marca foram centrais para o resultado final.",
+          "highlights": [
+            "Entrega frontend",
+            "Site de negócio",
+            "Apresentação de marca",
+            "Foco em conversão"
+          ],
+          "logoAlt": "Wordmark da Markit3D"
+        },
+        "overview": {
+          "title": "Visão geral do projeto",
+          "intro": "Uma experiência web construída para apresentar um negócio de impressão 3D de forma clara e comercial.",
+          "paragraphs": [
+            "Markit3D foi um projeto voltado à apresentação do negócio, com foco em comunicar serviços, gerar confiança e tornar a empresa mais compreensível para potenciais clientes.",
+            "Em vez da complexidade operacional de um ecossistema enterprise, o desafio aqui estava na clareza: transformar a proposta de valor em uma presença digital limpa, profissional e fácil de navegar."
+          ]
+        },
+        "businessProblem": {
+          "title": "Problema de negócio",
+          "intro": "O site precisava explicar a oferta rapidamente e reduzir atrito para o contato comercial.",
+          "paragraphs": [
+            "Para um negócio de serviços como impressão 3D, uma apresentação digital fraca pode gerar dúvida sobre capacidades, expectativa de preço ou credibilidade profissional.",
+            "O site precisava mostrar o serviço com clareza, transmitir confiança e ajudar o visitante a sair da curiosidade para o contato."
+          ]
+        },
+        "scopeAndComplexity": {
+          "title": "Escopo e complexidade",
+          "intro": "Menor em escala sistêmica do que projetos enterprise, mas ainda importante em comunicação de produto e percepção de qualidade.",
+          "paragraphs": [
+            "O escopo se concentrou em estrutura frontend, layout responsivo, organização de conteúdo e apresentação da marca.",
+            "Mesmo sem uma arquitetura distribuída grande, o projeto exigia atenção a fluxo, hierarquia, legibilidade e consistência entre seções e dispositivos."
+          ],
+          "items": [
+            "Apresentação de serviço e posicionamento comercial",
+            "Layout responsivo e clareza de navegação",
+            "Hierarquia visual para apoiar conversão",
+            "TODO: adicionar detalhes mais específicos da entrega original"
+          ]
+        },
+        "myRole": {
+          "title": "Meu papel no projeto",
+          "intro": "Contribuí pela perspectiva de frontend e apresentação, com atenção à usabilidade e à organização visual.",
+          "paragraphs": [
+            "Meu papel envolveu estruturar a experiência web de forma a equilibrar estética, legibilidade e comunicação prática do negócio.",
+            "Isso incluiu decisões de implementação, ajustes de layout e os refinamentos de UX que fazem um site comercial parecer mais polido e confiável."
+          ],
+          "items": [
+            "Implementação frontend",
+            "Ajustes de layout responsivo",
+            "Organização visual e de conteúdo",
+            "TODO: adicionar responsabilidades exatas e profundidade de stack, se necessário"
+          ]
+        },
+        "architecture": {
+          "title": "Arquitetura e tecnologias",
+          "intro": "O lado técnico foi mais leve do que em um projeto de plataforma, mas ainda exigiu estrutura limpa e entrega frontend sustentável.",
+          "paragraphs": [
+            "O foco aqui não era microserviços ou complexidade operacional, mas criar uma base frontend sólida que sustentasse a apresentação do negócio e futuras iterações.",
+            "Esse tipo de projeto também se beneficia de boa estrutura de componentes, disciplina visual e implementação atenta a performance."
+          ],
+          "items": [
+            "Organização limpa de componentes",
+            "Implementação responsiva para desktop e mobile",
+            "Atenção a carregamento, estabilidade de layout e legibilidade"
+          ],
+          "technologiesLabel": "Tecnologias e práticas",
+          "technologies": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Design Responsivo",
+            "Apresentação de Marca",
+            "UX de Frontend"
+          ]
+        },
+        "contributions": {
+          "title": "Principais contribuições",
+          "intro": "A contribuição mais forte foi transformar a comunicação de negócio em uma experiência digital mais clara.",
+          "paragraphs": [
+            "Projetos assim importam porque a interface faz parte de como a empresa é percebida. Pequenas melhorias em hierarquia, estrutura e clareza podem influenciar diretamente confiança e intenção de contato."
+          ],
+          "items": [
+            "Melhoria na apresentação do serviço e na legibilidade",
+            "Apoio na construção de uma experiência frontend mais profissional e coesa",
+            "Suporte a um caminho mais claro entre navegação e contato",
+            "TODO: adicionar resultados mensuráveis ou impacto antes/depois se estiver disponível"
+          ]
+        },
+        "challenges": {
+          "title": "Desafios",
+          "intro": "O principal desafio foi combinar simplicidade com detalhe suficiente para gerar credibilidade.",
+          "paragraphs": [
+            "Sites comerciais costumam falhar quando ou sobrecarregam o visitante de informação ou ficam genéricos demais para convencer.",
+            "Este projeto exigiu equilíbrio entre mensagem concisa, presença de marca e clareza suficiente para que o usuário entendesse o valor do serviço."
+          ],
+          "items": [
+            "Tornar a oferta clara sem excesso visual",
+            "Manter o site forte visualmente e ao mesmo tempo prático",
+            "Alinhar qualidade de apresentação com expectativa de negócio"
+          ]
+        },
+        "results": {
+          "title": "Resultados e impacto",
+          "intro": "O resultado foi uma presença digital mais forte para um negócio de serviço que depende de primeira impressão.",
+          "paragraphs": [
+            "A experiência final apoiou uma apresentação mais clara da empresa e de seus serviços, tornando o negócio mais compreensível e mais confiável no ambiente digital.",
+            "É também o tipo de projeto que mostra como o frontend influencia percepção comercial, não apenas entrega técnica."
+          ],
+          "items": [
+            "Apresentação de negócio mais profissional",
+            "Comunicação de serviço mais clara",
+            "Melhor apoio ao contato e à intenção de conversão",
+            "TODO: adicionar screenshots, métricas ou feedback do cliente, se disponível"
+          ]
+        },
+        "learnings": {
+          "title": "Aprendizados",
+          "intro": "Este projeto reforçou como clareza frontend é importante em experiências orientadas a negócio.",
+          "paragraphs": [
+            "Fortaleceu em mim a ideia de que qualidade visual sozinha não basta. A estrutura precisa ajudar as pessoas a entender o serviço rapidamente, ganhar confiança e saber qual é o próximo passo."
+          ],
+          "items": [
+            "Bom frontend também molda percepção de negócio",
+            "Hierarquia clara é essencial para comunicação comercial",
+            "Páginas simples ainda exigem decisões cuidadosas de UX"
+          ]
+        },
+        "nextStep": {
+          "eyebrow": "Nota do projeto",
+          "title": "Esta página agora tem estrutura de case real",
+          "description": "A versão atual já apresenta o projeto com estrutura profissional. Ainda posso enriquecê-la com screenshots, tecnologias exatas e resultados mensuráveis da entrega original.",
+          "buttonLabel": "Falar comigo"
+        }
+      },
+      "flexSewingMachine": {
+        "title": "Flex Sewing Machine",
+        "description": "Case sobre um projeto anterior que reflete minha base em sistemas, automação e construção orientada a MVP.",
+        "hero": {
+          "eyebrow": "Base em sistemas e automação",
+          "subtitle": "Um projeto que reflete uma fase anterior da minha trajetória, conectada a pensamento embarcado, construção de MVP e resolução prática de problemas em contexto industrial.",
+          "summary": "Este projeto está em uma fase mais antiga da minha trajetória e ajuda a explicar de onde veio parte do meu raciocínio de sistemas: construir soluções práticas, pensar em restrições e conectar implementação com uso real.",
+          "highlights": [
+            "Mentalidade de sistemas",
+            "Contexto de automação",
+            "Visão de MVP",
+            "Resolução de problemas"
+          ],
+          "logoAlt": "Wordmark da Flex"
+        },
+        "overview": {
+          "title": "Visão geral do projeto",
+          "intro": "Um projeto anterior que reflete minha base em sistemas, automação e construção prática de produto.",
+          "paragraphs": [
+            "Flex Sewing Machine é relevante no meu portfólio porque mostra outra camada da minha trajetória além de plataformas web: resolução estruturada de problemas em um ambiente mais técnico e próximo ao produto.",
+            "Mesmo com esta apresentação ainda em expansão, o projeto ajuda a contar como construí minha base de raciocínio em sistemas, MVP e disciplina de implementação."
+          ]
+        },
+        "businessProblem": {
+          "title": "Problema de negócio",
+          "intro": "O valor desse projeto estava em transformar uma necessidade prática em uma solução técnica funcional.",
+          "paragraphs": [
+            "Projetos em contexto industrial ou de automação normalmente exigem pensamento direto sobre usabilidade, restrições, confiabilidade e sobre como a solução será usada na prática.",
+            "Esse tipo de ambiente moldou uma parte importante do meu estilo de resolução de problemas antes de eu migrar com mais profundidade para ecossistemas web modernos."
+          ]
+        },
+        "scopeAndComplexity": {
+          "title": "Escopo e complexidade",
+          "intro": "Diferente de uma grande plataforma digital, mas ainda rico em raciocínio técnico e trade-offs de execução.",
+          "paragraphs": [
+            "A complexidade aqui estava menos na escala e mais em tornar a solução viável com o equilíbrio certo entre ambição técnica e entrega prática.",
+            "Esse tipo de projeto naturalmente leva a pensar em MVP, validar hipóteses rapidamente e focar no que realmente precisa funcionar."
+          ],
+          "items": [
+            "Contexto de sistemas e automação",
+            "Tomada de decisão orientada a MVP",
+            "Restrições práticas de implementação",
+            "TODO: adicionar escopo técnico exato e linha do tempo do projeto"
+          ]
+        },
+        "myRole": {
+          "title": "Meu papel no projeto",
+          "intro": "Meu papel conectava implementação com uma mentalidade fortemente prática.",
+          "paragraphs": [
+            "O projeto reflete uma fase em que eu estava construindo experiência técnica por meio de execução, experimentação e desenho de solução mais próximos do comportamento do sistema e do produto.",
+            "Também mostra a origem da disciplina de engenharia que depois levei para frontend, backend e liderança técnica."
+          ],
+          "items": [
+            "Implementação e construção da solução",
+            "Raciocínio orientado a MVP",
+            "Atenção à viabilidade e ao uso real",
+            "TODO: adicionar responsabilidades exatas do projeto original"
+          ]
+        },
+        "architecture": {
+          "title": "Arquitetura e tecnologias",
+          "intro": "O projeto representa uma fase mais orientada a sistemas na minha trajetória.",
+          "paragraphs": [
+            "Nesse momento, o aspecto mais relevante não era uma arquitetura distribuída moderna, mas a forma como o trabalho fortaleceu minha compreensão sobre comportamento de sistemas, restrições técnicas e resolução aplicada de problemas.",
+            "Também ajudou a formar a mentalidade pragmática que ainda uso hoje ao decidir o que precisa ser construído primeiro e o que pode evoluir depois."
+          ],
+          "items": [
+            "Pensamento de implementação orientado a sistemas",
+            "Atenção a restrições e entrega prática",
+            "Enquadramento em MVP e melhoria iterativa"
+          ],
+          "technologiesLabel": "Tecnologias e práticas",
+          "technologies": [
+            "Sistemas",
+            "Automação",
+            "MVP",
+            "Pensamento Embarcado",
+            "Resolução Prática de Problemas"
+          ]
+        },
+        "contributions": {
+          "title": "Principais contribuições",
+          "intro": "A principal contribuição foi aprender a transformar ideias técnicas em soluções viáveis sob restrições reais.",
+          "paragraphs": [
+            "Esse tipo de experiência importa porque treina julgamento de engenharia. Obriga a pensar sobre trade-offs, viabilidade e como a solução se comporta fora de condições ideais."
+          ],
+          "items": [
+            "Ajudou a formar minha mentalidade prática de engenharia",
+            "Fortaleceu minha capacidade de pensar em incrementos de MVP",
+            "Construiu experiência em resolução estruturada de problemas técnicos",
+            "TODO: adicionar exemplos mais concretos de entregas desse projeto"
+          ]
+        },
+        "challenges": {
+          "title": "Desafios",
+          "intro": "O desafio era trabalhar com menos abstração e mais restrição técnica direta.",
+          "paragraphs": [
+            "Comparado a projetos web orientados à apresentação, esse tipo de trabalho costuma expor a implementação mais diretamente a limitações operacionais ou físicas.",
+            "Isso cria uma disciplina de engenharia diferente, baseada em viabilidade, testes e julgamento prático."
+          ],
+          "items": [
+            "Equilibrar viabilidade e escopo",
+            "Transformar ideias em um MVP funcional",
+            "Tomar decisões técnicas sob restrições práticas"
+          ]
+        },
+        "results": {
+          "title": "Resultados e impacto",
+          "intro": "O impacto de longo prazo mais forte desse projeto está no que ele revela sobre minha base técnica.",
+          "paragraphs": [
+            "Mesmo antes dos meus trabalhos mais recentes em plataforma e liderança técnica, essa experiência já refletia o tipo de pensamento estruturado que seguiria comigo ao longo da carreira.",
+            "Ela ajuda a explicar por que hoje me sinto confortável em transitar entre objetivos de produto, restrições técnicas e escolhas de implementação."
+          ],
+          "items": [
+            "Mostra a origem da minha mentalidade orientada a sistemas",
+            "Conecta execução técnica inicial com minha visão posterior de produto",
+            "Fortalece a amplitude narrativa do portfólio",
+            "TODO: adicionar resultados mensuráveis ou históricos, se disponíveis"
+          ]
+        },
+        "learnings": {
+          "title": "Aprendizados",
+          "intro": "Esse projeto ajudou a construir a base que depois sustentou meu trabalho em web e plataformas.",
+          "paragraphs": [
+            "Reforçou a importância de engenharia pragmática, sequenciamento em MVP e desenho de solução com restrições reais em mente, e não apenas arquitetura ideal."
+          ],
+          "items": [
+            "Restrições práticas refinam julgamento técnico",
+            "Pensamento de MVP é valioso muito além de startups",
+            "Raciocínio de sistemas continua útil até em trabalho web moderno"
+          ]
+        },
+        "nextStep": {
+          "eyebrow": "Nota do projeto",
+          "title": "Esta página agora tem a mesma estrutura de case dos projetos principais",
+          "description": "Ainda posso expandir este projeto com mais detalhes históricos, tecnologias exatas, imagens e resultados, caso você queira aprofundar essa parte do portfólio depois.",
           "buttonLabel": "Falar comigo"
         }
       }
