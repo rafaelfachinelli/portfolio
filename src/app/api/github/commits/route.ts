@@ -17,6 +17,7 @@ export async function GET(request: Request) {
     const response = await fetch(
       `https://api.github.com/repos/${GITHUB_USERNAME}/${repo}/commits?per_page=1`,
       {
+        next: { revalidate: 3600 },
         headers: {
           Accept: 'application/vnd.github.v3+json',
           ...(process.env.GITHUB_TOKEN && {

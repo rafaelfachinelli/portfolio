@@ -14,7 +14,7 @@ This project is a personal portfolio website built using modern web technologies
 
 ## Folder Structure
 
-- **dictionaries/**: Contains JSON files for internationalization (e.g., `en-US.json`, `pt-BR.json`).
+- **translations/**: JSON files with all site copy (`en-US.json`, `pt-BR.json`). Timeline, resume and home texts live here; keep both files with the same keys.
 - **public/**: Static assets like images.
 - **src/**: Main source code, including middleware, app pages, components, and utility functions.
 - **app/**: Houses the main application logic, including layouts and pages.
@@ -55,6 +55,14 @@ Refer to the [ShadCN UI documentation](https://ui.shadcn.com/) for more details 
 - `npm start`: Runs the production server.
 - `npm run lint`: Lints the codebase.
 
+## Environment variables
+
+Copy `.env.example` to `.env.local`. `RESEND_API_KEY` enables the contact form (`/api/contact`); without it the form returns an error. `GITHUB_TOKEN` is optional and raises the GitHub API rate limit.
+
+## SEO
+
+Page metadata comes from `src/lib/seo.ts` (`buildPageMetadata`), used by each `page.tsx`. `src/app/sitemap.ts`, `src/app/robots.ts` and `src/app/[lang]/opengraph-image.tsx` are generated. When adding a page, also add its path to `SITE_PATHS`.
+
 ## Debugging
 
 A VS Code launch configuration is available to debug the Node.js server in development mode.
@@ -69,4 +77,4 @@ Prettier is configured for consistent code formatting. Format-on-save is enabled
 
 ## Author
 
-This project is maintained by Rafael, who is using Linux as the development environment.
+This project is maintained by Rafael. Note: `npm start` uses `NODE_ENV=production` inline syntax, so on Windows run it from Git Bash.

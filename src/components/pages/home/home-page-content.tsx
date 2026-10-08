@@ -1,7 +1,7 @@
 'use client'
 
 import type { Variants } from 'framer-motion'
-import { BriefcaseBusiness, Building2, FolderKanban, Network } from 'lucide-react'
+import { Award, BriefcaseBusiness, Network, Users } from 'lucide-react'
 
 import { PageContent } from '@/components/ui/page-content'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -15,13 +15,15 @@ import { HomeProjectsSection } from './home-projects-section'
 import { HomeResumeCard } from './home-resume-card'
 
 const EXPERIENCE_START_DATE = '2021-02-22'
+const TECH_LEAD_START_DATE = '2024-08-01'
 
-function getYearsOfExperience(fromDate: string) {
+function getFullYearsSince(fromDate: string) {
   const start = new Date(`${fromDate}T00:00:00`)
   const now = new Date()
-  const years = (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 365.2425)
+  const years =
+    (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 365.2425)
 
-  return Math.max(0, years)
+  return Math.max(0, Math.floor(years))
 }
 
 export function HomePageContent() {
@@ -31,7 +33,8 @@ export function HomePageContent() {
   const [beforePlaceholder, afterPlaceholder] =
     personalitiesText.split('{personality}')
   const home = translation.pages.home
-  const yearsOfExperience = getYearsOfExperience(EXPERIENCE_START_DATE)
+  const yearsOfExperience = getFullYearsSince(EXPERIENCE_START_DATE)
+  const yearsAsTechLead = getFullYearsSince(TECH_LEAD_START_DATE)
 
   const metrics = [
     {
@@ -40,7 +43,7 @@ export function HomePageContent() {
         <CountUpMetricValue
           endValue={yearsOfExperience}
           lang={lang}
-          decimals={1}
+          decimals={0}
           suffix="+"
         />
       ),
@@ -48,12 +51,17 @@ export function HomePageContent() {
       description: home.metrics.yearsExperience.description,
     },
     {
-      icon: FolderKanban,
+      icon: Users,
       value: (
-        <CountUpMetricValue endValue={30} lang={lang} decimals={0} suffix="+" />
+        <CountUpMetricValue
+          endValue={yearsAsTechLead}
+          lang={lang}
+          decimals={0}
+          suffix="+"
+        />
       ),
-      label: home.metrics.repositories.label,
-      description: home.metrics.repositories.description,
+      label: home.metrics.techLeadYears.label,
+      description: home.metrics.techLeadYears.description,
     },
     {
       icon: Network,
@@ -64,10 +72,10 @@ export function HomePageContent() {
       description: home.metrics.microservices.description,
     },
     {
-      icon: Building2,
-      value: <CountUpMetricValue endValue={3} lang={lang} decimals={0} />,
-      label: home.metrics.clients.label,
-      description: home.metrics.clients.description,
+      icon: Award,
+      value: <CountUpMetricValue endValue={2} lang={lang} decimals={0} />,
+      label: home.metrics.awards.label,
+      description: home.metrics.awards.description,
     },
   ]
 
