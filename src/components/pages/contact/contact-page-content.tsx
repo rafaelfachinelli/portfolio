@@ -34,7 +34,10 @@ import {
 } from '@/components/ui/tooltip'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const MIN_LENGTH = 5
+const MIN_NAME_LENGTH = 2
+const MIN_MESSAGE_LENGTH = 5
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const CONTACT_EMAIL = 'rafael.l.a.fachinelli@gmail.com'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -63,46 +66,71 @@ export function ContactPageContent() {
     name: '',
     email: '',
     message: '',
+    website: '',
   })
+  const [status, setStatus] = useState<
+    'idle' | 'sending' | 'success' | 'error'
+  >('idle')
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { id, value } = e.target
+    setStatus('idle')
     setFormData(prev => ({
       ...prev,
       [id]: value.trimStart(),
     }))
   }
 
-  const validateField = (value: string) => {
-    const trimmed = value.trim()
-    return trimmed.length >= MIN_LENGTH
-  }
+  const isNameValid = formData.name.trim().length >= MIN_NAME_LENGTH
+  const isEmailFilled = formData.email.trim().length > 0
+  const isEmailValid = EMAIL_REGEX.test(formData.email.trim())
+  const isMessageValid = formData.message.trim().length >= MIN_MESSAGE_LENGTH
 
   const isFormValid =
-    validateField(formData.name) &&
-    validateField(formData.email) &&
-    validateField(formData.message)
+    isNameValid && isEmailValid && isMessageValid && status !== 'sending'
 
   const getValidationMessage = () => {
-    if (!validateField(formData.name)) {
+    if (!isNameValid) {
       return translation.pages.contact.form.validation.name
     }
 
-    if (!validateField(formData.email)) {
+    if (!isEmailFilled) {
       return translation.pages.contact.form.validation.email
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    if (!isEmailValid) {
       return translation.pages.contact.form.validation.emailInvalid
     }
 
-    if (!validateField(formData.message)) {
+    if (!isMessageValid) {
       return translation.pages.contact.form.validation.message
     }
 
     return translation.pages.contact.form.validation.send
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!isFormValid) return
+
+    setStatus('sending')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) throw new Error('Request failed')
+
+      setFormData({ name: '', email: '', message: '', website: '' })
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -141,11 +169,11 @@ export function ContactPageContent() {
                   Ferraz de Vasconcelos - SP, Brazil
                 </Link>
                 <Link
-                  href="mailto:rafaelfachinelli@gmail.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="flex items-center gap-2 transition-colors duration-200 hover:text-amber-500"
                 >
                   <Mail className="h-5 w-5 text-amber-500" />
-                  rafael.fachinelli@hotmail.com
+                  {CONTACT_EMAIL}
                 </Link>
                 <Link
                   href="https://www.linkedin.com/in/rafaelfachinelli/"
@@ -190,7 +218,18 @@ export function ContactPageContent() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  {/* Honeypot field: hidden from users, filled only by bots */}
+                  <input
+                    id="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                    value={formData.website}
+                    onChange={handleInputChange}
+                  />
                   <motion.div
                     className="space-y-2"
                     whileFocus={{ scale: 1.02 }}
@@ -250,7 +289,7 @@ export function ContactPageContent() {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      minLength={MIN_LENGTH}
+                      minLength={MIN_MESSAGE_LENGTH}
                     />
                   </motion.div>
                   <TooltipProvider>
@@ -276,13 +315,27 @@ export function ContactPageContent() {
                             disabled={!isFormValid}
                           >
                             <Send className="mr-2 h-4 w-4" />
-                            {translation.pages.contact.form.submit}
+                            {status === 'sending'
+                              ? translation.pages.contact.form.sending
+                              : translation.pages.contact.form.submit}
                           </Button>
                         </motion.div>
                       </TooltipTrigger>
                       <TooltipContent>{getValidationMessage()}</TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
+                  <div aria-live="polite" className="min-h-6 text-sm">
+                    {status === 'success' && (
+                      <p className="text-green-600 dark:text-green-400">
+                        {translation.pages.contact.form.success}
+                      </p>
+                    )}
+                    {status === 'error' && (
+                      <p className="text-red-600 dark:text-red-400">
+                        {translation.pages.contact.form.error}
+                      </p>
+                    )}
+                  </div>
                 </form>
               </CardContent>
             </Card>

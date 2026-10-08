@@ -2,86 +2,101 @@
   "pages": {
     "home": {
       "title": "Olá, eu sou Rafael Fachinelli",
-      "description": "Engenheiro de software sênior e tech lead com foco em entrega confiável e impacto no produto.",
+      "description": "Tech Lead e engenheiro de software com foco em arquitetura, entrega confiável e impacto no produto.",
       "intro": "Olá, eu sou Rafael Fachinelli.",
-      "eyebrow": "Engenheiro de software sênior",
-      "availability": "Aberto a conversas sobre vagas sênior de frontend, full-stack e tech lead",
+      "eyebrow": "Tech Lead & Engenheiro de Software",
+      "availability": "Aberto a conversas sobre posições de tech lead e engenharia full-stack",
       "personalities": "Levo {personality} para produtos, times e entregas",
-      "heroTitle": "Construo plataformas web confiáveis e ajudo times a entregar com segurança.",
-      "heroSubtitle": "Tech Lead com forte experiência em frontend, evolução de plataforma e entrega de produtos com times multidisciplinares.",
-      "heroSupporting": "Experiência forte com React, Next.js, TypeScript, Java, CI/CD, observabilidade, arquitetura limpa e comunicação com públicos técnicos e de negócio.",
+      "heroTitle": "Tech Lead que escreve código: React, Java e sistemas distribuídos em escala.",
+      "heroSubtitle": "Atuação hands-on em grandes operações de varejo e commerce, incluindo a liderança técnica de um ecossistema com mais de 40 microsserviços.",
+      "heroSupporting": "Stack: React, Next.js, TypeScript, Java, Spring Boot, Kafka, GCP, Datadog e GitHub Actions. Decisões documentadas com ADRs e diagramas C4.",
       "viewProjectsButton": "Explorar projetos",
       "viewResumeButton": "Baixar currículo",
       "resumeCardTitle": "Currículo e resumo da trajetória",
-      "resumeCardDescription": "Abra minha página de currículo para baixar o PDF e revisar os principais pontos da minha trajetória profissional.",
+      "resumeCardDescription": "Baixe o PDF do meu currículo ou veja a trajetória completa na página de currículo.",
       "metrics": {
         "yearsExperience": {
-          "value": "7+",
+          "value": "5+",
           "label": "Anos de experiência",
-          "description": "De sites e produtos digitais a plataformas internas escaláveis e liderança de entrega."
+          "description": "Em desenvolvimento de software, do júnior ao tech lead."
         },
-        "repositories": {
-          "value": "30+",
-          "label": "Repositórios públicos",
-          "description": "Um histórico prático no GitHub com projetos de portfólio, experimentos e aprendizado contínuo."
+        "techLeadYears": {
+          "value": "2+",
+          "label": "Anos como tech lead",
+          "description": "Liderança técnica, decisões de arquitetura e apoio direto ao time."
         },
         "microservices": {
           "value": "40+",
-          "label": "Microsserviços acompanhados",
-          "description": "Atuação em ambientes distribuídos com responsabilidade técnica, operacional e de entrega."
+          "label": "Microsserviços sob liderança técnica",
+          "description": "Ecossistema distribuído de Instalações e Reformas na Leroy Merlin."
         },
-        "clients": {
-          "value": "3",
-          "label": "Marcas relevantes",
-          "description": "Experiência contribuindo para produtos e iniciativas digitais de empresas reconhecidas."
+        "awards": {
+          "value": "2",
+          "label": "Prêmios em eventos de inovação",
+          "description": "1º lugar no Ideathon e 2º lugar no Inovathon São Paulo, ambos em 2020."
         }
       },
-      "clientsEyebrow": "Experiência validada",
-      "clientsTitle": "Marcas e projetos que ajudam a contar a trajetória",
-      "clientsSubtitle": "Uma combinação de entrega enterprise, execução de produto e engenharia com visibilidade direta para o negócio.",
+      "clientsEyebrow": "Experiência",
+      "clientsTitle": "Onde construí minha trajetória",
+      "clientsSubtitle": "Varejo, serviços digitais e automação industrial: contextos diferentes, a mesma preocupação com entrega confiável.",
       "clients": {
         "leroyMerlin": {
           "name": "Leroy Merlin",
-          "description": "Liderança técnica e suporte de engenharia para o ecossistema de Instalações e Reformas e outras operações digitais em grande escala."
+          "description": "De desenvolvedor júnior a tech lead: React, Java/Spring Boot e o ecossistema de Instalações e Reformas."
         },
         "markit3d": {
           "name": "Markit3D",
-          "description": "Presença digital e entrega web para um negócio de impressão 3D com foco comercial claro."
+          "description": "Site comercial para um negócio de impressão 3D, com foco em apresentação do serviço e contato."
         },
         "flex": {
           "name": "Flex",
-          "description": "Sistemas, software embarcado e visão de MVP conectados a contextos industriais e de automação."
+          "description": "Sistemas, software embarcado em C/C++ e desenvolvimento de MVP em contexto industrial."
         }
       },
       "projectsEyebrow": "Projetos em destaque",
       "projectsTitle": "Projetos que mostram amplitude técnica e contexto de negócio",
-      "projectsOverview": "Uma seleção rápida para recrutadores entenderem minha combinação de produto, profundidade técnica e responsabilidade de entrega.",
+      "projectsOverview": "Um case profundo de liderança técnica e dois projetos que mostram minha base em web e sistemas.",
       "featuredProjects": {
         "instalacoesEReformas": {
           "title": "Instalações e Reformas",
           "description": "Case sobre liderança técnica em um ecossistema de serviços com onboarding de parceiros, orquestração, observabilidade e qualidade de entrega.",
-          "tags": ["Tech Lead", "React", "Spring Boot", "GCP"]
+          "tags": [
+            "Tech Lead",
+            "React",
+            "Spring Boot",
+            "GCP"
+          ]
         },
         "markit3d": {
           "title": "Markit3D",
           "description": "Experiência web orientada a negócio para um serviço de impressão 3D, com foco em apresentação e conversão.",
-          "tags": ["Landing Page", "Frontend", "Marca", "Conversão"]
+          "tags": [
+            "Landing Page",
+            "Frontend",
+            "Marca",
+            "Conversão"
+          ]
         },
         "flexSewingMachine": {
           "title": "Flex Sewing Machine",
           "description": "Projeto que reflete minha base em sistemas e automação, incluindo visão de produto e construção de MVP.",
-          "tags": ["Automação", "Embarcados", "MVP", "Sistemas"]
+          "tags": [
+            "Automação",
+            "Embarcados",
+            "MVP",
+            "Sistemas"
+          ]
         }
       },
       "viewProjectDetailsButton": "Ver detalhes do projeto",
       "viewAllProjectsButton": "Ver todos os projetos",
       "aboutEyebrow": "Perfil",
-      "aboutMeTitle": "Um perfil sênior com profundidade técnica e responsabilidade por entrega",
-      "aboutMeOverview": "Uno execução hands-on com orientação de time, documentação, observabilidade e capacidade de manter entregas avançando com clareza.",
+      "aboutMeTitle": "Tech Lead hands-on, do código à decisão de arquitetura",
+      "aboutMeOverview": "Combino trabalho próximo ao código com liderança técnica, documentação de decisões, observabilidade e qualidade de entrega.",
       "viewAboutButton": "Ler mais sobre mim",
       "contactEyebrow": "Vamos conversar",
-      "contactTitle": "Disponível para o próximo desafio forte",
-      "contactOverview": "Se você está contratando para uma posição sênior de engenharia ou tech lead, estou aberto a conversas sobre impacto, ownership e qualidade de produto no longo prazo.",
+      "contactTitle": "Tem uma vaga ou projeto em mente?",
+      "contactOverview": "Se você busca um tech lead ou engenheiro full-stack com experiência em sistemas distribuídos e entrega em varejo, me mande uma mensagem.",
       "contactButton": "Falar comigo"
     },
     "projects": {
@@ -154,9 +169,9 @@
           "temporalMarkDate": "2026-02-06",
           "highlights": [
             "40+ microsserviços",
-            "Atuação como tech lead",
-            "React + Spring Boot",
-            "Observabilidade e CI/CD"
+            "Time de cerca de 12 pessoas",
+            "Cobertura de testes de 0 a 80%+",
+            "React + Spring Boot"
           ],
           "logoAlt": "Logo da Leroy Merlin"
         },
@@ -198,6 +213,7 @@
             "Também apoiei decisões técnicas, ajudei a organizar codebases e estruturas de pastas, contribuí para padrões de engenharia mais limpos e trabalhei com o time para manter o ecossistema sustentável enquanto as entregas continuavam avançando."
           ],
           "items": [
+            "Liderança técnica de um time multidisciplinar de cerca de 12 pessoas: 2 front-ends, 2 back-ends, 2 full-stacks, 1 estagiário, PM, PO, agilista e QA",
             "Liderança técnica para evolução do serviço e entregas entre times",
             "Contribuição hands-on em aplicações frontend com React e Next.js",
             "Apoio em backend com microsserviços Java e Spring Boot",
@@ -262,14 +278,14 @@
           "title": "Resultados e impacto",
           "intro": "O impacto apareceu na maturidade de entrega, na confiabilidade técnica e em um ecossistema mais estruturado.",
           "paragraphs": [
-            "O trabalho ajudou a fortalecer a qualidade dos releases, aumentar a visibilidade sobre falhas e melhorar a base de engenharia por trás da experiência de serviços. Isso criou melhores condições para escalar o ecossistema e sustentar a evolução contínua do produto.",
+            "Quando assumi a liderança técnica, as plataformas eram instáveis e os incidentes eram recorrentes, praticamente toda semana, a ponto de o time de negócio criar figurinhas para brincar com a situação no WhatsApp. Com testes automatizados, observabilidade e disciplina de release, esse ritmo caiu para algo em torno de um incidente a cada três meses (estimativa).",
             "Tão importante quanto isso, o projeto consolidou minha capacidade de conectar qualidade de código, decisões de plataforma e realidade operacional em um ambiente com forte visibilidade para o negócio."
           ],
           "items": [
+            "Incidentes de recorrência quase semanal passaram a acontecer aproximadamente a cada três meses (estimativa)",
+            "Várias aplicações saíram de cobertura de testes zero para mais de 80%",
             "Mais disciplina de release com workflows e versionamento mais claros",
-            "Melhor monitoramento e visibilidade mais rápida sobre problemas de backend e frontend",
-            "Padrões técnicos mais fortes para implementação frontend e backend",
-            "Mais confiança nas entregas em um ecossistema de serviços crítico para o negócio"
+            "Monitoramento melhor e visibilidade mais rápida sobre problemas de backend e frontend"
           ]
         },
         "learnings": {
@@ -338,8 +354,7 @@
           "items": [
             "Apresentação de serviço e posicionamento comercial",
             "Layout responsivo e clareza de navegação",
-            "Hierarquia visual para apoiar conversão",
-            "TODO: adicionar detalhes mais específicos da entrega original"
+            "Hierarquia visual para apoiar conversão"
           ]
         },
         "myRole": {
@@ -352,8 +367,7 @@
           "items": [
             "Implementação frontend",
             "Ajustes de layout responsivo",
-            "Organização visual e de conteúdo",
-            "TODO: adicionar responsabilidades exatas e profundidade de stack, se necessário"
+            "Organização visual e de conteúdo"
           ]
         },
         "architecture": {
@@ -387,8 +401,7 @@
           "items": [
             "Melhoria na apresentação do serviço e na legibilidade",
             "Apoio na construção de uma experiência frontend mais profissional e coesa",
-            "Suporte a um caminho mais claro entre navegação e contato",
-            "TODO: adicionar resultados mensuráveis ou impacto antes/depois se estiver disponível"
+            "Suporte a um caminho mais claro entre navegação e contato"
           ]
         },
         "challenges": {
@@ -414,8 +427,7 @@
           "items": [
             "Apresentação de negócio mais profissional",
             "Comunicação de serviço mais clara",
-            "Melhor apoio ao contato e à intenção de conversão",
-            "TODO: adicionar screenshots, métricas ou feedback do cliente, se disponível"
+            "Melhor apoio ao contato e à intenção de conversão"
           ]
         },
         "learnings": {
@@ -431,9 +443,9 @@
           ]
         },
         "nextStep": {
-          "eyebrow": "Nota do projeto",
-          "title": "Esta página agora tem estrutura de case real",
-          "description": "A versão atual já apresenta o projeto com estrutura profissional. Ainda posso enriquecê-la com screenshots, tecnologias exatas e resultados mensuráveis da entrega original.",
+          "eyebrow": "Como eu trabalho",
+          "title": "Clareza e cuidado com o usuário, mesmo em projetos menores",
+          "description": "Seja um site comercial ou uma plataforma distribuída, busco entender o contexto de negócio antes de decidir como construir. Vamos conversar?",
           "buttonLabel": "Falar comigo"
         }
       },
@@ -478,8 +490,7 @@
           "items": [
             "Contexto de sistemas e automação",
             "Tomada de decisão orientada a MVP",
-            "Restrições práticas de implementação",
-            "TODO: adicionar escopo técnico exato e linha do tempo do projeto"
+            "Restrições práticas de implementação"
           ]
         },
         "myRole": {
@@ -492,8 +503,7 @@
           "items": [
             "Implementação e construção da solução",
             "Raciocínio orientado a MVP",
-            "Atenção à viabilidade e ao uso real",
-            "TODO: adicionar responsabilidades exatas do projeto original"
+            "Atenção à viabilidade e ao uso real"
           ]
         },
         "architecture": {
@@ -526,8 +536,7 @@
           "items": [
             "Ajudou a formar minha mentalidade prática de engenharia",
             "Fortaleceu minha capacidade de pensar em incrementos de MVP",
-            "Construiu experiência em resolução estruturada de problemas técnicos",
-            "TODO: adicionar exemplos mais concretos de entregas desse projeto"
+            "Construiu experiência em resolução estruturada de problemas técnicos"
           ]
         },
         "challenges": {
@@ -553,8 +562,7 @@
           "items": [
             "Mostra a origem da minha mentalidade orientada a sistemas",
             "Conecta execução técnica inicial com minha visão posterior de produto",
-            "Fortalece a amplitude narrativa do portfólio",
-            "TODO: adicionar resultados mensuráveis ou históricos, se disponíveis"
+            "Fortalece a amplitude narrativa do portfólio"
           ]
         },
         "learnings": {
@@ -570,9 +578,9 @@
           ]
         },
         "nextStep": {
-          "eyebrow": "Nota do projeto",
-          "title": "Esta página agora tem a mesma estrutura de case dos projetos principais",
-          "description": "Ainda posso expandir este projeto com mais detalhes históricos, tecnologias exatas, imagens e resultados, caso você queira aprofundar essa parte do portfólio depois.",
+          "eyebrow": "Como eu trabalho",
+          "title": "Pensamento de sistemas e foco no que precisa funcionar",
+          "description": "Minha base em sistemas e MVP continua presente no jeito como priorizo e entrego hoje. Vamos conversar?",
           "buttonLabel": "Falar comigo"
         }
       }
@@ -582,13 +590,9 @@
         "title": "Sobre Mim",
         "description": "Saiba mais sobre minha formação, habilidades e experiência.",
         "content": [
-          "Sou engenheiro de software e tech lead com mais de cinco anos de experiência construindo produtos digitais, plataformas internas e ecossistemas de serviços escaláveis. Minha atuação evoluiu do desenvolvimento frontend para um escopo técnico mais amplo, incluindo backend, infraestrutura, observabilidade, apoio em arquitetura e liderança de entrega.",
-          "Nos últimos anos, atuei em contextos em que jornadas de clientes, operação de parceiros e sistemas internos precisavam evoluir juntos. Isso me levou a trabalhar com arquitetura frontend, serviços backend em Java e Spring Boot e decisões técnicas que equilibravam necessidade de negócio com manutenibilidade.",
-          "Também atuei com Google Cloud Platform, observabilidade no Datadog, criação de monitores para rastreamento de erros em backend e frontend, workflows de GitHub Actions para testes unitários, feedback em pull requests, pipelines de deploy, versionamento semântico e organização de ambientes de desenvolvimento e produção.",
-          "Meus principais pontos fortes incluem desenvolvimento de aplicações web, apoio em decisões técnicas, planejamento de entregas, comunicação entre públicos técnicos e não técnicos, depuração, práticas de qualidade e construção de soluções que conectam disciplina de engenharia com realidade de negócio.",
-          "Sou formado em Análise e Desenvolvimento de Sistemas pela FATEC e técnico em TI pela ETEC. Sou apaixonado por desenvolvimento e automação de aplicações web e estou sempre em busca de aprender novas tecnologias e metodologias.",
-          "Sou um profissional comprometido, criativo e colaborativo, que gosta de trabalhar em equipe e solucionar problemas. Tenho orgulho de ter sido premiado em dois eventos de inovação, o Ideathon e o Inovathon São Paulo, onde apresentei soluções para os desafios do ambiente digital e da cultura e do turismo. Meu objetivo é continuar desenvolvendo soluções que gerem valor para os clientes e para a sociedade.",
-          "Além disso, estou sempre em busca de novos desafios e oportunidades para expandir meu conhecimento e habilidades, contribuindo para o crescimento da equipe e da empresa."
+          "Sou Tech Lead e engenheiro de software, com mais de cinco anos de experiência em produtos digitais para grandes operações de varejo e commerce. Comecei no frontend e hoje atuo da interface ao backend, combinando liderança técnica com trabalho próximo ao código. Atualmente sou Tech Lead na Kruzer.",
+          "Na Leroy Merlin, liderei tecnicamente um ecossistema com mais de 40 microsserviços, usando Java/Spring Boot, React/Next.js, Google Cloud Platform, Datadog e GitHub Actions. Documento decisões com ADRs e diagramas C4 e cuido de observabilidade, qualidade e disciplina de release para que o time entregue com previsibilidade.",
+          "Sou formado em Análise e Desenvolvimento de Sistemas pela FATEC, técnico em Informática pela ETEC e estou cursando MBA em Engenharia de Software na USP/Esalq. Também fui premiado em dois eventos de inovação: 1º lugar no Ideathon e 2º lugar no Inovathon São Paulo."
         ]
       },
       "resume": {
@@ -597,13 +601,13 @@
         "download": "Baixar Currículo",
         "downloadDescription": "Clique no botão abaixo para baixar meu currículo em PDF.",
         "name": "Rafael Lima Amaral Fachinelli",
-        "summary": "Sou engenheiro de software e tech lead com mais de cinco anos de experiência construindo produtos digitais, plataformas internas e ecossistemas de serviços escaláveis. Minha base começou no frontend e se expandiu para backend, infraestrutura, observabilidade, apoio em arquitetura e liderança de entrega. Já atuei com React, Next.js, TypeScript, Java, Spring Boot, Kafka, Google Cloud Platform, Datadog, GitHub Actions e fluxos de CI/CD, incluindo liderança técnica sobre mais de 40 microsserviços, disciplina de release, monitoramento e padrões de engenharia que conectam qualidade de código com impacto no negócio.",
+        "summary": "Tech Lead e engenheiro de software com mais de cinco anos de experiência em produtos digitais para grandes operações de varejo e commerce. Atuação hands-on em React, Next.js, TypeScript, Java e Spring Boot, com liderança técnica de um ecossistema de mais de 40 microsserviços, arquitetura orientada a eventos (Kafka), CI/CD com GitHub Actions, observabilidade com Datadog e decisões documentadas com ADRs e diagramas C4.",
         "contact": {
-          "location": "Suzano, São Paulo, Brasil",
+          "location": "Ferraz de Vasconcelos, São Paulo, Brasil",
           "phone": "+55 11 94940-4833",
-          "email": "rafael.fachinelli@hotmail.com",
+          "email": "rafael.l.a.fachinelli@gmail.com",
           "linkedin": "linkedin.com/in/rafaelfachinelli",
-          "portfolio": "https://www.rafaelfachinelli.com"
+          "portfolio": "https://rafaelfachinelli.com"
         },
         "position": "Líder Técnico",
         "file": {
@@ -628,7 +632,7 @@
         ],
         "languages": [
           "Português (Nativo ou bilíngue)",
-          "Inglês (Proficiência profissional limitada)"
+          "Inglês (Básico a intermediário)"
         ],
         "certifications": [
           "Treinamento Liderança Técnica",
@@ -681,7 +685,23 @@
         "content": [
           {
             "role": "Tech Lead",
-            "company": "Leroy Merlin",
+            "company": "Kruzer",
+            "duration": "Fevereiro 2026 - Presente",
+            "location": "São Paulo, SP, Brasil (Híbrido)",
+            "responsibilities": [
+              "Liderança técnica e atuação hands-on no desenvolvimento de soluções para grandes operações de varejo e commerce",
+              "Apoio ao direcionamento de arquitetura e engenharia do time",
+              "Desenvolvimento e evolução de aplicações e serviços, mantendo atuação próxima ao código",
+              "Planejamento técnico, priorização e organização das entregas em conjunto com Produto e Gestão de Projetos",
+              "Definição e documentação de decisões arquiteturais por meio de ADRs, aumentando a rastreabilidade e o alinhamento técnico",
+              "Evolução de processos de engenharia, qualidade de software e práticas de desenvolvimento",
+              "Comunicação entre engenharia, produto, gestão e stakeholders para transformar necessidades de negócio em decisões técnicas sustentáveis",
+              "Apoio ao time na resolução de problemas técnicos, definição de soluções e remoção de impedimentos"
+            ]
+          },
+          {
+            "role": "Tech Lead",
+            "company": "Leroy Merlin (via Develcode)",
             "duration": "Agosto 2024 - Fevereiro 2026",
             "location": "São Paulo, São Paulo, Brasil",
             "responsibilities": [
@@ -696,9 +716,9 @@
             ]
           },
           {
-            "role": "Desenvolvedor Frontend",
-            "company": "Leroy Merlin",
-            "duration": "Janeiro 2022 - Setembro 2024",
+            "role": "Desenvolvedor Frontend Pleno",
+            "company": "Leroy Merlin (via Develcode)",
+            "duration": "Janeiro 2022 - Agosto 2024",
             "location": "São Paulo, São Paulo, Brasil",
             "responsibilities": [
               "Desenvolvimento de projetos com React para páginas públicas, aplicações PWA e jornadas de serviço",
@@ -716,7 +736,7 @@
           },
           {
             "role": "Desenvolvedor Júnior",
-            "company": "Leroy Merlin",
+            "company": "Leroy Merlin (via Develcode)",
             "duration": "Fevereiro 2021 - Janeiro 2022",
             "location": "São Paulo, São Paulo, Brasil",
             "responsibilities": [
@@ -740,7 +760,7 @@
             ]
           },
           {
-            "role": "Operador de Máquina",
+            "role": "Operador de Máquinas",
             "company": "Daneva Máq. e Condutores Elétricos LTDA.",
             "duration": "Fevereiro 2015 - Novembro 2016",
             "location": "Poá, São Paulo, Brasil",
@@ -752,7 +772,7 @@
             ]
           },
           {
-            "role": "Assistente de Produção",
+            "role": "Alimentador de Produção",
             "company": "Daneva Máq. e Condutores Elétricos LTDA.",
             "duration": "Julho 2014 - Janeiro 2015",
             "location": "Poá, São Paulo, Brasil",
@@ -826,7 +846,10 @@
           "message": "A mensagem deve ter pelo menos 5 caracteres.",
           "send": "Clique para enviar sua mensagem."
         },
-        "submit": "Enviar Mensagem"
+        "submit": "Enviar Mensagem",
+        "sending": "Enviando...",
+        "success": "Mensagem enviada! Responderei o mais breve possível.",
+        "error": "Não foi possível enviar agora. Tente novamente ou escreva direto para rafael.l.a.fachinelli@gmail.com."
       }
     }
   },
@@ -841,11 +864,11 @@
           "items": {
             "me": {
               "title": "Sobre Mim",
-              "description": "Uma visão detalhada da minha experiência profissional, habilidades e educação."
+              "description": "Uma visão detalhada da minha experiência profissional, habilidades e formação."
             },
             "resume": {
               "title": "Currículo",
-              "description": "Uma breve introdução sobre mim, minha formação e meus interesses."
+              "description": "Baixe meu currículo em PDF e veja minha trajetória resumida."
             },
             "timeline": {
               "title": "Linha do Tempo",

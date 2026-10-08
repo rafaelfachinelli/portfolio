@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     const response = await fetch(
       `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=created&direction=desc`,
       {
+        next: { revalidate: 3600 },
         headers: {
           Accept: 'application/vnd.github.v3+json',
           ...(process.env.GITHUB_TOKEN && {

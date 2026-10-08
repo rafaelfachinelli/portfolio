@@ -8,7 +8,6 @@ import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 import { Separator } from '@/components/ui/separator'
-import { UnderConstructionPageAlert } from '@/components/under-construction-page-alert'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { capitalizeFirstLetter } from '@/lib/utils'
 
@@ -32,15 +31,45 @@ export interface TimelineEntry {
   responsibilities: string[]
 }
 
+const MONTHS: Record<string, number> = {
+  janeiro: 0,
+  january: 0,
+  fevereiro: 1,
+  february: 1,
+  março: 2,
+  marco: 2,
+  march: 2,
+  abril: 3,
+  april: 3,
+  maio: 4,
+  may: 4,
+  junho: 5,
+  june: 5,
+  julho: 6,
+  july: 6,
+  agosto: 7,
+  august: 7,
+  setembro: 8,
+  september: 8,
+  outubro: 9,
+  october: 9,
+  novembro: 10,
+  november: 10,
+  dezembro: 11,
+  december: 11,
+}
+
 export function TimelinePageContent() {
   const { translation } = useLanguage()
 
+  // The translation content is ordered from most recent to oldest, so companies
+  // and the roles inside each company keep that order (newest first).
   const groupedTimeline: GroupedTimelineEntry[] =
-    translation.pages.about.timeline.content
-      .reduce((acc: GroupedTimelineEntry[], entry: TimelineEntry) => {
+    translation.pages.about.timeline.content.reduce(
+      (acc: GroupedTimelineEntry[], entry: TimelineEntry) => {
         const existingGroup = acc.find(group => group.company === entry.company)
         if (existingGroup) {
-          existingGroup.roles.unshift({
+          existingGroup.roles.push({
             role: entry.role,
             duration: entry.duration,
             responsibilities: entry.responsibilities,
@@ -59,21 +88,39 @@ export function TimelinePageContent() {
           })
         }
         return acc
-      }, [])
-      .reverse()
+      },
+      [],
+    )
 
-  // The 'role.duration' string is expected to be in the format 'start - end',
-  // where 'start' and 'end' are date strings (e.g., '2020-01 - 2022-06').
+  // The 'role.duration' string is expected to be in the format
+  // '<Month> <year> - <Month> <year>' (or '... - Present'), in any supported
+  // language (e.g., 'August 2024 - February 2026', 'Agosto 2024 - Presente').
+  const parseMonthYear = (value: string) => {
+    const [monthName, year] = value.trim().toLowerCase().split(/\s+/)
+    const month = MONTHS[monthName]
+    if (month === undefined || !year) return null
+    return new Date(Number(year), month, 1)
+  }
+
+  // Counts months from the earliest start to the latest end of the company's
+  // roles, inclusive of both months (same as LinkedIn).
   const calculateTotalTime = (roles: Role[]) => {
-    const totalMonths = roles.reduce((sum, role) => {
+    const presentLabel = capitalizeFirstLetter(translation.commons.present)
+    const periods = roles.flatMap(role => {
       const [start, end] = role.duration.split(' - ')
-      const startDate = new Date(start)
-      const endDate =
-        end === capitalizeFirstLetter(translation.commons.present)
-          ? new Date()
-          : new Date(end)
-      return sum + differenceInMonths(endDate, startDate)
-    }, 0)
+      const startDate = parseMonthYear(start)
+      const endDate = end === presentLabel ? new Date() : parseMonthYear(end)
+      return startDate && endDate ? [{ startDate, endDate }] : []
+    })
+    if (periods.length === 0) return ''
+
+    const firstStart = new Date(
+      Math.min(...periods.map(period => period.startDate.getTime())),
+    )
+    const lastEnd = new Date(
+      Math.max(...periods.map(period => period.endDate.getTime())),
+    )
+    const totalMonths = differenceInMonths(lastEnd, firstStart) + 1
 
     const years = Math.floor(totalMonths / 12)
     const months = totalMonths % 12
@@ -157,7 +204,6 @@ export function TimelinePageContent() {
             ))}
           </div>
         </Card>
-        <UnderConstructionPageAlert />
       </PageContent>
     </>
   )

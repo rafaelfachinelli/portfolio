@@ -1,5 +1,7 @@
 import '@/app/globals.css'
 
+import Script from 'next/script'
+
 import { AppSidebar } from '@/components/layout/app-sidebar/app-sidebar'
 import { Footer } from '@/components/layout/footer'
 import { MainContent } from '@/components/layout/main-content'
@@ -8,6 +10,7 @@ import { SidebarProvider } from '@/components/ui/sidebar'
 import { SpaceBackground } from '@/components/ui/space-background'
 import { ThemeProvider } from '@/components/ui/theme-provider'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+import { SITE_URL } from '@/lib/seo'
 
 import { getTranslation } from '../../../get-translation'
 import { i18n, Locale } from '../../../i18n-config'
@@ -34,6 +37,38 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {process.env.NODE_ENV === 'production' && (
+            <Script
+              defer
+              strategy="afterInteractive"
+              src="https://cloud.umami.is/script.js"
+              data-website-id="5fc56e02-c7cf-45fa-b3f3-ad701c512834"
+            />
+          )}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'Person',
+                name: 'Rafael Fachinelli',
+                jobTitle: 'Tech Lead & Software Engineer',
+                url: SITE_URL,
+                email: 'rafael.l.a.fachinelli@gmail.com',
+                address: {
+                  '@type': 'PostalAddress',
+                  addressLocality: 'Ferraz de Vasconcelos',
+                  addressRegion: 'SP',
+                  addressCountry: 'BR',
+                },
+                alumniOf: ['FATEC-SP', 'ETEC', 'USP/Esalq'],
+                sameAs: [
+                  'https://www.linkedin.com/in/rafaelfachinelli/',
+                  'https://github.com/rafaelfachinelli',
+                ],
+              }),
+            }}
+          />
           <LanguageProvider lang={locale} translation={translation}>
             <SidebarProvider defaultOpen={false}>
               <div className="flex w-full flex-col">
