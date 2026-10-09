@@ -137,7 +137,7 @@ export function ArticlePageContent({
         <Card className="border-0 bg-white px-6 py-4 backdrop-blur-sm dark:bg-black/50">
           <div>
             {summary.length > 0 && (
-              <section className="mt-2 mb-3 rounded-xl border-l-4 border-sky-500 bg-sky-500/10 px-4 py-2">
+              <section className="mt-2 mb-6 rounded-xl border-l-4 border-sky-500 bg-sky-500/10 px-4 py-2">
                 <h2 className="flex items-center gap-2 text-lg font-bold">
                   <Sparkles className="h-5 w-5 text-sky-600 dark:text-sky-400" />
                   {text.summaryTitle}
