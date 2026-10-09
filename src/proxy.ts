@@ -26,8 +26,17 @@ function getCanonicalLocale(request: NextRequest) {
   return locale.startsWith('pt') ? 'pt-BR' : 'en-US'
 }
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rafaelfachinelli.com'
+
 export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  const { pathname, search } = request.nextUrl
+
+  // Consolidate "www" onto the canonical host with a permanent redirect.
+  const host = request.headers.get('host') ?? ''
+  if (host.startsWith('www.')) {
+    return NextResponse.redirect(`${SITE_URL}${pathname}${search}`, 308)
+  }
+
   const isPublicAsset = /\.[^/]+$/.test(pathname)
 
   if (pathname.startsWith('/_next') || pathname.startsWith('/api') || isPublicAsset) {
