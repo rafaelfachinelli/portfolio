@@ -81,6 +81,17 @@ O insight veio depois de alguns meses, vendo a suíte crescer: **a pirâmide nã
 
 Por isso passei a usar a pirâmide dentro das ADRs: não como regra rígida, mas como **forma de indicar às pessoas a proporção esperada** em cada nível, sem ninguém precisar adivinhar quantos testes de cada tipo escrever.
 
+## "Mas qual o valor dos testes unitários?"
+
+Uma pergunta que ouvi de um colega foi justamente essa. Na experiência dele, o valor estava nos testes de integração e end-to-end, porque nunca tinha trabalhado de verdade com testes unitários. É uma dúvida legítima, e a conversa foi mais útil do que qualquer documento:
+
+- **São os testes mais baratos de escrever, rodar e manter**, seja o código escrito por uma pessoa ou com ajuda de IA.
+- **Dão o feedback mais rápido:** você descobre o problema em segundos, ainda enquanto desenvolve, e não depois de subir um ambiente inteiro.
+- **Protegem as regras de negócio:** mexer em um ponto do código pode quebrar, sem ninguém perceber, uma regra que parecia não ter relação. O teste unitário aponta exatamente onde isso aconteceu.
+- **Sustentam a qualidade do código ao longo do tempo**, porque dão segurança para refatorar e evoluir.
+
+Com o passar do tempo e com essa mudança de mentalidade, o colega passou a enxergar o valor deles. Testes de integração e e2e continuam essenciais, mas eles se apoiam na base: quanto mais confiança nos unitários, menos precisamos depender dos testes caros lá em cima.
+
 ## O que mudou na prática
 
 Hoje, os projetos novos da empresa já nascem com testes unitários, de integração e end-to-end seguindo esse padrão:
@@ -152,6 +163,17 @@ A widely cited rule of thumb in the industry is the **70/20/10** split: about **
 The insight came after a few months of watching the suite grow: **the pyramid is not theory, it describes reality.** We write many unit tests naturally, because they are fast and cheap. As we move up, each test already integrates everything below it, so we need fewer. The quantity shrinks organically.
 
 That is why I brought the pyramid into the ADRs: not as a rigid rule, but as **a way of telling people the expected proportion** at each level, so nobody has to guess how many tests of each type to write.
+
+## "But what is the value of unit tests?"
+
+A colleague asked me exactly that. In their experience, the value was in integration and end-to-end tests, because they had never really worked with unit tests. It is a fair question, and the conversation did more than any document could:
+
+- **They are the cheapest tests to write, run, and maintain**, whether the code is written by a person or with the help of AI.
+- **They give the fastest feedback:** you find the problem in seconds, while still developing, not after spinning up a whole environment.
+- **They protect business rules:** changing one part of the code can silently break a rule that seemed unrelated. A unit test points exactly to where it happened.
+- **They sustain code quality over time**, because they give you the safety to refactor and evolve.
+
+Over time, and with that shift in mindset, my colleague came to see their value. Integration and e2e tests remain essential, but they rest on the base: the more confidence we have in unit tests, the less we depend on the expensive tests at the top.
 
 ## What changed in practice
 
