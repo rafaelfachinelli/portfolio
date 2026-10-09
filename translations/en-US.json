@@ -863,7 +863,12 @@
       "lessonsTitle": "Lessons",
       "referencesTitle": "References",
       "ctaDefault": "Enjoyed this? Let's exchange ideas.",
-      "ctaButton": "Talk to me"
+      "ctaButton": "Talk to me",
+      "shareTitle": "Share this article",
+      "shareNative": "Share",
+      "copyLink": "Copy link",
+      "copied": "Link copied!",
+      "shareText": "I read this article by Rafael Fachinelli:"
     }
   },
   "components": {

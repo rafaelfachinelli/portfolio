@@ -68,7 +68,10 @@ export default async function Page({ params }: { params: Params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ArticlePageContent article={article} />
+      <ArticlePageContent
+        article={article}
+        shareUrl={`${SITE_URL}/${locale}/articles/${slug}`}
+      />
     </>
   )
 }

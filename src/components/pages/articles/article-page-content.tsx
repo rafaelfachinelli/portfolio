@@ -16,6 +16,8 @@ import {
 } from '@/content/articles'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+import { ShareButtons } from './share-buttons'
+
 const markdownComponents: Components = {
   h2: ({ children }) => (
     <h2 className="mt-5 mb-1.5 text-xl font-bold md:text-2xl">{children}</h2>
@@ -61,7 +63,8 @@ const sectionTitleClass = 'mt-5 mb-1.5 text-xl font-bold md:text-2xl'
 
 export function ArticlePageContent({
   article,
-}: Readonly<{ article: Article }>) {
+  shareUrl,
+}: Readonly<{ article: Article; shareUrl: string }>) {
   const { lang, translation } = useLanguage()
   const text = translation.pages.articles
   const locale = toArticleLocale(lang)
@@ -149,6 +152,8 @@ export function ArticlePageContent({
             )}
           </div>
         </Card>
+
+        <ShareButtons url={shareUrl} title={title} />
 
         <Card className="flex-col items-center gap-3 border-white/10 bg-white/10 px-6 py-5 text-center backdrop-blur-md sm:flex-row sm:justify-between sm:text-left dark:bg-black/25">
           <p className="text-lg font-semibold">{cta ?? text.ctaDefault}</p>
