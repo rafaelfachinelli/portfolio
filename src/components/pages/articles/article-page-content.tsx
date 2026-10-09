@@ -1,8 +1,15 @@
 'use client'
 
-import { ArrowLeft, ExternalLink } from 'lucide-react'
+import {
+  ArrowLeft,
+  BookMarked,
+  ExternalLink,
+  Lightbulb,
+  Sparkles,
+} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 import ReactMarkdown, { type Components } from 'react-markdown'
 
 import { Badge } from '@/components/ui/badge'
@@ -59,7 +66,19 @@ const markdownComponents: Components = {
   ),
 }
 
-const sectionTitleClass = 'mt-5 mb-1.5 text-xl font-bold md:text-2xl'
+// Standard section headings share the same look and an icon, so readers
+// recognize them across every article.
+function SectionTitle({
+  icon,
+  children,
+}: Readonly<{ icon: ReactNode; children: ReactNode }>) {
+  return (
+    <h2 className="mt-5 mb-1.5 flex items-center gap-2 text-xl font-bold md:text-2xl">
+      <span className="text-sky-600 dark:text-sky-400">{icon}</span>
+      {children}
+    </h2>
+  )
+}
 
 export function ArticlePageContent({
   article,
@@ -68,7 +87,7 @@ export function ArticlePageContent({
   const { lang, translation } = useLanguage()
   const text = translation.pages.articles
   const locale = toArticleLocale(lang)
-  const { title, body, lessons, cta } = article.content[locale]
+  const { title, body, summary, lessons, cta } = article.content[locale]
 
   return (
     <PageContent className="gap-4">
@@ -117,11 +136,25 @@ export function ArticlePageContent({
         {/* Single child inside the Card so its flex gap does not add extra space between paragraphs. */}
         <Card className="border-0 bg-white px-6 py-4 backdrop-blur-sm dark:bg-black/50">
           <div>
+            {summary.length > 0 && (
+              <section className="mt-2 mb-3 rounded-xl border-l-4 border-sky-500 bg-sky-500/10 px-4 py-2">
+                <h2 className="flex items-center gap-2 text-lg font-bold">
+                  <Sparkles className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+                  {text.summaryTitle}
+                </h2>
+                <ReactMarkdown components={markdownComponents}>
+                  {summary.map(item => `- ${item}`).join('\n')}
+                </ReactMarkdown>
+              </section>
+            )}
+
             <ReactMarkdown components={markdownComponents}>{body}</ReactMarkdown>
 
             {lessons.length > 0 && (
               <section>
-                <h2 className={sectionTitleClass}>{text.lessonsTitle}</h2>
+                <SectionTitle icon={<Lightbulb className="h-6 w-6" />}>
+                  {text.lessonsTitle}
+                </SectionTitle>
                 <ReactMarkdown components={markdownComponents}>
                   {lessons
                     .map((lesson, index) => `${index + 1}. ${lesson}`)
@@ -132,7 +165,9 @@ export function ArticlePageContent({
 
             {article.references && article.references.length > 0 && (
               <section>
-                <h2 className={sectionTitleClass}>{text.referencesTitle}</h2>
+                <SectionTitle icon={<BookMarked className="h-6 w-6" />}>
+                  {text.referencesTitle}
+                </SectionTitle>
                 <ul className="my-2 list-disc space-y-1 pl-6 leading-7">
                   {article.references.map(reference => (
                     <li key={reference.url}>

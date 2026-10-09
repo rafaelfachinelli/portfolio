@@ -63,7 +63,8 @@ export function ShareButtons({ url, title }: Readonly<ShareButtonsProps>) {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="mr-1 text-sm font-medium text-gray-600 dark:text-gray-300">
+      <span className="mr-1 flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
+        <Share2 className="h-4 w-4 text-sky-600 dark:text-sky-400" />
         {text.shareTitle}
       </span>
 

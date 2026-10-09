@@ -10,6 +10,8 @@ export interface ArticleContent {
   description: string
   /** Main text in Markdown. Do NOT include lessons, references or the CTA: they are rendered by the template. */
   body: string
+  /** 2-4 short, conversational bullets shown in the "Quick summary" box before the body (inline Markdown). */
+  summary: string[]
   /** Key takeaways, shown in the standard "Lessons" section (inline Markdown). */
   lessons: string[]
   /** Optional custom CTA sentence; falls back to a generic one. */
@@ -41,7 +43,7 @@ export const articles: Article[] = [
   {
     slug: 'piramide-de-testes-na-pratica',
     date: '2026-10-09',
-    cover: '/images/articles/piramide-de-testes-cover.webp',
+    cover: '/images/articles/piramide-de-testes-cover-v2.webp',
     tags: ['Testes', 'ADR', 'Playwright', 'Arquitetura'],
     references: [
       {
@@ -125,6 +127,12 @@ Hoje, os projetos novos da empresa já nascem com testes unitários, de integra�
 - **Mais confiança nas entregas**, porque o código é validado contra as funcionalidades esperadas.
 - **Revisões mais focadas**, já que o formato dos testes não está mais em discussão.
 - **Desenvolvimento agêntico mais preciso:** com convenções claras e testes confiáveis, agentes de IA conseguem seguir o padrão e validar o que geram. O mesmo vale para ajustes manuais, que passam a ter uma rede de segurança.`,
+        summary: [
+          'Duas ADRs (backend e frontend) padronizaram testes **unitários, de integração e e2e** em todos os projetos novos.',
+          'A **pirâmide de testes** virou guia de proporção: cerca de 70% unitários, 20% integração e 10% e2e.',
+          '**Jest** nos dois lados, **Playwright** no e2e do frontend, padrão **AAA** e tudo rodando no GitHub Actions.',
+          'De bônus: testes confiáveis deixam o desenvolvimento manual e o agêntico bem mais precisos.',
+        ],
         lessons: [
           '**Padronize a decisão, não só a ferramenta.** Jest e Playwright ajudam, mas o que alinha o time é a ADR.',
           '**Use a pirâmide para indicar proporção**, não só para ensinar teoria.',
@@ -200,6 +208,12 @@ Today, the company's new projects start with unit, integration, and end-to-end t
 - **More confidence in deliveries**, because code is validated against the expected functionality.
 - **More focused reviews**, since test format is no longer up for debate.
 - **More precise agentic development:** with clear conventions and reliable tests, AI agents can follow the pattern and validate what they generate. The same applies to manual changes, which now have a safety net.`,
+        summary: [
+          'Two ADRs (backend and frontend) standardized **unit, integration, and e2e** tests across all new projects.',
+          'The **test pyramid** became our proportion guide: about 70% unit, 20% integration, and 10% e2e.',
+          '**Jest** on both sides, **Playwright** for frontend e2e, the **AAA** pattern, and everything running on GitHub Actions.',
+          'As a bonus: reliable tests make both manual and agentic development far more precise.',
+        ],
         lessons: [
           '**Standardize the decision, not just the tool.** Jest and Playwright help, but what aligns the team is the ADR.',
           '**Use the pyramid to indicate proportion**, not just to teach theory.',
