@@ -63,7 +63,18 @@ Em vez de um guia genérico, as ADRs são objetivas e definem:
 
 ![Pirâmide de testes: unitários na base (cerca de 70% dos testes), integração no meio e end-to-end na ponta](/images/articles/test-pyramid-pt.svg)
 
-A pirâmide diz que a **base são os testes unitários, cerca de 70% do total**, e que a cada nível acima a quantidade diminui: poucos testes de integração no meio e pouquíssimos end-to-end na ponta.
+### De onde vem o conceito
+
+A **pirâmide de testes** (*test automation pyramid*) foi popularizada por Mike Cohn no livro *Succeeding with Agile* (2009). Na versão original, as camadas eram **Unit**, **Service** e **UI**; hoje, é comum mapeá-las para testes **unitários**, de **integração** e **end-to-end (e2e)**. A ideia central tem duas regras:
+
+1. Escreva testes em **granularidades diferentes**.
+2. **Quanto mais alto o nível, menos testes** você deve ter.
+
+A razão é prática: testes de alto nível (que passam pela interface ou por vários serviços) são **mais lentos, mais caros de manter e mais frágeis** (*flaky*), enquanto os unitários dão feedback em milissegundos e apontam exatamente onde está o problema. A orientação do Google Testing Blog segue a mesma linha: manter o formato de pirâmide, com poucos testes e2e, e deixar a proporção exata para cada time.
+
+### As proporções
+
+Uma regra prática muito citada na indústria é a divisão **70/20/10**: cerca de **70% de testes unitários, 20% de integração e 10% de end-to-end**. Não é lei: o próprio Martin Fowler trata a pirâmide como uma heurística, e ressalta que, se testes de alto nível forem rápidos, confiáveis e baratos de mudar, a conta pode mudar. Mas, como ponto de partida, a proporção é útil, e foi o que adotamos como referência.
 
 O insight veio depois de alguns meses, vendo a suíte crescer: **a pirâmide não é teoria, ela descreve a realidade.** Escrevemos muitos testes unitários de forma natural, porque são rápidos e baratos. Conforme subimos de nível, cada teste já integra tudo o que está abaixo dele, então precisamos de menos. A quantidade vai diminuindo de forma orgânica.
 
@@ -83,6 +94,12 @@ Hoje, os projetos novos da empresa já nascem com testes unitários, de integra�
 2. **Use a pirâmide para indicar proporção**, não só para ensinar teoria.
 3. **Estrutura de pastas e esteira são parte da qualidade**, não detalhe.
 4. **Bons testes servem a pessoas e a agentes.** Convenções explícitas reduzem erros dos dois lados.
+
+## Referências
+
+- [TestPyramid, Martin Fowler](https://martinfowler.com/bliki/TestPyramid.html)
+- [The Practical Test Pyramid, martinfowler.com](https://martinfowler.com/articles/practical-test-pyramid.html)
+- [Just Say No to More End-to-End Tests, Google Testing Blog](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
 Se você está padronizando testes no seu time e quer trocar ideias, [fale comigo](/pt-BR/contact).`,
       },
@@ -117,7 +134,18 @@ Instead of a generic guide, the ADRs are focused and define:
 
 ![Test pyramid: unit tests at the base (about 70% of tests), integration in the middle, and end-to-end at the tip](/images/articles/test-pyramid-en.svg)
 
-The pyramid says the **base is unit tests, about 70% of the total**, and that each level up has fewer tests: a few integration tests in the middle and very few end-to-end tests at the tip.
+### Where the concept comes from
+
+The **test pyramid** (the *test automation pyramid*) was popularized by Mike Cohn in the book *Succeeding with Agile* (2009). In the original version the layers were **Unit**, **Service**, and **UI**; today they are commonly mapped to **unit**, **integration**, and **end-to-end (e2e)** tests. The core idea has two rules:
+
+1. Write tests at **different levels of granularity**.
+2. **The higher the level, the fewer tests** you should have.
+
+The reasoning is practical: high-level tests (going through the UI or several services) are **slower, more expensive to maintain, and more brittle** (*flaky*), while unit tests give feedback in milliseconds and point to exactly where the problem is. The Google Testing Blog's guidance goes the same way: keep the pyramid shape, with few e2e tests, and let each team tune the exact proportion.
+
+### The proportions
+
+A widely cited rule of thumb in the industry is the **70/20/10** split: about **70% unit tests, 20% integration tests, and 10% end-to-end tests**. It is not a law: Martin Fowler himself treats the pyramid as a heuristic, noting that if high-level tests are fast, reliable, and cheap to change, the math can change. But as a starting point the proportion is useful, and it is what we adopted as a reference.
 
 The insight came after a few months of watching the suite grow: **the pyramid is not theory, it describes reality.** We write many unit tests naturally, because they are fast and cheap. As we move up, each test already integrates everything below it, so we need fewer. The quantity shrinks organically.
 
@@ -137,6 +165,12 @@ Today, the company's new projects start with unit, integration, and end-to-end t
 2. **Use the pyramid to indicate proportion**, not just to teach theory.
 3. **Folder structure and pipeline are part of quality**, not a detail.
 4. **Good tests serve people and agents.** Explicit conventions reduce mistakes on both sides.
+
+## References
+
+- [TestPyramid, Martin Fowler](https://martinfowler.com/bliki/TestPyramid.html)
+- [The Practical Test Pyramid, martinfowler.com](https://martinfowler.com/articles/practical-test-pyramid.html)
+- [Just Say No to More End-to-End Tests, Google Testing Blog](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
 If you are standardizing tests in your team and want to exchange ideas, [get in touch](/en-US/contact).`,
       },

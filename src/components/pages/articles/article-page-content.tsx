@@ -19,6 +19,9 @@ const markdownComponents: Components = {
   h2: ({ children }) => (
     <h2 className="mt-8 mb-3 text-2xl font-bold">{children}</h2>
   ),
+  h3: ({ children }) => (
+    <h3 className="mt-6 mb-2 text-xl font-semibold">{children}</h3>
+  ),
   p: ({ children }) => <p className="my-4 leading-7">{children}</p>,
   ul: ({ children }) => (
     <ul className="my-4 list-disc space-y-2 pl-6 leading-7">{children}</ul>
@@ -29,14 +32,19 @@ const markdownComponents: Components = {
   strong: ({ children }) => (
     <strong className="font-semibold">{children}</strong>
   ),
-  a: ({ href, children }) => (
-    <Link
-      href={href ?? '#'}
-      className="text-sky-700 underline underline-offset-4 dark:text-sky-400"
-    >
-      {children}
-    </Link>
-  ),
+  a: ({ href, children }) => {
+    const isExternal = href?.startsWith('http')
+
+    return (
+      <Link
+        href={href ?? '#'}
+        className="text-sky-700 underline underline-offset-4 dark:text-sky-400"
+        {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+      >
+        {children}
+      </Link>
+    )
+  },
   img: ({ src, alt }) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img

@@ -5,10 +5,10 @@
   <polygon points='303.3,156 496.7,156 591.7,270 208.3,270' fill='#6366f1'/>
   <polygon points='203.3,276 596.7,276 700,400 100,400' fill='#0ea5e9'/>
   <g font-family='Arial, Helvetica, sans-serif' text-anchor='middle' fill='#ffffff' font-weight='700'>
-    <text x='400' y='128' font-size='26'>E2E</text>
-    <text x='400' y='222' font-size='30'>Integration</text>
-    <text x='400' y='334' font-size='38'>Unit</text>
-    <text x='400' y='368' font-size='22' font-weight='400'>≈ 70% of tests</text>
+    <text x='400' y='130' font-size='19'>E2E · ≈10%</text>
+    <text x='400' y='222' font-size='30'>Integration · ≈20%</text>
+    <text x='400' y='334' font-size='38'>Unit · ≈70%</text>
+    <text x='400' y='368' font-size='22' font-weight='400'>the base grows organically</text>
   </g></g>
   <text x='400' y='450' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='18' fill='#94a3b8'>Each level up: fewer tests, wider scope, slower to run</text>
 </svg>
