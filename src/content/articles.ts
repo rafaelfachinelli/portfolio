@@ -30,7 +30,7 @@ export const articles: Article[] = [
     slug: 'piramide-de-testes-na-pratica',
     date: '2026-10-09',
     cover: '/images/articles/piramide-de-testes-cover.webp',
-    tags: ['Testes', 'ADR', 'Arquitetura'],
+    tags: ['Testes', 'ADR', 'Playwright', 'Arquitetura'],
     content: {
       'pt-BR': {
         title:
@@ -55,7 +55,8 @@ Em vez de um guia genérico, as ADRs são objetivas e definem:
 
 - **Os três níveis de teste:** unitários, de integração e end-to-end, todos presentes nos projetos novos.
 - **O padrão AAA (Arrange, Act, Assert):** todo teste segue a mesma estrutura, o que torna a leitura previsível.
-- **Jest como ferramenta única**, no backend e no frontend, para que configuração e vocabulário sejam os mesmos.
+- **Jest como ferramenta padrão**, no backend e no frontend, para que configuração e vocabulário sejam os mesmos.
+- **Playwright para os testes end-to-end do frontend:** é uma diferença importante entre as duas ADRs. O Playwright abre a aplicação em um navegador de verdade, navega pelas páginas, clica nos elementos e valida as funcionalidades como uma pessoa usuária faria, automatizando o teste de ponta a ponta. Isso está definido exclusivamente na ADR de frontend.
 - **Execução no GitHub Actions:** como rodar testes unitários e de integração na esteira, de forma padronizada.
 - **Estrutura de pastas:** onde cada tipo de teste mora, para que qualquer pessoa encontre o que procura em qualquer projeto.
 
@@ -90,7 +91,7 @@ Hoje, os projetos novos da empresa já nascem com testes unitários, de integra�
 
 ## Lições
 
-1. **Padronize a decisão, não só a ferramenta.** Jest ajuda, mas o que alinha o time é a ADR.
+1. **Padronize a decisão, não só a ferramenta.** Jest e Playwright ajudam, mas o que alinha o time é a ADR.
 2. **Use a pirâmide para indicar proporção**, não só para ensinar teoria.
 3. **Estrutura de pastas e esteira são parte da qualidade**, não detalhe.
 4. **Bons testes servem a pessoas e a agentes.** Convenções explícitas reduzem erros dos dois lados.
@@ -126,7 +127,8 @@ Instead of a generic guide, the ADRs are focused and define:
 
 - **The three test levels:** unit, integration, and end-to-end, all present in new projects.
 - **The AAA pattern (Arrange, Act, Assert):** every test follows the same structure, making reading predictable.
-- **Jest as the single tool**, in backend and frontend, so configuration and vocabulary are the same.
+- **Jest as the standard tool**, in backend and frontend, so configuration and vocabulary are the same.
+- **Playwright for frontend end-to-end tests:** this is a key difference between the two ADRs. Playwright opens the application in a real browser, navigates the pages, clicks elements, and validates features the way a user would, automating end-to-end testing. This is defined exclusively in the frontend ADR.
 - **Execution on GitHub Actions:** how to run unit and integration tests in the pipeline in a standardized way.
 - **Folder structure:** where each type of test lives, so anyone can find what they need in any project.
 
@@ -161,7 +163,7 @@ Today, the company's new projects start with unit, integration, and end-to-end t
 
 ## Lessons
 
-1. **Standardize the decision, not just the tool.** Jest helps, but what aligns the team is the ADR.
+1. **Standardize the decision, not just the tool.** Jest and Playwright help, but what aligns the team is the ADR.
 2. **Use the pyramid to indicate proportion**, not just to teach theory.
 3. **Folder structure and pipeline are part of quality**, not a detail.
 4. **Good tests serve people and agents.** Explicit conventions reduce mistakes on both sides.
