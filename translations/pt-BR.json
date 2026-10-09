@@ -97,7 +97,12 @@
       "contactEyebrow": "Vamos conversar",
       "contactTitle": "Tem uma vaga ou projeto em mente?",
       "contactOverview": "Se você busca um tech lead ou engenheiro full-stack com experiência em sistemas distribuídos e entrega em varejo, me mande uma mensagem.",
-      "contactButton": "Falar comigo"
+      "contactButton": "Falar comigo",
+      "articlesEyebrow": "Artigos",
+      "articlesTitle": "O que aprendi na prática, sem enrolação",
+      "articlesOverview": "Textos curtos sobre testes, arquitetura e liderança técnica, escritos a partir do que já vivi no dia a dia.",
+      "viewAllArticlesButton": "Ver todos os artigos",
+      "readArticleButton": "Ler artigo"
     },
     "projects": {
       "title": "Projetos",
