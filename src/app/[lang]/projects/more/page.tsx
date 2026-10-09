@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { MorePageContent } from '@/components/pages/projects/more/more-page-content'
 import { buildPageMetadata } from '@/lib/seo'
 
@@ -19,5 +21,9 @@ export async function generateMetadata({
 }
 
 export default function Page() {
-  return <MorePageContent />
+  return (
+    <Suspense>
+      <MorePageContent />
+    </Suspense>
+  )
 }

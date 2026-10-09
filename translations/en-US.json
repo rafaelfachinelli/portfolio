@@ -851,6 +851,14 @@
         "success": "Message sent! I will get back to you as soon as possible.",
         "error": "Could not send right now. Please try again or write directly to rafael.l.a.fachinelli@gmail.com."
       }
+    },
+    "articles": {
+      "title": "Articles",
+      "description": "Writing about software engineering, architecture, testing, and technical leadership, drawn from my experience.",
+      "readMore": "Read article",
+      "publishedOn": "Published on",
+      "backToList": "All articles",
+      "author": "By Rafael Fachinelli"
     }
   },
   "components": {
@@ -904,6 +912,10 @@
         "contact": {
           "title": "Contact",
           "description": "Get in touch with me"
+        },
+        "articles": {
+          "title": "Articles",
+          "description": "Writing about software engineering, architecture, and technical leadership."
         }
       }
     },

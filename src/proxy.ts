@@ -21,6 +21,11 @@ function getLocale(request: NextRequest): string | undefined {
   return locale
 }
 
+function getCanonicalLocale(request: NextRequest) {
+  const locale = getLocale(request) || i18n.defaultLocale
+  return locale.startsWith('pt') ? 'pt-BR' : 'en-US'
+}
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const isPublicAsset = /\.[^/]+$/.test(pathname)
@@ -33,33 +38,12 @@ export function proxy(request: NextRequest) {
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
 
-  if (pathname === '/') {
-    const locale = getLocale(request) || i18n.defaultLocale
-    return NextResponse.redirect(new URL(`/${locale}`, request.url))
-  }
-
+  // Permanent (308) redirects to the canonical indexed locales, so search
+  // engines consolidate "/" and un-prefixed paths onto /pt-BR or /en-US.
   if (!pathnameHasLocale) {
-    const locale = getLocale(request) || i18n.defaultLocale
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-        request.url,
-      ),
-    )
-  }
-  const pathnameIsMissingLocale = i18n.locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
-  )
-
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request)
-
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-        request.url,
-      ),
-    )
+    const locale = getCanonicalLocale(request)
+    const target = pathname === '/' ? '' : pathname
+    return NextResponse.redirect(new URL(`/${locale}${target}`, request.url), 308)
   }
 }
 

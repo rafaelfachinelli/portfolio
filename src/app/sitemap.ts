@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next'
 
-import { INDEXED_LOCALES, SITE_PATHS, SITE_URL } from '@/lib/seo'
+import { getAllSitePaths, INDEXED_LOCALES, SITE_URL } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return SITE_PATHS.flatMap(path =>
+  return getAllSitePaths().flatMap(path =>
     INDEXED_LOCALES.map(locale => ({
       url: `${SITE_URL}/${locale}${path}`,
       lastModified: new Date(),

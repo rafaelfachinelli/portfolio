@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Contact, Home, Info, Presentation } from 'lucide-react'
+import { BookOpen, Contact, Home, Info, Presentation } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -129,6 +129,17 @@ export function Navbar() {
                   ))}
                 </ul>
               </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  href={`/${lang}/articles`}
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <BookOpen className="mr-2 h-4 w-4 text-blue-500" />
+                  {translation.components.navbar.options.articles.title}
+                </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
