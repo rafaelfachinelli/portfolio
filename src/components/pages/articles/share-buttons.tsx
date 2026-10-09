@@ -68,14 +68,25 @@ export function ShareButtons({ url, title }: Readonly<ShareButtonsProps>) {
       </span>
 
       {canNativeShare && (
-        <Button type="button" size="sm" onClick={nativeShare}>
+        <Button
+          type="button"
+          size="sm"
+          className="cursor-pointer"
+          onClick={nativeShare}
+        >
           <Share2 className="mr-2 h-4 w-4" />
           {text.shareNative}
         </Button>
       )}
 
       {links.map(link => (
-        <Button key={link.label} asChild size="sm" variant="outline">
+        <Button
+          key={link.label}
+          asChild
+          size="sm"
+          variant="outline"
+          className="cursor-pointer"
+        >
           <a
             href={link.href}
             target="_blank"
@@ -88,7 +99,13 @@ export function ShareButtons({ url, title }: Readonly<ShareButtonsProps>) {
         </Button>
       ))}
 
-      <Button type="button" size="sm" variant="outline" onClick={copyLink}>
+      <Button
+        type="button"
+        size="sm"
+        variant="outline"
+        className="cursor-pointer"
+        onClick={copyLink}
+      >
         {copied ? (
           <Check className="mr-2 h-4 w-4 text-green-500" />
         ) : (

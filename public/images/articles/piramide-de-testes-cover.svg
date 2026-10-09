@@ -1,16 +1,36 @@
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630' width='1200' height='630'>
-  <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#020617'/><stop offset='0.6' stop-color='#0f172a'/><stop offset='1' stop-color='#0c4a6e'/></linearGradient></defs>
-  <rect width='1200' height='630' fill='url(#g)'/>
-  <g opacity='0.07' stroke='#38bdf8'><line x1='0' y1='0' x2='0' y2='630'/><line x1='100' y1='0' x2='100' y2='630'/><line x1='200' y1='0' x2='200' y2='630'/><line x1='300' y1='0' x2='300' y2='630'/><line x1='400' y1='0' x2='400' y2='630'/><line x1='500' y1='0' x2='500' y2='630'/><line x1='600' y1='0' x2='600' y2='630'/><line x1='700' y1='0' x2='700' y2='630'/><line x1='800' y1='0' x2='800' y2='630'/><line x1='900' y1='0' x2='900' y2='630'/><line x1='1000' y1='0' x2='1000' y2='630'/><line x1='1100' y1='0' x2='1100' y2='630'/><line x1='1200' y1='0' x2='1200' y2='630'/><line x1='0' y1='0' x2='1200' y2='0'/><line x1='0' y1='100' x2='1200' y2='100'/><line x1='0' y1='200' x2='1200' y2='200'/><line x1='0' y1='300' x2='1200' y2='300'/><line x1='0' y1='400' x2='1200' y2='400'/><line x1='0' y1='500' x2='1200' y2='500'/><line x1='0' y1='600' x2='1200' y2='600'/></g>
-  <g transform='translate(190,95) scale(1)'>
-  <polygon points='400,40 491.7,150 308.3,150' fill='#f59e0b'/>
-  <polygon points='303.3,156 496.7,156 591.7,270 208.3,270' fill='#6366f1'/>
-  <polygon points='203.3,276 596.7,276 700,400 100,400' fill='#0ea5e9'/>
-  <g font-family='Arial, Helvetica, sans-serif' text-anchor='middle' fill='#ffffff' font-weight='700'>
-    <text x='400' y='128' font-size='26'>E2E</text>
-    <text x='400' y='222' font-size='30'>Integration</text>
-    <text x='400' y='334' font-size='38'>Unit</text>
-    <text x='400' y='368' font-size='22' font-weight='400'>≈ 70%</text>
-  </g></g>
-  <text x='60' y='70' font-family='Arial, Helvetica, sans-serif' font-size='26' font-weight='700' letter-spacing='6' fill='#38bdf8'>TEST PYRAMID · ADR</text>
+
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0' stop-color='#020617'/><stop offset='0.55' stop-color='#0b1228'/><stop offset='1' stop-color='#0c3a5c'/>
+    </linearGradient>
+    <radialGradient id='glow' cx='0.3' cy='0.55' r='0.55'>
+      <stop offset='0' stop-color='#38bdf8' stop-opacity='0.35'/><stop offset='1' stop-color='#38bdf8' stop-opacity='0'/>
+    </radialGradient>
+    <linearGradient id='top' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#fcd34d'/><stop offset='1' stop-color='#f59e0b'/></linearGradient>
+    <linearGradient id='mid' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#a5b4fc'/><stop offset='1' stop-color='#6366f1'/></linearGradient>
+    <linearGradient id='base' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#7dd3fc'/><stop offset='1' stop-color='#0284c7'/></linearGradient>
+    <linearGradient id='txt' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='#7dd3fc'/><stop offset='1' stop-color='#a5b4fc'/></linearGradient>
+    <filter id='blur'><feGaussianBlur stdDeviation='28'/></filter>
+    <filter id='shadow' x='-20%' y='-20%' width='140%' height='140%'><feDropShadow dx='0' dy='10' stdDeviation='10' flood-color='#000' flood-opacity='0.45'/></filter>
+  </defs>
+  <rect width='1200' height='630' fill='url(#bg)'/>
+  <rect width='1200' height='630' fill='url(#glow)'/><circle cx='0' cy='0' r='1' fill='#7dd3fc' opacity='0.12'/><circle cx='197' cy='311' r='2' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='394' cy='622' r='3' fill='#7dd3fc' opacity='0.22'/><circle cx='591' cy='303' r='1' fill='#7dd3fc' opacity='0.27'/><circle cx='788' cy='614' r='2' fill='#7dd3fc' opacity='0.12'/><circle cx='985' cy='295' r='3' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='1182' cy='606' r='1' fill='#7dd3fc' opacity='0.22'/><circle cx='179' cy='287' r='2' fill='#7dd3fc' opacity='0.27'/><circle cx='376' cy='598' r='3' fill='#7dd3fc' opacity='0.12'/><circle cx='573' cy='279' r='1' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='770' cy='590' r='2' fill='#7dd3fc' opacity='0.22'/><circle cx='967' cy='271' r='3' fill='#7dd3fc' opacity='0.27'/><circle cx='1164' cy='582' r='1' fill='#7dd3fc' opacity='0.12'/><circle cx='161' cy='263' r='2' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='358' cy='574' r='3' fill='#7dd3fc' opacity='0.22'/><circle cx='555' cy='255' r='1' fill='#7dd3fc' opacity='0.27'/><circle cx='752' cy='566' r='2' fill='#7dd3fc' opacity='0.12'/><circle cx='949' cy='247' r='3' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='1146' cy='558' r='1' fill='#7dd3fc' opacity='0.22'/><circle cx='143' cy='239' r='2' fill='#7dd3fc' opacity='0.27'/><circle cx='340' cy='550' r='3' fill='#7dd3fc' opacity='0.12'/><circle cx='537' cy='231' r='1' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='734' cy='542' r='2' fill='#7dd3fc' opacity='0.22'/><circle cx='931' cy='223' r='3' fill='#7dd3fc' opacity='0.27'/><circle cx='1128' cy='534' r='1' fill='#7dd3fc' opacity='0.12'/><circle cx='125' cy='215' r='2' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='322' cy='526' r='3' fill='#7dd3fc' opacity='0.22'/><circle cx='519' cy='207' r='1' fill='#7dd3fc' opacity='0.27'/><circle cx='716' cy='518' r='2' fill='#7dd3fc' opacity='0.12'/><circle cx='913' cy='199' r='3' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='1110' cy='510' r='1' fill='#7dd3fc' opacity='0.22'/><circle cx='107' cy='191' r='2' fill='#7dd3fc' opacity='0.27'/><circle cx='304' cy='502' r='3' fill='#7dd3fc' opacity='0.12'/><circle cx='501' cy='183' r='1' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='698' cy='494' r='2' fill='#7dd3fc' opacity='0.22'/><circle cx='895' cy='175' r='3' fill='#7dd3fc' opacity='0.27'/><circle cx='1092' cy='486' r='1' fill='#7dd3fc' opacity='0.12'/><circle cx='89' cy='167' r='2' fill='#7dd3fc' opacity='0.16999999999999998'/><circle cx='286' cy='478' r='3' fill='#7dd3fc' opacity='0.22'/><circle cx='483' cy='159' r='1' fill='#7dd3fc' opacity='0.27'/>
+<ellipse cx='360' cy='560' rx='300' ry='26' fill='#38bdf8' opacity='0.35' filter='url(#blur)'/>
+<g filter='url(#shadow)'>
+  <polygon points='360,100 454,235 266,235' fill='url(#top)'/>
+  <polygon points='259,245 461,245 559,385 161,385' fill='url(#mid)'/>
+  <polygon points='154,395 566,395 660,530 60,530' fill='url(#base)'/>
+</g>
+<g font-family='Arial, Helvetica, sans-serif' text-anchor='middle' font-weight='800' fill='#0b1228'>
+  <text x='360' y='214' font-size='34'>10%</text>
+  <text x='360' y='338' font-size='44'>20%</text>
+  <text x='360' y='482' font-size='64'>70%</text>
+</g>
+<g font-family='Arial, Helvetica, sans-serif'>
+  <text x='740' y='215' font-size='26' font-weight='700' letter-spacing='8' fill='#7dd3fc'>TEST PYRAMID</text>
+  <text x='736' y='345' font-size='104' font-weight='800' fill='url(#txt)'>70/20/10</text>
+  <text x='740' y='410' font-size='30' font-weight='600' fill='#e2e8f0'>UNIT · INTEGRATION · E2E</text>
+  <rect x='740' y='440' width='120' height='6' rx='3' fill='#f59e0b'/>
+</g>
 </svg>
