@@ -3,6 +3,7 @@
 import { differenceInMonths } from 'date-fns'
 import { motion } from 'framer-motion'
 import { Building2, Clock, FlagTriangleRight, MapPin } from 'lucide-react'
+import Image from 'next/image'
 
 import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
@@ -29,6 +30,34 @@ export interface TimelineEntry {
   role: string
   duration: string
   responsibilities: string[]
+}
+
+// Company logos in /public/images/companies, matched by a keyword in the
+// company name. Companies without a match fall back to a generic icon.
+const COMPANY_LOGOS: { keyword: string; src: string }[] = [
+  { keyword: 'kruzer', src: '/images/companies/kruzer.webp' },
+  { keyword: 'leroy', src: '/images/companies/leroy-merlin.webp' },
+  { keyword: 'flex', src: '/images/companies/flex.webp' },
+  { keyword: 'daneva', src: '/images/companies/daneva.webp' },
+  { keyword: 'easycomp', src: '/images/companies/easycomp.webp' },
+]
+
+function CompanyLogo({ company }: Readonly<{ company: string }>) {
+  const logo = COMPANY_LOGOS.find(({ keyword }) =>
+    company.toLowerCase().includes(keyword),
+  )
+
+  if (!logo) return <Building2 />
+
+  return (
+    <Image
+      src={logo.src}
+      alt=""
+      width={64}
+      height={64}
+      className="h-8 w-8 shrink-0 rounded-md bg-white object-contain"
+    />
+  )
 }
 
 const MONTHS: Record<string, number> = {
@@ -153,7 +182,7 @@ export function TimelinePageContent() {
               >
                 <div className="flex items-center justify-between gap-2 md:justify-start">
                   <h3 className="flex items-center gap-2 text-lg font-bold">
-                    <Building2 />
+                    <CompanyLogo company={group.company} />
                     <span>{group.company}</span>
                   </h3>
                   <div className="ml-2 flex items-center gap-1 whitespace-nowrap">
