@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import { articles } from '@/content/articles'
+
 import type { Translation } from '../../get-translation'
 import { getTranslation } from '../../get-translation'
 import { i18n, type Locale } from '../../i18n-config'
@@ -23,8 +25,16 @@ export const SITE_PATHS = [
   '/projects/markit3d',
   '/projects/flex-sewing-machine',
   '/projects/more',
+  '/articles',
   '/contact',
 ] as const
+
+export function getAllSitePaths(): string[] {
+  return [
+    ...SITE_PATHS,
+    ...articles.map(article => `/articles/${article.slug}`),
+  ]
+}
 
 export function resolveLocale(lang: string): Locale {
   return i18n.locales.includes(lang as Locale)
@@ -40,7 +50,7 @@ type PageCopy = { title: string; description: string }
 
 type BuildPageMetadataOptions = {
   lang: string
-  path: (typeof SITE_PATHS)[number]
+  path: string
   getCopy: (translation: Translation) => PageCopy
   isHome?: boolean
 }
@@ -58,6 +68,12 @@ export async function buildPageMetadata({
   const fullTitle = isHome ? title : `${title} | ${SITE_NAME}`
   const canonicalLang = canonicalLocale(locale)
   const url = `${SITE_URL}/${canonicalLang}${path}`
+  const image = {
+    url: `${SITE_URL}/${canonicalLang}/opengraph-image`,
+    width: 1200,
+    height: 630,
+    alt: `${SITE_NAME} — Tech Lead & Software Engineer`,
+  }
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -78,11 +94,13 @@ export async function buildPageMetadata({
       description,
       url,
       locale: canonicalLang.replace('-', '_'),
+      images: [image],
     },
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
       description,
+      images: [image.url],
     },
   }
 }

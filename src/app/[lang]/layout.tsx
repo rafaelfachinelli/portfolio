@@ -1,5 +1,6 @@
 import '@/app/globals.css'
 
+import type { Metadata } from 'next'
 import Script from 'next/script'
 
 import { AppSidebar } from '@/components/layout/app-sidebar/app-sidebar'
@@ -14,6 +15,18 @@ import { SITE_URL } from '@/lib/seo'
 
 import { getTranslation } from '../../../get-translation'
 import { i18n, Locale } from '../../../i18n-config'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+}
+
+// Only the known locales are generated; anything else returns a real 404
+// instead of a "soft 404" page, and pages become statically cacheable.
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return i18n.locales.map(lang => ({ lang }))
+}
 
 export default async function RootLayout({
   children,
@@ -54,7 +67,21 @@ export default async function RootLayout({
                 name: 'Rafael Fachinelli',
                 jobTitle: 'Tech Lead & Software Engineer',
                 url: SITE_URL,
+                image: `${SITE_URL}/logo_1024x1024.png`,
                 email: 'rafael.l.a.fachinelli@gmail.com',
+                worksFor: { '@type': 'Organization', name: 'Kruzer' },
+                knowsAbout: [
+                  'React',
+                  'Next.js',
+                  'TypeScript',
+                  'Java',
+                  'Spring Boot',
+                  'Microservices',
+                  'Apache Kafka',
+                  'Software Architecture',
+                  'Automated Testing',
+                  'CI/CD',
+                ],
                 address: {
                   '@type': 'PostalAddress',
                   addressLocality: 'Ferraz de Vasconcelos',

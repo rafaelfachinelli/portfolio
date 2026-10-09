@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  BookOpen,
   Contact,
   ExternalLink,
   File,
@@ -157,6 +158,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={getData().projects} />
         <SidebarGroup>
           <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                tooltip={translation.components.navbar.options.articles.title}
+                asChild
+              >
+                <Link
+                  href={`/${lang}/articles`}
+                  className="flex items-center"
+                  onClick={toggleSidebar}
+                >
+                  <BookOpen className="text-blue-500" />
+                  <span>
+                    {translation.components.navbar.options.articles.title}
+                  </span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton
                 tooltip={translation.components.navbar.options.contact.title}

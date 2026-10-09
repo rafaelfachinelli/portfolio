@@ -851,6 +851,25 @@
         "success": "Mensagem enviada! Responderei o mais breve possível.",
         "error": "Não foi possível enviar agora. Tente novamente ou escreva direto para rafael.l.a.fachinelli@gmail.com."
       }
+    },
+    "articles": {
+      "title": "Artigos",
+      "description": "Textos sobre engenharia de software, arquitetura, testes e liderança técnica, a partir da minha experiência.",
+      "readMore": "Ler artigo",
+      "publishedOn": "Publicado em",
+      "backToList": "Todos os artigos",
+      "author": "Por Rafael Fachinelli",
+      "minRead": "min de leitura",
+      "lessonsTitle": "Lições",
+      "referencesTitle": "Referências",
+      "ctaDefault": "Gostou do conteúdo? Vamos trocar uma ideia.",
+      "ctaButton": "Falar comigo",
+      "shareTitle": "Compartilhe este artigo",
+      "shareNative": "Compartilhar",
+      "copyLink": "Copiar link",
+      "copied": "Link copiado!",
+      "shareText": "Li este artigo do Rafael Fachinelli:",
+      "summaryTitle": "Resumo rápido"
     }
   },
   "components": {
@@ -904,6 +923,10 @@
         "contact": {
           "title": "Contato",
           "description": "Entre em contato comigo"
+        },
+        "articles": {
+          "title": "Artigos",
+          "description": "Textos sobre engenharia de software, arquitetura e liderança técnica."
         }
       }
     },
