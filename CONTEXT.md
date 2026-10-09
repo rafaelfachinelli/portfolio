@@ -63,6 +63,18 @@ Copy `.env.example` to `.env.local`. `RESEND_API_KEY` enables the contact form (
 
 Page metadata comes from `src/lib/seo.ts` (`buildPageMetadata`), used by each `page.tsx`. `src/app/sitemap.ts`, `src/app/robots.ts` and `src/app/[lang]/opengraph-image.tsx` are generated. When adding a page, also add its path to `SITE_PATHS`.
 
+## Articles (standard template)
+
+Articles live in `src/content/articles.ts` (one entry per article, with `pt-BR` and `en-US` content). Every article follows the same template, rendered by `article-page-content.tsx`:
+
+1. **Cover** (1200x630, `public/images/articles/`), **tags** (2-4), title, description (one or two short sentences), date and reading time.
+2. **Body** (`body`, Markdown): short intro, then `##` sections. Free structure, may use `###`, lists and images. Do not write lessons, references or a CTA inside the body.
+3. **Lessons** (`lessons`): 3-5 short takeaways, always present.
+4. **References** (`references`): external sources, when there are any.
+5. **CTA** card linking to the contact page. Use `cta` to customize the sentence; otherwise a generic one is used.
+
+Aim for 3-6 minutes of reading. New slugs are added to the sitemap and `llms.txt` automatically.
+
 ## Debugging
 
 A VS Code launch configuration is available to debug the Node.js server in development mode.

@@ -1,9 +1,19 @@
 export type ArticleLocale = 'pt-BR' | 'en-US'
 
+export interface ArticleReference {
+  title: string
+  url: string
+}
+
 export interface ArticleContent {
   title: string
   description: string
+  /** Main text in Markdown. Do NOT include lessons, references or the CTA: they are rendered by the template. */
   body: string
+  /** Key takeaways, shown in the standard "Lessons" section (inline Markdown). */
+  lessons: string[]
+  /** Optional custom CTA sentence; falls back to a generic one. */
+  cta?: string
 }
 
 export interface Article {
@@ -13,6 +23,8 @@ export interface Article {
   /** Path under /public, 1200x630 */
   cover: string
   tags: string[]
+  /** Shown in the standard "References" section. */
+  references?: ArticleReference[]
   content: Record<ArticleLocale, ArticleContent>
 }
 
@@ -31,6 +43,20 @@ export const articles: Article[] = [
     date: '2026-10-09',
     cover: '/images/articles/piramide-de-testes-cover.webp',
     tags: ['Testes', 'ADR', 'Playwright', 'Arquitetura'],
+    references: [
+      {
+        title: 'TestPyramid, Martin Fowler',
+        url: 'https://martinfowler.com/bliki/TestPyramid.html',
+      },
+      {
+        title: 'The Practical Test Pyramid, martinfowler.com',
+        url: 'https://martinfowler.com/articles/practical-test-pyramid.html',
+      },
+      {
+        title: 'Just Say No to More End-to-End Tests, Google Testing Blog',
+        url: 'https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html',
+      },
+    ],
     content: {
       'pt-BR': {
         title:
@@ -98,22 +124,14 @@ Hoje, os projetos novos da empresa já nascem com testes unitários, de integra�
 
 - **Mais confiança nas entregas**, porque o código é validado contra as funcionalidades esperadas.
 - **Revisões mais focadas**, já que o formato dos testes não está mais em discussão.
-- **Desenvolvimento agêntico mais preciso:** com convenções claras e testes confiáveis, agentes de IA conseguem seguir o padrão e validar o que geram. O mesmo vale para ajustes manuais, que passam a ter uma rede de segurança.
-
-## Lições
-
-1. **Padronize a decisão, não só a ferramenta.** Jest e Playwright ajudam, mas o que alinha o time é a ADR.
-2. **Use a pirâmide para indicar proporção**, não só para ensinar teoria.
-3. **Estrutura de pastas e esteira são parte da qualidade**, não detalhe.
-4. **Bons testes servem a pessoas e a agentes.** Convenções explícitas reduzem erros dos dois lados.
-
-## Referências
-
-- [TestPyramid, Martin Fowler](https://martinfowler.com/bliki/TestPyramid.html)
-- [The Practical Test Pyramid, martinfowler.com](https://martinfowler.com/articles/practical-test-pyramid.html)
-- [Just Say No to More End-to-End Tests, Google Testing Blog](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
-
-Se você está padronizando testes no seu time e quer trocar ideias, [fale comigo](/pt-BR/contact).`,
+- **Desenvolvimento agêntico mais preciso:** com convenções claras e testes confiáveis, agentes de IA conseguem seguir o padrão e validar o que geram. O mesmo vale para ajustes manuais, que passam a ter uma rede de segurança.`,
+        lessons: [
+          '**Padronize a decisão, não só a ferramenta.** Jest e Playwright ajudam, mas o que alinha o time é a ADR.',
+          '**Use a pirâmide para indicar proporção**, não só para ensinar teoria.',
+          '**Estrutura de pastas e esteira são parte da qualidade**, não detalhe.',
+          '**Bons testes servem a pessoas e a agentes.** Convenções explícitas reduzem erros dos dois lados.',
+        ],
+        cta: 'Está padronizando testes no seu time e quer trocar ideias?',
       },
       'en-US': {
         title:
@@ -181,22 +199,14 @@ Today, the company's new projects start with unit, integration, and end-to-end t
 
 - **More confidence in deliveries**, because code is validated against the expected functionality.
 - **More focused reviews**, since test format is no longer up for debate.
-- **More precise agentic development:** with clear conventions and reliable tests, AI agents can follow the pattern and validate what they generate. The same applies to manual changes, which now have a safety net.
-
-## Lessons
-
-1. **Standardize the decision, not just the tool.** Jest and Playwright help, but what aligns the team is the ADR.
-2. **Use the pyramid to indicate proportion**, not just to teach theory.
-3. **Folder structure and pipeline are part of quality**, not a detail.
-4. **Good tests serve people and agents.** Explicit conventions reduce mistakes on both sides.
-
-## References
-
-- [TestPyramid, Martin Fowler](https://martinfowler.com/bliki/TestPyramid.html)
-- [The Practical Test Pyramid, martinfowler.com](https://martinfowler.com/articles/practical-test-pyramid.html)
-- [Just Say No to More End-to-End Tests, Google Testing Blog](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
-
-If you are standardizing tests in your team and want to exchange ideas, [get in touch](/en-US/contact).`,
+- **More precise agentic development:** with clear conventions and reliable tests, AI agents can follow the pattern and validate what they generate. The same applies to manual changes, which now have a safety net.`,
+        lessons: [
+          '**Standardize the decision, not just the tool.** Jest and Playwright help, but what aligns the team is the ADR.',
+          '**Use the pyramid to indicate proportion**, not just to teach theory.',
+          '**Folder structure and pipeline are part of quality**, not a detail.',
+          '**Good tests serve people and agents.** Explicit conventions reduce mistakes on both sides.',
+        ],
+        cta: 'Standardizing tests in your team and want to exchange ideas?',
       },
     },
   },

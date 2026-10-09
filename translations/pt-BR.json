@@ -859,7 +859,11 @@
       "publishedOn": "Publicado em",
       "backToList": "Todos os artigos",
       "author": "Por Rafael Fachinelli",
-      "minRead": "min de leitura"
+      "minRead": "min de leitura",
+      "lessonsTitle": "Lições",
+      "referencesTitle": "Referências",
+      "ctaDefault": "Gostou do conteúdo? Vamos trocar uma ideia.",
+      "ctaButton": "Falar comigo"
     }
   },
   "components": {
