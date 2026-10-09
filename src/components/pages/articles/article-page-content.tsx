@@ -1,12 +1,18 @@
 'use client'
 
 import { ArrowLeft } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import ReactMarkdown, { type Components } from 'react-markdown'
 
+import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
-import { type Article, toArticleLocale } from '@/content/articles'
+import {
+  type Article,
+  getReadingMinutes,
+  toArticleLocale,
+} from '@/content/articles'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const markdownComponents: Components = {
@@ -20,7 +26,9 @@ const markdownComponents: Components = {
   ol: ({ children }) => (
     <ol className="my-4 list-decimal space-y-2 pl-6 leading-7">{children}</ol>
   ),
-  strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+  strong: ({ children }) => (
+    <strong className="font-semibold">{children}</strong>
+  ),
   a: ({ href, children }) => (
     <Link
       href={href ?? '#'}
@@ -28,6 +36,15 @@ const markdownComponents: Components = {
     >
       {children}
     </Link>
+  ),
+  img: ({ src, alt }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={typeof src === 'string' ? src : undefined}
+      alt={alt ?? ''}
+      loading="lazy"
+      className="my-6 w-full rounded-xl"
+    />
   ),
 }
 
@@ -50,17 +67,36 @@ export function ArticlePageContent({
       </Link>
 
       <article>
+        <Image
+          src={article.cover}
+          alt=""
+          width={1200}
+          height={630}
+          priority
+          sizes="(min-width: 1024px) 1024px, 100vw"
+          className="mb-6 aspect-[1200/630] w-full rounded-2xl object-cover"
+        />
         <header className="mb-6">
-          <h1 className="text-3xl font-bold md:text-4xl">{title}</h1>
+          <div className="mb-3 flex flex-wrap gap-2">
+            {article.tags.map(tag => (
+              <Badge key={tag} variant="secondary">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+          <h1 className="text-3xl leading-tight font-bold md:text-4xl">
+            {title}
+          </h1>
           <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
-            {text.author} · {text.publishedOn}{' '}
+            {text.author} ·{' '}
             <time dateTime={article.date}>
               {new Date(`${article.date}T12:00:00`).toLocaleDateString(locale, {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
               })}
-            </time>
+            </time>{' '}
+            · {getReadingMinutes(body)} {text.minRead}
           </p>
         </header>
         <Card className="border-0 bg-white p-6 backdrop-blur-sm dark:bg-black/50">

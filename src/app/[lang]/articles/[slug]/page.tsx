@@ -22,6 +22,8 @@ export async function generateMetadata({ params }: { params: Params }) {
     getCopy: () => ({ title, description }),
   })
 
+  const coverUrl = `${SITE_URL}${article.cover}`
+
   return {
     ...metadata,
     openGraph: {
@@ -29,7 +31,9 @@ export async function generateMetadata({ params }: { params: Params }) {
       type: 'article',
       publishedTime: article.date,
       authors: ['Rafael Fachinelli'],
+      images: [{ url: coverUrl, width: 1200, height: 630, alt: title }],
     },
+    twitter: { ...metadata.twitter, images: [coverUrl] },
   }
 }
 
@@ -46,6 +50,7 @@ export default async function Page({ params }: { params: Params }) {
     '@type': 'BlogPosting',
     headline: title,
     description,
+    image: `${SITE_URL}${article.cover}`,
     datePublished: article.date,
     dateModified: article.date,
     inLanguage: locale,

@@ -858,7 +858,8 @@
       "readMore": "Read article",
       "publishedOn": "Published on",
       "backToList": "All articles",
-      "author": "By Rafael Fachinelli"
+      "author": "By Rafael Fachinelli",
+      "minRead": "min read"
     }
   },
   "components": {
