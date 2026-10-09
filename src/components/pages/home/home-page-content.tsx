@@ -7,6 +7,7 @@ import { PageContent } from '@/components/ui/page-content'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 import { CountUpMetricValue } from './count-up-metric-value'
+import { HomeArticlesSection } from './home-articles-section'
 import { HomeCtaSection } from './home-cta-section'
 import { HomeCustomersSection } from './home-customers-section'
 import { HomeHeroSection } from './home-hero-section'
@@ -26,7 +27,19 @@ function getFullYearsSince(fromDate: string) {
   return Math.max(0, Math.floor(years))
 }
 
-export function HomePageContent() {
+export type HomeLatestArticle = {
+  slug: string
+  cover: string
+  title: string
+  description: string
+  tags: string[]
+  date: string
+  readingMinutes: number
+}
+
+export function HomePageContent({
+  latestArticles = [],
+}: Readonly<{ latestArticles?: HomeLatestArticle[] }>) {
   const { lang, translation } = useLanguage()
 
   const personalitiesText = translation.pages.home.personalities
@@ -200,6 +213,29 @@ export function HomePageContent() {
         allProjectsHref={`/${lang}/projects/more`}
         variants={sectionVariants}
       />
+
+      {latestArticles.length > 0 && (
+        <HomeArticlesSection
+          eyebrow={home.articlesEyebrow}
+          title={home.articlesTitle}
+          overview={home.articlesOverview}
+          articles={latestArticles.map(article => ({
+            href: `/${lang}/articles/${article.slug}`,
+            cover: article.cover,
+            title: article.title,
+            description: article.description,
+            tags: article.tags,
+            meta: `${new Date(`${article.date}T12:00:00`).toLocaleDateString(
+              lang.startsWith('pt') ? 'pt-BR' : 'en-US',
+              { year: 'numeric', month: 'short', day: 'numeric' },
+            )} · ${article.readingMinutes} ${translation.pages.articles.minRead}`,
+          }))}
+          readArticleButton={home.readArticleButton}
+          viewAllArticlesButton={home.viewAllArticlesButton}
+          allArticlesHref={`/${lang}/articles`}
+          variants={sectionVariants}
+        />
+      )}
 
       <HomeCtaSection cards={ctaCards} variants={sectionVariants} />
     </PageContent>

@@ -97,7 +97,12 @@
       "contactEyebrow": "Let's talk",
       "contactTitle": "Have a role or project in mind?",
       "contactOverview": "If you are looking for a tech lead or full-stack engineer with experience in distributed systems and retail delivery, send me a message.",
-      "contactButton": "Contact me"
+      "contactButton": "Contact me",
+      "articlesEyebrow": "Articles",
+      "articlesTitle": "What I learned in practice, no fluff",
+      "articlesOverview": "Short pieces on testing, architecture, and technical leadership, written from what I have lived day to day.",
+      "viewAllArticlesButton": "View all articles",
+      "readArticleButton": "Read article"
     },
     "projects": {
       "title": "Projects",
