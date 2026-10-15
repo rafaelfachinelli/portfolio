@@ -42,6 +42,7 @@ Propose an outline and get a quick OK before writing:
 - `summary`: 2-4 conversational bullets.
 - `body`: short intro + `##` sections (free structure). Use `###` and lists/images where they help.
 - `lessons`: 3-5 takeaways. `references`: sources. `cta`: optional custom sentence.
+- `faq`: 3-5 direct questions people (and AI assistants) really ask about the topic, each with a short, answer-first plain-text reply (1-3 sentences, no Markdown). Phrase questions the way someone would type them into a search box or ChatGPT. This feeds the FAQ section, the FAQPage JSON-LD and `llms-full.txt`.
 
 ## 4. Write
 
@@ -62,7 +63,7 @@ Always use a **new file name** (`-v2`, `-v3`...) when changing a cover, to bust 
 
 ## 6. Wire it up
 
-Add the entry to the `articles` array (newest first): `slug` (kebab-case, no accents), `date` (ISO), `cover`, `tags` (2-4), `references?`, and `content` for `pt-BR` and `en-US` (`title`, `description`, `body`, `summary`, `lessons`, `cta?`). The sitemap, `llms.txt`, listing, metadata, JSON-LD and share buttons are automatic.
+Add the entry to the `articles` array (newest first): `slug` (kebab-case, no accents), `date` (ISO), `cover`, `tags` (2-4), `references?`, and `content` for `pt-BR` and `en-US` (`title`, `description`, `body`, `summary`, `lessons`, `faq`, `cta?`). The sitemap, `llms.txt`, `llms-full.txt`, RSS feeds, listing, home "latest articles" section, metadata, JSON-LD (BlogPosting + FAQPage) and share buttons are automatic.
 
 ## 7. Verify
 
@@ -75,4 +76,12 @@ Check: cover loads, summary box, section icons, spacing, lessons/references/CTA,
 
 ## 8. Hand-off
 
-Commit on the feature branch with a conventional message. Report to the author: what was written, **which parts are inferences to confirm**, and what is unverified. Merge to `production` and push only after they approve; then watch the Coolify deployment and check the live page.
+Commit on the feature branch with a conventional message. Report to the author: what was written, **which parts are inferences to confirm**, and what is unverified. Open a PR to `production` and merge only after they approve; then watch the Coolify deployment and check the live page (wait until several probes in a row are stable, the old and new containers can answer alternately during the rollout).
+
+## 9. Tell the search engines (after the deploy is live)
+
+```bash
+node scripts/indexnow.mjs https://rafaelfachinelli.com/pt-BR/articles/<slug> https://rafaelfachinelli.com/en-US/articles/<slug>
+```
+
+This notifies Bing and other IndexNow engines (Bing feeds ChatGPT search). Remind the author to also request indexing in Google Search Console ("Inspeção de URL") and to republish the article on LinkedIn / Dev.to with a link back.

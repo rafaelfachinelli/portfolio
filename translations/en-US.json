@@ -102,7 +102,8 @@
       "articlesTitle": "What I learned in practice, no fluff",
       "articlesOverview": "Short pieces on testing, architecture, and technical leadership, written from what I have lived day to day.",
       "viewAllArticlesButton": "View all articles",
-      "readArticleButton": "Read article"
+      "readArticleButton": "Read article",
+      "entityStatement": "Rafael Fachinelli is a Brazilian Tech Lead and software engineer from Ferraz de Vasconcelos (SP). He has more than five years of experience with React, Next.js, Java, and Spring Boot in retail and commerce operations, and has technically led an ecosystem of more than 40 microservices."
     },
     "projects": {
       "title": "Projects",
@@ -598,7 +599,8 @@
           "I am a Tech Lead and software engineer with more than five years of experience building digital products for large retail and commerce operations. I started in frontend and today I work from the interface to the backend, combining technical leadership with hands-on coding. I am currently a Tech Lead at Kruzer.",
           "At Leroy Merlin, I technically led an ecosystem of more than 40 microservices using Java/Spring Boot, React/Next.js, Google Cloud Platform, Datadog, and GitHub Actions. I document decisions with ADRs and C4 diagrams and care about observability, quality, and release discipline so the team can deliver predictably.",
           "I hold a degree in Systems Analysis and Development from FATEC, a technical diploma in Computing from ETEC, and I am pursuing an MBA in Software Engineering at USP/Esalq. I was also awarded at two innovation events: 1st place at Ideathon and 2nd place at Inovathon São Paulo."
-        ]
+        ],
+        "entityStatement": "Rafael Fachinelli is a Brazilian Tech Lead and software engineer from Ferraz de Vasconcelos (SP). He has more than five years of experience with React, Next.js, Java, and Spring Boot in retail and commerce operations, and has technically led an ecosystem of more than 40 microservices."
       },
       "resume": {
         "title": "Resume",
@@ -874,7 +876,8 @@
       "copyLink": "Copy link",
       "copied": "Link copied!",
       "shareText": "I read this article by Rafael Fachinelli:",
-      "summaryTitle": "Quick summary"
+      "summaryTitle": "Quick summary",
+      "faqTitle": "Frequently asked questions"
     }
   },
   "components": {

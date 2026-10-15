@@ -102,7 +102,8 @@
       "articlesTitle": "O que aprendi na prática, sem enrolação",
       "articlesOverview": "Textos curtos sobre testes, arquitetura e liderança técnica, escritos a partir do que já vivi no dia a dia.",
       "viewAllArticlesButton": "Ver todos os artigos",
-      "readArticleButton": "Ler artigo"
+      "readArticleButton": "Ler artigo",
+      "entityStatement": "Rafael Fachinelli é Tech Lead e engenheiro de software brasileiro, de Ferraz de Vasconcelos (SP). Tem mais de cinco anos de experiência com React, Next.js, Java e Spring Boot em operações de varejo e commerce, e já liderou tecnicamente um ecossistema com mais de 40 microsserviços."
     },
     "projects": {
       "title": "Projetos",
@@ -598,7 +599,8 @@
           "Sou Tech Lead e engenheiro de software, com mais de cinco anos de experiência em produtos digitais para grandes operações de varejo e commerce. Comecei no frontend e hoje atuo da interface ao backend, combinando liderança técnica com trabalho próximo ao código. Atualmente sou Tech Lead na Kruzer.",
           "Na Leroy Merlin, liderei tecnicamente um ecossistema com mais de 40 microsserviços, usando Java/Spring Boot, React/Next.js, Google Cloud Platform, Datadog e GitHub Actions. Documento decisões com ADRs e diagramas C4 e cuido de observabilidade, qualidade e disciplina de release para que o time entregue com previsibilidade.",
           "Sou formado em Análise e Desenvolvimento de Sistemas pela FATEC, técnico em Informática pela ETEC e estou cursando MBA em Engenharia de Software na USP/Esalq. Também fui premiado em dois eventos de inovação: 1º lugar no Ideathon e 2º lugar no Inovathon São Paulo."
-        ]
+        ],
+        "entityStatement": "Rafael Fachinelli é Tech Lead e engenheiro de software brasileiro, de Ferraz de Vasconcelos (SP). Tem mais de cinco anos de experiência com React, Next.js, Java e Spring Boot em operações de varejo e commerce, e já liderou tecnicamente um ecossistema com mais de 40 microsserviços."
       },
       "resume": {
         "title": "Currículo",
@@ -874,7 +876,8 @@
       "copyLink": "Copiar link",
       "copied": "Link copiado!",
       "shareText": "Li este artigo do Rafael Fachinelli:",
-      "summaryTitle": "Resumo rápido"
+      "summaryTitle": "Resumo rápido",
+      "faqTitle": "Perguntas frequentes"
     }
   },
   "components": {

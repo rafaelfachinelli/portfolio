@@ -86,6 +86,9 @@ export async function buildPageMetadata({
         'en-US': `${SITE_URL}/en-US${path}`,
         'x-default': `${SITE_URL}/en-US${path}`,
       },
+      types: {
+        'application/rss+xml': `${SITE_URL}/${canonicalLang}/feed.xml`,
+      },
     },
     openGraph: {
       type: 'website',

@@ -34,6 +34,8 @@ The site is available in Portuguese (pt-BR) and English (en-US).
 
 ${articleLinks}
 
+Full text of every article: [llms-full.txt](${SITE_URL}/llms-full.txt). RSS: [en-US](${SITE_URL}/en-US/feed.xml), [pt-BR](${SITE_URL}/pt-BR/feed.xml).
+
 ## Profiles
 
 - [LinkedIn](https://www.linkedin.com/in/rafaelfachinelli/)

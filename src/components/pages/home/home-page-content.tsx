@@ -193,6 +193,11 @@ export function HomePageContent({
         />
       </div>
 
+      {/* One plain, third-person sentence that identifies who this site is about: easy to quote for search and AI assistants. */}
+      <p className="max-w-3xl text-base leading-7 text-white/75">
+        {home.entityStatement}
+      </p>
+
       <HomeMetricsSection metrics={metrics} variants={sectionVariants} />
 
       <HomeCustomersSection

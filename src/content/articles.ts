@@ -16,6 +16,14 @@ export interface ArticleContent {
   lessons: string[]
   /** Optional custom CTA sentence; falls back to a generic one. */
   cta?: string
+  /** 3-5 direct questions people (and AI assistants) actually ask, with short plain-text answers. Also emitted as FAQPage JSON-LD. */
+  faq?: ArticleFaq[]
+}
+
+export interface ArticleFaq {
+  question: string
+  /** Plain text, 1-3 sentences, answer-first. */
+  answer: string
 }
 
 export interface Article {
@@ -139,6 +147,28 @@ Hoje, os projetos novos da empresa já nascem com testes unitários, de integra�
           '**Estrutura de pastas e esteira são parte da qualidade**, não detalhe.',
           '**Bons testes servem a pessoas e a agentes.** Convenções explícitas reduzem erros dos dois lados.',
         ],
+        faq: [
+          {
+            question: 'Qual a proporção ideal da pirâmide de testes?',
+            answer:
+              'Uma regra prática muito citada é 70% de testes unitários, 20% de integração e 10% de end-to-end. Não é lei: serve como ponto de partida, e o importante é manter o formato de pirâmide, com menos testes a cada nível acima.',
+          },
+          {
+            question: 'Por que os testes unitários são a base da pirâmide?',
+            answer:
+              'Porque são os mais baratos de escrever, rodar e manter, dão o feedback mais rápido e protegem as regras de negócio quando alguém altera o código, seja uma pessoa ou uma IA.',
+          },
+          {
+            question: 'Quais ferramentas as ADRs de testes definem?',
+            answer:
+              'Jest como ferramenta padrão no backend e no frontend, o padrão AAA (Arrange, Act, Assert), execução dos testes unitários e de integração no GitHub Actions e Playwright para os testes end-to-end do frontend.',
+          },
+          {
+            question: 'Por que usar uma ADR para padronizar testes?',
+            answer:
+              'Porque a ADR registra a decisão, o contexto e as consequências no próprio repositório. Isso reduz discussões repetidas e dá um ponto de partida claro para evoluir o padrão.',
+          },
+        ],
         cta: 'Está padronizando testes no seu time e quer trocar ideias?',
       },
       'en-US': {
@@ -219,6 +249,28 @@ Today, the company's new projects start with unit, integration, and end-to-end t
           '**Use the pyramid to indicate proportion**, not just to teach theory.',
           '**Folder structure and pipeline are part of quality**, not a detail.',
           '**Good tests serve people and agents.** Explicit conventions reduce mistakes on both sides.',
+        ],
+        faq: [
+          {
+            question: 'What is the ideal test pyramid proportion?',
+            answer:
+              'A widely cited rule of thumb is 70% unit tests, 20% integration tests, and 10% end-to-end tests. It is not a law: use it as a starting point and keep the pyramid shape, with fewer tests at each level up.',
+          },
+          {
+            question: 'Why are unit tests the base of the pyramid?',
+            answer:
+              'Because they are the cheapest to write, run, and maintain, give the fastest feedback, and protect business rules whenever code changes, whether the change comes from a person or an AI.',
+          },
+          {
+            question: 'Which tools do the testing ADRs define?',
+            answer:
+              'Jest as the standard tool in backend and frontend, the AAA pattern (Arrange, Act, Assert), unit and integration tests running on GitHub Actions, and Playwright for frontend end-to-end tests.',
+          },
+          {
+            question: 'Why use an ADR to standardize testing?',
+            answer:
+              'Because an ADR records the decision, its context, and its consequences in the repository itself. That reduces repeated debates and gives a clear starting point to evolve the standard.',
+          },
         ],
         cta: 'Standardizing tests in your team and want to exchange ideas?',
       },
