@@ -54,19 +54,42 @@ if (!keyCheck.ok || (await keyCheck.text()).trim() !== key) {
   process.exit(1)
 }
 
-const response = await fetch('https://api.indexnow.org/IndexNow', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json; charset=utf-8' },
-  body: JSON.stringify({
-    host: new URL(SITE_URL).host,
-    key,
-    keyLocation,
-    urlList,
-  }),
+const payload = JSON.stringify({
+  host: new URL(SITE_URL).host,
+  key,
+  keyLocation,
+  urlList,
 })
 
-console.log(
-  `IndexNow: submitted ${urlList.length} URL(s) -> HTTP ${response.status}`,
-)
-// 200 = received, 202 = received and pending key validation.
-process.exit(response.ok ? 0 : 1)
+// Any IndexNow endpoint shares submissions with the other engines. Try them in
+// order, with a descriptive User-Agent (some endpoints reset anonymous clients).
+const endpoints = [
+  'https://api.indexnow.org/IndexNow',
+  'https://www.bing.com/indexnow',
+]
+
+let exitCode = 1
+for (const endpoint of endpoints) {
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'User-Agent': 'rafaelfachinelli-indexnow/1.0 (+https://rafaelfachinelli.com)',
+      },
+      body: payload,
+    })
+    console.log(
+      `IndexNow (${new URL(endpoint).host}): submitted ${urlList.length} URL(s) -> HTTP ${response.status}`,
+    )
+    // 200 = received, 202 = received and pending key validation.
+    if (response.ok) {
+      exitCode = 0
+      break
+    }
+  } catch (error) {
+    console.warn(`IndexNow (${new URL(endpoint).host}) failed: ${error.cause?.code ?? error.message}`)
+  }
+}
+
+process.exitCode = exitCode
