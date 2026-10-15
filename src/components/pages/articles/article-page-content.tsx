@@ -3,6 +3,7 @@
 import {
   ArrowLeft,
   BookMarked,
+  CircleHelp,
   ExternalLink,
   Lightbulb,
   Sparkles,
@@ -87,7 +88,7 @@ export function ArticlePageContent({
   const { lang, translation } = useLanguage()
   const text = translation.pages.articles
   const locale = toArticleLocale(lang)
-  const { title, body, summary, lessons, cta } = article.content[locale]
+  const { title, body, summary, lessons, cta, faq } = article.content[locale]
 
   return (
     <PageContent className="gap-4">
@@ -160,6 +161,22 @@ export function ArticlePageContent({
                     .map((lesson, index) => `${index + 1}. ${lesson}`)
                     .join('\n')}
                 </ReactMarkdown>
+              </section>
+            )}
+
+            {faq && faq.length > 0 && (
+              <section>
+                <SectionTitle icon={<CircleHelp className="h-6 w-6" />}>
+                  {text.faqTitle}
+                </SectionTitle>
+                <dl className="my-2 space-y-3">
+                  {faq.map(item => (
+                    <div key={item.question}>
+                      <dt className="font-semibold">{item.question}</dt>
+                      <dd className="mt-0.5 leading-7">{item.answer}</dd>
+                    </div>
+                  ))}
+                </dl>
               </section>
             )}
 

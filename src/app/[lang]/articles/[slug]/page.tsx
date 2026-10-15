@@ -43,7 +43,20 @@ export default async function Page({ params }: { params: Params }) {
   if (!article) notFound()
 
   const locale = toArticleLocale(resolveLocale(lang))
-  const { title, description } = article.content[locale]
+  const { title, description, faq } = article.content[locale]
+
+  const faqJsonLd =
+    faq && faq.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faq.map(item => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: { '@type': 'Answer', text: item.answer },
+          })),
+        }
+      : null
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -68,6 +81,12 @@ export default async function Page({ params }: { params: Params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <ArticlePageContent
         article={article}
         shareUrl={`${SITE_URL}/${locale}/articles/${slug}`}

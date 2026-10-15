@@ -21,6 +21,9 @@ export function MePageContent() {
 
       <PageContent className="gap-4 text-justify">
         <Card className="mb-4 border-0 bg-white p-6 backdrop-blur-sm dark:bg-black/50">
+          <p className="mb-3 font-medium">
+            {translation.pages.about.me.entityStatement}
+          </p>
           {translation.pages.about.me.content.map((paragraph, index) => (
             <ReactMarkdown key={index}>{paragraph}</ReactMarkdown>
           ))}
