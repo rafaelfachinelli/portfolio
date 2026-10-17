@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 32" width="168" height="32" role="img" aria-label="Datum">
+  <!-- Datum feature symbol (filled triangle on a leader) + wordmark -->
+  <path d="M4 26h20" stroke="#7dd3fc" stroke-width="1.5"/>
+  <path d="M14 26 L8 15 L20 15 Z" fill="#38bdf8"/>
+  <path d="M14 15 V5" stroke="#7dd3fc" stroke-width="1.5"/>
+  <rect x="8" y="1" width="12" height="7" fill="none" stroke="#7dd3fc" stroke-width="1.2"/>
+  <text x="32" y="23" fill="#e6edf8" font-family="Archivo, 'Arial Narrow', Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="1">DATUM</text>
+  <text x="112" y="23" fill="#8494b0" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="10">· RF</text>
+</svg>

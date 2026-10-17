@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Datum/Principios" />
+
+# Princípios
+
+## Essência
+
+**Cuidado com o que ninguém vê.** O lado de dentro do trabalho recebe a mesma atenção que o lado de fora: código que continua legível depois de cinco ou dez anos, interfaces em que cada detalhe tem um motivo e decisões explicadas em palavras simples.
+
+## Atributos
+
+| Atributo | O que significa na interface |
+| --- | --- |
+| Confiável | Só fatos; números estimados são marcados como estimativa; nada quebra nem trava |
+| Responsável | Acessível por padrão, rápido em qualquer celular |
+| Técnico | Arquitetura, código e trade-offs reais; nada de palavra vazia |
+| Detalhista | Alinhamento, espaço e estados são deliberados; o pequeno é acabado |
+| Comunicador | Explica o que foi feito e por quê, com voz direta e informal |
+
+## Direção visual: Blueprint
+
+A prancheta de projeto: grade fina, cotas, marcas de registro nos cantos e anotações em fonte mono. Mostra o "por dentro".
+
+- **Só escuro.** O board azul-marinho é a base; não há tema claro.
+- **Tipografia:** Archivo nos títulos, IBM Plex Sans no texto, IBM Plex Mono em rótulos, números e anotações.
+- **Forma:** cantos de 2 px, linhas finas e tracejadas, marcas de registro nas superfícies principais.
+- **Logo:** o RF continua igual; só as cores mudam com a temporada.
+
+## Temporadas
+
+O tema muda sozinho pela data. A temporada troca só o degradê do logo e a cor de destaque; nunca o layout nem as regras de contraste. Veja [Fundamentos / Temporadas](?path=/docs/fundamentos-temporadas--docs).
+
+## Desempenho faz parte da marca
+
+Uma marca detalhista não pode travar um celular.
+
+- Nenhuma animação contínua em JavaScript no fundo; a grade da prancheta é só CSS.
+- `prefers-reduced-motion` desliga o movimento decorativo.
+- Meta no Lighthouse mobile: Performance 90+, LCP abaixo de 2,5 s, CLS abaixo de 0,1.
+
+## Acessibilidade
+
+Todo par de texto e fundo passa no WCAG AA (4,5:1), inclusive o destaque de cada temporada. Os testes do `@datum/tokens` falham o build se um token novo quebrar essa regra.

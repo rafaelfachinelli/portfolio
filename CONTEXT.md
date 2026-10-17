@@ -19,8 +19,11 @@ npm workspaces + Turborepo. Plans and brand rules: [docs/roadmap.md](docs/roadma
 | Path | What it is |
 | --- | --- |
 | `apps/site` | The portfolio (Next.js), deployed to rafaelfachinelli.com by the root `Dockerfile` |
-| `packages/*` | Shared workspace packages (the Datum design system packages, `@datum/*`) |
-| `docs/` | Plans, brand and design system rules |
+| `apps/datum` | Datum design system site (Storybook), deployed to design.rafaelfachinelli.com by `apps/datum/Dockerfile` |
+| `packages/tokens` | `@datum/tokens`: design tokens, seasons, contrast tests |
+| `docs/` | Plans ([roadmap](docs/roadmap.md)), brand ([brand](docs/brand.md)) and the Datum rules ([docs/datum](docs/datum/README.md)) |
+
+Visual rules for the site come from Datum: use the token utilities (`bg-board`, `text-ink`, `border-line-strong`, `text-season-accent`) instead of raw Tailwind colors, and never add a light theme.
 
 Unless noted, paths in the rest of this file are relative to `apps/site`.
 

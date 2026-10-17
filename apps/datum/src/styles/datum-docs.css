@@ -1,0 +1,205 @@
+/* Styles for the Datum documentation blocks. Values come only from the
+   @datum/tokens variables, so the pages follow the season like the site. */
+
+.datum-docs {
+  font-family: var(--datum-font-text);
+  color: var(--datum-color-ink);
+}
+
+.datum-label {
+  font-family: var(--datum-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--datum-color-ink-subtle);
+}
+
+.datum-sheet {
+  border: 1px solid var(--datum-color-line-strong);
+  border-radius: var(--datum-radius-sm);
+  background:
+    linear-gradient(var(--datum-color-grid) 1px, transparent 1px) 0 0 / var(--datum-grid-minor) var(--datum-grid-minor),
+    linear-gradient(90deg, var(--datum-color-grid) 1px, transparent 1px) 0 0 / var(--datum-grid-minor) var(--datum-grid-minor),
+    var(--datum-color-board);
+  padding: var(--datum-space-6);
+  position: relative;
+}
+
+/* Corner registration ticks, the Blueprint signature. */
+.datum-ticked::before,
+.datum-ticked::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--datum-season-accent);
+  border-style: solid;
+  pointer-events: none;
+}
+.datum-ticked::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.datum-ticked::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+.datum-grid {
+  display: grid;
+  gap: var(--datum-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.datum-swatch {
+  border: 1px solid var(--datum-color-line-strong);
+  border-radius: var(--datum-radius-sm);
+  background: var(--datum-color-surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.datum-swatch__chip {
+  height: 72px;
+  border-bottom: 1px solid var(--datum-color-line);
+}
+.datum-swatch__body {
+  padding: var(--datum-space-3);
+  display: grid;
+  gap: 4px;
+}
+.datum-swatch__name {
+  font-family: var(--datum-font-mono);
+  font-size: 12px;
+  color: var(--datum-color-ink);
+}
+.datum-swatch__value {
+  font-family: var(--datum-font-mono);
+  font-size: 12px;
+  color: var(--datum-color-ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+.datum-swatch__desc {
+  font-size: 13px;
+  color: var(--datum-color-ink-muted);
+  line-height: 1.45;
+}
+.datum-badge {
+  justify-self: start;
+  font-family: var(--datum-font-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: var(--datum-radius-sm);
+  border: 1px solid var(--datum-color-line-strong);
+  color: var(--datum-color-ink-muted);
+}
+.datum-badge--ok {
+  border-color: color-mix(in srgb, var(--datum-color-success) 60%, transparent);
+  color: var(--datum-color-success);
+}
+
+.datum-type-row {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: var(--datum-space-4);
+  align-items: baseline;
+  padding-block: var(--datum-space-3);
+  border-bottom: 1px solid var(--datum-color-line);
+}
+
+.datum-scale-row {
+  display: grid;
+  grid-template-columns: 120px 64px minmax(0, 1fr);
+  gap: var(--datum-space-4);
+  align-items: center;
+  padding-block: 6px;
+  font-family: var(--datum-font-mono);
+  font-size: 12px;
+  color: var(--datum-color-ink-muted);
+}
+.datum-dim {
+  display: block;
+  height: 10px;
+  border-left: 1px solid var(--datum-color-drafting);
+  border-right: 1px solid var(--datum-color-drafting);
+  position: relative;
+}
+.datum-dim::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1px solid var(--datum-color-drafting);
+  opacity: 0.6;
+}
+
+.datum-logo {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--datum-season-a), var(--datum-season-b));
+  -webkit-mask: url('/logo-mask.png') center / contain no-repeat;
+  mask: url('/logo-mask.png') center / contain no-repeat;
+}
+
+.datum-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.datum-table th,
+.datum-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--datum-color-line);
+  vertical-align: middle;
+}
+.datum-table th {
+  font-family: var(--datum-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--datum-color-ink-subtle);
+  font-weight: 500;
+}
+.datum-table td.mono {
+  font-family: var(--datum-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--datum-color-ink-muted);
+}
+.datum-scroll {
+  overflow-x: auto;
+}
+.datum-pill-now {
+  font-family: var(--datum-font-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--datum-season-accent);
+  color: var(--datum-season-accent);
+}
+
+.datum-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--datum-radius-sm);
+  background: var(--datum-season-accent);
+  color: var(--datum-season-on-accent);
+  font: 600 14px var(--datum-font-text);
+}
+
+/* Storybook docs tables default to light zebra rows; match the dark board. */
+.sbdocs table tr,
+.sbdocs table tr:nth-of-type(2n) {
+  background: transparent !important;
+}
+.sbdocs table th,
+.sbdocs table td {
+  border-color: var(--datum-color-line) !important;
+  color: var(--datum-color-ink) !important;
+}

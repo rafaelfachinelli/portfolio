@@ -1,0 +1,24 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+import { SeasonCalendar, SeasonPreview } from '../components/season-calendar'
+
+<Meta title="Fundamentos/Temporadas" />
+
+# Temporadas
+
+O Datum troca de tema sozinho pela data do visitante, sem botão. A temporada muda **só** o degradê do logo e a cor de destaque (botões principais, estados ativos, foco). Layout e contraste nunca mudam.
+
+<SeasonPreview />
+
+## Calendário
+
+As datas abaixo vêm da mesma função que o site usa (`seasonIdFor`). Carnaval e Páscoa são datas móveis, calculadas a partir do domingo de Páscoa. O Dia do Programador é o dia 256 do ano.
+
+<SeasonCalendar />
+
+## Como funciona
+
+- Os tokens seguem o formato do W3C (DTCG) com um **resolver**: um conjunto base mais um modificador `season`. A camada de temporada sobrescreve a base, e duas temporadas nunca se somam.
+- O build gera um bloco `[data-season='natal'] { ... }` por temporada.
+- As páginas do site são estáticas e ficam em cache por um ano. Por isso a temporada **não** é decidida no build: um script pequeno no `<head>` lê a data de quem visita e põe `data-season` no `<html>` antes de a página aparecer.
+- Os testes cobrem as janelas de 2026 a 2028 e o contraste do destaque de cada temporada.
