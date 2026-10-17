@@ -1,0 +1,22 @@
+{
+  "$description": "Natal / Christmas. Window: 1 to 25 Dec.",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#f87171",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#4ade80",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#f87171",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}

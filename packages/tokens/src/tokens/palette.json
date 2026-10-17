@@ -1,0 +1,43 @@
+{
+  "$description": "Raw colors of the Blueprint direction. Components never use these directly: they use the semantic tokens in base.json.",
+  "palette": {
+    "navy": {
+      "$type": "color",
+      "950": { "$value": "#050c20", "$description": "Deepest navy, page edges" },
+      "900": { "$value": "#071027", "$description": "Drafting board" },
+      "850": { "$value": "#0a1530", "$description": "Raised sheet" },
+      "800": { "$value": "#0e1b3b", "$description": "Wells: inputs, code" }
+    },
+    "slate": {
+      "$type": "color",
+      "50": { "$value": "#e6edf8", "$description": "Ink" },
+      "300": { "$value": "#a3b3cc", "$description": "Secondary ink" },
+      "400": { "$value": "#8494b0", "$description": "Annotation ink" }
+    },
+    "cyan": {
+      "$type": "color",
+      "300": { "$value": "#7dd3fc", "$description": "Drafting line" }
+    },
+    "sky": {
+      "$type": "color",
+      "400": { "$value": "#38bdf8" }
+    },
+    "indigo": {
+      "$type": "color",
+      "500": { "$value": "#6366f1" }
+    },
+    "amber": {
+      "$type": "color",
+      "400": { "$value": "#fbbf24" },
+      "500": { "$value": "#f59e0b" }
+    },
+    "rose": {
+      "$type": "color",
+      "400": { "$value": "#fb7185" }
+    },
+    "green": {
+      "$type": "color",
+      "400": { "$value": "#4ade80" }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$description": "Ano Novo / New Year. Window: 26 Dec to 6 Jan.",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#fde68a",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#e2e8f0",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#fbbf24",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}

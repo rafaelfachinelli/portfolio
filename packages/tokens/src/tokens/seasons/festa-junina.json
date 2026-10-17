@@ -1,0 +1,22 @@
+{
+  "$description": "Festa Junina / June Festival. Window: 1 to 30 Jun.",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#fb923c",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#ef4444",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#fb923c",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$description": "Páscoa / Easter. Window: Palm Sunday to Easter Sunday (Easter - 7 to Easter).",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#c4b5fd",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#fde68a",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#c4b5fd",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}

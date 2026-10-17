@@ -1,0 +1,22 @@
+{
+  "$description": "Halloween / Halloween. Window: 24 to 31 Oct.",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#fb923c",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#a855f7",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#fb923c",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}

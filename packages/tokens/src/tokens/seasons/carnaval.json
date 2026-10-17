@@ -1,0 +1,22 @@
+{
+  "$description": "Carnaval / Carnival. Window: Friday before Carnival to Ash Wednesday (Easter - 51 to Easter - 46).",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#f472b6",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#facc15",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#f472b6",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}
