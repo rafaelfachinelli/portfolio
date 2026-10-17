@@ -8,6 +8,8 @@ const monorepoRoot = path.resolve(process.cwd(), '../..')
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  // Workspace packages ship TypeScript source.
+  transpilePackages: ['@datum/tokens'],
   turbopack: {
     root: monorepoRoot,
   },

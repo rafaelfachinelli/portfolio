@@ -192,9 +192,9 @@ export function TimelinePageContent() {
                       className="flex items-center justify-center"
                       transition={{ duration: 1 }}
                     >
-                      <Clock className="h-3 w-3 text-sky-700 dark:text-sky-500" />
+                      <Clock className="h-3 w-3 text-season-accent" />
                     </motion.div>
-                    <span className="text-sm text-sky-700 dark:text-sky-500">
+                    <span className="text-sm text-season-accent">
                       {calculateTotalTime(group.roles)}
                     </span>
                   </div>
@@ -215,7 +215,7 @@ export function TimelinePageContent() {
                   >
                     <Separator
                       orientation="vertical"
-                      className="absolute top-0 -left-[18px] h-full bg-sky-700 dark:bg-sky-500"
+                      className="absolute top-0 -left-[18px] h-full bg-season-accent dark:bg-season-accent"
                     />
                     <h4 className="text-md font-semibold">{role.role}</h4>
                     <p className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">

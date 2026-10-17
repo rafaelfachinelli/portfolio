@@ -131,7 +131,7 @@ export function MorePageContent() {
               className="cursor-pointer rounded-full select-none"
             >
               <RefreshCw
-                className={`h-4 w-4 transition-all duration-300 ease-in-out ${isLoading ? 'animate-spin text-blue-500' : ''}`}
+                className={`h-4 w-4 transition-all duration-300 ease-in-out ${isLoading ? 'animate-spin text-season-accent' : ''}`}
               />
             </Button>
           </div>
@@ -176,7 +176,7 @@ export function MorePageContent() {
             transition={{ duration: 0.2 }}
           >
             <div className="flex flex-col items-center gap-2">
-              <Loader className="h-8 w-8 animate-spin text-blue-500" />
+              <Loader className="h-8 w-8 animate-spin text-season-accent" />
               <p className="text-muted-foreground text-sm">
                 {translation.commons.loading}
               </p>

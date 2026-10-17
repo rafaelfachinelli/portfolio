@@ -38,7 +38,7 @@ export function RepositoryTopicBadge({ topics }: RepositoryBadgeConfigProps) {
                   ? 'bg-purple-500 hover:bg-purple-600'
                   : isPortfolioProject
                     ? 'bg-green-500 hover:bg-green-600'
-                    : 'bg-blue-500 hover:bg-blue-600'
+                    : 'bg-season-accent hover:bg-season-accent'
               }`}
             >
               {isEventProject ? (

@@ -179,9 +179,9 @@ export function ContactPageContent() {
                   href="https://www.linkedin.com/in/rafaelfachinelli/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 transition-colors duration-200 hover:text-blue-500"
+                  className="flex items-center gap-2 transition-colors duration-200 hover:text-season-accent"
                 >
-                  <Linkedin className="h-5 w-5 text-blue-500" />
+                  <Linkedin className="h-5 w-5 text-season-accent" />
                   linkedin.com/in/rafaelfachinelli
                 </Link>
                 <Link

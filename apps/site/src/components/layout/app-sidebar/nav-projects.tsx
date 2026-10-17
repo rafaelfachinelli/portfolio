@@ -99,7 +99,7 @@ export function NavProjects({ projects }: NavProjectsProps) {
               className="flex items-center"
               onClick={toggleSidebar}
             >
-              <MoreHorizontal className="text-blue-500" />
+              <MoreHorizontal className="text-season-accent" />
               <span>
                 {
                   translation.components.navbar.options.projects.items.more

@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { BookOpen, Contact, Home, Info, Presentation } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -19,8 +18,8 @@ import {
 import { useLanguage } from '@/contexts/LanguageContext'
 
 import { LanguageSwitcher } from '../ui/language-switcher'
+import { Logo } from '../ui/logo'
 import { SidebarTrigger } from '../ui/sidebar'
-import { ThemeSwitcher } from '../ui/theme-switcher'
 
 export function Navbar() {
   const { lang, translation } = useLanguage()
@@ -34,7 +33,7 @@ export function Navbar() {
   }, [pathname, lang])
 
   return (
-    <div className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full items-center justify-center px-4 py-2 backdrop-blur transition-colors duration-500 lg:backdrop-blur-sm dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/60">
+    <div className="bg-board/95 border-line-strong sticky top-0 z-50 flex w-full items-center justify-center border-b px-4 py-2">
       <div className="flex w-full max-w-[1024px] items-center justify-center">
         <SidebarTrigger className="flex cursor-pointer items-center justify-center border p-4 md:hidden" />
         <div className="flex w-full items-center justify-center md:w-fit md:justify-start">
@@ -53,13 +52,7 @@ export function Navbar() {
                 perspective: '1000px',
               }}
             >
-              <Image
-                src="/logo_1024x1024.png"
-                alt="RFL"
-                width={40}
-                height={40}
-                className="min-h-9 min-w-9 md:mr-8 md:block"
-              />
+              <Logo size={40} className="md:mr-8" />
             </motion.div>
           </Link>
         </div>
@@ -71,14 +64,14 @@ export function Navbar() {
                   href={`/${lang}`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Home className="mr-2 h-4 w-4 text-blue-500" />
+                  <Home className="mr-2 h-4 w-4 text-season-accent" />
                   {translation.components.navbar.options.home.title}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Info className="mr-2 h-4 w-4 text-blue-500" />
+                <Info className="mr-2 h-4 w-4 text-season-accent" />
                 {translation.components.navbar.options.about.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -105,7 +98,7 @@ export function Navbar() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Presentation className="mr-2 h-4 w-4 text-blue-500" />
+                <Presentation className="mr-2 h-4 w-4 text-season-accent" />
                 {translation.components.navbar.options.projects.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -136,7 +129,7 @@ export function Navbar() {
                   href={`/${lang}/articles`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <BookOpen className="mr-2 h-4 w-4 text-blue-500" />
+                  <BookOpen className="mr-2 h-4 w-4 text-season-accent" />
                   {translation.components.navbar.options.articles.title}
                 </Link>
               </NavigationMenuLink>
@@ -147,7 +140,7 @@ export function Navbar() {
                   href={`/${lang}/contact`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Contact className="mr-2 h-4 w-4 text-blue-500" />
+                  <Contact className="mr-2 h-4 w-4 text-season-accent" />
                   {translation.components.navbar.options.contact.title}
                 </Link>
               </NavigationMenuLink>
@@ -155,7 +148,6 @@ export function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
         <LanguageSwitcher className="mr-2 ml-auto flex" />
-        <ThemeSwitcher className="flex" />
       </div>
     </div>
   )

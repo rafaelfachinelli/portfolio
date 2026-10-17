@@ -69,7 +69,7 @@ export function HomeArticlesSection({
             href={article.href}
             className="group block focus-visible:outline-none"
           >
-            <Card className="h-full overflow-hidden border-white/10 bg-black/50 p-0 backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-sky-500 dark:bg-black/25">
+            <Card className="h-full overflow-hidden border-white/10 bg-black/50 p-0 backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-season-accent dark:bg-black/25">
               <Image
                 src={article.cover}
                 alt=""
@@ -90,7 +90,7 @@ export function HomeArticlesSection({
                     </Badge>
                   ))}
                 </div>
-                <h3 className="text-xl leading-snug font-semibold text-white group-hover:text-sky-300">
+                <h3 className="text-xl leading-snug font-semibold text-white group-hover:text-season-accent">
                   {article.title}
                 </h3>
                 <p className="line-clamp-3 text-sm leading-6 text-white/75">
@@ -98,7 +98,7 @@ export function HomeArticlesSection({
                 </p>
                 <div className="mt-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm text-white/60">
                   <span>{article.meta}</span>
-                  <span className="flex items-center gap-1 font-medium text-sky-300">
+                  <span className="flex items-center gap-1 font-medium text-season-accent">
                     {readArticleButton}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
