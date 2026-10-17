@@ -71,6 +71,18 @@ The main problem is Total Blocking Time (main-thread JavaScript), not layout shi
 
 Total Blocking Time fell by 80-85% on every page, which confirms the animated background as the cause of the mobile freeze. The budget (Performance 90+, LCP under 2.5 s) is met only on the timeline. LCP is now the bottleneck: on the home the LCP element is the hero text and on the article it is the cover image, both with about 4.4-4.6 s of **render delay** (zero load delay), which points at elements that start hidden by framer-motion entrance animations (`initial: opacity 0`) and only appear after hydration. Next step: render the above-the-fold content visible from the first paint (CSS-only entrance or none), then measure again.
 
+**1.5 LCP fix (done, PR #9).** The home hero and resume card render visible from the server; the resume image float is CSS; no more `backdrop-blur` on cards nor animated `blur`; metric counters render the final value on the server.
+
+Lighthouse simulated mobile (same profile as above) and with real CPU/network throttling (`--throttling-method=devtools`), live site, 2026-10-17:
+
+| Page | Perf (simulated) | LCP (simulated) | LCP (devtools) | TBT (devtools) |
+| --- | --- | --- | --- | --- |
+| `/pt-BR` | 70 → **73** | 5.3 → 4.9 s | **8.2 → 2.7 s** | 2,120 → 1,159 ms |
+| `/pt-BR/articles/piramide-de-testes-na-pratica` | 76 → **82** | 5.0 → 3.6 s | 2.6 → 2.6 s | 951 → 1,058 ms |
+| `/pt-BR/about/timeline` | 90 → 89 | 3.2 → 3.2 s | n/a → 2.3 s | n/a → 692 ms |
+
+The real-world LCP of the home dropped from 8.2 s to 2.7 s. The simulated LCP stays high because Lighthouse's simulation counts all the JavaScript that runs before the observed paint: every page hydrates as one large client component tree (`'use client'` pages with framer-motion in the layout and the sections). Reaching the 90+ budget needs less JavaScript on first load: render page sections as Server Components, keep client code to the interactive bits, and drop framer-motion from the layout (navbar, language switcher, sidebar) and the home sections in favor of CSS. This fits Phase 2, when the components move to `@datum/ui`.
+
 **1.4 Storybook (`apps/datum`) (done).**
 - Storybook 10 (react-vite) with pages in pt-BR: Introdução, Princípios, Cores, Tipografia, Espaço e forma, Temporadas; a "Temporada" toolbar; the Storybook chrome wears the Datum theme.
 - Static site (nginx) on a Coolify app at `design.rafaelfachinelli.com`.
