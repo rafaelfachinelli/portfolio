@@ -8,6 +8,7 @@
 /* shadcn/ui variables mapped to the Datum tokens. The site is dark only, so
    there is a single set of values; the season layer only changes the accent. */
 @theme inline {
+  --animate-datum-float: datum-float 4s ease-in-out infinite;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--datum-font-text);
@@ -121,4 +122,14 @@
   background: linear-gradient(135deg, var(--datum-season-a), var(--datum-season-b));
   -webkit-mask: url('/logo-mask.png') center / contain no-repeat;
   mask: url('/logo-mask.png') center / contain no-repeat;
+}
+
+@keyframes datum-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }

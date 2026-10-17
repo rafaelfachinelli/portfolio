@@ -37,7 +37,7 @@ export function HomeMetricsSection({
         return (
           <Card
             key={metric.label}
-            className="border-white/10 bg-white/10 p-6 backdrop-blur-md dark:bg-black/25"
+            className="border-white/10 bg-white/10 p-6 dark:bg-black/25"
           >
             <div className="flex items-center gap-3">
               <div className="rounded-full bg-white/10 p-2 text-white">

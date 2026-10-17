@@ -15,7 +15,7 @@ export function ResumeDownloadButton() {
   const [isLoadingImage, setIsLoadingImage] = useState(true)
 
   return (
-    <Card className="mb-4 w-full border-0 bg-white p-6 backdrop-blur-sm dark:bg-black/50">
+    <Card className="mb-4 w-full border-0 bg-white p-6 dark:bg-black/50">
       <motion.div
         animate={{
           y: [0, -10, 0],

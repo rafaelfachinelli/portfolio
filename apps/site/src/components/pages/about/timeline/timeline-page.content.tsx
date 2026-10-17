@@ -172,7 +172,7 @@ export function TimelinePageContent() {
       />
 
       <PageContent className="relative gap-4">
-        <Card className="mb-4 border-0 bg-white p-6 backdrop-blur-sm dark:bg-black/50">
+        <Card className="mb-4 border-0 bg-white p-6 dark:bg-black/50">
           <div className="relative">
             {groupedTimeline.map(group => (
               <motion.div

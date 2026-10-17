@@ -181,7 +181,6 @@ export function HomePageContent({
           ]}
           viewProjectsButton={home.viewProjectsButton}
           contactButton={home.contactButton}
-          variants={sectionVariants}
         />
 
         <HomeResumeCard
@@ -189,7 +188,6 @@ export function HomePageContent({
           cardTitle={home.resumeCardTitle}
           description={home.resumeCardDescription}
           buttonLabel={home.viewResumeButton}
-          variants={sectionVariants}
         />
       </div>
 

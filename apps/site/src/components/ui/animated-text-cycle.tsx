@@ -44,12 +44,10 @@ export default function AnimatedTextCycle({
     hidden: {
       y: -20,
       opacity: 0,
-      filter: 'blur(8px)',
     },
     visible: {
       y: 0,
       opacity: 1,
-      filter: 'blur(0px)',
       transition: {
         duration: 0.4,
         ease: 'easeOut',
@@ -58,7 +56,6 @@ export default function AnimatedTextCycle({
     exit: {
       y: 20,
       opacity: 0,
-      filter: 'blur(8px)',
       transition: {
         duration: 0.3,
         ease: 'easeIn',

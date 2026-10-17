@@ -1,6 +1,5 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
 import { ArrowRight, Mail } from 'lucide-react'
 import Link from 'next/link'
 
@@ -22,7 +21,6 @@ type HomeHeroSectionProps = {
   animatedWords: string[]
   viewProjectsButton: string
   contactButton: string
-  variants: Variants
 }
 
 export function HomeHeroSection({
@@ -38,16 +36,12 @@ export function HomeHeroSection({
   animatedWords,
   viewProjectsButton,
   contactButton,
-  variants,
 }: Readonly<HomeHeroSectionProps>) {
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={variants}
-      transition={{ duration: 0.45, ease: 'easeOut' }}
-    >
-      <Card className="border-white/10 bg-black/55 p-6 backdrop-blur-md dark:bg-black/30 md:p-8">
+    // Above the fold: rendered visible from the first paint (no entrance
+    // animation), so the largest paint does not wait for hydration.
+    <div>
+      <Card className="border-white/10 bg-black/55 p-6 dark:bg-black/30 md:p-8">
         <div className="flex flex-col gap-6">
           <div className="flex flex-wrap items-center gap-3">
             <Badge className="bg-white/15 px-3 py-1 text-white hover:bg-white/15">
@@ -96,6 +90,6 @@ export function HomeHeroSection({
           </div>
         </div>
       </Card>
-    </motion.div>
+    </div>
   )
 }

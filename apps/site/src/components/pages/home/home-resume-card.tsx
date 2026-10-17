@@ -1,6 +1,5 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
 import { Download } from 'lucide-react'
 import Image from 'next/image'
 
@@ -14,7 +13,6 @@ type HomeResumeCardProps = {
   cardTitle: string
   description: string
   buttonLabel: string
-  variants: Variants
 }
 
 export function HomeResumeCard({
@@ -22,18 +20,12 @@ export function HomeResumeCard({
   cardTitle,
   description,
   buttonLabel,
-  variants,
 }: Readonly<HomeResumeCardProps>) {
   const { translation } = useLanguage()
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={variants}
-      transition={{ duration: 0.45, delay: 0.1, ease: 'easeOut' }}
-    >
-      <Card className="border-white/10 bg-white/10 p-6 backdrop-blur-md dark:bg-black/40">
+    <div>
+      <Card className="border-white/10 bg-white/10 p-6 dark:bg-black/40">
         <div className="flex h-full flex-col gap-4">
           <div className="space-y-2">
             <p className="text-sm font-medium tracking-[0.3em] text-white/70 uppercase">
@@ -42,16 +34,8 @@ export function HomeResumeCard({
             <h2 className="text-2xl font-semibold text-white">{cardTitle}</h2>
           </div>
 
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              ease: 'easeInOut',
-            }}
-            className="flex justify-center"
-          >
+          {/* Gentle float in CSS (no JavaScript loop); off for reduced motion. */}
+          <div className="animate-datum-float flex justify-center motion-reduce:animate-none">
             <Image
               src="/images/resume/resume.png"
               alt={title}
@@ -60,7 +44,7 @@ export function HomeResumeCard({
               priority
               className="rounded-lg object-cover shadow-lg"
             />
-          </motion.div>
+          </div>
 
           <div className="space-y-2">
             <p className="text-sm leading-6 text-white/75">{description}</p>
@@ -77,6 +61,6 @@ export function HomeResumeCard({
           </div>
         </div>
       </Card>
-    </motion.div>
+    </div>
   )
 }

@@ -40,7 +40,7 @@ export function ArticlesPageContent({
               href={`/${lang}/articles/${article.slug}`}
               className="group block focus-visible:outline-none"
             >
-              <Card className="h-full overflow-hidden border-white/10 bg-white/10 p-0 backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-season-accent dark:bg-black/25">
+              <Card className="h-full overflow-hidden border-white/10 bg-white/10 p-0 transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-season-accent dark:bg-black/25">
                 <Image
                   src={article.cover}
                   alt=""
