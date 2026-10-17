@@ -1,13 +1,17 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import '@datum/tokens/tokens.css';
+@import '@datum/tokens/theme.css';
 
 @custom-variant dark (&:is(.dark *));
 
+/* shadcn/ui variables mapped to the Datum tokens. The site is dark only, so
+   there is a single set of values; the season layer only changes the accent. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--datum-font-text);
+  --font-mono: var(--datum-font-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -37,79 +41,51 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  /* Blueprint corners: sharp everywhere, a little softer only on the largest surfaces. */
+  --radius-sm: var(--datum-radius-sm);
+  --radius-md: var(--datum-radius-sm);
+  --radius-lg: var(--datum-radius-sm);
+  --radius-xl: var(--datum-radius-md);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  /* next/font family names feed the Datum font tokens. */
+  --datum-font-display: var(--font-archivo), 'Arial Narrow', system-ui, sans-serif;
+  --datum-font-text: var(--font-plex-sans), 'Segoe UI', system-ui, sans-serif;
+  --datum-font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --radius: var(--datum-radius-sm);
+  --background: var(--datum-color-board);
+  --foreground: var(--datum-color-ink);
+  --card: var(--datum-color-surface);
+  --card-foreground: var(--datum-color-ink);
+  --popover: var(--datum-color-surface);
+  --popover-foreground: var(--datum-color-ink);
+  --primary: var(--datum-season-accent);
+  --primary-foreground: var(--datum-season-on-accent);
+  --secondary: var(--datum-color-well);
+  --secondary-foreground: var(--datum-color-ink);
+  --muted: var(--datum-color-well);
+  --muted-foreground: var(--datum-color-ink-muted);
+  --accent: var(--datum-color-well);
+  --accent-foreground: var(--datum-color-ink);
+  --destructive: var(--datum-color-danger);
+  --border: var(--datum-color-line-strong);
+  --input: var(--datum-color-line-strong);
+  --ring: var(--datum-season-accent);
+  --chart-1: var(--datum-season-accent);
+  --chart-2: var(--datum-color-drafting);
+  --chart-3: var(--datum-color-highlight);
+  --chart-4: var(--datum-color-success);
+  --chart-5: var(--datum-color-danger);
+  --sidebar: var(--datum-color-surface);
+  --sidebar-foreground: var(--datum-color-ink);
+  --sidebar-primary: var(--datum-season-accent);
+  --sidebar-primary-foreground: var(--datum-season-on-accent);
+  --sidebar-accent: var(--datum-color-well);
+  --sidebar-accent-foreground: var(--datum-color-ink);
+  --sidebar-border: var(--datum-color-line-strong);
+  --sidebar-ring: var(--datum-season-accent);
 }
 
 @layer base {
@@ -117,6 +93,32 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    /* The drafting board: fine and major grid lines drawn with CSS gradients
+       only. Static on purpose (no animation, no fixed attachment). */
+    background:
+      linear-gradient(var(--datum-color-grid) 1px, transparent 1px) 0 0 /
+        var(--datum-grid-minor) var(--datum-grid-minor),
+      linear-gradient(90deg, var(--datum-color-grid) 1px, transparent 1px) 0 0 /
+        var(--datum-grid-minor) var(--datum-grid-minor),
+      linear-gradient(var(--datum-color-grid-major) 1px, transparent 1px) 0 0 /
+        var(--datum-grid-major) var(--datum-grid-major),
+      linear-gradient(90deg, var(--datum-color-grid-major) 1px, transparent 1px)
+        0 0 / var(--datum-grid-major) var(--datum-grid-major),
+      var(--datum-color-board);
   }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--datum-font-display);
+    letter-spacing: -0.015em;
+  }
+}
+
+/* The RF logo, recolored by the season (logo-mask.png is the mark's alpha). */
+.datum-logo {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--datum-season-a), var(--datum-season-b));
+  -webkit-mask: url('/logo-mask.png') center / contain no-repeat;
+  mask: url('/logo-mask.png') center / contain no-repeat;
 }

@@ -14,12 +14,12 @@ import {
   Presentation,
   Scroll,
 } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import * as React from 'react'
 
 import { NavMain } from '@/components/layout/app-sidebar/nav-main'
 import { NavProjects } from '@/components/layout/app-sidebar/nav-projects'
+import { Logo } from '@/components/ui/logo'
 import {
   Sidebar,
   SidebarContent,
@@ -58,29 +58,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       navMain: [
         {
           title: translation.components.navbar.options.about.title,
-          icon: <Info className="!text-blue-500" />,
+          icon: <Info className="!text-season-accent" />,
           isActive: true,
           items: [
             {
-              icon: <Info className="!text-blue-500" />,
+              icon: <Info className="!text-season-accent" />,
               title: translation.components.navbar.options.about.items.me.title,
               url: `/${lang}/about/me`,
             },
             {
-              icon: <File className="!text-blue-500" />,
+              icon: <File className="!text-season-accent" />,
               title:
                 translation.components.navbar.options.about.items.resume.title,
               url: `/${lang}/about/resume`,
             },
             {
-              icon: <FlagTriangleRight className="!text-blue-500" />,
+              icon: <FlagTriangleRight className="!text-season-accent" />,
               title:
                 translation.components.navbar.options.about.items.timeline
                   .title,
               url: `/${lang}/about/timeline`,
             },
             {
-              icon: <Scroll className="!text-blue-500" />,
+              icon: <Scroll className="!text-season-accent" />,
               title:
                 translation.components.navbar.options.about.items[
                   'personal-manifesto'
@@ -92,21 +92,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       ],
       projects: [
         {
-          icon: <Presentation className="!text-blue-500" />,
+          icon: <Presentation className="!text-season-accent" />,
           name: translation.components.navbar.options.projects.items[
             'instalacoes-e-reformas'
           ].title,
           url: `/${lang}/projects/instalacoes-e-reformas`,
         },
         {
-          icon: <Presentation className="!text-blue-500" />,
+          icon: <Presentation className="!text-season-accent" />,
           name: translation.components.navbar.options.projects.items[
             'flex-sewing-machine'
           ].title,
           url: `/${lang}/projects/flex-sewing-machine`,
         },
         {
-          icon: <Presentation className="!text-blue-500" />,
+          icon: <Presentation className="!text-season-accent" />,
           name: translation.components.navbar.options.projects.items['markit3d']
             .title,
           url: `/${lang}/projects/markit3d`,
@@ -123,13 +123,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           className="flex items-center justify-center"
           onClick={toggleSidebar}
         >
-          <Image
-            src="/logo_1024x1024.png"
-            alt="RFL"
-            width={40}
-            height={40}
-            className="min-h-9 min-w-9 md:mr-2 md:block"
-          />
+          <Logo size={40} className="md:mr-2" />
         </Link>
       </SidebarHeader>
       <SidebarContent>
@@ -145,7 +139,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   className="flex items-center"
                   onClick={toggleSidebar}
                 >
-                  <Home className="text-blue-500" />
+                  <Home className="text-season-accent" />
                   <span>
                     {translation.components.navbar.options.home.title}
                   </span>
@@ -168,7 +162,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   className="flex items-center"
                   onClick={toggleSidebar}
                 >
-                  <BookOpen className="text-blue-500" />
+                  <BookOpen className="text-season-accent" />
                   <span>
                     {translation.components.navbar.options.articles.title}
                   </span>
@@ -185,7 +179,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   className="flex items-center"
                   onClick={toggleSidebar}
                 >
-                  <Contact className="text-blue-500" />
+                  <Contact className="text-season-accent" />
                   <span>
                     {translation.components.navbar.options.contact.title}
                   </span>
@@ -221,7 +215,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Linkedin className="text-blue-500" />
+                <Linkedin className="text-season-accent" />
                 <span>LinkedIn</span>
                 <ExternalLink className="ml-auto h-4 w-4" />
               </Link>

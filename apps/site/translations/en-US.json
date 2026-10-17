@@ -941,11 +941,6 @@
     "footer": {
       "rights": "© {year} Rafael Fachinelli | Portfolio. All rights reserved."
     },
-    "themeSwitcher": {
-      "dark": "Dark",
-      "light": "Light",
-      "system": "System"
-    },
     "languageSwitcher": {
       "options": {
         "en": {

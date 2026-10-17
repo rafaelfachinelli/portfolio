@@ -40,7 +40,7 @@ export function ArticlesPageContent({
               href={`/${lang}/articles/${article.slug}`}
               className="group block focus-visible:outline-none"
             >
-              <Card className="h-full overflow-hidden border-white/10 bg-white/10 p-0 backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-sky-500 dark:bg-black/25">
+              <Card className="h-full overflow-hidden border-white/10 bg-white/10 p-0 backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-season-accent dark:bg-black/25">
                 <Image
                   src={article.cover}
                   alt=""
@@ -56,7 +56,7 @@ export function ArticlesPageContent({
                       </Badge>
                     ))}
                   </div>
-                  <h2 className="text-xl leading-snug font-bold group-hover:text-sky-600 dark:group-hover:text-sky-400">
+                  <h2 className="text-xl leading-snug font-bold group-hover:text-season-accent">
                     {title}
                   </h2>
                   <p className="line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
@@ -70,7 +70,7 @@ export function ArticlesPageContent({
                       )}{' '}
                       · {getReadingMinutes(body)} {text.minRead}
                     </span>
-                    <span className="flex items-center gap-1 font-medium text-sky-600 dark:text-sky-400">
+                    <span className="flex items-center gap-1 font-medium text-season-accent">
                       {text.readMore}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>

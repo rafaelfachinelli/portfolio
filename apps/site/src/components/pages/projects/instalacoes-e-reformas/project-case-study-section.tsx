@@ -64,7 +64,7 @@ export function ProjectCaseStudySection({
               <CardTitle className="text-2xl">{title}</CardTitle>
             </div>
             {intro ? (
-              <CardDescription className="border-l-2 my-5 border-blue-500 pl-4 text-base leading-7">
+              <CardDescription className="border-l-2 my-5 border-season-accent pl-4 text-base leading-7">
                 {intro}
               </CardDescription>
             ) : null}

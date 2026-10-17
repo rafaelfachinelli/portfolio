@@ -111,7 +111,7 @@ type SectionKey =
 const defaultSectionVisuals: Record<SectionKey, SectionVisual> = {
   overview: {
     icon: Compass,
-    iconClassName: 'bg-sky-500/15 text-sky-600 dark:text-sky-400',
+    iconClassName: 'bg-season-accent/15 text-season-accent',
   },
   businessProblem: {
     icon: Target,
@@ -195,7 +195,7 @@ export function ProjectCaseStudyPage({
         <div className="grid gap-0 lg:grid-cols-[minmax(0,1.2fr)_320px]">
           <div className="p-6 md:p-8">
             <div className="text-muted-foreground mb-4 flex items-center gap-2 text-sm font-medium tracking-[0.2em] uppercase">
-              <Presentation className="h-4 w-4 text-blue-500" />
+              <Presentation className="h-4 w-4 text-season-accent" />
               <span>{project.hero.eyebrow}</span>
             </div>
 
@@ -214,7 +214,7 @@ export function ProjectCaseStudyPage({
             {formattedTemporalMarkDate ? (
               <div className="mt-5 flex flex-wrap gap-3">
                 <div className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1.5 text-sm shadow-sm">
-                  <CalendarDays className="h-4 w-4 text-blue-500" />
+                  <CalendarDays className="h-4 w-4 text-season-accent" />
                   <span className="text-muted-foreground">
                     {project.hero.temporalMarkLabel}
                   </span>
@@ -351,7 +351,7 @@ export function ProjectCaseStudyPage({
       <Card>
         <CardContent className="flex flex-col gap-4 pt-6 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase text-blue-500">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-season-accent">
               {nextStep.eyebrow}
             </p>
             <h2 className="text-2xl font-semibold">{nextStep.title}</h2>

@@ -81,7 +81,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
         />
         {isLoadingImage && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <Loader className="h-8 w-8 animate-spin text-blue-500" />
+            <Loader className="h-8 w-8 animate-spin text-season-accent" />
           </div>
         )}
         <RepositoryTopicBadge topics={repository.topics} />

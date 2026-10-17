@@ -49,7 +49,7 @@ const markdownComponents: Components = {
     return (
       <Link
         href={href ?? '#'}
-        className="text-sky-700 underline underline-offset-4 dark:text-sky-400"
+        className="text-season-accent underline underline-offset-4"
         {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
       >
         {children}
@@ -75,7 +75,7 @@ function SectionTitle({
 }: Readonly<{ icon: ReactNode; children: ReactNode }>) {
   return (
     <h2 className="mt-5 mb-1.5 flex items-center gap-2 text-xl font-bold md:text-2xl">
-      <span className="text-sky-600 dark:text-sky-400">{icon}</span>
+      <span className="text-season-accent">{icon}</span>
       {children}
     </h2>
   )
@@ -94,7 +94,7 @@ export function ArticlePageContent({
     <PageContent className="gap-4">
       <Link
         href={`/${lang}/articles`}
-        className="flex w-fit items-center gap-2 text-sm text-sky-700 dark:text-sky-400"
+        className="flex w-fit items-center gap-2 text-sm text-season-accent"
       >
         <ArrowLeft className="h-4 w-4" />
         {text.backToList}
@@ -138,9 +138,9 @@ export function ArticlePageContent({
         <Card className="border-0 bg-white px-6 py-4 backdrop-blur-sm dark:bg-black/50">
           <div>
             {summary.length > 0 && (
-              <section className="mt-2 mb-6 rounded-xl border-l-4 border-sky-500 bg-sky-500/10 px-4 py-2">
+              <section className="mt-2 mb-6 rounded-xl border-l-4 border-season-accent bg-season-accent/10 px-4 py-2">
                 <h2 className="flex items-center gap-2 text-lg font-bold">
-                  <Sparkles className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+                  <Sparkles className="h-5 w-5 text-season-accent" />
                   {text.summaryTitle}
                 </h2>
                 <ReactMarkdown components={markdownComponents}>
@@ -192,7 +192,7 @@ export function ArticlePageContent({
                         href={reference.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sky-700 underline underline-offset-4 dark:text-sky-400"
+                        className="inline-flex items-center gap-1 text-season-accent underline underline-offset-4"
                       >
                         {reference.title}
                         <ExternalLink className="h-3.5 w-3.5" />

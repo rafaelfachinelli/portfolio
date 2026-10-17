@@ -147,7 +147,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                       <Trophy className="h-3 w-3 text-purple-500" />
                     )}
                     {searchParams.get('type') === 'study' && (
-                      <GraduationCap className="h-3 w-3 text-blue-500" />
+                      <GraduationCap className="h-3 w-3 text-season-accent" />
                     )}
                     {searchParams.get('type') === 'others' && (
                       <Shapes className="h-3 w-3 text-red-500" />
@@ -206,7 +206,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
                   className="hover:bg-muted cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
-                    <GraduationCap className="h-3 w-3 text-blue-500" />
+                    <GraduationCap className="h-3 w-3 text-season-accent" />
                     {translation.pages.projects.repositories.filters.type.study}
                   </div>
                 </SelectItem>
@@ -411,7 +411,7 @@ export function Filters({ allRepositories, disabled }: FiltersProps) {
               }}
               disabled={disabled || !hasFilterSelected()}
             >
-              <Trash className="h-4 w-4 text-blue-500" />
+              <Trash className="h-4 w-4 text-season-accent" />
               {translation.pages.projects.repositories.filters.buttons.clear}
             </Button>
             <SheetClose asChild>
