@@ -61,7 +61,15 @@ The main problem is Total Blocking Time (main-thread JavaScript), not layout shi
 - Dark only: remove the theme switcher and its provider.
 - Replace `src/components/ui/space-background.tsx` with the drafting grid (CSS gradients only). Likely cause of the mobile freeze (from reading the code, not yet measured): ~100 stars, each a framer-motion element animated forever in JavaScript, plus 5 clouds with `filter: blur(20px)` that also animate.
 - Seasons by date. Finding: pages are statically generated and cached for a year (`s-maxage=31536000`), so a season chosen at build time would never change. Plan: a tiny inline script in `<head>` sets `data-season` on `<html>` from the visitor's date before the first paint (no flash), and the CSS picks the season variables from that attribute.
-- Lighthouse after, compared with 1.0 against the budget in brand.md.
+- Lighthouse after (2026-10-17, same profile as 1.0, live site):
+
+| Page | Performance | LCP | TBT | CLS |
+| --- | --- | --- | --- | --- |
+| `/pt-BR` | 54 → **70** | 4.7 → 5.3 s | 1,424 → **293 ms** | 0 |
+| `/pt-BR/articles/piramide-de-testes-na-pratica` | 66 → **76** | 3.2 → 5.0 s | 1,500 → **204 ms** | 0 |
+| `/pt-BR/about/timeline` | 69 → **90** | 3.0 → 3.2 s | 1,210 → **177 ms** | 0 |
+
+Total Blocking Time fell by 80-85% on every page, which confirms the animated background as the cause of the mobile freeze. The budget (Performance 90+, LCP under 2.5 s) is met only on the timeline. LCP is now the bottleneck: on the home the LCP element is the hero text and on the article it is the cover image, both with about 4.4-4.6 s of **render delay** (zero load delay), which points at elements that start hidden by framer-motion entrance animations (`initial: opacity 0`) and only appear after hydration. Next step: render the above-the-fold content visible from the first paint (CSS-only entrance or none), then measure again.
 
 **1.4 Storybook (`apps/datum`) (done).**
 - Storybook 10 (react-vite) with pages in pt-BR: Introdução, Princípios, Cores, Tipografia, Espaço e forma, Temporadas; a "Temporada" toolbar; the Storybook chrome wears the Datum theme.
