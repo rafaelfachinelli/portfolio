@@ -57,7 +57,7 @@ export function HomeProjectsSection({
         {featuredProjects.map(project => (
           <Card
             key={project.title}
-            className="border-white/10 bg-black/50 p-6 backdrop-blur-md dark:bg-black/25"
+            className="border-white/10 bg-black/50 p-6 dark:bg-black/25"
           >
             <div className="flex h-full flex-col gap-5">
               <div className="space-y-3">

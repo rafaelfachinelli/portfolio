@@ -35,7 +35,7 @@ export function HomeCustomersSection({
       variants={variants}
       transition={{ duration: 0.45, ease: 'easeOut' }}
     >
-      <Card className="border-white/10 bg-black/55 p-6 backdrop-blur-md dark:bg-black/30 md:p-8">
+      <Card className="border-white/10 bg-black/55 p-6 dark:bg-black/30 md:p-8">
         <div className="mb-6 space-y-3">
           <p className="text-sm font-medium tracking-[0.3em] text-white/60 uppercase">
             {eyebrow}
@@ -48,7 +48,7 @@ export function HomeCustomersSection({
           {customers.map(customer => (
             <Card
               key={customer.name}
-              className="border-white/10 bg-white/10 p-5 backdrop-blur-md dark:bg-white/5"
+              className="border-white/10 bg-white/10 p-5 dark:bg-white/5"
             >
               <div className="flex h-full flex-col gap-5">
                 <div className="flex min-h-16 items-center">

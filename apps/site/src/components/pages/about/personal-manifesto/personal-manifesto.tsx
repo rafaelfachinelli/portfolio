@@ -52,7 +52,7 @@ export function PersonalManifestoPageContent() {
       <PageContent
         className={`gap-2 text-justify ${merriweather.className} leading-relaxed`}
       >
-        <Card className="mb-4 border-0 bg-white p-6 backdrop-blur-sm dark:bg-black/50">
+        <Card className="mb-4 border-0 bg-white p-6 dark:bg-black/50">
           <motion.div
             variants={containerVariants}
             initial="hidden"

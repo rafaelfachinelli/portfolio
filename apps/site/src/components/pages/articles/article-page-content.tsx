@@ -135,7 +135,7 @@ export function ArticlePageContent({
         </header>
 
         {/* Single child inside the Card so its flex gap does not add extra space between paragraphs. */}
-        <Card className="border-0 bg-white px-6 py-4 backdrop-blur-sm dark:bg-black/50">
+        <Card className="border-0 bg-white px-6 py-4 dark:bg-black/50">
           <div>
             {summary.length > 0 && (
               <section className="mt-2 mb-6 rounded-xl border-l-4 border-season-accent bg-season-accent/10 px-4 py-2">
@@ -207,7 +207,7 @@ export function ArticlePageContent({
 
         <ShareButtons url={shareUrl} title={title} />
 
-        <Card className="flex-col items-center gap-3 border-white/10 bg-white/10 px-6 py-5 text-center backdrop-blur-md sm:flex-row sm:justify-between sm:text-left dark:bg-black/25">
+        <Card className="flex-col items-center gap-3 border-white/10 bg-white/10 px-6 py-5 text-center sm:flex-row sm:justify-between sm:text-left dark:bg-black/25">
           <p className="text-lg font-semibold">{cta ?? text.ctaDefault}</p>
           <Button asChild>
             <Link href={`/${lang}/contact`}>{text.ctaButton}</Link>

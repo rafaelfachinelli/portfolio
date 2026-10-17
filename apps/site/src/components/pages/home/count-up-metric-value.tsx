@@ -22,10 +22,13 @@ export function CountUpMetricValue({
 }: Readonly<CountUpMetricValueProps>) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.6 })
-  const [displayValue, setDisplayValue] = useState(0)
+  // The server renders the final value (readable without JavaScript, by
+  // crawlers and AI assistants); the count-up only runs once in view.
+  const [displayValue, setDisplayValue] = useState(endValue)
 
   useEffect(() => {
     if (!isInView) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     let frameId = 0
     const duration = 1400

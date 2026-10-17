@@ -36,7 +36,7 @@ export function HomeCtaSection({
       {cards.map(card => (
         <Card
           key={card.title}
-          className="border-white/10 bg-black/55 p-6 backdrop-blur-md dark:bg-black/30"
+          className="border-white/10 bg-black/55 p-6 dark:bg-black/30"
         >
           <div className="flex h-full flex-col gap-4">
             <p className="text-sm font-medium tracking-[0.3em] text-white/60 uppercase">
