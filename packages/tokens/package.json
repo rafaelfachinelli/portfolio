@@ -1,0 +1,27 @@
+{
+  "name": "@datum/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Datum design tokens (W3C DTCG): Blueprint palette, base theme and seasons, built to CSS variables, a Tailwind 4 theme and a typed module.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./dist/tokens.css",
+    "./theme.css": "./dist/theme.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "scripts": {
+    "build": "tsx build/build.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

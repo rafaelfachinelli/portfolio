@@ -1,0 +1,29 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "Datum",
+  "version": "2025.10",
+  "description": "Base theme (dark only) × season. Later layers override earlier ones; two seasons never stack.",
+  "sets": {
+    "base": {
+      "description": "Palette and semantic tokens.",
+      "sources": [{ "$ref": "palette.json" }, { "$ref": "base.json" }]
+    }
+  },
+  "modifiers": {
+    "season": {
+      "description": "Seasonal layer chosen by date (see src/seasons.ts). Changes only the season group: logo gradient and accent.",
+      "contexts": {
+        "base": [{ "$ref": "seasons/base.json" }],
+        "ano-novo": [{ "$ref": "seasons/ano-novo.json" }],
+        "carnaval": [{ "$ref": "seasons/carnaval.json" }],
+        "pascoa": [{ "$ref": "seasons/pascoa.json" }],
+        "festa-junina": [{ "$ref": "seasons/festa-junina.json" }],
+        "dia-do-programador": [{ "$ref": "seasons/dia-do-programador.json" }],
+        "halloween": [{ "$ref": "seasons/halloween.json" }],
+        "natal": [{ "$ref": "seasons/natal.json" }]
+      },
+      "default": "base"
+    }
+  },
+  "resolutionOrder": [{ "$ref": "#/sets/base" }, { "$ref": "#/modifiers/season" }]
+}

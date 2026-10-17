@@ -1,0 +1,22 @@
+{
+  "$description": "Dia do Programador / Programmer's Day. Window: Day 256 of the year (13 Sep, 12 Sep in leap years).",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#4ade80",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#22d3ee",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#4ade80",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}

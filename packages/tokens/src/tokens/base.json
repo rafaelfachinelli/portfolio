@@ -1,0 +1,49 @@
+{
+  "$description": "Semantic tokens of the base theme (dark only). Season tokens come from seasons/*.json and override only the season group.",
+  "color": {
+    "$type": "color",
+    "board": { "$value": "{palette.navy.900}", "$description": "Page background, the drafting board" },
+    "surface": { "$value": "{palette.navy.850}", "$description": "Cards, sheets, popovers" },
+    "well": { "$value": "{palette.navy.800}", "$description": "Inputs, code, sunken areas" },
+    "edge": { "$value": "{palette.navy.950}", "$description": "Outermost frame" },
+    "ink": { "$value": "{palette.slate.50}", "$description": "Main text" },
+    "ink-muted": { "$value": "{palette.slate.300}", "$description": "Secondary text" },
+    "ink-subtle": { "$value": "{palette.slate.400}", "$description": "Annotations, captions, placeholders" },
+    "drafting": { "$value": "{palette.cyan.300}", "$description": "Drafting lines and dimension marks" },
+    "line": { "$value": "#7dd3fc24", "$description": "Hairline borders and the fine grid (drafting line at 14%)" },
+    "line-strong": { "$value": "#7dd3fc52", "$description": "Stronger borders, the major grid (drafting line at 32%)" },
+    "highlight": { "$value": "{palette.amber.500}", "$description": "Brand amber, used sparingly" },
+    "danger": { "$value": "{palette.rose.400}" },
+    "success": { "$value": "{palette.green.400}" },
+    "warning": { "$value": "{palette.amber.400}" }
+  },
+  "font": {
+    "$type": "fontFamily",
+    "display": { "$value": ["Archivo", "Arial Narrow", "system-ui", "sans-serif"], "$description": "Titles" },
+    "text": { "$value": ["IBM Plex Sans", "Segoe UI", "system-ui", "sans-serif"], "$description": "Running text and interface" },
+    "mono": { "$value": ["IBM Plex Mono", "ui-monospace", "Cascadia Code", "monospace"], "$description": "Annotations, labels, numbers, code" }
+  },
+  "space": {
+    "$type": "dimension",
+    "$description": "4 px grid.",
+    "1": { "$value": { "value": 4, "unit": "px" } },
+    "2": { "$value": { "value": 8, "unit": "px" } },
+    "3": { "$value": { "value": 12, "unit": "px" } },
+    "4": { "$value": { "value": 16, "unit": "px" } },
+    "6": { "$value": { "value": 24, "unit": "px" } },
+    "8": { "$value": { "value": 32, "unit": "px" } },
+    "12": { "$value": { "value": 48, "unit": "px" } },
+    "16": { "$value": { "value": 64, "unit": "px" } }
+  },
+  "radius": {
+    "$type": "dimension",
+    "sm": { "$value": { "value": 2, "unit": "px" }, "$description": "Default: drafting-sharp corners" },
+    "md": { "$value": { "value": 4, "unit": "px" } },
+    "full": { "$value": { "value": 9999, "unit": "px" }, "$description": "Dots and switches only" }
+  },
+  "grid": {
+    "$type": "dimension",
+    "minor": { "$value": { "value": 24, "unit": "px" }, "$description": "Fine grid of the drafting board" },
+    "major": { "$value": { "value": 120, "unit": "px" }, "$description": "Major grid, every 5 minor cells" }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$description": "Padrão / Default. Window: Outside every seasonal window.",
+  "season": {
+    "$type": "color",
+    "a": {
+      "$value": "#38bdf8",
+      "$description": "Logo gradient start"
+    },
+    "b": {
+      "$value": "#6366f1",
+      "$description": "Logo gradient end"
+    },
+    "accent": {
+      "$value": "#38bdf8",
+      "$description": "Accent: primary actions, active states, focus"
+    },
+    "on-accent": {
+      "$value": "#041024",
+      "$description": "Text on the accent"
+    }
+  }
+}
