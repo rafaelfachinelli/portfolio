@@ -11,6 +11,7 @@ WORKDIR /app
 # Manifests first, for a cached dependency layer.
 COPY package.json package-lock.json turbo.json ./
 COPY apps/site/package.json apps/site/package.json
+COPY apps/datum/package.json apps/datum/package.json
 COPY packages/ packages/
 RUN npm ci
 

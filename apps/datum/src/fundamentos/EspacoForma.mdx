@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+import { GridSpecimen, ScaleSpecimen } from '../components/foundations'
+
+<Meta title="Fundamentos/Espaco e forma" />
+
+# Espaço e forma
+
+## Espaço
+
+Tudo anda numa grade de **4 px**. Os passos mais usados são 8, 16 e 24.
+
+<ScaleSpecimen prefix="space." />
+
+## Raio
+
+Cantos de prancheta: **2 px** é o padrão. Arredondado total só em pontos e interruptores.
+
+<ScaleSpecimen prefix="radius." />
+
+## A grade da prancheta
+
+O fundo do site é uma grade fina de 24 px com uma grade maior a cada 5 células (120 px), feita só com gradientes de CSS: nenhum custo de desenho, nenhuma animação.
+
+<GridSpecimen />
+
+<ScaleSpecimen prefix="grid." />
+
+## Marcas de registro
+
+As superfícies principais ganham marcas nos cantos superior esquerdo e inferior direito, na cor da temporada, como acima. É a assinatura visual da Blueprint; use com moderação.

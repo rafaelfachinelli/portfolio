@@ -32,7 +32,7 @@ Brand principles: [brand.md](./brand.md).
 ### Phase 0: brand foundation (done)
 Interview, brand principles ([brand.md](./brand.md)) and three visual previews. Blueprint chosen. The previews are private Claude artifacts: [Blueprint](https://claude.ai/artifact/VcVGWnH6cpXAhThuyrcZK9), [Órbita](https://claude.ai/artifact/5zLgornzPR27aoh6uWgGVa), [Constelação](https://claude.ai/artifact/8caSoSfu7E1MEsXQHi4UdW).
 
-### Phase 1: monorepo, tokens and Storybook (approved 2026-10-17, in progress)
+### Phase 1: monorepo, tokens and Storybook (done 2026-10-17)
 
 One PR per step, in this order. Nothing visible changes until step 1.3. Package scope: `@datum/*`.
 
@@ -46,27 +46,27 @@ One PR per step, in this order. Nothing visible changes until step 1.3. Package 
 
 The main problem is Total Blocking Time (main-thread JavaScript), not layout shift.
 
-**1.1 Monorepo skeleton.**
-- Move the Next app to `apps/site`; npm workspaces + Turborepo at the root (same model as Castle Raiders).
-- Production impact: Coolify builds the root `Dockerfile` today, so the build context and Dockerfile path change. Validate on a temporary staging app in Coolify (for example `staging.rafaelfachinelli.com`) pointing at the branch, then switch the production app settings at merge time. Local Docker image builds are avoided (disk limits).
+**1.1 Monorepo skeleton (done, PR #4).**
+- Next app in `apps/site`; npm workspaces + Turborepo at the root (same model as Castle Raiders).
+- The root `Dockerfile` builds from the workspace root, so the Coolify app settings did not change. Validated on a temporary Coolify staging app before merging.
 - CI workflow, `CONTEXT.md` and the `new-article` skill paths updated in the same PR.
 
-**1.2 `packages/tokens` (`@datum/tokens`).**
+**1.2 `packages/tokens` (`@datum/tokens`) (done, PR #5).**
 - DTCG JSON: palette, base theme (board, well, ink, drafting line), type (Archivo, IBM Plex Sans, IBM Plex Mono), spacing (4 px grid), radius (2 px), and the 8 season sets, combined by a resolver (`base` + `season`, seasons never stack).
 - Build to CSS variables, a Tailwind 4 theme and a typed TS module.
 - Tests: WCAG AA contrast for every text/background pair, including each season accent on the board; the season-by-date function (Easter computation, day 256) with known dates.
 
-**1.3 The site adopts Datum.**
+**1.3 The site adopts Datum (done, PR #6).**
 - Replace the shadcn default color variables with the tokens; load the three fonts with `next/font`.
 - Dark only: remove the theme switcher and its provider.
 - Replace `src/components/ui/space-background.tsx` with the drafting grid (CSS gradients only). Likely cause of the mobile freeze (from reading the code, not yet measured): ~100 stars, each a framer-motion element animated forever in JavaScript, plus 5 clouds with `filter: blur(20px)` that also animate.
 - Seasons by date. Finding: pages are statically generated and cached for a year (`s-maxage=31536000`), so a season chosen at build time would never change. Plan: a tiny inline script in `<head>` sets `data-season` on `<html>` from the visitor's date before the first paint (no flash), and the CSS picks the season variables from that attribute.
 - Lighthouse after, compared with 1.0 against the budget in brand.md.
 
-**1.4 Storybook (`apps/datum`).**
-- Storybook (react-vite) with foundation pages: colors, type, spacing, radius, seasons (a toolbar to switch season), brand principles. Written in pt-BR, like the site.
-- Deployed as a static site (nginx) on a new Coolify app at `design.rafaelfachinelli.com` (DNS already points to the VPS).
-- Docs folder `docs/datum/` for the rules (principles, tokens, components), the same "one canonical home" idea as Castle Raiders.
+**1.4 Storybook (`apps/datum`) (done).**
+- Storybook 10 (react-vite) with pages in pt-BR: Introdução, Princípios, Cores, Tipografia, Espaço e forma, Temporadas; a "Temporada" toolbar; the Storybook chrome wears the Datum theme.
+- Static site (nginx) on a Coolify app at `design.rafaelfachinelli.com`.
+- Rules home: [docs/datum/README.md](./datum/README.md).
 
 ### Phase 2: components
 - `packages/ui`: components on shadcn/ui, one story per state, starting with what the site already uses (button, card, badge, form fields, summary box, section title with icon, article card) and growing with the tools.

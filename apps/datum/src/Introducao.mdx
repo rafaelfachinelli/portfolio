@@ -1,0 +1,49 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+import { SeasonPreview } from './components/season-calendar'
+
+<Meta title="Datum/Introducao" />
+
+# Datum
+
+**O design system de Rafael Fachinelli.** Tokens, temporadas e, em breve, componentes da direção visual **Blueprint**: a prancheta de projeto como linguagem.
+
+<SeasonPreview />
+
+## Por que "Datum"
+
+Na planta técnica, o **datum** é o ponto, a linha ou o plano de referência de onde todas as medidas de uma peça partem. As cotas não se medem umas das outras: todas saem do mesmo datum, e é isso que faz a peça encaixar. Em topografia, é o sistema de referência das coordenadas (no Brasil, o "datum SIRGAS 2000").
+
+Um design system faz o mesmo papel: é a referência única de onde cor, espaço e tipografia são medidos, para que todas as telas encaixem.
+
+## O que tem aqui
+
+| Pacote | O que é |
+| --- | --- |
+| `@datum/tokens` | Tokens no formato W3C (DTCG): paleta, tema base (só escuro), tipografia, espaço de 4 px, raio de 2 px, a grade da prancheta e 8 temporadas. Gera variáveis CSS, um tema do Tailwind 4 e um módulo TypeScript. |
+| `@datum/storybook` | Este site: fundamentos, temporadas e, na próxima fase, os componentes. |
+
+Os componentes (`@datum/ui`) chegam na fase 2: shadcn/ui como base, com a personalidade da Blueprint por cima.
+
+## Como usar
+
+```css
+/* globals.css */
+@import 'tailwindcss';
+@import '@datum/tokens/tokens.css'; /* variáveis --datum-* e as temporadas */
+@import '@datum/tokens/theme.css';  /* utilitários: bg-board, text-ink, text-season-accent... */
+```
+
+```tsx
+// No <head>, para a temporada trocar sozinha pela data, sem piscar
+import { seasonInlineScript } from '@datum/tokens'
+
+<script dangerouslySetInnerHTML={{ __html: seasonInlineScript }} />
+```
+
+Use a barra **Temporada**, no topo desta página, para ver qualquer temporada.
+
+## Onde o Datum está em uso
+
+- [rafaelfachinelli.com](https://rafaelfachinelli.com), o portfólio.
+- Código aberto em [github.com/rafaelfachinelli/portfolio](https://github.com/rafaelfachinelli/portfolio) (`packages/tokens`, `apps/datum`).

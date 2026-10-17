@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+import { ColorGrid } from '../components/color-grid'
+
+<Meta title="Fundamentos/Cores" />
+
+# Cores
+
+O Datum tem duas camadas: a **paleta** (cores brutas) e os **tokens semânticos**, que dizem para que cada cor serve. Componentes usam só os semânticos.
+
+Cada cartão mostra o contraste da cor sobre o `color.board`. Texto precisa de 4,5:1 (AA).
+
+## Semânticas
+
+<ColorGrid prefix="color." />
+
+## Temporada
+
+Estes quatro mudam com a data. Troque na barra **Temporada**.
+
+<ColorGrid prefix="season." />
+
+## Paleta
+
+<ColorGrid prefix="palette." />
+
+## No código
+
+```css
+.card {
+  background: var(--datum-color-surface);
+  border: 1px solid var(--datum-color-line-strong);
+  color: var(--datum-color-ink);
+}
+```
+
+Com o tema do Tailwind: `bg-surface border-line-strong text-ink`, e `text-season-accent` para o destaque.
