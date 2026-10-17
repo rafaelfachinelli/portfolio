@@ -5,7 +5,7 @@ description: Use when the user wants to create or revise an article for the port
 
 # New portfolio article
 
-Articles live in `src/content/articles.ts` and are rendered by `src/components/pages/articles/`. The standard template is documented in `CONTEXT.md` ("Articles"). This skill is the process to produce one with the author (Rafael), who brings a topic and wants it stress-tested.
+The site lives in `apps/site` (npm workspaces monorepo; paths below are relative to it unless noted). Articles live in `apps/site/src/content/articles.ts` and are rendered by `apps/site/src/components/pages/articles/`. The standard template is documented in `CONTEXT.md` ("Articles"). This skill is the process to produce one with the author (Rafael), who brings a topic and wants it stress-tested.
 
 ## 0. Ground rules
 
@@ -56,7 +56,7 @@ Propose an outline and get a quick OK before writing:
 Generate it with the script (language-neutral text works best):
 
 ```bash
-node scripts/generate-article-cover.mjs --slug <slug>-cover-v1 --kicker "TOPIC" --headline "BIG TEXT" --subline "SHORT LINE" --accent sky
+node apps/site/scripts/generate-article-cover.mjs --slug <slug>-cover-v1 --kicker "TOPIC" --headline "BIG TEXT" --subline "SHORT LINE" --accent sky
 ```
 
 Always use a **new file name** (`-v2`, `-v3`...) when changing a cover, to bust browser and Next image caches. Look at the PNG before using it. For richer covers (illustrations), hand-write the SVG and convert with `sharp` (1200x630, WebP).
@@ -68,8 +68,8 @@ Add the entry to the `articles` array (newest first): `slug` (kebab-case, no acc
 ## 7. Verify
 
 ```bash
-npx eslint src && npx tsc --noEmit && npm run build
-NODE_ENV=production PORT=3100 node server.js   # then open /pt-BR/articles and the article, pt and en
+npx turbo run lint typecheck test build        # from the repository root
+cd apps/site && NODE_ENV=production PORT=3100 node server.js   # then open /pt-BR/articles and the article, pt and en
 ```
 
 Check: cover loads, summary box, section icons, spacing, lessons/references/CTA, share buttons, reading time (target 3-6 min), no 404 on `/en-US/articles/<slug>`.
@@ -81,7 +81,7 @@ Commit on the feature branch with a conventional message. Report to the author: 
 ## 9. Tell the search engines (after the deploy is live)
 
 ```bash
-node scripts/indexnow.mjs https://rafaelfachinelli.com/pt-BR/articles/<slug> https://rafaelfachinelli.com/en-US/articles/<slug>
+node apps/site/scripts/indexnow.mjs https://rafaelfachinelli.com/pt-BR/articles/<slug> https://rafaelfachinelli.com/en-US/articles/<slug>
 ```
 
 This notifies Bing and other IndexNow engines (Bing feeds ChatGPT search). Remind the author to also request indexing in Google Search Console ("Inspeção de URL") and to republish the article on LinkedIn / Dev.to with a link back.
