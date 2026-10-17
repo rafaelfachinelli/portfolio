@@ -12,7 +12,19 @@ This project is a personal portfolio website built using modern web technologies
 - **TypeScript**: For type safety.
 - **Docker**: For containerization.
 
-## Folder Structure
+## Repository layout (monorepo)
+
+npm workspaces + Turborepo. Plans and brand rules: [docs/roadmap.md](docs/roadmap.md), [docs/brand.md](docs/brand.md).
+
+| Path | What it is |
+| --- | --- |
+| `apps/site` | The portfolio (Next.js), deployed to rafaelfachinelli.com by the root `Dockerfile` |
+| `packages/*` | Shared workspace packages (the Datum design system packages, `@datum/*`) |
+| `docs/` | Plans, brand and design system rules |
+
+Unless noted, paths in the rest of this file are relative to `apps/site`.
+
+## Folder Structure (apps/site)
 
 - **translations/**: JSON files with all site copy (`en-US.json`, `pt-BR.json`). Timeline, resume and home texts live here; keep both files with the same keys.
 - **public/**: Static assets like images.
@@ -20,6 +32,7 @@ This project is a personal portfolio website built using modern web technologies
 - **app/**: Houses the main application logic, including layouts and pages.
 - **components/**: Reusable UI components.
 - **lib/**: Utility functions and helpers.
+- **scripts/**: Article cover generator and IndexNow submitter.
 
 ## Using ShadCN UI Components
 
@@ -50,14 +63,16 @@ Refer to the [ShadCN UI documentation](https://ui.shadcn.com/) for more details 
 
 ## Development Scripts
 
-- `npm run dev`: Starts the development server.
-- `npm run build`: Builds the project for production.
-- `npm start`: Runs the production server.
-- `npm run lint`: Lints the codebase.
+Run from the repository root:
+
+- `npm install`: Installs every workspace.
+- `npm run dev`: Starts the site's development server.
+- `npm run build`, `npm run lint`, `npm run typecheck`, `npm run test`: Turborepo runs the task in every workspace, packages first.
+- Production server locally: `cd apps/site && NODE_ENV=production PORT=3100 node server.js` (after a build).
 
 ## Environment variables
 
-Copy `.env.example` to `.env.local`. `RESEND_API_KEY` enables the contact form (`/api/contact`); without it the form returns an error. `GITHUB_TOKEN` is optional and raises the GitHub API rate limit.
+Copy `apps/site/.env.example` to `apps/site/.env.local`. `RESEND_API_KEY` enables the contact form (`/api/contact`); without it the form returns an error. `GITHUB_TOKEN` is optional and raises the GitHub API rate limit.
 
 ## SEO
 
@@ -68,7 +83,7 @@ Page metadata comes from `src/lib/seo.ts` (`buildPageMetadata`), used by each `p
 - `robots.ts` explicitly allows search and AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot...).
 - `/llms.txt` (index) and `/llms-full.txt` (full article text) are generated from `articles.ts`.
 - RSS feeds per language at `/pt-BR/feed.xml` and `/en-US/feed.xml` (linked from every page's `<head>`).
-- IndexNow: the key file lives in `public/<key>.txt`. After a deploy, run `node scripts/indexnow.mjs [urls...]` to notify Bing and others.
+- IndexNow: the key file lives in `public/<key>.txt`. After a deploy, run `node apps/site/scripts/indexnow.mjs [urls...]` from the root to notify Bing and others.
 - Home and "About me" carry one plain third-person sentence about who Rafael is (`entityStatement` in the translations); keep it consistent with LinkedIn and GitHub.
 
 ## Articles (standard template)

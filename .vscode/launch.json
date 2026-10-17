@@ -5,8 +5,8 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Server",
-      "program": "${workspaceFolder}/server.js",
-      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/apps/site/server.js",
+      "cwd": "${workspaceFolder}/apps/site",
       "runtimeExecutable": "node",
       "env": {
         "NODE_ENV": "development"
