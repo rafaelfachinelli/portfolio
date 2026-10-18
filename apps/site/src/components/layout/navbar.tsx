@@ -21,6 +21,7 @@ import type { ClientTranslation } from '@/contexts/LanguageContext'
 
 import { LanguageSwitcher } from '../ui/language-switcher'
 import { Logo } from '../ui/logo'
+import { DesktopMenuGroup } from './desktop-menu-group'
 import { MobileNav } from './mobile-nav'
 
 type NavbarProps = Readonly<{
@@ -59,19 +60,19 @@ const triggerClass =
   'inline-flex h-9 w-max cursor-pointer items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:outline-none'
 
 /** A desktop dropdown opened by hover or keyboard focus, in CSS only. */
-function DesktopMenuGroup({
+function DesktopMenu({
   icon: Icon,
   title,
   items,
 }: Readonly<{ icon: LucideIcon; title: string; items: MenuItem[] }>) {
   return (
-    <li className="group/menu relative">
+    <DesktopMenuGroup>
       <button type="button" aria-haspopup="true" className={triggerClass}>
         <Icon className="text-season-accent mr-2 h-4 w-4" />
         {title}
-        <ChevronDown className="ml-1 size-3 transition-transform group-focus-within/menu:rotate-180 group-hover/menu:rotate-180 motion-reduce:transition-none" />
+        <ChevronDown className="ml-1 size-3 transition-transform group-focus-within/menu:rotate-180 group-hover/menu:rotate-180 group-data-closed/menu:rotate-0! motion-reduce:transition-none" />
       </button>
-      <div className="invisible absolute top-full left-0 z-50 pt-1.5 opacity-0 transition-opacity group-focus-within/menu:visible group-focus-within/menu:opacity-100 group-hover/menu:visible group-hover/menu:opacity-100 motion-reduce:transition-none">
+      <div className="invisible absolute top-full left-0 z-50 pt-1.5 opacity-0 transition-opacity group-focus-within/menu:visible group-focus-within/menu:opacity-100 group-hover/menu:visible group-hover/menu:opacity-100 group-data-closed/menu:invisible! group-data-closed/menu:opacity-0! motion-reduce:transition-none">
         <ul className="bg-popover text-popover-foreground grid w-[500px] gap-3 rounded-md border p-4 shadow-md md:grid-cols-2 lg:w-[600px]">
           {items.map(item => (
             <li key={item.href}>
@@ -91,7 +92,7 @@ function DesktopMenuGroup({
           ))}
         </ul>
       </div>
-    </li>
+    </DesktopMenuGroup>
   )
 }
 
@@ -245,12 +246,12 @@ export function Navbar({ lang, translation }: NavbarProps) {
                 {options.home.title}
               </Link>
             </li>
-            <DesktopMenuGroup
+            <DesktopMenu
               icon={Info}
               title={options.about.title}
               items={aboutItems}
             />
-            <DesktopMenuGroup
+            <DesktopMenu
               icon={Presentation}
               title={options.projects.title}
               items={projectItems}
