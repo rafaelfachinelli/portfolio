@@ -936,6 +936,10 @@
           "title": "Artigos",
           "description": "Textos sobre engenharia de software, arquitetura e liderança técnica."
         }
+      },
+      "menu": {
+        "open": "Abrir menu",
+        "close": "Fechar menu"
       }
     },
     "footer": {
@@ -949,7 +953,8 @@
         "pt": {
           "title": "Português"
         }
-      }
+      },
+      "label": "Trocar idioma"
     }
   },
   "commons": {
