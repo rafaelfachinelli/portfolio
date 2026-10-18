@@ -21,8 +21,7 @@ const meta = {
       table: { defaultValue: { summary: 'md' } },
     },
     loading: {
-      description:
-        'Mostra o indicador, bloqueia cliques e marca `aria-busy`.',
+      description: 'Mostra o indicador, bloqueia cliques e marca `aria-busy`.',
       control: 'boolean',
     },
     disabled: { description: 'Desabilita o botão.', control: 'boolean' },

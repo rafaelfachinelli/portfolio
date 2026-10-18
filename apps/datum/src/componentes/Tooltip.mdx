@@ -1,0 +1,39 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+
+import * as TooltipStories from './Tooltip.stories'
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+Um rótulo curto que aparece ao passar o mouse ou focar com o teclado. Serve para nomear ícones e dar uma dica rápida. Fica em tom invertido (texto escuro sobre claro) para se destacar de qualquer fundo.
+
+<Canvas of={TooltipStories.Default} />
+
+## Aberto
+
+<Canvas of={TooltipStories.Open} />
+
+## Posições
+
+`side`: `top` (padrão), `right`, `bottom` ou `left`. Se não couber, o Tooltip troca de lado sozinho.
+
+<Canvas of={TooltipStories.Sides} />
+
+## Em grupo
+
+Envolva vários tooltips num `TooltipProvider`: depois do primeiro, os vizinhos abrem na hora, sem esperar o atraso de novo.
+
+<Canvas of={TooltipStories.Group} />
+
+## Em ação desabilitada
+
+Um botão desabilitado não recebe foco nem mouse. Para explicar por que ele está desabilitado, envolva-o num elemento focável (`span` com `tabIndex={0}`) e ponha o Tooltip nele.
+
+<Canvas of={TooltipStories.OnDisabledAction} />
+
+## Boas práticas
+
+- Nunca guarde informação essencial no Tooltip: no celular não existe "passar o mouse".
+- Um botão só com ícone precisa de `aria-label` mesmo com Tooltip; o Tooltip ajuda quem vê, o `aria-label` ajuda quem ouve.
+- Poucas palavras. Para conteúdo com links ou formatação, use outro componente.
