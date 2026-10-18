@@ -39,10 +39,10 @@ export async function GET(request: NextRequest) {
 
     let data = await response.json()
 
-    // Filter out repositories with "no-exposed-to-site" topic
+    // Only my own work: no forks, nothing tagged "not-exposed-on-website".
     data = data.filter(
-      (repo: { topics: string[] }) =>
-        !repo.topics?.includes('not-exposed-on-website'),
+      (repo: { topics: string[]; fork: boolean }) =>
+        !repo.fork && !repo.topics?.includes('not-exposed-on-website'),
     )
 
     // Apply type filter
