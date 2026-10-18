@@ -89,7 +89,10 @@ export function HomeProjectsSection({
         variant="outline"
         className="cursor-pointer border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
       >
-        <Link href={allProjectsHref}>{viewAllProjectsButton}</Link>
+        {/* No prefetch: the repository page code (Select, Tooltip) is heavy. */}
+        <Link href={allProjectsHref} prefetch={false}>
+          {viewAllProjectsButton}
+        </Link>
       </Button>
     </section>
   )
