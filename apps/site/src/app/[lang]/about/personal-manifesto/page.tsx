@@ -1,5 +1,7 @@
 import { PersonalManifestoPageContent } from '@/components/pages/about/personal-manifesto/personal-manifesto'
-import { buildPageMetadata } from '@/lib/seo'
+import { buildPageMetadata, resolveLocale } from '@/lib/seo'
+
+import { getTranslation } from '../../../../../get-translation'
 
 export async function generateMetadata({
   params,
@@ -18,6 +20,11 @@ export async function generateMetadata({
   })
 }
 
-export default function Page() {
-  return <PersonalManifestoPageContent />
+export default async function Page({
+  params,
+}: Readonly<{ params: Promise<{ lang: string }> }>) {
+  const { lang } = await params
+  const translation = await getTranslation(resolveLocale(lang))
+
+  return <PersonalManifestoPageContent translation={translation} />
 }

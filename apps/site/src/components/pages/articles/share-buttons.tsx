@@ -5,16 +5,20 @@ import { useEffect, useState } from 'react'
 import { FaLinkedinIn, FaWhatsapp, FaXTwitter } from 'react-icons/fa6'
 
 import { Button } from '@/components/ui/button'
-import { useLanguage } from '@/contexts/LanguageContext'
+
+import type { Translation } from '../../../../get-translation'
 
 type ShareButtonsProps = {
   url: string
   title: string
+  text: Translation['pages']['articles']
 }
 
-export function ShareButtons({ url, title }: Readonly<ShareButtonsProps>) {
-  const { translation } = useLanguage()
-  const text = translation.pages.articles
+export function ShareButtons({
+  url,
+  title,
+  text,
+}: Readonly<ShareButtonsProps>) {
   const [copied, setCopied] = useState(false)
   const [canNativeShare, setCanNativeShare] = useState(false)
 
@@ -64,7 +68,7 @@ export function ShareButtons({ url, title }: Readonly<ShareButtonsProps>) {
   return (
     <div className="flex flex-wrap items-center gap-2">
       <span className="mr-1 flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
-        <Share2 className="h-4 w-4 text-season-accent" />
+        <Share2 className="text-season-accent h-4 w-4" />
         {text.shareTitle}
       </span>
 

@@ -1,12 +1,8 @@
-'use client'
-
-import { Download } from 'lucide-react'
 import Image from 'next/image'
 
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { useLanguage } from '@/contexts/LanguageContext'
-import { generateResumePdf } from '@/lib/generate-resume-pdf'
+
+import { ResumePdfButton } from './resume-pdf-button'
 
 type HomeResumeCardProps = {
   title: string
@@ -21,8 +17,6 @@ export function HomeResumeCard({
   description,
   buttonLabel,
 }: Readonly<HomeResumeCardProps>) {
-  const { translation } = useLanguage()
-
   return (
     <div>
       <Card className="border-white/10 bg-white/10 p-6 dark:bg-black/40">
@@ -51,13 +45,7 @@ export function HomeResumeCard({
           </div>
 
           <div className="mt-auto flex flex-col gap-3">
-            <Button
-              onClick={() => generateResumePdf(translation)}
-              className="flex w-full cursor-pointer items-center gap-2"
-            >
-              <Download className="h-4 w-4" />
-              {buttonLabel}
-            </Button>
+            <ResumePdfButton label={buttonLabel} />
           </div>
         </div>
       </Card>

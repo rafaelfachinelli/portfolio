@@ -1,5 +1,3 @@
-'use client'
-
 import { ArrowRight, Mail } from 'lucide-react'
 import Link from 'next/link'
 
@@ -41,7 +39,7 @@ export function HomeHeroSection({
     // Above the fold: rendered visible from the first paint (no entrance
     // animation), so the largest paint does not wait for hydration.
     <div>
-      <Card className="border-white/10 bg-black/55 p-6 dark:bg-black/30 md:p-8">
+      <Card className="border-white/10 bg-black/55 p-6 md:p-8 dark:bg-black/30">
         <div className="flex flex-col gap-6">
           <div className="flex flex-wrap items-center gap-3">
             <Badge className="bg-white/15 px-3 py-1 text-white hover:bg-white/15">

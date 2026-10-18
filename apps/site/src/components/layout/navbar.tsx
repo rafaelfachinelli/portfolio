@@ -1,10 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { BookOpen, Contact, Home, Info, Presentation } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
 
 import {
   NavigationMenu,
@@ -23,14 +20,6 @@ import { SidebarTrigger } from '../ui/sidebar'
 
 export function Navbar() {
   const { lang, translation } = useLanguage()
-  const [homeAnimationKey, setHomeAnimationKey] = useState(0)
-  const pathname = usePathname()
-
-  useEffect(() => {
-    if (pathname === `/${lang}`) {
-      setHomeAnimationKey(prevKey => prevKey + 1)
-    }
-  }, [pathname, lang])
 
   return (
     <div className="bg-board/95 border-line-strong sticky top-0 z-50 flex w-full items-center justify-center border-b px-4 py-2">
@@ -38,22 +27,7 @@ export function Navbar() {
         <SidebarTrigger className="flex cursor-pointer items-center justify-center border p-4 md:hidden" />
         <div className="flex w-full items-center justify-center md:w-fit md:justify-start">
           <Link href={`/${lang}`} className="flex items-center justify-center">
-            <motion.div
-              key={homeAnimationKey}
-              initial={{ rotateX: 0 }}
-              animate={{ rotateX: 360 }}
-              transition={{
-                duration: 0.7,
-                ease: 'easeInOut',
-                repeat: 0,
-              }}
-              style={{
-                transformStyle: 'preserve-3d',
-                perspective: '1000px',
-              }}
-            >
-              <Logo size={40} className="md:mr-8" />
-            </motion.div>
+            <Logo size={40} className="md:mr-8" />
           </Link>
         </div>
         <NavigationMenu delayDuration={0} className="hidden md:flex">
@@ -64,14 +38,14 @@ export function Navbar() {
                   href={`/${lang}`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Home className="mr-2 h-4 w-4 text-season-accent" />
+                  <Home className="text-season-accent mr-2 h-4 w-4" />
                   {translation.components.navbar.options.home.title}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Info className="mr-2 h-4 w-4 text-season-accent" />
+                <Info className="text-season-accent mr-2 h-4 w-4" />
                 {translation.components.navbar.options.about.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -98,7 +72,7 @@ export function Navbar() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Presentation className="mr-2 h-4 w-4 text-season-accent" />
+                <Presentation className="text-season-accent mr-2 h-4 w-4" />
                 {translation.components.navbar.options.projects.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -129,7 +103,7 @@ export function Navbar() {
                   href={`/${lang}/articles`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <BookOpen className="mr-2 h-4 w-4 text-season-accent" />
+                  <BookOpen className="text-season-accent mr-2 h-4 w-4" />
                   {translation.components.navbar.options.articles.title}
                 </Link>
               </NavigationMenuLink>
@@ -140,7 +114,7 @@ export function Navbar() {
                   href={`/${lang}/contact`}
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Contact className="mr-2 h-4 w-4 text-season-accent" />
+                  <Contact className="text-season-accent mr-2 h-4 w-4" />
                   {translation.components.navbar.options.contact.title}
                 </Link>
               </NavigationMenuLink>

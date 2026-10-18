@@ -1,26 +1,31 @@
-'use client'
-
 import { File } from 'lucide-react'
 
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
-import { useLanguage } from '@/contexts/LanguageContext'
 
+import type { Translation } from '../../../../../get-translation'
 import { ResumeDownloadButton } from './resume-download-button'
 
-export function ResumePageContent() {
-  const { translation } = useLanguage()
+export function ResumePageContent({
+  translation,
+}: Readonly<{ translation: Translation }>) {
+  const text = translation.pages.about.resume
 
   return (
     <>
       <PageTitle
         icon={File}
-        title={translation.pages.about.resume.title}
-        description={translation.pages.about.resume.description}
+        title={text.title}
+        description={text.description}
       />
 
       <PageContent className="items-center gap-4">
-        <ResumeDownloadButton />
+        <ResumeDownloadButton
+          title={text.title}
+          downloadDescription={text.downloadDescription}
+          downloadLabel={text.download}
+          fileName={text.file.name}
+        />
       </PageContent>
     </>
   )

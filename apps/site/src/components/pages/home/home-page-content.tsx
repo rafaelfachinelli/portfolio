@@ -1,11 +1,8 @@
-'use client'
-
-import type { Variants } from 'framer-motion'
 import { Award, BriefcaseBusiness, Network, Users } from 'lucide-react'
 
 import { PageContent } from '@/components/ui/page-content'
-import { useLanguage } from '@/contexts/LanguageContext'
 
+import type { Translation } from '../../../../get-translation'
 import { CountUpMetricValue } from './count-up-metric-value'
 import { HomeArticlesSection } from './home-articles-section'
 import { HomeCtaSection } from './home-cta-section'
@@ -38,10 +35,14 @@ export type HomeLatestArticle = {
 }
 
 export function HomePageContent({
+  lang,
+  translation,
   latestArticles = [],
-}: Readonly<{ latestArticles?: HomeLatestArticle[] }>) {
-  const { lang, translation } = useLanguage()
-
+}: Readonly<{
+  lang: string
+  translation: Translation
+  latestArticles?: HomeLatestArticle[]
+}>) {
   const personalitiesText = translation.pages.home.personalities
   const [beforePlaceholder, afterPlaceholder] =
     personalitiesText.split('{personality}')
@@ -153,11 +154,6 @@ export function HomePageContent({
     },
   ]
 
-  const sectionVariants: Variants = {
-    hidden: { opacity: 0, y: 32 },
-    visible: { opacity: 1, y: 0 },
-  }
-
   return (
     <PageContent className="relative gap-8 pb-16 md:gap-10">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(320px,0.9fr)]">
@@ -196,14 +192,13 @@ export function HomePageContent({
         {home.entityStatement}
       </p>
 
-      <HomeMetricsSection metrics={metrics} variants={sectionVariants} />
+      <HomeMetricsSection metrics={metrics} />
 
       <HomeCustomersSection
         eyebrow={home.clientsEyebrow}
         title={home.clientsTitle}
         subtitle={home.clientsSubtitle}
         customers={customers}
-        variants={sectionVariants}
       />
 
       <HomeProjectsSection
@@ -214,7 +209,6 @@ export function HomePageContent({
         viewProjectDetailsButton={home.viewProjectDetailsButton}
         viewAllProjectsButton={home.viewAllProjectsButton}
         allProjectsHref={`/${lang}/projects/more`}
-        variants={sectionVariants}
       />
 
       {latestArticles.length > 0 && (
@@ -236,11 +230,10 @@ export function HomePageContent({
           readArticleButton={home.readArticleButton}
           viewAllArticlesButton={home.viewAllArticlesButton}
           allArticlesHref={`/${lang}/articles`}
-          variants={sectionVariants}
         />
       )}
 
-      <HomeCtaSection cards={ctaCards} variants={sectionVariants} />
+      <HomeCtaSection cards={ctaCards} />
     </PageContent>
   )
 }

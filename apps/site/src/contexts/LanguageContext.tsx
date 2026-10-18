@@ -5,9 +5,16 @@ import React, { createContext, useContext } from 'react'
 import { Translation } from '../../get-translation'
 import { Locale } from '../../i18n-config'
 
+/**
+ * The texts shared by the layout's client components (navbar, sidebar,
+ * language switcher). Page texts are passed as props from each server page, so
+ * the whole dictionary is not serialized into every page.
+ */
+export type ClientTranslation = Pick<Translation, 'commons' | 'components'>
+
 type LanguageContextType = {
   lang: Locale
-  translation: Translation
+  translation: ClientTranslation
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -20,7 +27,7 @@ export const LanguageProvider = ({
   children,
 }: {
   lang: Locale
-  translation: Translation
+  translation: ClientTranslation
   children: React.ReactNode
 }) => {
   const contextValue = React.useMemo(

@@ -1,6 +1,6 @@
-'use client'
 import { ProjectCaseStudyPage } from '@/components/pages/projects/shared/project-case-study-page'
-import { useLanguage } from '@/contexts/LanguageContext'
+
+import type { Translation } from '../../../../../get-translation'
 
 const HERO_LOGO =
   '/images/projects/instalacoes_e_reformas_leroy_merlin/leroy_merlin_logo.svg'
@@ -11,8 +11,10 @@ const SCOPE_IMAGE =
 const RESULTS_IMAGE =
   '/images/projects/instalacoes_e_reformas_leroy_merlin/evidence_3.png'
 
-export function InstalacoesEReformasPageContent() {
-  const { lang, translation } = useLanguage()
+export function InstalacoesEReformasPageContent({
+  lang,
+  translation,
+}: Readonly<{ lang: string; translation: Translation }>) {
   const project = translation.pages.projects.instalacoesEReformas
 
   return (

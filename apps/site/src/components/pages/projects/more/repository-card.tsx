@@ -21,8 +21,8 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { getLanguageConfig } from '@/config/languages'
-import { useLanguage } from '@/contexts/LanguageContext'
 
+import type { RepositoriesText } from './more-page-content'
 import { RepositoryTopicBadge } from './repository-topic-badge'
 
 export interface Repository {
@@ -48,6 +48,7 @@ export interface Repository {
 
 interface RepositoryCardProps {
   repository: Repository
+  text: RepositoriesText['card']
 }
 
 const BANNER_SIZE = {
@@ -56,8 +57,7 @@ const BANNER_SIZE = {
 }
 const BANNER_FALLBACK = '/images/fallback-banner.svg'
 
-export function RepositoryCard({ repository }: RepositoryCardProps) {
-  const { translation } = useLanguage()
+export function RepositoryCard({ repository, text }: RepositoryCardProps) {
   const [imgSrc, setImgSrc] = useState(
     `https://raw.githubusercontent.com/${repository.owner.login}/${repository.name}/${repository.default_branch}/.github/banner.svg`,
   )
@@ -81,10 +81,10 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
         />
         {isLoadingImage && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <Loader className="h-8 w-8 animate-spin text-season-accent" />
+            <Loader className="text-season-accent h-8 w-8 animate-spin" />
           </div>
         )}
-        <RepositoryTopicBadge topics={repository.topics} />
+        <RepositoryTopicBadge topics={repository.topics} text={text} />
       </div>
       <CardHeader>
         <div className="flex items-center justify-between">
@@ -99,20 +99,19 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
           )}
         </div>
         <CardDescription className="mt-2 line-clamp-2 text-justify">
-          {repository.description ||
-            translation.pages.projects.repositories.card.noDescription}
+          {repository.description || text.noDescription}
         </CardDescription>
       </CardHeader>
       <CardFooter className="mt-auto border-t">
         <div className="mr-2 flex w-full flex-col justify-between gap-2">
           <span className="text-muted-foreground text-xs">
-            {translation.pages.projects.repositories.card.created.replace(
+            {text.created.replace(
               '{date}',
               new Date(repository.created_at).toLocaleDateString(),
             )}
           </span>
           <span className="text-muted-foreground text-xs">
-            {translation.pages.projects.repositories.card.updated.replace(
+            {text.updated.replace(
               '{date}',
               new Date(repository.updated_at).toLocaleDateString(),
             )}
@@ -141,7 +140,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
                       <Radio
                         className={`h-4 w-4 ${!repository.homepage ? 'text-muted-foreground' : 'animate-pulse text-red-500'}`}
                       />
-                      {translation.pages.projects.repositories.card.livePreview}
+                      {text.livePreview}
                       <ExternalLink className="ml-auto h-4 w-4" />
                     </Link>
                   </Button>
@@ -149,10 +148,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
               </TooltipTrigger>
               {!repository.homepage && (
                 <TooltipContent side="top">
-                  {
-                    translation.pages.projects.repositories.card
-                      .livePreviewNotAvailable
-                  }
+                  {text.livePreviewNotAvailable}
                 </TooltipContent>
               )}
             </Tooltip>
@@ -165,7 +161,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
               className="flex w-full items-center justify-center gap-2"
             >
               <Github className="h-4 w-4" />
-              {translation.pages.projects.repositories.card.viewRepository}
+              {text.viewRepository}
               <ExternalLink className="ml-auto h-4 w-4" />
             </Link>
           </Button>

@@ -1,5 +1,7 @@
 import { InstalacoesEReformasPageContent } from '@/components/pages/projects/instalacoes-e-reformas/instalacoes-e-reformas-page-content'
-import { buildPageMetadata } from '@/lib/seo'
+import { buildPageMetadata, resolveLocale } from '@/lib/seo'
+
+import { getTranslation } from '../../../../../get-translation'
 
 export async function generateMetadata({
   params,
@@ -18,6 +20,13 @@ export async function generateMetadata({
   })
 }
 
-export default function Page() {
-  return <InstalacoesEReformasPageContent />
+export default async function Page({
+  params,
+}: Readonly<{ params: Promise<{ lang: string }> }>) {
+  const { lang } = await params
+  const translation = await getTranslation(resolveLocale(lang))
+
+  return (
+    <InstalacoesEReformasPageContent lang={lang} translation={translation} />
+  )
 }

@@ -1,6 +1,3 @@
-'use client'
-
-import { motion, type Variants } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,7 +23,6 @@ type HomeArticlesSectionProps = {
   readArticleButton: string
   viewAllArticlesButton: string
   allArticlesHref: string
-  variants: Variants
 }
 
 export function HomeArticlesSection({
@@ -37,17 +33,9 @@ export function HomeArticlesSection({
   readArticleButton,
   viewAllArticlesButton,
   allArticlesHref,
-  variants,
 }: Readonly<HomeArticlesSectionProps>) {
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={variants}
-      transition={{ duration: 0.45, ease: 'easeOut' }}
-      className="space-y-5"
-    >
+    <section className="space-y-5">
       <div className="space-y-3">
         <p className="text-sm font-medium tracking-[0.3em] text-white/60 uppercase">
           {eyebrow}
@@ -69,7 +57,7 @@ export function HomeArticlesSection({
             href={article.href}
             className="group block focus-visible:outline-none"
           >
-            <Card className="h-full overflow-hidden border-white/10 bg-black/50 p-0 transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-season-accent dark:bg-black/25">
+            <Card className="group-focus-visible:ring-season-accent h-full overflow-hidden border-white/10 bg-black/50 p-0 transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 dark:bg-black/25">
               <Image
                 src={article.cover}
                 alt=""
@@ -90,7 +78,7 @@ export function HomeArticlesSection({
                     </Badge>
                   ))}
                 </div>
-                <h3 className="text-xl leading-snug font-semibold text-white group-hover:text-season-accent">
+                <h3 className="group-hover:text-season-accent text-xl leading-snug font-semibold text-white">
                   {article.title}
                 </h3>
                 <p className="line-clamp-3 text-sm leading-6 text-white/75">
@@ -98,7 +86,7 @@ export function HomeArticlesSection({
                 </p>
                 <div className="mt-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm text-white/60">
                   <span>{article.meta}</span>
-                  <span className="flex items-center gap-1 font-medium text-season-accent">
+                  <span className="text-season-accent flex items-center gap-1 font-medium">
                     {readArticleButton}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
@@ -116,6 +104,6 @@ export function HomeArticlesSection({
       >
         <Link href={allArticlesHref}>{viewAllArticlesButton}</Link>
       </Button>
-    </motion.section>
+    </section>
   )
 }

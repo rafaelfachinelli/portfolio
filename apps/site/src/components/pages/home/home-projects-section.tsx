@@ -1,6 +1,3 @@
-'use client'
-
-import { motion, type Variants } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -23,7 +20,6 @@ type HomeProjectsSectionProps = {
   viewProjectDetailsButton: string
   viewAllProjectsButton: string
   allProjectsHref: string
-  variants: Variants
 }
 
 export function HomeProjectsSection({
@@ -34,17 +30,9 @@ export function HomeProjectsSection({
   viewProjectDetailsButton,
   viewAllProjectsButton,
   allProjectsHref,
-  variants,
 }: Readonly<HomeProjectsSectionProps>) {
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={variants}
-      transition={{ duration: 0.45, ease: 'easeOut' }}
-      className="space-y-5"
-    >
+    <section className="space-y-5">
       <div className="space-y-3">
         <p className="text-sm font-medium tracking-[0.3em] text-white/60 uppercase">
           {eyebrow}
@@ -61,7 +49,9 @@ export function HomeProjectsSection({
           >
             <div className="flex h-full flex-col gap-5">
               <div className="space-y-3">
-                <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                <h3 className="text-2xl font-semibold text-white">
+                  {project.title}
+                </h3>
                 <p className="text-sm leading-6 text-white/75">
                   {project.description}
                 </p>
@@ -101,6 +91,6 @@ export function HomeProjectsSection({
       >
         <Link href={allProjectsHref}>{viewAllProjectsButton}</Link>
       </Button>
-    </motion.section>
+    </section>
   )
 }

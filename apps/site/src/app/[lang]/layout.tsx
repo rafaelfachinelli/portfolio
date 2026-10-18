@@ -121,7 +121,13 @@ export default async function RootLayout({
             }),
           }}
         />
-        <LanguageProvider lang={locale} translation={translation}>
+        <LanguageProvider
+          lang={locale}
+          translation={{
+            commons: translation.commons,
+            components: translation.components,
+          }}
+        >
           <SidebarProvider defaultOpen={false}>
             <div className="flex w-full flex-col">
               <Navbar />
