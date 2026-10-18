@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const RESEND_API_URL = 'https://api.resend.com/emails'
 const DEFAULT_TO_EMAIL = 'rafael.l.a.fachinelli@gmail.com'
-const DEFAULT_FROM_EMAIL = 'Portfolio <onboarding@resend.dev>'
+// The domain is verified in Resend; replies go to the visitor (reply_to).
+const DEFAULT_FROM_EMAIL = 'Portfolio <contato@rafaelfachinelli.com>'
 
 const MIN_NAME_LENGTH = 2
 const MIN_MESSAGE_LENGTH = 5
