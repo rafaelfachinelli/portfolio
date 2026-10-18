@@ -1,0 +1,65 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as FieldStories from './Field.stories'
+
+<Meta of={FieldStories} />
+
+# Field
+
+O padrão de campo de formulário: **rótulo, controle, ajuda e erro**, já ligados entre si. Você escreve só o que importa, e o Field cuida do resto.
+
+```tsx
+<Field
+  label="E-mail"
+  required
+  hint="Só para responder você."
+  error={errors.email}
+>
+  <Input type="email" name="email" />
+</Field>
+```
+
+Por baixo, o Field:
+
+- gera o `id` do controle e liga o rótulo a ele (clicar no rótulo foca o campo);
+- aponta o `aria-describedby` do controle para a ajuda ou, se houver, para o erro, para o leitor de tela ler junto com o nome;
+- marca `aria-invalid` quando há erro, e o controle pinta a borda;
+- repassa `required` e `disabled` ao controle e mostra o asterisco.
+
+Funciona com [Input](?path=/docs/componentes-input--docs), [Textarea](?path=/docs/componentes-textarea--docs) e [Select](?path=/docs/componentes-select--docs). O que você passar direto ao controle (um `id`, por exemplo) vale mais que o do Field.
+
+<Canvas of={FieldStories.Default} />
+
+<Controls of={FieldStories.Default} />
+
+## Obrigatório
+
+<Canvas of={FieldStories.Required} />
+
+## Com erro
+
+A mensagem diz **o que fazer**, não só o que está errado: "Informe um e-mail válido, como voce@exemplo.com", em vez de "E-mail inválido". Enquanto há erro, a ajuda some para não competir com ele.
+
+<Canvas of={FieldStories.WithError} />
+
+## Com Textarea e Select
+
+<Canvas of={FieldStories.WithTextarea} />
+
+<Canvas of={FieldStories.WithSelect} />
+
+## Desabilitado
+
+<Canvas of={FieldStories.Disabled} />
+
+## Num formulário
+
+Valide ao enviar e mostre todos os erros de uma vez. Clique em **Enviar** com os campos vazios e depois corrija um a um.
+
+<Canvas of={FieldStories.Form} />
+
+## Boas práticas
+
+- Um Field, um controle.
+- Marque o que é obrigatório; se quase tudo for, marque o que é opcional.
+- Erro aparece depois de a pessoa tentar enviar ou sair do campo, nunca enquanto ela ainda digita.

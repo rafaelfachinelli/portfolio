@@ -1,0 +1,32 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as TextareaStories from './Textarea.stories'
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+Um campo para textos de várias linhas: mensagens, descrições, comentários. Mesmo visual e mesmos estados do [Input](?path=/docs/componentes-input--docs); a pessoa pode aumentar a altura arrastando o canto.
+
+<Canvas of={TextareaStories.Default} />
+
+<Controls of={TextareaStories.Default} />
+
+## Estados
+
+**Preenchido**: o texto quebra linha e mantém espaçamento confortável para leitura.
+
+<Canvas of={TextareaStories.Filled} />
+
+**Inválido**
+
+<Canvas of={TextareaStories.Invalid} />
+
+**Desabilitado**
+
+<Canvas of={TextareaStories.Disabled} />
+
+## Boas práticas
+
+- Dimensione a altura (`rows`) pelo tamanho esperado da resposta: um campo grande pede um texto grande.
+- Se houver limite de caracteres, mostre-o como ajuda no [Field](?path=/docs/componentes-field--docs), não só no `maxLength`.

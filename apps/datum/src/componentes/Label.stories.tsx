@@ -1,4 +1,4 @@
-import { Label } from '@datum/ui'
+import { Input, Label } from '@datum/ui'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
@@ -10,20 +10,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-// Until the Input arrives in Datum, a plain styled input stands in for it.
-const inputClass =
-  'peer h-9 w-full rounded-[var(--datum-radius-md)] border border-line-strong bg-transparent px-3 text-sm text-ink placeholder:text-ink-subtle disabled:opacity-50'
-
 export const WithInput: Story = {
   render: args => (
     <div className="grid max-w-sm gap-2">
       <Label {...args} htmlFor="email" />
-      <input
-        id="email"
-        type="email"
-        placeholder="voce@exemplo.com"
-        className={inputClass}
-      />
+      <Input id="email" type="email" placeholder="voce@exemplo.com" />
     </div>
   ),
 }
@@ -37,7 +28,7 @@ export const Required: Story = {
           *
         </span>
       </Label>
-      <input id="name" required aria-required="true" className={inputClass} />
+      <Input id="name" required />
     </div>
   ),
 }
@@ -60,11 +51,11 @@ export const WithCheckbox: Story = {
 export const Disabled: Story = {
   render: args => (
     <div className="flex max-w-sm flex-col-reverse gap-2">
-      <input
+      <Input
         id="company"
         disabled
         placeholder="Indisponível"
-        className={inputClass}
+        className="peer"
       />
       <Label {...args} htmlFor="company">
         Empresa

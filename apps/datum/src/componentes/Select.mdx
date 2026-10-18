@@ -1,0 +1,53 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+
+import * as SelectStories from './Select.stories'
+
+<Meta of={SelectStories} />
+
+# Select
+
+Escolher uma opção numa lista: ano, categoria, ordenação. Feito sobre o Select do Radix: abre com teclado, busca pela primeira letra, navega com as setas e é anunciado como lista pelo leitor de tela.
+
+<Canvas of={SelectStories.Default} />
+
+## Partes
+
+| Parte                                           | Papel                                                                          |
+| ----------------------------------------------- | ------------------------------------------------------------------------------ |
+| `Select`                                        | O estado: valor, aberto ou fechado (`value`, `defaultValue`, `onValueChange`). |
+| `SelectTrigger`                                 | O botão que mostra o valor. Recebe o `id` do rótulo; tamanhos `md` e `sm`.     |
+| `SelectValue`                                   | O valor escolhido, ou o `placeholder`.                                         |
+| `SelectContent`                                 | A lista, numa camada acima da página.                                          |
+| `SelectItem`                                    | Uma opção. A escolhida fica na cor da temporada, com um visto.                 |
+| `SelectGroup`, `SelectLabel`, `SelectSeparator` | Agrupam opções longas.                                                         |
+
+## Aberto
+
+<Canvas of={SelectStories.Open} />
+
+## Grupos
+
+Com muitas opções, agrupe e dê nome a cada grupo. Opções indisponíveis ficam `disabled` em vez de sumir, para a pessoa saber que existem.
+
+<Canvas of={SelectStories.Groups} />
+
+## Tamanho pequeno
+
+Para filtros e barras de ferramentas.
+
+<Canvas of={SelectStories.Small} />
+
+## Estados
+
+**Inválido**
+
+<Canvas of={SelectStories.Invalid} />
+
+**Desabilitado**
+
+<Canvas of={SelectStories.Disabled} />
+
+## Quando não usar
+
+- Até 4 opções que cabem na tela: botões de opção são mais rápidos (um clique em vez de dois).
+- Listas muito longas (países, cidades): use um campo com busca.

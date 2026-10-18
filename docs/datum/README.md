@@ -34,7 +34,8 @@ Packages are workspace-only (not published to npm). The site consumes them throu
 
 ## Components
 
-- **Only primitives and general-purpose patterns** (Button, Badge, Card, Label, Separator; next Input, Field, Callout, Stat). Datum is shown publicly as a portfolio piece, so it holds what any project could use. Compositions specific to one page of the site (article card, home metrics, page title) are built in `apps/site` from Datum pieces and never move here.
+- **Only primitives and general-purpose patterns** (Button, Badge, Card, Label, Separator, Input, Textarea, Select, Tooltip, Field; next Callout, Stat). Datum is shown publicly as a portfolio piece, so it holds what any project could use. Compositions specific to one page of the site (article card, home metrics, page title) are built in `apps/site` from Datum pieces and never move here.
+- Form controls (Input, Textarea, SelectTrigger) share `controlClass` and call `useFieldControl(props)`, so inside a `Field` they get the id and ARIA wiring. A new control does the same.
 - Code: `packages/ui/src/<component>.tsx`, exported from `src/index.ts`. Variants with `cva`, classes merged with `cn`, `asChild` (Radix Slot) where a component may render a link. Colors only from semantic tokens, so every component follows the season.
 - The package ships TypeScript source. A consumer imports `tailwindcss`, `@datum/tokens/theme.css` and then `@datum/ui/styles.css` (an `@source`, so Tailwind generates the components' classes).
 - Docs: `apps/datum/src/componentes/<Name>.stories.tsx` (one story per state) and `<Name>.mdx` (usage in pt-BR: when to use, variants, states, accessibility). Prop descriptions go in the stories' `argTypes`, in pt-BR.

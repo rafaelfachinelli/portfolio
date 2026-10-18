@@ -1,0 +1,43 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as InputStories from './Input.stories'
+
+<Meta of={InputStories} />
+
+# Input
+
+Um campo de texto de uma linha: nome, e-mail, busca. Para textos longos, use o [Textarea](?path=/docs/componentes-textarea--docs). Em formulários, prefira montar o campo com o [Field](?path=/docs/componentes-field--docs), que liga rótulo, ajuda e erro sozinho.
+
+<Canvas of={InputStories.Default} />
+
+<Controls of={InputStories.Default} />
+
+## Tipos
+
+Use o `type` certo: ele escolhe o teclado no celular (`email` mostra o @, `tel` mostra números) e ativa a validação do navegador.
+
+<Canvas of={InputStories.Types} />
+
+## Estados
+
+**Preenchido**
+
+<Canvas of={InputStories.Filled} />
+
+**Inválido** (`aria-invalid`): a borda fica na cor de erro. Sozinho, o vermelho não basta: diga o que corrigir numa mensagem, como faz o Field.
+
+<Canvas of={InputStories.Invalid} />
+
+**Desabilitado**
+
+<Canvas of={InputStories.Disabled} />
+
+## Arquivo
+
+<Canvas of={InputStories.File} />
+
+## Acessibilidade
+
+- Todo Input precisa de um rótulo ligado pelo `id` (o Field faz isso por você).
+- O foco mostra a borda e um halo na cor da temporada.
+- `placeholder` é só exemplo de formato: some quando a pessoa digita e tem contraste mais baixo.
