@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as CalloutStories from './Callout.stories'
+
+<Meta of={CalloutStories} />
+
+# Callout
+
+Uma caixa que se destaca do texto ao redor: um resumo, uma dica, um aviso, o resultado de uma ação. A faixa lateral e o fundo leve chamam a atenção sem interromper a leitura.
+
+<Canvas of={CalloutStories.Summary} />
+
+<Controls of={CalloutStories.Summary} />
+
+## Partes
+
+| Parte            | Papel                                                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ |
+| `Callout`        | A caixa: tom (`tone`) e ícone opcional (`icon`).                                                             |
+| `CalloutTitle`   | O título. É um parágrafo; para entrar na hierarquia de títulos da página, use `asChild` com um `h2` ou `h3`. |
+| `CalloutContent` | O conteúdo: texto, listas e links já estilizados para dentro da caixa.                                       |
+
+## Tons
+
+<Canvas of={CalloutStories.Tones} />
+
+| Tom       | Quando usar                                                         |
+| --------- | ------------------------------------------------------------------- |
+| `accent`  | Destaques do conteúdo: resumo, dica principal. Na cor da temporada. |
+| `neutral` | Notas e observações laterais.                                       |
+| `success` | Resultado positivo de uma ação.                                     |
+| `warning` | Algo que pede cuidado antes de seguir.                              |
+| `danger`  | Um erro ou algo que não pode ser desfeito.                          |
+
+## Sem ícone e só conteúdo
+
+<Canvas of={CalloutStories.WithoutIcon} />
+
+<Canvas of={CalloutStories.ContentOnly} />
+
+## Lista numerada e título semântico
+
+<Canvas of={CalloutStories.NumberedList} />
+
+## Acessibilidade
+
+- O ícone é decorativo: o título e o texto carregam a mensagem, e a cor nunca é a única pista.
+- Para um aviso que aparece depois de uma ação (como "Mensagem enviada"), coloque o Callout dentro de uma região `aria-live="polite"` para o leitor de tela anunciar.
+
+## Boas práticas
+
+- Um ou dois por tela. Se tudo está destacado, nada está.
+- Título curto; o detalhe vai no conteúdo.

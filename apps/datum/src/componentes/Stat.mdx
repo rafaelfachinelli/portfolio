@@ -1,0 +1,43 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as StatStories from './Stat.stories'
+
+<Meta of={StatStories} />
+
+# Stat
+
+Um número em destaque com o que ele mede: indicadores, resultados, métricas de um projeto. O número usa a fonte de títulos e algarismos de largura fixa, para que valores lado a lado fiquem alinhados.
+
+<Canvas of={StatStories.Default} />
+
+<Controls of={StatStories.Default} />
+
+## Com ícone
+
+<Canvas of={StatStories.WithIcon} />
+
+## Com variação
+
+A seta mostra a direção; a cor mostra se é **boa ou má notícia**, que nem sempre coincide com subir ou descer. Incidentes caindo é bom; tempo de build subindo é ruim. Diga isso com `positive`.
+
+Para o leitor de tela, escreva a variação por extenso em `label`, no idioma da página ("caiu 92%, uma melhora"). Sem `label`, ele lê só o valor.
+
+<Canvas of={StatStories.WithTrend} />
+
+## Em cards
+
+O Stat não tem moldura própria: dentro de um [Card](?path=/docs/componentes-card--docs) ele vira um indicador destacado; solto, uma linha de números.
+
+<Canvas of={StatStories.InCards} />
+
+<Canvas of={StatStories.Row} />
+
+## Acessibilidade
+
+- É uma lista de definição (`dl`): o leitor de tela lê "Microsserviços: 40+".
+- Formate o número para o idioma da página antes de passar (`Intl.NumberFormat`): "1.234,5" em português, "1,234.5" em inglês.
+
+## Boas práticas
+
+- Um número por Stat; compare números colocando vários lado a lado.
+- O rótulo diz o que é medido; a descrição dá a referência ("desde 2024", "por mês").
