@@ -1,5 +1,3 @@
-'use client'
-
 import { ArrowRight, BookOpen } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,12 +11,14 @@ import {
   getReadingMinutes,
   toArticleLocale,
 } from '@/content/articles'
-import { useLanguage } from '@/contexts/LanguageContext'
+
+import type { Translation } from '../../../../get-translation'
 
 export function ArticlesPageContent({
   articles,
-}: Readonly<{ articles: Article[] }>) {
-  const { lang, translation } = useLanguage()
+  lang,
+  translation,
+}: Readonly<{ articles: Article[]; lang: string; translation: Translation }>) {
   const text = translation.pages.articles
   const locale = toArticleLocale(lang)
 
@@ -40,7 +40,7 @@ export function ArticlesPageContent({
               href={`/${lang}/articles/${article.slug}`}
               className="group block focus-visible:outline-none"
             >
-              <Card className="h-full overflow-hidden border-white/10 bg-white/10 p-0 transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-season-accent dark:bg-black/25">
+              <Card className="group-focus-visible:ring-season-accent h-full overflow-hidden border-white/10 bg-white/10 p-0 transition-transform duration-300 group-hover:-translate-y-1 group-focus-visible:ring-2 dark:bg-black/25">
                 <Image
                   src={article.cover}
                   alt=""
@@ -56,7 +56,7 @@ export function ArticlesPageContent({
                       </Badge>
                     ))}
                   </div>
-                  <h2 className="text-xl leading-snug font-bold group-hover:text-season-accent">
+                  <h2 className="group-hover:text-season-accent text-xl leading-snug font-bold">
                     {title}
                   </h2>
                   <p className="line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
@@ -70,7 +70,7 @@ export function ArticlesPageContent({
                       )}{' '}
                       · {getReadingMinutes(body)} {text.minRead}
                     </span>
-                    <span className="flex items-center gap-1 font-medium text-season-accent">
+                    <span className="text-season-accent flex items-center gap-1 font-medium">
                       {text.readMore}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>

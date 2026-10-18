@@ -4,6 +4,8 @@ import { ArticlePageContent } from '@/components/pages/articles/article-page-con
 import { articles, toArticleLocale } from '@/content/articles'
 import { buildPageMetadata, resolveLocale, SITE_URL } from '@/lib/seo'
 
+import { getTranslation } from '../../../../../get-translation'
+
 type Params = Promise<{ lang: string; slug: string }>
 
 export function generateStaticParams() {
@@ -90,6 +92,8 @@ export default async function Page({ params }: { params: Params }) {
       <ArticlePageContent
         article={article}
         shareUrl={`${SITE_URL}/${locale}/articles/${slug}`}
+        lang={lang}
+        translation={await getTranslation(resolveLocale(lang))}
       />
     </>
   )

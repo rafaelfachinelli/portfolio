@@ -1,6 +1,3 @@
-'use client'
-
-import { motion, type Variants } from 'framer-motion'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
@@ -17,22 +14,11 @@ type HomeCtaCard = {
 
 type HomeCtaSectionProps = {
   cards: HomeCtaCard[]
-  variants: Variants
 }
 
-export function HomeCtaSection({
-  cards,
-  variants,
-}: Readonly<HomeCtaSectionProps>) {
+export function HomeCtaSection({ cards }: Readonly<HomeCtaSectionProps>) {
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={variants}
-      transition={{ duration: 0.45, ease: 'easeOut' }}
-      className="grid gap-4 lg:grid-cols-2"
-    >
+    <section className="grid gap-4 lg:grid-cols-2">
       {cards.map(card => (
         <Card
           key={card.title}
@@ -58,6 +44,6 @@ export function HomeCtaSection({
           </div>
         </Card>
       ))}
-    </motion.section>
+    </section>
   )
 }

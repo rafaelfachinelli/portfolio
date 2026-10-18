@@ -1,6 +1,12 @@
 import { HomePageContent } from '@/components/pages/home/home-page-content'
-import { articles, getReadingMinutes, toArticleLocale } from '@/content/articles'
-import { buildPageMetadata } from '@/lib/seo'
+import {
+  articles,
+  getReadingMinutes,
+  toArticleLocale,
+} from '@/content/articles'
+import { buildPageMetadata, resolveLocale } from '@/lib/seo'
+
+import { getTranslation } from '../../../../get-translation'
 
 export async function generateMetadata({
   params,
@@ -39,5 +45,13 @@ export default async function Page({
     readingMinutes: getReadingMinutes(article.content[locale].body),
   }))
 
-  return <HomePageContent latestArticles={latestArticles} />
+  const translation = await getTranslation(resolveLocale(lang))
+
+  return (
+    <HomePageContent
+      lang={lang}
+      translation={translation}
+      latestArticles={latestArticles}
+    />
+  )
 }

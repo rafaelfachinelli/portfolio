@@ -1,5 +1,3 @@
-'use client'
-
 import type { LucideIcon } from 'lucide-react'
 import {
   ArrowRight,
@@ -195,7 +193,7 @@ export function ProjectCaseStudyPage({
         <div className="grid gap-0 lg:grid-cols-[minmax(0,1.2fr)_320px]">
           <div className="p-6 md:p-8">
             <div className="text-muted-foreground mb-4 flex items-center gap-2 text-sm font-medium tracking-[0.2em] uppercase">
-              <Presentation className="h-4 w-4 text-season-accent" />
+              <Presentation className="text-season-accent h-4 w-4" />
               <span>{project.hero.eyebrow}</span>
             </div>
 
@@ -213,19 +211,25 @@ export function ProjectCaseStudyPage({
 
             {formattedTemporalMarkDate ? (
               <div className="mt-5 flex flex-wrap gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1.5 text-sm shadow-sm">
-                  <CalendarDays className="h-4 w-4 text-season-accent" />
+                <div className="bg-background inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm shadow-sm">
+                  <CalendarDays className="text-season-accent h-4 w-4" />
                   <span className="text-muted-foreground">
                     {project.hero.temporalMarkLabel}
                   </span>
-                  <span className="font-medium">{formattedTemporalMarkDate}</span>
+                  <span className="font-medium">
+                    {formattedTemporalMarkDate}
+                  </span>
                 </div>
               </div>
             ) : null}
 
             <div className="mt-6 flex flex-wrap gap-2">
               {project.hero.highlights.map(highlight => (
-                <Badge key={highlight} variant="outline" className="rounded-full">
+                <Badge
+                  key={highlight}
+                  variant="outline"
+                  className="rounded-full"
+                >
                   {highlight}
                 </Badge>
               ))}
@@ -242,7 +246,7 @@ export function ProjectCaseStudyPage({
           </div>
 
           <div className="bg-muted/20 border-t p-6 lg:border-t-0 lg:border-l">
-            <div className="flex h-full items-center justify-center rounded-2xl border bg-background p-8">
+            <div className="bg-background flex h-full items-center justify-center rounded-2xl border p-8">
               <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
                 <Image
                   src={heroLogoSrc}
@@ -351,7 +355,7 @@ export function ProjectCaseStudyPage({
       <Card>
         <CardContent className="flex flex-col gap-4 pt-6 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase text-season-accent">
+            <p className="text-season-accent text-sm font-medium tracking-[0.2em] uppercase">
               {nextStep.eyebrow}
             </p>
             <h2 className="text-2xl font-semibold">{nextStep.title}</h2>

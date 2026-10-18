@@ -1,6 +1,5 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -49,34 +48,24 @@ export function NavMain({ options }: NavMainProps) {
                   <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                 </SidebarMenuButton>
               </CollapsibleTrigger>
-              <AnimatePresence>
-                <CollapsibleContent>
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    style={{ overflow: 'hidden' }}
-                  >
-                    <SidebarMenuSub>
-                      {items?.map(({ title, url, icon: Icon }) => (
-                        <SidebarMenuSubItem key={title}>
-                          <SidebarMenuSubButton asChild>
-                            <Link
-                              href={url ?? '#'}
-                              className="flex items-center"
-                              onClick={toggleSidebar}
-                            >
-                              {Icon && Icon}
-                              <span>{title}</span>
-                            </Link>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  </motion.div>
-                </CollapsibleContent>
-              </AnimatePresence>
+              <CollapsibleContent>
+                <SidebarMenuSub>
+                  {items?.map(({ title, url, icon: Icon }) => (
+                    <SidebarMenuSubItem key={title}>
+                      <SidebarMenuSubButton asChild>
+                        <Link
+                          href={url ?? '#'}
+                          className="flex items-center"
+                          onClick={toggleSidebar}
+                        >
+                          {Icon && Icon}
+                          <span>{title}</span>
+                        </Link>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  ))}
+                </SidebarMenuSub>
+              </CollapsibleContent>
             </SidebarMenuItem>
           </Collapsible>
         ))}

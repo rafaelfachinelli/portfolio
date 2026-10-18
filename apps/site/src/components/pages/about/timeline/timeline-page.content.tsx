@@ -1,7 +1,3 @@
-'use client'
-
-import { differenceInMonths } from 'date-fns'
-import { motion } from 'framer-motion'
 import { Building2, Clock, FlagTriangleRight, MapPin } from 'lucide-react'
 import Image from 'next/image'
 
@@ -9,8 +5,10 @@ import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 import { Separator } from '@/components/ui/separator'
-import { useLanguage } from '@/contexts/LanguageContext'
 import { capitalizeFirstLetter } from '@/lib/utils'
+
+import type { Translation } from '../../../../../get-translation'
+import { TenureLabel, type TenurePeriod } from './tenure-label'
 
 interface Role {
   role: string
@@ -88,115 +86,84 @@ const MONTHS: Record<string, number> = {
   december: 11,
 }
 
-export function TimelinePageContent() {
-  const { translation } = useLanguage()
+// The 'role.duration' string is expected to be in the format
+// '<Month> <year> - <Month> <year>' (or '... - Present'), in any supported
+// language (e.g., 'August 2024 - February 2026', 'Agosto 2024 - Presente').
+function parseMonthYear(value: string): [number, number] | null {
+  const [monthName, year] = value.trim().toLowerCase().split(/\s+/)
+  const month = MONTHS[monthName]
+  if (month === undefined || !year) return null
+  return [Number(year), month]
+}
 
+function toPeriods(roles: Role[], presentLabel: string): TenurePeriod[] {
+  return roles.flatMap((role): TenurePeriod[] => {
+    const [start, end] = role.duration.split(' - ')
+    const startMonth = parseMonthYear(start)
+    if (!startMonth) return []
+    if (end === presentLabel) return [{ start: startMonth, end: null }]
+    const endMonth = parseMonthYear(end)
+    return endMonth ? [{ start: startMonth, end: endMonth }] : []
+  })
+}
+
+function groupByCompany(entries: TimelineEntry[]): GroupedTimelineEntry[] {
   // The translation content is ordered from most recent to oldest, so companies
   // and the roles inside each company keep that order (newest first).
-  const groupedTimeline: GroupedTimelineEntry[] =
-    translation.pages.about.timeline.content.reduce(
-      (acc: GroupedTimelineEntry[], entry: TimelineEntry) => {
-        const existingGroup = acc.find(group => group.company === entry.company)
-        if (existingGroup) {
-          existingGroup.roles.push({
-            role: entry.role,
-            duration: entry.duration,
-            responsibilities: entry.responsibilities,
-          })
-        } else {
-          acc.push({
-            company: entry.company,
-            location: entry.location,
-            roles: [
-              {
-                role: entry.role,
-                duration: entry.duration,
-                responsibilities: entry.responsibilities,
-              },
-            ],
-          })
-        }
-        return acc
-      },
-      [],
-    )
+  return entries.reduce((acc: GroupedTimelineEntry[], entry) => {
+    const role = {
+      role: entry.role,
+      duration: entry.duration,
+      responsibilities: entry.responsibilities,
+    }
+    const existingGroup = acc.find(group => group.company === entry.company)
+    if (existingGroup) {
+      existingGroup.roles.push(role)
+    } else {
+      acc.push({
+        company: entry.company,
+        location: entry.location,
+        roles: [role],
+      })
+    }
+    return acc
+  }, [])
+}
 
-  // The 'role.duration' string is expected to be in the format
-  // '<Month> <year> - <Month> <year>' (or '... - Present'), in any supported
-  // language (e.g., 'August 2024 - February 2026', 'Agosto 2024 - Presente').
-  const parseMonthYear = (value: string) => {
-    const [monthName, year] = value.trim().toLowerCase().split(/\s+/)
-    const month = MONTHS[monthName]
-    if (month === undefined || !year) return null
-    return new Date(Number(year), month, 1)
-  }
-
-  // Counts months from the earliest start to the latest end of the company's
-  // roles, inclusive of both months (same as LinkedIn).
-  const calculateTotalTime = (roles: Role[]) => {
-    const presentLabel = capitalizeFirstLetter(translation.commons.present)
-    const periods = roles.flatMap(role => {
-      const [start, end] = role.duration.split(' - ')
-      const startDate = parseMonthYear(start)
-      const endDate = end === presentLabel ? new Date() : parseMonthYear(end)
-      return startDate && endDate ? [{ startDate, endDate }] : []
-    })
-    if (periods.length === 0) return ''
-
-    const firstStart = new Date(
-      Math.min(...periods.map(period => period.startDate.getTime())),
-    )
-    const lastEnd = new Date(
-      Math.max(...periods.map(period => period.endDate.getTime())),
-    )
-    const totalMonths = differenceInMonths(lastEnd, firstStart) + 1
-
-    const years = Math.floor(totalMonths / 12)
-    const months = totalMonths % 12
-    return `${years > 0 ? `${years}${translation.pages.about.timeline.timeFormat.years} ` : ''}${months > 0 ? `${months}${translation.pages.about.timeline.timeFormat.months}` : ''}`
-  }
-
-  const motionAnimationProps = {
-    initial: { opacity: 0, x: -20 },
-    whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.5 },
-  }
+// Server component: only the tenure labels hydrate (they track the current month).
+export function TimelinePageContent({
+  translation,
+}: Readonly<{ translation: Translation }>) {
+  const timeline = translation.pages.about.timeline
+  const groupedTimeline = groupByCompany(timeline.content)
+  const presentLabel = capitalizeFirstLetter(translation.commons.present)
 
   return (
     <>
       <PageTitle
         icon={FlagTriangleRight}
-        title={translation.pages.about.timeline.title}
-        description={translation.pages.about.timeline.description}
+        title={timeline.title}
+        description={timeline.description}
       />
 
       <PageContent className="relative gap-4">
         <Card className="mb-4 border-0 bg-white p-6 dark:bg-black/50">
           <div className="relative">
             {groupedTimeline.map(group => (
-              <motion.div
-                key={group.company}
-                className="mb-4"
-                {...motionAnimationProps}
-              >
+              <div key={group.company} className="mb-4">
                 <div className="flex items-center justify-between gap-2 md:justify-start">
                   <h3 className="flex items-center gap-2 text-lg font-bold">
                     <CompanyLogo company={group.company} />
                     <span>{group.company}</span>
                   </h3>
                   <div className="ml-2 flex items-center gap-1 whitespace-nowrap">
-                    <motion.div
-                      whileInView={{ rotate: 360 }}
-                      initial={{ rotate: 0 }}
-                      className="flex items-center justify-center"
-                      transition={{ duration: 1 }}
-                    >
-                      <Clock className="h-3 w-3 text-season-accent" />
-                    </motion.div>
-                    <span className="text-sm text-season-accent">
-                      {calculateTotalTime(group.roles)}
-                    </span>
+                    <Clock className="text-season-accent h-3 w-3" />
+                    <TenureLabel
+                      periods={toPeriods(group.roles, presentLabel)}
+                      yearsSuffix={timeline.timeFormat.years}
+                      monthsSuffix={timeline.timeFormat.months}
+                      className="text-season-accent text-sm"
+                    />
                   </div>
                 </div>
                 <p className="mt-1 flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
@@ -204,18 +171,10 @@ export function TimelinePageContent() {
                   <span>{group.location}</span>
                 </p>
                 {group.roles.map(role => (
-                  <motion.div
-                    key={role.role}
-                    className="relative mt-2 ml-6"
-                    {...motionAnimationProps}
-                    transition={{
-                      ...motionAnimationProps.transition,
-                      delay: 0.2,
-                    }}
-                  >
+                  <div key={role.role} className="relative mt-2 ml-6">
                     <Separator
                       orientation="vertical"
-                      className="absolute top-0 -left-[18px] h-full bg-season-accent dark:bg-season-accent"
+                      className="bg-season-accent dark:bg-season-accent absolute top-0 -left-[18px] h-full"
                     />
                     <h4 className="text-md font-semibold">{role.role}</h4>
                     <p className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
@@ -227,9 +186,9 @@ export function TimelinePageContent() {
                         <li key={responsibility}>{responsibility}</li>
                       ))}
                     </ul>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             ))}
           </div>
         </Card>

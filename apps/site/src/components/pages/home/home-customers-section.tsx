@@ -1,6 +1,3 @@
-'use client'
-
-import { motion, type Variants } from 'framer-motion'
 import Image from 'next/image'
 
 import { Card } from '@/components/ui/card'
@@ -17,7 +14,6 @@ type HomeCustomersSectionProps = {
   title: string
   subtitle: string
   customers: CustomerItem[]
-  variants: Variants
 }
 
 export function HomeCustomersSection({
@@ -25,17 +21,10 @@ export function HomeCustomersSection({
   title,
   subtitle,
   customers,
-  variants,
 }: Readonly<HomeCustomersSectionProps>) {
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      variants={variants}
-      transition={{ duration: 0.45, ease: 'easeOut' }}
-    >
-      <Card className="border-white/10 bg-black/55 p-6 dark:bg-black/30 md:p-8">
+    <section>
+      <Card className="border-white/10 bg-black/55 p-6 md:p-8 dark:bg-black/30">
         <div className="mb-6 space-y-3">
           <p className="text-sm font-medium tracking-[0.3em] text-white/60 uppercase">
             {eyebrow}
@@ -61,7 +50,9 @@ export function HomeCustomersSection({
                   />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-lg font-semibold text-white">{customer.name}</p>
+                  <p className="text-lg font-semibold text-white">
+                    {customer.name}
+                  </p>
                   <p className="text-sm leading-6 text-white/70">
                     {customer.description}
                   </p>
@@ -71,6 +62,6 @@ export function HomeCustomersSection({
           ))}
         </div>
       </Card>
-    </motion.section>
+    </section>
   )
 }

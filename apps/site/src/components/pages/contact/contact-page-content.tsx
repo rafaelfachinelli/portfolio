@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import {
   Contact,
   Github,
@@ -32,36 +31,17 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { useLanguage } from '@/contexts/LanguageContext'
+
+import type { Translation } from '../../../../get-translation'
 
 const MIN_NAME_LENGTH = 2
 const MIN_MESSAGE_LENGTH = 5
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const CONTACT_EMAIL = 'rafael.l.a.fachinelli@gmail.com'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-}
-
-export function ContactPageContent() {
-  const { translation } = useLanguage()
+export function ContactPageContent({
+  text,
+}: Readonly<{ text: Translation['pages']['contact'] }>) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -93,22 +73,22 @@ export function ContactPageContent() {
 
   const getValidationMessage = () => {
     if (!isNameValid) {
-      return translation.pages.contact.form.validation.name
+      return text.form.validation.name
     }
 
     if (!isEmailFilled) {
-      return translation.pages.contact.form.validation.email
+      return text.form.validation.email
     }
 
     if (!isEmailValid) {
-      return translation.pages.contact.form.validation.emailInvalid
+      return text.form.validation.emailInvalid
     }
 
     if (!isMessageValid) {
-      return translation.pages.contact.form.validation.message
+      return text.form.validation.message
     }
 
-    return translation.pages.contact.form.validation.send
+    return text.form.validation.send
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -137,25 +117,18 @@ export function ContactPageContent() {
     <>
       <PageTitle
         icon={Contact}
-        title={translation.pages.contact.title}
-        description={translation.pages.contact.description}
+        title={text.title}
+        description={text.description}
       />
 
       <PageContent className="gap-8">
-        <motion.div
-          className="grid gap-8 md:grid-cols-2"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="grid gap-8 md:grid-cols-2">
           {/* Contact Information */}
-          <motion.div variants={itemVariants}>
+          <div>
             <Card>
               <CardHeader>
-                <CardTitle>{translation.pages.contact.info.title}</CardTitle>
-                <CardDescription>
-                  {translation.pages.contact.info.description}
-                </CardDescription>
+                <CardTitle>{text.info.title}</CardTitle>
+                <CardDescription>{text.info.description}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Link
@@ -179,9 +152,9 @@ export function ContactPageContent() {
                   href="https://www.linkedin.com/in/rafaelfachinelli/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 transition-colors duration-200 hover:text-season-accent"
+                  className="hover:text-season-accent flex items-center gap-2 transition-colors duration-200"
                 >
-                  <Linkedin className="h-5 w-5 text-season-accent" />
+                  <Linkedin className="text-season-accent h-5 w-5" />
                   linkedin.com/in/rafaelfachinelli
                 </Link>
                 <Link
@@ -206,16 +179,14 @@ export function ContactPageContent() {
                 </Link>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div variants={itemVariants}>
+          <div>
             <Card>
               <CardHeader>
-                <CardTitle>{translation.pages.contact.form.title}</CardTitle>
-                <CardDescription>
-                  {translation.pages.contact.form.description}
-                </CardDescription>
+                <CardTitle>{text.form.title}</CardTitle>
+                <CardDescription>{text.form.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <form className="space-y-4" onSubmit={handleSubmit}>
@@ -230,84 +201,58 @@ export function ContactPageContent() {
                     value={formData.website}
                     onChange={handleInputChange}
                   />
-                  <motion.div
-                    className="space-y-2"
-                    whileFocus={{ scale: 1.02 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                  >
+                  <div className="space-y-2">
                     <Label htmlFor="name">
-                      {translation.pages.contact.form.fields.name.label}{' '}
+                      {text.form.fields.name.label}{' '}
                       <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="name"
-                      placeholder={
-                        translation.pages.contact.form.fields.name.placeholder
-                      }
+                      placeholder={text.form.fields.name.placeholder}
                       value={formData.name}
                       onChange={handleInputChange}
                       required
                       aria-required="true"
                     />
-                  </motion.div>
-                  <motion.div
-                    className="space-y-2"
-                    whileFocus={{ scale: 1.02 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                  >
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor="email">
-                      {translation.pages.contact.form.fields.email.label}{' '}
+                      {text.form.fields.email.label}{' '}
                       <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder={
-                        translation.pages.contact.form.fields.email.placeholder
-                      }
+                      placeholder={text.form.fields.email.placeholder}
                       value={formData.email}
                       onChange={handleInputChange}
                       required
                     />
-                  </motion.div>
-                  <motion.div
-                    className="space-y-2"
-                    whileFocus={{ scale: 1.02 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                  >
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor="message">
-                      {translation.pages.contact.form.fields.message.label}{' '}
+                      {text.form.fields.message.label}{' '}
                       <span className="text-red-500">*</span>
                     </Label>
                     <Textarea
                       id="message"
-                      placeholder={
-                        translation.pages.contact.form.fields.message
-                          .placeholder
-                      }
+                      placeholder={text.form.fields.message.placeholder}
                       className="min-h-[120px]"
                       value={formData.message}
                       onChange={handleInputChange}
                       required
                       minLength={MIN_MESSAGE_LENGTH}
                     />
-                  </motion.div>
+                  </div>
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <motion.div
-                          className={`${
+                        <div
+                          className={
                             isFormValid
-                              ? 'cursor-pointer'
+                              ? 'cursor-pointer transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98] motion-reduce:transition-none'
                               : 'cursor-not-allowed'
-                          }`}
-                          whileHover={isFormValid ? { scale: 1.02 } : {}}
-                          whileTap={isFormValid ? { scale: 0.98 } : {}}
-                          transition={{
-                            type: 'spring',
-                            stiffness: 400,
-                            damping: 10,
-                          }}
+                          }
                         >
                           <Button
                             type="submit"
@@ -316,10 +261,10 @@ export function ContactPageContent() {
                           >
                             <Send className="mr-2 h-4 w-4" />
                             {status === 'sending'
-                              ? translation.pages.contact.form.sending
-                              : translation.pages.contact.form.submit}
+                              ? text.form.sending
+                              : text.form.submit}
                           </Button>
-                        </motion.div>
+                        </div>
                       </TooltipTrigger>
                       <TooltipContent>{getValidationMessage()}</TooltipContent>
                     </Tooltip>
@@ -327,20 +272,20 @@ export function ContactPageContent() {
                   <div aria-live="polite" className="min-h-6 text-sm">
                     {status === 'success' && (
                       <p className="text-green-600 dark:text-green-400">
-                        {translation.pages.contact.form.success}
+                        {text.form.success}
                       </p>
                     )}
                     {status === 'error' && (
                       <p className="text-red-600 dark:text-red-400">
-                        {translation.pages.contact.form.error}
+                        {text.form.error}
                       </p>
                     )}
                   </div>
                 </form>
               </CardContent>
             </Card>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </PageContent>
     </>
   )

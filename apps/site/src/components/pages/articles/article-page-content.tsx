@@ -1,5 +1,3 @@
-'use client'
-
 import {
   ArrowLeft,
   BookMarked,
@@ -22,8 +20,8 @@ import {
   getReadingMinutes,
   toArticleLocale,
 } from '@/content/articles'
-import { useLanguage } from '@/contexts/LanguageContext'
 
+import type { Translation } from '../../../../get-translation'
 import { ShareButtons } from './share-buttons'
 
 const markdownComponents: Components = {
@@ -81,11 +79,18 @@ function SectionTitle({
   )
 }
 
+// Server component: only ShareButtons hydrates on this page.
 export function ArticlePageContent({
   article,
   shareUrl,
-}: Readonly<{ article: Article; shareUrl: string }>) {
-  const { lang, translation } = useLanguage()
+  lang,
+  translation,
+}: Readonly<{
+  article: Article
+  shareUrl: string
+  lang: string
+  translation: Translation
+}>) {
   const text = translation.pages.articles
   const locale = toArticleLocale(lang)
   const { title, body, summary, lessons, cta, faq } = article.content[locale]
@@ -94,7 +99,7 @@ export function ArticlePageContent({
     <PageContent className="gap-4">
       <Link
         href={`/${lang}/articles`}
-        className="flex w-fit items-center gap-2 text-sm text-season-accent"
+        className="text-season-accent flex w-fit items-center gap-2 text-sm"
       >
         <ArrowLeft className="h-4 w-4" />
         {text.backToList}
@@ -138,9 +143,9 @@ export function ArticlePageContent({
         <Card className="border-0 bg-white px-6 py-4 dark:bg-black/50">
           <div>
             {summary.length > 0 && (
-              <section className="mt-2 mb-6 rounded-xl border-l-4 border-season-accent bg-season-accent/10 px-4 py-2">
+              <section className="border-season-accent bg-season-accent/10 mt-2 mb-6 rounded-xl border-l-4 px-4 py-2">
                 <h2 className="flex items-center gap-2 text-lg font-bold">
-                  <Sparkles className="h-5 w-5 text-season-accent" />
+                  <Sparkles className="text-season-accent h-5 w-5" />
                   {text.summaryTitle}
                 </h2>
                 <ReactMarkdown components={markdownComponents}>
@@ -149,7 +154,9 @@ export function ArticlePageContent({
               </section>
             )}
 
-            <ReactMarkdown components={markdownComponents}>{body}</ReactMarkdown>
+            <ReactMarkdown components={markdownComponents}>
+              {body}
+            </ReactMarkdown>
 
             {lessons.length > 0 && (
               <section>
@@ -192,7 +199,7 @@ export function ArticlePageContent({
                         href={reference.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-season-accent underline underline-offset-4"
+                        className="text-season-accent inline-flex items-center gap-1 underline underline-offset-4"
                       >
                         {reference.title}
                         <ExternalLink className="h-3.5 w-3.5" />
@@ -205,7 +212,7 @@ export function ArticlePageContent({
           </div>
         </Card>
 
-        <ShareButtons url={shareUrl} title={title} />
+        <ShareButtons url={shareUrl} title={title} text={text} />
 
         <Card className="flex-col items-center gap-3 border-white/10 bg-white/10 px-6 py-5 text-center sm:flex-row sm:justify-between sm:text-left dark:bg-black/25">
           <p className="text-lg font-semibold">{cta ?? text.ctaDefault}</p>

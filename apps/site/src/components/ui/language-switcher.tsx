@@ -1,6 +1,5 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -14,6 +13,11 @@ import { useLanguage } from '@/contexts/LanguageContext'
 
 import { Button } from './button'
 
+const OPTIONS = [
+  { lang: 'en', flag: 'us' },
+  { lang: 'pt', flag: 'br' },
+] as const
+
 export function LanguageSwitcher({
   className,
 }: Readonly<{ className?: string }>) {
@@ -21,13 +25,8 @@ export function LanguageSwitcher({
   const pathname = usePathname()
   const router = useRouter()
 
-  const getNewPath = (newLang: string) => {
-    return pathname.replace(`/${lang}`, `/${newLang}`)
-  }
-
   const handleLanguageChange = (newLang: string) => {
-    const newPath = getNewPath(newLang)
-    router.push(newPath, { scroll: false })
+    router.push(pathname.replace(`/${lang}`, `/${newLang}`), { scroll: false })
   }
 
   return (
@@ -39,69 +38,36 @@ export function LanguageSwitcher({
             size="icon"
             className="relative cursor-pointer overflow-hidden rounded-full select-none"
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={lang}
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -100, opacity: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 300,
-                  damping: 25,
-                  duration: 0.3,
-                }}
-                className="flex items-center justify-center"
-              >
-                <Image
-                  src={`https://flagcdn.com/w40/${lang === 'en' ? 'us' : 'br'}.png`}
-                  alt={lang}
-                  width={20}
-                  height={20}
-                  className="h-5 w-5 rounded-full object-cover"
-                />
-              </motion.div>
-            </AnimatePresence>
+            <Image
+              src={`https://flagcdn.com/w40/${lang.startsWith('en') ? 'us' : 'br'}.png`}
+              alt={lang}
+              width={20}
+              height={20}
+              className="h-5 w-5 rounded-full object-cover"
+            />
             <span className="sr-only">Toggle language</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem
-            className="flex w-full cursor-pointer items-center"
-            onClick={() => handleLanguageChange('en')}
-          >
-            <motion.div
-              whileHover={{ x: 5 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+          {OPTIONS.map(option => (
+            <DropdownMenuItem
+              key={option.lang}
+              className="group flex w-full cursor-pointer items-center"
+              onClick={() => handleLanguageChange(option.lang)}
             >
               <Image
-                src="https://flagcdn.com/w40/us.png"
-                alt="en"
+                src={`https://flagcdn.com/w40/${option.flag}.png`}
+                alt={option.lang}
                 width={16}
                 height={16}
-                className="mr-2 inline-block"
+                className="mr-2 inline-block transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
               />
-            </motion.div>
-            {translation.components.languageSwitcher.options.en.title}
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            className="flex w-full cursor-pointer items-center"
-            onClick={() => handleLanguageChange('pt')}
-          >
-            <motion.div
-              whileHover={{ x: 5 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            >
-              <Image
-                src="https://flagcdn.com/w40/br.png"
-                alt="pt"
-                width={16}
-                height={16}
-                className="mr-2 inline-block"
-              />
-            </motion.div>
-            {translation.components.languageSwitcher.options.pt.title}
-          </DropdownMenuItem>
+              {
+                translation.components.languageSwitcher.options[option.lang]
+                  .title
+              }
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

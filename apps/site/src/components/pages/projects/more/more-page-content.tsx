@@ -1,6 +1,5 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
 import { Loader, Presentation, RefreshCw } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
@@ -11,10 +10,23 @@ import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+import type { Translation } from '../../../../../get-translation'
 import { Filters } from './filters'
 import { Repository, RepositoryCard } from './repository-card'
 
-export function MorePageContent() {
+export type RepositoriesText = Translation['pages']['projects']['repositories']
+
+type MorePageContentProps = Readonly<{
+  title: string
+  description: string
+  text: RepositoriesText
+}>
+
+export function MorePageContent({
+  title,
+  description,
+  text,
+}: MorePageContentProps) {
   const { translation } = useLanguage()
   const searchParams = useSearchParams()
   const [repositories, setRepositories] = useState<Repository[]>([])
@@ -109,20 +121,18 @@ export function MorePageContent() {
 
   return (
     <>
-      <PageTitle
-        icon={Presentation}
-        title={translation.pages.projects.title}
-        description={translation.pages.projects.description}
-      />
+      <PageTitle icon={Presentation} title={title} description={description} />
 
       <PageContent className="gap-4">
-        <h1 className="text-center text-3xl font-bold">
-          {translation.pages.projects.repositories.title}
-        </h1>
+        <h1 className="text-center text-3xl font-bold">{text.title}</h1>
 
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="flex items-center justify-center gap-4">
-            <Filters allRepositories={allRepositories} disabled={isLoading} />
+            <Filters
+              allRepositories={allRepositories}
+              disabled={isLoading}
+              text={text.filters}
+            />
             <Button
               variant="outline"
               size="icon"
@@ -131,24 +141,22 @@ export function MorePageContent() {
               className="cursor-pointer rounded-full select-none"
             >
               <RefreshCw
-                className={`h-4 w-4 transition-all duration-300 ease-in-out ${isLoading ? 'animate-spin text-season-accent' : ''}`}
+                className={`h-4 w-4 transition-all duration-300 ease-in-out ${isLoading ? 'text-season-accent animate-spin' : ''}`}
               />
             </Button>
           </div>
           <p className="text-muted-foreground w-full text-center">
             {!isLoading &&
-              translation.pages.projects.repositories.description
-                .split('{count}')
-                .map((part, index, array) => (
-                  <React.Fragment key={index}>
-                    {part}
-                    {index < array.length - 1 && (
-                      <span className="text-primary font-bold">
-                        {repositories.length.toString()}
-                      </span>
-                    )}
-                  </React.Fragment>
-                ))}
+              text.description.split('{count}').map((part, index, array) => (
+                <React.Fragment key={index}>
+                  {part}
+                  {index < array.length - 1 && (
+                    <span className="text-primary font-bold">
+                      {repositories.length.toString()}
+                    </span>
+                  )}
+                </React.Fragment>
+              ))}
           </p>
         </div>
 
@@ -162,47 +170,31 @@ export function MorePageContent() {
 
         {!isLoading && !error && repositories.length === 0 && (
           <div className="p-8 text-center">
-            <p className="text-muted-foreground">
-              {translation.pages.projects.repositories.notFound}
-            </p>
+            <p className="text-muted-foreground">{text.notFound}</p>
           </div>
         )}
 
         {isLoading ? (
-          <motion.div
-            className="flex min-h-[400px] items-center justify-center"
-            initial={false}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
-          >
+          <div className="flex min-h-[400px] items-center justify-center">
             <div className="flex flex-col items-center gap-2">
-              <Loader className="h-8 w-8 animate-spin text-season-accent" />
+              <Loader className="text-season-accent h-8 w-8 animate-spin" />
               <p className="text-muted-foreground text-sm">
                 {translation.commons.loading}
               </p>
             </div>
-          </motion.div>
+          </div>
         ) : (
-          <motion.div
-            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-            layout
-          >
-            <AnimatePresence mode="popLayout">
-              {!isRefreshing &&
-                repositories.map(repo => (
-                  <motion.div
-                    key={repo.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.2, ease: 'easeInOut' }}
-                  >
-                    <RepositoryCard repository={repo} />
-                  </motion.div>
-                ))}
-            </AnimatePresence>
-          </motion.div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {!isRefreshing &&
+              repositories.map(repo => (
+                <div
+                  key={repo.id}
+                  className="animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none"
+                >
+                  <RepositoryCard repository={repo} text={text.card} />
+                </div>
+              ))}
+          </div>
         )}
       </PageContent>
     </>

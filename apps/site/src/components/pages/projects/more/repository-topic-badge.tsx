@@ -9,11 +9,17 @@ import {
 } from '@/components/ui/tooltip'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+import type { RepositoriesText } from './more-page-content'
+
 interface RepositoryBadgeConfigProps {
   topics: string[]
+  text: RepositoriesText['card']
 }
 
-export function RepositoryTopicBadge({ topics }: RepositoryBadgeConfigProps) {
+export function RepositoryTopicBadge({
+  topics,
+  text,
+}: RepositoryBadgeConfigProps) {
   const { translation } = useLanguage()
 
   const isStudyProject = topics.includes('study')
@@ -57,13 +63,10 @@ export function RepositoryTopicBadge({ topics }: RepositoryBadgeConfigProps) {
           </TooltipTrigger>
           <TooltipContent>
             {isEventProject
-              ? translation.pages.projects.repositories.card
-                  .eventProjectBadgeDescription
+              ? text.eventProjectBadgeDescription
               : isPortfolioProject
-                ? translation.pages.projects.repositories.card
-                    .portfolioProjectBadgeDescription
-                : translation.pages.projects.repositories.card
-                    .studyProjectBadgeDescription}
+                ? text.portfolioProjectBadgeDescription
+                : text.studyProjectBadgeDescription}
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

@@ -1,6 +1,8 @@
 import { ArticlesPageContent } from '@/components/pages/articles/articles-page-content'
 import { articles } from '@/content/articles'
-import { buildPageMetadata } from '@/lib/seo'
+import { buildPageMetadata, resolveLocale } from '@/lib/seo'
+
+import { getTranslation } from '../../../../get-translation'
 
 export async function generateMetadata({
   params,
@@ -19,6 +21,19 @@ export async function generateMetadata({
   })
 }
 
-export default function Page() {
-  return <ArticlesPageContent articles={articles} />
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}) {
+  const { lang } = await params
+  const translation = await getTranslation(resolveLocale(lang))
+
+  return (
+    <ArticlesPageContent
+      articles={articles}
+      lang={lang}
+      translation={translation}
+    />
+  )
 }

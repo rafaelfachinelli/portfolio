@@ -1,5 +1,7 @@
 import { ResumePageContent } from '@/components/pages/about/resume/resume-page-content'
-import { buildPageMetadata } from '@/lib/seo'
+import { buildPageMetadata, resolveLocale } from '@/lib/seo'
+
+import { getTranslation } from '../../../../../get-translation'
 
 export async function generateMetadata({
   params,
@@ -18,6 +20,11 @@ export async function generateMetadata({
   })
 }
 
-export default function Page() {
-  return <ResumePageContent />
+export default async function Page({
+  params,
+}: Readonly<{ params: Promise<{ lang: string }> }>) {
+  const { lang } = await params
+  const translation = await getTranslation(resolveLocale(lang))
+
+  return <ResumePageContent translation={translation} />
 }

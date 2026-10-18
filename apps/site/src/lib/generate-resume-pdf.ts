@@ -1,7 +1,8 @@
 'use client'
 
-import jsPDF from 'jspdf'
+import type { jsPDF } from 'jspdf'
 
+import type { Locale } from '../../i18n-config'
 import type enUS from '../../translations/en-US.json'
 
 type Translation = typeof enUS
@@ -33,7 +34,12 @@ function drawSectionTitle(
   return titleY + 7
 }
 
-function drawWrappedText(doc: jsPDF, text: string, yPosition: number, margin: number) {
+function drawWrappedText(
+  doc: jsPDF,
+  text: string,
+  yPosition: number,
+  margin: number,
+) {
   const safeY = ensurePageSpace(doc, yPosition, 16)
   doc.setFontSize(12)
   doc.setFont('helvetica', 'normal')
@@ -43,7 +49,12 @@ function drawWrappedText(doc: jsPDF, text: string, yPosition: number, margin: nu
   return safeY + splitText.length * 7
 }
 
-function drawBulletItem(doc: jsPDF, text: string, yPosition: number, margin: number) {
+function drawBulletItem(
+  doc: jsPDF,
+  text: string,
+  yPosition: number,
+  margin: number,
+) {
   const safeY = ensurePageSpace(doc, yPosition, 16)
   const splitItem = doc.splitTextToSize(text, 170) as string[]
   const bulletLines = splitItem.map((line, index) =>
@@ -55,7 +66,12 @@ function drawBulletItem(doc: jsPDF, text: string, yPosition: number, margin: num
   return safeY + bulletLines.length * 7
 }
 
-function drawBulletList(doc: jsPDF, items: string[], yPosition: number, margin: number) {
+function drawBulletList(
+  doc: jsPDF,
+  items: string[],
+  yPosition: number,
+  margin: number,
+) {
   let currentY = yPosition
   doc.setFontSize(12)
   doc.setFont('helvetica', 'normal')
@@ -67,7 +83,22 @@ function drawBulletList(doc: jsPDF, items: string[], yPosition: number, margin: 
   return currentY
 }
 
-export function generateResumePdf(translation: Translation) {
+// The resume texts live in the full dictionary, which pages no longer send to
+// the browser; it is fetched as its own chunk together with jsPDF.
+function loadTranslation(lang: Locale): Promise<Translation> {
+  const file = lang.startsWith('pt')
+    ? import('../../translations/pt-BR.json')
+    : import('../../translations/en-US.json')
+  return file.then(module => module.default)
+}
+
+// jsPDF (and its optional html2canvas/canvg/DOMPurify chunks) is loaded only
+// when someone asks for the PDF, never in the first load of a page.
+export async function generateResumePdf(lang: Locale) {
+  const [{ jsPDF }, translation] = await Promise.all([
+    import('jspdf'),
+    loadTranslation(lang),
+  ])
   const doc = new jsPDF('p', 'mm', 'a4')
   const timeline = translation.pages.about.timeline.content
   const resume = translation.pages.about.resume
@@ -104,7 +135,13 @@ export function generateResumePdf(translation: Translation) {
     yPosition += 6
   })
 
-  yPosition = drawSectionTitle(doc, resume.sections.resume, yPosition, margin, 28)
+  yPosition = drawSectionTitle(
+    doc,
+    resume.sections.resume,
+    yPosition,
+    margin,
+    28,
+  )
   yPosition = drawWrappedText(doc, resume.summary, yPosition, margin)
   yPosition += 2
 
@@ -140,7 +177,13 @@ export function generateResumePdf(translation: Translation) {
     yPosition += 5
   })
 
-  yPosition = drawSectionTitle(doc, resume.sections.education, yPosition, margin, 30)
+  yPosition = drawSectionTitle(
+    doc,
+    resume.sections.education,
+    yPosition,
+    margin,
+    30,
+  )
   resume.education.forEach(item => {
     yPosition = ensurePageSpace(doc, yPosition, 22)
     doc.setFont('helvetica', 'bold')
@@ -156,11 +199,23 @@ export function generateResumePdf(translation: Translation) {
     yPosition += 5
   })
 
-  yPosition = drawSectionTitle(doc, resume.sections.skills, yPosition, margin, 20)
+  yPosition = drawSectionTitle(
+    doc,
+    resume.sections.skills,
+    yPosition,
+    margin,
+    20,
+  )
   yPosition = drawBulletList(doc, resume.skills, yPosition, margin)
   yPosition += 2
 
-  yPosition = drawSectionTitle(doc, resume.sections.languages, yPosition, margin, 20)
+  yPosition = drawSectionTitle(
+    doc,
+    resume.sections.languages,
+    yPosition,
+    margin,
+    20,
+  )
   yPosition = drawBulletList(doc, resume.languages, yPosition, margin)
   yPosition += 2
 
@@ -174,7 +229,13 @@ export function generateResumePdf(translation: Translation) {
   yPosition = drawBulletList(doc, resume.certifications, yPosition, margin)
   yPosition += 2
 
-  yPosition = drawSectionTitle(doc, resume.sections.awards, yPosition, margin, 20)
+  yPosition = drawSectionTitle(
+    doc,
+    resume.sections.awards,
+    yPosition,
+    margin,
+    20,
+  )
   drawBulletList(doc, resume.awards, yPosition, margin)
 
   doc.save(resume.file.name)

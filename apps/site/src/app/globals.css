@@ -9,6 +9,7 @@
    there is a single set of values; the season layer only changes the accent. */
 @theme inline {
   --animate-datum-float: datum-float 4s ease-in-out infinite;
+  --animate-datum-word: datum-word 0.35s ease-out;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--datum-font-text);
@@ -131,5 +132,16 @@
   }
   50% {
     transform: translateY(-8px);
+  }
+}
+
+@keyframes datum-word {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

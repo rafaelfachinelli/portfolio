@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Download, Loader } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -10,32 +9,33 @@ import { Card } from '@/components/ui/card'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { generateResumePdf } from '@/lib/generate-resume-pdf'
 
-export function ResumeDownloadButton() {
-  const { translation } = useLanguage()
+type ResumeDownloadButtonProps = Readonly<{
+  title: string
+  downloadDescription: string
+  downloadLabel: string
+  fileName: string
+}>
+
+export function ResumeDownloadButton({
+  title,
+  downloadDescription,
+  downloadLabel,
+  fileName,
+}: ResumeDownloadButtonProps) {
+  const { lang } = useLanguage()
   const [isLoadingImage, setIsLoadingImage] = useState(true)
 
   return (
     <Card className="mb-4 w-full border-0 bg-white p-6 dark:bg-black/50">
-      <motion.div
-        animate={{
-          y: [0, -10, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
-        }}
-        className="relative flex w-full items-center justify-center overflow-hidden"
-      >
+      <div className="animate-datum-float relative flex w-full items-center justify-center overflow-hidden motion-reduce:animate-none">
         <Image
           src="/images/resume/resume.png"
-          alt={translation.pages.about.resume.title}
+          alt={title}
           width={200}
           height={400}
           priority
           className="rounded-lg object-cover transition-transform duration-500 select-none hover:scale-105"
-          title={translation.pages.about.resume.downloadDescription}
+          title={downloadDescription}
           onLoad={() => setIsLoadingImage(false)}
           onError={() => {
             setIsLoadingImage(false)
@@ -43,25 +43,23 @@ export function ResumeDownloadButton() {
         />
         {isLoadingImage && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <Loader className="h-8 w-8 animate-spin text-season-accent" />
+            <Loader className="text-season-accent h-8 w-8 animate-spin" />
           </div>
         )}
-      </motion.div>
+      </div>
       <p className="text-foreground text-center text-sm">
-        {translation.pages.about.resume.downloadDescription}
+        {downloadDescription}
       </p>
       <Button
-        onClick={() => generateResumePdf(translation)}
+        onClick={() => generateResumePdf(lang)}
         className="flex w-full cursor-pointer items-center gap-2"
         variant="secondary"
       >
         <Download className="h-4 w-4" />
-        {translation.pages.about.resume.download}
+        {downloadLabel}
       </Button>
       <div className="flex w-full items-center justify-between">
-        <p className="text-foreground text-sm">
-          {translation.pages.about.resume.file.name}
-        </p>
+        <p className="text-foreground text-sm">{fileName}</p>
         <p className="text-foreground text-sm">4.1 MB</p>
       </div>
     </Card>
