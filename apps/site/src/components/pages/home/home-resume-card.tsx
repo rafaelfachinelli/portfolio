@@ -35,6 +35,9 @@ export function HomeResumeCard({
               alt={title}
               width={140}
               height={250}
+              // Width descriptors let phones with a 1.5-2x screen pick the
+              // 256 px file instead of the 384 px one.
+              sizes="140px"
               priority
               className="rounded-lg object-cover shadow-lg"
             />

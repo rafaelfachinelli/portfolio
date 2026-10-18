@@ -5,11 +5,9 @@ import type { Metadata } from 'next'
 import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import Script from 'next/script'
 
-import { AppSidebar } from '@/components/layout/app-sidebar/app-sidebar'
 import { Footer } from '@/components/layout/footer'
 import { MainContent } from '@/components/layout/main-content'
 import { Navbar } from '@/components/layout/navbar'
-import { SidebarProvider } from '@/components/ui/sidebar'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { SITE_URL } from '@/lib/seo'
 
@@ -128,14 +126,11 @@ export default async function RootLayout({
             components: translation.components,
           }}
         >
-          <SidebarProvider defaultOpen={false}>
-            <div className="flex w-full flex-col">
-              <Navbar />
-              <AppSidebar />
-              <MainContent>{children}</MainContent>
-              <Footer translation={translation} />
-            </div>
-          </SidebarProvider>
+          <div className="flex min-h-svh w-full flex-col">
+            <Navbar lang={locale} translation={translation} />
+            <MainContent>{children}</MainContent>
+            <Footer translation={translation} />
+          </div>
         </LanguageProvider>
       </body>
     </html>

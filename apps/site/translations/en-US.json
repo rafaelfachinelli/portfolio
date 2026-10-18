@@ -936,6 +936,10 @@
           "title": "Articles",
           "description": "Writing about software engineering, architecture, and technical leadership."
         }
+      },
+      "menu": {
+        "open": "Open menu",
+        "close": "Close menu"
       }
     },
     "footer": {
@@ -949,7 +953,8 @@
         "pt": {
           "title": "Portuguese"
         }
-      }
+      },
+      "label": "Change language"
     }
   },
   "commons": {
