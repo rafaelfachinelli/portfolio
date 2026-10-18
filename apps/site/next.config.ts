@@ -9,7 +9,7 @@ const monorepoRoot = path.resolve(process.cwd(), '../..')
 const nextConfig: NextConfig = {
   reactStrictMode: false,
   // Workspace packages ship TypeScript source.
-  transpilePackages: ['@datum/tokens'],
+  transpilePackages: ['@datum/tokens', '@datum/ui'],
   turbopack: {
     root: monorepoRoot,
   },
@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
     // The Tailwind CSS (~14 KiB gzip) goes inline in <head>, so the first
     // paint no longer waits for a second request (HTML → CSS chain).
     inlineCss: true,
+    // `import { Button } from '@datum/ui'` resolves to the Button module only,
+    // so a page does not ship the client code of components it does not use.
+    optimizePackageImports: ['@datum/ui'],
   },
   images: {
     remotePatterns: [

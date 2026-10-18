@@ -1,10 +1,9 @@
+import { Card, Separator } from '@datum/ui'
 import { Building2, Clock, FlagTriangleRight, MapPin } from 'lucide-react'
 import Image from 'next/image'
 
-import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
-import { Separator } from '@/components/ui/separator'
 import { capitalizeFirstLetter } from '@/lib/utils'
 
 import type { Translation } from '../../../../../get-translation'

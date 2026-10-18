@@ -1,6 +1,21 @@
 'use client'
 
 import {
+  Button,
+  Label,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@datum/ui'
+import {
   Briefcase,
   Calendar,
   Filter,
@@ -16,23 +31,6 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import React from 'react'
 
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
 import { getLanguageConfig } from '@/config/languages'
 
 import type { RepositoriesText } from './more-page-content'
@@ -116,7 +114,10 @@ export function Filters({ allRepositories, disabled, text }: FiltersProps) {
           {text.title}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full max-w-3xs">
+      <SheetContent
+        className="w-full max-w-3xs"
+        closeLabel={text.buttons.close}
+      >
         <SheetHeader>
           <SheetTitle className="relative flex items-center gap-2">
             <Filter className="h-4 w-4" />

@@ -1,11 +1,10 @@
 'use client'
 
+import { Button, Card } from '@datum/ui'
 import { Download, Loader } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { generateResumePdf } from '@/lib/generate-resume-pdf'
 

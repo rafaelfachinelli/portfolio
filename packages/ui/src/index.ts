@@ -33,6 +33,17 @@ export {
   SelectValue,
 } from './select'
 export { Separator } from './separator'
+export {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  type SheetContentProps,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from './sheet'
 export { Stat, type StatProps } from './stat'
 export { Textarea } from './textarea'
 export {

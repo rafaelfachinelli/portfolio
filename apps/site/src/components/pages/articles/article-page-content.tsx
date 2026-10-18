@@ -1,4 +1,12 @@
 import {
+  Badge,
+  Button,
+  Callout,
+  CalloutContent,
+  CalloutTitle,
+  Card,
+} from '@datum/ui'
+import {
   ArrowLeft,
   BookMarked,
   CircleHelp,
@@ -11,9 +19,6 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 import ReactMarkdown, { type Components } from 'react-markdown'
 
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
 import {
   type Article,
@@ -118,7 +123,7 @@ export function ArticlePageContent({
         <header>
           <div className="mb-3 flex flex-wrap gap-2">
             {article.tags.map(tag => (
-              <Badge key={tag} variant="secondary">
+              <Badge key={tag} variant="neutral">
                 {tag}
               </Badge>
             ))}
@@ -143,15 +148,16 @@ export function ArticlePageContent({
         <Card className="border-0 bg-white px-6 py-4 dark:bg-black/50">
           <div>
             {summary.length > 0 && (
-              <section className="border-season-accent bg-season-accent/10 mt-2 mb-6 rounded-xl border-l-4 px-4 py-2">
-                <h2 className="flex items-center gap-2 text-lg font-bold">
-                  <Sparkles className="text-season-accent h-5 w-5" />
-                  {text.summaryTitle}
-                </h2>
-                <ReactMarkdown components={markdownComponents}>
-                  {summary.map(item => `- ${item}`).join('\n')}
-                </ReactMarkdown>
-              </section>
+              <Callout tone="accent" icon={<Sparkles />} className="mt-2 mb-6">
+                <CalloutTitle asChild>
+                  <h2>{text.summaryTitle}</h2>
+                </CalloutTitle>
+                <CalloutContent className="text-ink">
+                  <ReactMarkdown components={markdownComponents}>
+                    {summary.map(item => `- ${item}`).join('\n')}
+                  </ReactMarkdown>
+                </CalloutContent>
+              </Callout>
             )}
 
             <ReactMarkdown components={markdownComponents}>

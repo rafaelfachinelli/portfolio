@@ -1,6 +1,5 @@
+import { Card } from '@datum/ui'
 import Image from 'next/image'
-
-import { Card } from '@/components/ui/card'
 
 type CustomerItem = {
   image: string

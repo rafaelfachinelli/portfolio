@@ -2,6 +2,7 @@
 @import 'tw-animate-css';
 @import '@datum/tokens/tokens.css';
 @import '@datum/tokens/theme.css';
+@import '@datum/ui/styles.css';
 
 @custom-variant dark (&:is(.dark *));
 
