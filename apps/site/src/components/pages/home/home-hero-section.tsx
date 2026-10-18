@@ -73,12 +73,13 @@ export function HomeHeroSection({
               </Link>
             </Button>
 
+            {/* No prefetch: the contact form chunk would add ~26 KiB to the home. */}
             <Button
               asChild
               variant="outline"
               className="cursor-pointer border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
             >
-              <Link href={`/${lang}/contact`}>
+              <Link href={`/${lang}/contact`} prefetch={false}>
                 <Mail className="h-4 w-4" />
                 {contactButton}
               </Link>

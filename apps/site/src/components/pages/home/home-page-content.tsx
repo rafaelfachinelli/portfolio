@@ -151,6 +151,8 @@ export function HomePageContent({
       buttonLabel: home.contactButton,
       href: `/${lang}/contact`,
       buttonVariant: 'outline' as const,
+      // The contact form chunk would add ~26 KiB to the home.
+      prefetch: false,
     },
   ]
 

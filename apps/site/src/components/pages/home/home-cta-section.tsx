@@ -8,6 +8,7 @@ type HomeCtaCard = {
   buttonLabel: string
   href: string
   buttonVariant?: 'primary' | 'outline'
+  prefetch?: boolean
 }
 
 type HomeCtaSectionProps = {
@@ -37,7 +38,7 @@ export function HomeCtaSection({ cards }: Readonly<HomeCtaSectionProps>) {
                   : 'mt-auto w-fit cursor-pointer'
               }
             >
-              <Link href={card.href}>{card.buttonLabel}</Link>
+              <Link href={card.href} prefetch={card.prefetch}>{card.buttonLabel}</Link>
             </Button>
           </div>
         </Card>
