@@ -1,25 +1,22 @@
 'use client'
 
-import { ExternalLink, Github, Loader, Radio } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState } from 'react'
-
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import {
+  Badge,
+  Button,
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip'
+} from '@datum/ui'
+import { ExternalLink, Github, Loader, Radio } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useState } from 'react'
+
 import { getLanguageConfig } from '@/config/languages'
 
 import type { RepositoriesText } from './more-page-content'
@@ -88,8 +85,13 @@ export function RepositoryCard({ repository, text }: RepositoryCardProps) {
       </div>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="flex w-full items-center gap-2 text-xl font-bold lg:max-w-40">
-            <span className="truncate">{repository.name}</span>
+          <CardTitle
+            asChild
+            className="flex w-full items-center gap-2 text-xl font-bold lg:max-w-40"
+          >
+            <h2>
+              <span className="truncate">{repository.name}</span>
+            </h2>
           </CardTitle>
           {repository.language && (
             <Badge variant="outline" className="flex items-center gap-1">
@@ -118,41 +120,41 @@ export function RepositoryCard({ repository, text }: RepositoryCardProps) {
           </span>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <TooltipProvider>
+          {repository.homepage ? (
+            <Button asChild variant="outline" size="sm" className="w-full">
+              <Link
+                href={repository.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Radio className="h-4 w-4 animate-pulse text-red-500 motion-reduce:animate-none" />
+                {text.livePreview}
+                <ExternalLink className="ml-auto h-4 w-4" />
+              </Link>
+            </Button>
+          ) : (
+            // No live site: a disabled button, explained by a tooltip on a
+            // focusable wrapper (a disabled button gets no focus or hover).
             <Tooltip>
               <TooltipTrigger asChild>
-                <div
-                  className={`w-full ${!repository.homepage ? 'cursor-not-allowed' : ''}`}
-                >
+                <span tabIndex={0} className="w-full cursor-not-allowed">
                   <Button
                     variant="outline"
                     size="sm"
                     className="w-full"
-                    disabled={!repository.homepage}
+                    disabled
                   >
-                    <Link
-                      href={repository.homepage || '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center gap-2"
-                      onClick={e => !repository.homepage && e.preventDefault()}
-                    >
-                      <Radio
-                        className={`h-4 w-4 ${!repository.homepage ? 'text-muted-foreground' : 'animate-pulse text-red-500'}`}
-                      />
-                      {text.livePreview}
-                      <ExternalLink className="ml-auto h-4 w-4" />
-                    </Link>
+                    <Radio className="h-4 w-4" />
+                    {text.livePreview}
+                    <ExternalLink className="ml-auto h-4 w-4" />
                   </Button>
-                </div>
+                </span>
               </TooltipTrigger>
-              {!repository.homepage && (
-                <TooltipContent side="top">
-                  {text.livePreviewNotAvailable}
-                </TooltipContent>
-              )}
+              <TooltipContent side="top">
+                {text.livePreviewNotAvailable}
+              </TooltipContent>
             </Tooltip>
-          </TooltipProvider>
+          )}
           <Button asChild variant="outline" size="sm" className="w-full">
             <Link
               href={repository.html_url}

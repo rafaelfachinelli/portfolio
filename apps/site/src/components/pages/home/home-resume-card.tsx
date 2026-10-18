@@ -1,6 +1,5 @@
+import { Card } from '@datum/ui'
 import Image from 'next/image'
-
-import { Card } from '@/components/ui/card'
 
 import { ResumePdfButton } from './resume-pdf-button'
 

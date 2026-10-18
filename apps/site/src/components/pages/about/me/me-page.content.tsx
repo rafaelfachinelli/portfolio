@@ -1,7 +1,7 @@
+import { Card } from '@datum/ui'
 import { Info } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 
-import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 

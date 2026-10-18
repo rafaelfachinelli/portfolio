@@ -142,7 +142,7 @@ export function HomePageContent({
       description: home.aboutMeOverview,
       buttonLabel: home.viewAboutButton,
       href: `/${lang}/about/me`,
-      buttonVariant: 'default' as const,
+      buttonVariant: 'primary' as const,
     },
     {
       eyebrow: home.contactEyebrow,

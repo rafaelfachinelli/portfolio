@@ -1,8 +1,8 @@
 'use client'
 
+import { Button } from '@datum/ui'
 import { Download } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { generateResumePdf } from '@/lib/generate-resume-pdf'
 

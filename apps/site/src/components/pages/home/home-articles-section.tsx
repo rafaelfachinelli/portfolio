@@ -1,10 +1,7 @@
+import { Badge, Button, Card } from '@datum/ui'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 
 type HomeArticle = {
   href: string

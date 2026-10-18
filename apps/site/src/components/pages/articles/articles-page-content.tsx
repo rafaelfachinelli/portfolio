@@ -1,9 +1,8 @@
+import { Badge, Card } from '@datum/ui'
 import { ArrowRight, BookOpen } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 import {
@@ -51,7 +50,7 @@ export function ArticlesPageContent({
                 <div className="flex flex-col gap-3 p-6">
                   <div className="flex flex-wrap gap-2">
                     {article.tags.map(tag => (
-                      <Badge key={tag} variant="secondary">
+                      <Badge key={tag} variant="neutral">
                         {tag}
                       </Badge>
                     ))}

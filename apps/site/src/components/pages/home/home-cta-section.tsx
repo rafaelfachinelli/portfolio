@@ -1,7 +1,5 @@
+import { Button, Card } from '@datum/ui'
 import Link from 'next/link'
-
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 
 type HomeCtaCard = {
   eyebrow: string
@@ -9,7 +7,7 @@ type HomeCtaCard = {
   description: string
   buttonLabel: string
   href: string
-  buttonVariant?: 'default' | 'outline'
+  buttonVariant?: 'primary' | 'outline'
 }
 
 type HomeCtaSectionProps = {
@@ -32,7 +30,7 @@ export function HomeCtaSection({ cards }: Readonly<HomeCtaSectionProps>) {
             <p className="text-white/75">{card.description}</p>
             <Button
               asChild
-              variant={card.buttonVariant ?? 'default'}
+              variant={card.buttonVariant ?? 'primary'}
               className={
                 card.buttonVariant === 'outline'
                   ? 'mt-auto w-fit cursor-pointer border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white'

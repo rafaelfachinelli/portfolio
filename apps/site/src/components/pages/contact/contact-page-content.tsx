@@ -1,6 +1,21 @@
 'use client'
 
 import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Input,
+  Label,
+  Textarea,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@datum/ui'
+import {
   Contact,
   Github,
   Instagram,
@@ -12,25 +27,8 @@ import {
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
-import { Textarea } from '@/components/ui/textarea'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 
 import type { Translation } from '../../../../get-translation'
 
@@ -127,7 +125,9 @@ export function ContactPageContent({
           <div>
             <Card>
               <CardHeader>
-                <CardTitle>{text.info.title}</CardTitle>
+                <CardTitle asChild>
+                  <h2>{text.info.title}</h2>
+                </CardTitle>
                 <CardDescription>{text.info.description}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -185,7 +185,9 @@ export function ContactPageContent({
           <div>
             <Card>
               <CardHeader>
-                <CardTitle>{text.form.title}</CardTitle>
+                <CardTitle asChild>
+                  <h2>{text.form.title}</h2>
+                </CardTitle>
                 <CardDescription>{text.form.description}</CardDescription>
               </CardHeader>
               <CardContent>

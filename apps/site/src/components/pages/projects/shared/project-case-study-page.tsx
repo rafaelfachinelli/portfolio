@@ -1,3 +1,4 @@
+import { Badge, Button, Card, CardContent } from '@datum/ui'
 import type { LucideIcon } from 'lucide-react'
 import {
   ArrowRight,
@@ -17,9 +18,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { ProjectCaseStudySection } from '@/components/pages/projects/instalacoes-e-reformas/project-case-study-section'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import { PageContent } from '@/components/ui/page-content'
 
 type CaseStudySectionContent = {

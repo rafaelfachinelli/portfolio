@@ -1,14 +1,14 @@
-import type { LucideIcon } from 'lucide-react'
-import Image from 'next/image'
-
-import { Badge } from '@/components/ui/badge'
 import {
+  Badge,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from '@datum/ui'
+import type { LucideIcon } from 'lucide-react'
+import Image from 'next/image'
+
 import { cn } from '@/lib/utils'
 
 type ProjectCaseStudySectionProps = {
@@ -61,10 +61,12 @@ export function ProjectCaseStudySection({
                   <Icon className="h-5 w-5" />
                 </div>
               ) : null}
-              <CardTitle className="text-2xl">{title}</CardTitle>
+              <CardTitle asChild className="text-2xl">
+                <h2>{title}</h2>
+              </CardTitle>
             </div>
             {intro ? (
-              <CardDescription className="border-l-2 my-5 border-season-accent pl-4 text-base leading-7">
+              <CardDescription className="border-season-accent my-5 border-l-2 pl-4 text-base leading-7">
                 {intro}
               </CardDescription>
             ) : null}
@@ -98,7 +100,11 @@ export function ProjectCaseStudySection({
 
                 <div className="flex flex-wrap gap-2">
                   {badges.map(badge => (
-                    <Badge key={badge} variant="outline" className="rounded-full">
+                    <Badge
+                      key={badge}
+                      variant="outline"
+                      className="rounded-full"
+                    >
                       {badge}
                     </Badge>
                   ))}
@@ -110,7 +116,7 @@ export function ProjectCaseStudySection({
 
         {hasImage ? (
           <div className="bg-muted/20 border-t p-6 lg:border-t-0 lg:border-l">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-xl border bg-background">
+            <div className="bg-background relative aspect-[16/10] overflow-hidden rounded-xl border">
               <Image
                 src={imageSrc!}
                 alt={imageAlt!}

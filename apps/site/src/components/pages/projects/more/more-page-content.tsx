@@ -1,11 +1,11 @@
 'use client'
 
+import { Button } from '@datum/ui'
 import { Loader, Presentation, RefreshCw } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import React from 'react'
 
-import { Button } from '@/components/ui/button'
 import { PageContent } from '@/components/ui/page-content'
 import { PageTitle } from '@/components/ui/page-title'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -136,6 +136,7 @@ export function MorePageContent({
             <Button
               variant="outline"
               size="icon"
+              aria-label={text.refresh}
               onClick={fetchRepositories}
               disabled={isLoading}
               className="cursor-pointer rounded-full select-none"

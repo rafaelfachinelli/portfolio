@@ -1,10 +1,8 @@
+import { Badge, Button, Card } from '@datum/ui'
 import { ArrowRight, Mail } from 'lucide-react'
 import Link from 'next/link'
 
 import AnimatedTextCycle from '@/components/ui/animated-text-cycle'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 
 type HomeHeroSectionProps = {
   lang: string

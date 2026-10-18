@@ -1,3 +1,38 @@
 /* Import after `tailwindcss` and `@datum/tokens/theme.css`. Tells Tailwind to
    generate the utilities the Datum components use. */
 @source "./";
+
+/* Entrance animations of the Datum overlays (Sheet). */
+@theme {
+  --animate-datum-fade-in: datum-fade-in 200ms ease-out;
+  --animate-datum-slide-in-right: datum-slide-in-right 250ms ease-out;
+  --animate-datum-slide-in-left: datum-slide-in-left 250ms ease-out;
+  --animate-datum-slide-in-top: datum-slide-in-top 250ms ease-out;
+  --animate-datum-slide-in-bottom: datum-slide-in-bottom 250ms ease-out;
+
+  @keyframes datum-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes datum-slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes datum-slide-in-left {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes datum-slide-in-top {
+    from {
+      transform: translateY(-100%);
+    }
+  }
+  @keyframes datum-slide-in-bottom {
+    from {
+      transform: translateY(100%);
+    }
+  }
+}

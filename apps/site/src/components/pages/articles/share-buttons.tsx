@@ -1,10 +1,9 @@
 'use client'
 
+import { Button } from '@datum/ui'
 import { Check, Link2, Share2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { FaLinkedinIn, FaWhatsapp, FaXTwitter } from 'react-icons/fa6'
-
-import { Button } from '@/components/ui/button'
 
 import type { Translation } from '../../../../get-translation'
 

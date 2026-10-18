@@ -156,7 +156,8 @@
           "studyProjectBadgeDescription": "This is a study project. It may not be fully functional or optimized for production use.",
           "eventProjectBadgeDescription": "This project was developed during an event. It may not be fully functional or optimized for production use.",
           "portfolioProjectBadgeDescription": "This project is part of my portfolio. It showcases my skills and may not be fully functional or optimized for production use."
-        }
+        },
+        "refresh": "Refresh the list"
       },
       "caseStudyNextStep": {
         "eyebrow": "Let's talk",

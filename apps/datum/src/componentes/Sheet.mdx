@@ -1,0 +1,38 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+
+import * as SheetStories from './Sheet.stories'
+
+<Meta of={SheetStories} />
+
+# Sheet
+
+Um painel que desliza de uma borda da tela, por cima da página: filtros, detalhes, um formulário curto. Feito sobre o Dialog do Radix: prende o foco enquanto está aberto, fecha com Esc ou com um clique no fundo e devolve o foco ao botão que abriu.
+
+<Canvas of={SheetStories.Default} />
+
+## Partes
+
+| Parte                                           | Papel                                                                                                                                        |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Sheet`                                         | O estado: aberto ou fechado (`open`, `onOpenChange`, `defaultOpen`).                                                                         |
+| `SheetTrigger`                                  | O botão que abre. Use `asChild` com um Button.                                                                                               |
+| `SheetContent`                                  | O painel, com o fundo escurecido e o botão de fechar. `side` escolhe a borda; `closeLabel` é o nome do botão de fechar, no idioma da página. |
+| `SheetHeader`, `SheetTitle`, `SheetDescription` | Título (obrigatório para o leitor de tela anunciar o painel) e uma linha de contexto.                                                        |
+| `SheetFooter`                                   | Ações no fim do painel.                                                                                                                      |
+| `SheetClose`                                    | Transforma qualquer botão em "fechar" (`asChild`).                                                                                           |
+
+## Aberto
+
+<Canvas of={SheetStories.Open} />
+
+## Bordas
+
+`right` (padrão) e `left` para painéis laterais; `top` e `bottom` para barras. No celular, painéis laterais ocupam três quartos da largura.
+
+<Canvas of={SheetStories.Sides} />
+
+## Boas práticas
+
+- Para tarefas curtas que não justificam uma página. Fluxos longos merecem página própria.
+- Sempre um `SheetTitle`; se ele não deve aparecer, esconda com `sr-only`, mas não remova.
+- A animação de entrada some para quem prefere menos movimento.
