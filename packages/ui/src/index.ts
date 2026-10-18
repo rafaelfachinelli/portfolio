@@ -3,6 +3,13 @@
 export { Badge, type BadgeProps, badgeVariants } from './badge'
 export { Button, type ButtonProps, buttonVariants, focusRing } from './button'
 export {
+  Callout,
+  CalloutContent,
+  type CalloutProps,
+  CalloutTitle,
+  calloutVariants,
+} from './callout'
+export {
   Card,
   CardAction,
   CardContent,
@@ -26,6 +33,7 @@ export {
   SelectValue,
 } from './select'
 export { Separator } from './separator'
+export { Stat, type StatProps } from './stat'
 export { Textarea } from './textarea'
 export {
   Tooltip,
