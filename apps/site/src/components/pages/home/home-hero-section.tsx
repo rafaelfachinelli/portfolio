@@ -69,7 +69,7 @@ export function HomeHeroSection({
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild className="cursor-pointer">
-              <Link href={`/${lang}/projects/more`}>
+              <Link href={`/${lang}/projects/more`} prefetch={false}>
                 {viewProjectsButton}
                 <ArrowRight className="h-4 w-4" />
               </Link>
