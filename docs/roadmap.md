@@ -83,6 +83,22 @@ Lighthouse simulated mobile (same profile as above) and with real CPU/network th
 
 The real-world LCP of the home dropped from 8.2 s to 2.7 s. The simulated LCP stays high because Lighthouse's simulation counts all the JavaScript that runs before the observed paint: every page hydrates as one large client component tree (`'use client'` pages with framer-motion in the layout and the sections). Reaching the 90+ budget needs less JavaScript on first load: render page sections as Server Components, keep client code to the interactive bits, and drop framer-motion from the layout (navbar, language switcher, sidebar) and the home sections in favor of CSS. This fits Phase 2, when the components move to `@datum/ui`.
 
+**1.6 First-load JavaScript (done, PR #11).**
+- Pages and home sections are Server Components. Client code is limited to small islands: the resume PDF button, the timeline tenure label, the hero word cycle, the share buttons, the contact form and the repository list.
+- framer-motion is removed from the layout (navbar, language switcher, sidebar menu), the home and every page, and from the dependencies. CSS animations replace it and respect `prefers-reduced-motion`.
+- The language context carries only `commons` and `components`. Page texts are passed as props, so the full dictionary (~56 KB) is no longer serialized into every page (home HTML 182 KB → 138 KB).
+- jsPDF and the resume texts load only when the PDF is requested. Unused `cmdk`, `jspdf-autotable` and `date-fns` removed.
+
+Lighthouse 12.6.1 mobile, live site, 2026-10-18:
+
+| Page | Perf (simulated) | LCP (simulated) | LCP (devtools) | TBT (devtools) | JS transferred |
+| --- | --- | --- | --- | --- | --- |
+| `/pt-BR` | 73 → **90** | 4.9 → 3.4 s | 2.7 → **2.3 s** | 1,159 → **330 ms** | 229 KiB |
+| `/pt-BR/articles/piramide-de-testes-na-pratica` | 82 → 82 | 3.6 → 3.7 s | 2.6 → **2.3 s** | 1,058 → **320 ms** | 206 KiB |
+| `/pt-BR/about/timeline` | 89 → **92** | 3.2 → 3.0 s | 2.3 → 2.4 s | 692 → 540 ms | 203 KiB |
+
+With real throttling every page now paints its LCP under the 2.5 s budget. The simulated LCP stays above it because the remaining scripts download and run before the first paint, and the simulation adds all of that CPU to the LCP (render delay ~2.8-3.0 s, load delay 0). What is left on first load is the React and Next.js runtime (~100 KB) plus the layout's client components: the shadcn sidebar with its Radix tooltip, dropdown, sheet and collapsible. Next lever, in Phase 2: rebuild the navbar and sidebar in `@datum/ui` as lighter components (server-rendered navigation, a small client toggle), then measure again.
+
 **1.4 Storybook (`apps/datum`) (done).**
 - Storybook 10 (react-vite) with pages in pt-BR: Introdução, Princípios, Cores, Tipografia, Espaço e forma, Temporadas; a "Temporada" toolbar; the Storybook chrome wears the Datum theme.
 - Static site (nginx) on a Coolify app at `design.rafaelfachinelli.com`.
