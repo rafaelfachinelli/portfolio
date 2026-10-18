@@ -99,6 +99,14 @@ Lighthouse 12.6.1 mobile, live site, 2026-10-18:
 
 With real throttling every page now paints its LCP under the 2.5 s budget. The simulated LCP stays above it because the remaining scripts download and run before the first paint, and the simulation adds all of that CPU to the LCP (render delay ~2.8-3.0 s, load delay 0). What is left on first load is the React and Next.js runtime (~100 KB) plus the layout's client components: the shadcn sidebar with its Radix tooltip, dropdown, sheet and collapsible. Next lever, in Phase 2: rebuild the navbar and sidebar in `@datum/ui` as lighter components (server-rendered navigation, a small client toggle), then measure again.
 
+**1.7 Lightweight navigation (done, PRs #14 and #15).** PageSpeed Insights (mobile, home) before this step: Performance 96, Accessibility 100, Best Practices 100, SEO 100; the missing points were TBT (210 ms) and Speed Index.
+- The navbar is a Server Component; desktop menus open in CSS. The phone menu is a small client drawer around server-rendered links, replacing the shadcn sidebar (Sheet, Tooltip, DropdownMenu, Collapsible, `useIsMobile`). The language switcher is a native `<details>` linking to the canonical locales.
+- Hidden menu links and the home links to `/projects/more` have prefetch off, so a visit does not download the code of other pages.
+- The home resume image has `sizes` (PageSpeed image delivery insight).
+- The GitHub token in Coolify had expired (the repositories API answered 401); a new read-only token is set.
+
+Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18 (two runs each): home JS 207 → **153 KiB**, TBT 130-180 → **60-100 ms**, Performance 86-91 → **90-95**; article 82 → **90-95**; timeline 92 → **92-95**. These local runs read a few points below PageSpeed Insights (96 vs 90 for the same version).
+
 **1.4 Storybook (`apps/datum`) (done).**
 - Storybook 10 (react-vite) with pages in pt-BR: Introdução, Princípios, Cores, Tipografia, Espaço e forma, Temporadas; a "Temporada" toolbar; the Storybook chrome wears the Datum theme.
 - Static site (nginx) on a Coolify app at `design.rafaelfachinelli.com`.
