@@ -91,7 +91,7 @@ export default async function RootLayout({
               jobTitle: 'Tech Lead & Software Engineer',
               url: SITE_URL,
               image: `${SITE_URL}/logo_1024x1024.png`,
-              email: 'rafael.l.a.fachinelli@gmail.com',
+              email: 'contato@rafaelfachinelli.com',
               worksFor: { '@type': 'Organization', name: 'Kruzer' },
               knowsAbout: [
                 'React',

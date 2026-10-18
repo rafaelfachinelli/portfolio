@@ -37,7 +37,7 @@ import type { Translation } from '../../../../get-translation'
 const MIN_NAME_LENGTH = 2
 const MIN_MESSAGE_LENGTH = 5
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const CONTACT_EMAIL = 'rafael.l.a.fachinelli@gmail.com'
+const CONTACT_EMAIL = 'contato@rafaelfachinelli.com'
 
 export function ContactPageContent({
   text,
