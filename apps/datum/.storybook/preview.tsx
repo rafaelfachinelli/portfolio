@@ -1,4 +1,5 @@
 import '@datum/tokens/tokens.css'
+import '../src/styles/components.css'
 import '../src/styles/datum-docs.css'
 
 import { getSeason, SEASON_IDS, SEASON_NAMES } from '@datum/tokens'
@@ -26,7 +27,10 @@ const preview: Preview = {
         dynamicTitle: true,
         items: [
           { value: 'auto', title: 'Pela data de hoje' },
-          ...SEASON_IDS.map(id => ({ value: id, title: SEASON_NAMES[id]['pt-BR'] })),
+          ...SEASON_IDS.map(id => ({
+            value: id,
+            title: SEASON_NAMES[id]['pt-BR'],
+          })),
         ],
       },
     },
@@ -38,7 +42,13 @@ const preview: Preview = {
     backgrounds: { disable: true },
     options: {
       storySort: {
-        order: ['Datum', ['Introducao', 'Principios'], 'Fundamentos', ['Cores', 'Tipografia', 'Espaco e forma', 'Temporadas']],
+        order: [
+          'Datum',
+          ['Introducao', 'Principios'],
+          'Fundamentos',
+          ['Cores', 'Tipografia', 'Espaco e forma', 'Temporadas'],
+          'Componentes',
+        ],
       },
     },
   },

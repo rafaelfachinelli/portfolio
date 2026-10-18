@@ -6,7 +6,7 @@ import { SeasonPreview } from './components/season-calendar'
 
 # Datum
 
-**O design system de Rafael Fachinelli.** Tokens, temporadas e, em breve, componentes da direção visual **Blueprint**: a prancheta de projeto como linguagem.
+**O design system de Rafael Fachinelli.** Tokens, temporadas e componentes da direção visual **Blueprint**: a prancheta de projeto como linguagem.
 
 <SeasonPreview />
 
@@ -21,9 +21,10 @@ Um design system faz o mesmo papel: é a referência única de onde cor, espaço
 | Pacote | O que é |
 | --- | --- |
 | `@datum/tokens` | Tokens no formato W3C (DTCG): paleta, tema base (só escuro), tipografia, espaço de 4 px, raio de 2 px, a grade da prancheta e 8 temporadas. Gera variáveis CSS, um tema do Tailwind 4 e um módulo TypeScript. |
-| `@datum/storybook` | Este site: fundamentos, temporadas e, na próxima fase, os componentes. |
+| `@datum/ui` | Componentes React: primitivos (Button, Badge, Card, Label, Separator…) e padrões gerais, com Tailwind 4 sobre os tokens. Acessíveis, com uma story por estado. |
+| `@datum/storybook` | Este site: fundamentos, temporadas e componentes. |
 
-Os componentes (`@datum/ui`) chegam na fase 2: shadcn/ui como base, com a personalidade da Blueprint por cima.
+O Datum guarda só peças que fazem sentido para qualquer projeto. Composições específicas de uma página (o card de um artigo, o bloco de métricas da home) são montadas no próprio site, com as peças daqui.
 
 ## Como usar
 
@@ -32,6 +33,13 @@ Os componentes (`@datum/ui`) chegam na fase 2: shadcn/ui como base, com a person
 @import 'tailwindcss';
 @import '@datum/tokens/tokens.css'; /* variáveis --datum-* e as temporadas */
 @import '@datum/tokens/theme.css';  /* utilitários: bg-board, text-ink, text-season-accent... */
+@import '@datum/ui/styles.css';     /* as classes dos componentes */
+```
+
+```tsx
+import { Button } from '@datum/ui'
+
+<Button>Baixar currículo</Button>
 ```
 
 ```tsx
@@ -46,4 +54,4 @@ Use a barra **Temporada**, no topo desta página, para ver qualquer temporada.
 ## Onde o Datum está em uso
 
 - [rafaelfachinelli.com](https://rafaelfachinelli.com), o portfólio.
-- Código aberto em [github.com/rafaelfachinelli/portfolio](https://github.com/rafaelfachinelli/portfolio) (`packages/tokens`, `apps/datum`).
+- Código aberto em [github.com/rafaelfachinelli/portfolio](https://github.com/rafaelfachinelli/portfolio) (`packages/tokens`, `packages/ui`, `apps/datum`).

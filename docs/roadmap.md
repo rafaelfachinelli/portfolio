@@ -113,7 +113,15 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
 - Rules home: [docs/datum/README.md](./datum/README.md).
 
 ### Phase 2: components
-- `packages/ui`: components on shadcn/ui, one story per state, starting with what the site already uses (button, card, badge, form fields, summary box, section title with icon, article card) and growing with the tools.
+- `packages/ui` (`@datum/ui`): components on shadcn/ui and Radix, one story per state, starting with what the site already uses and growing with the tools.
+- Decision (2026-10-18): Datum holds **only primitives and general-purpose patterns**. It is shown publicly as a portfolio piece, so every component must make sense to any project. Compositions specific to one page (article card, home metrics, page title, resume card) are built in `apps/site` from Datum pieces.
+- Plan, one PR each:
+  1. Package, Tailwind in Storybook, accessibility addon; Button, Badge, Card, Separator, Label (done, see below).
+  2. Forms: Input, Textarea, Select, Tooltip and the **Field** pattern (label, control, hint, error).
+  3. General patterns the site already uses: **Callout** (generalizes the article summary and lessons boxes) and **Stat** (number and caption, generalizes the home metrics).
+  4. The site adopts `@datum/ui`, its `components/ui` copies are deleted, and site-specific pieces are recomposed in the site; visual check of every page and Lighthouse with no regression.
+  5. Storybook deployed with the components; roadmap updated.
+- **2.1 (done).** `@datum/ui` with Button (primary, secondary, outline, ghost, link, danger; sizes; loading; disabled; as link), Badge (accent, neutral, outline, success, warning, danger), Card (header, title, description, action, content, footer), Separator and Label. Storybook gets Tailwind 4 (`@tailwindcss/vite`) and `@storybook/addon-a11y`; 23 stories pass axe, and the color variants pass contrast in all 8 seasons.
 
 ### Phase 3: tools
 1. CLT x PJ calculator (first). Official INSS / IRRF / Simples Nacional tables, with the reference year on the page; not financial advice notice; explanation of the math, FAQ, Umami events.

@@ -1,0 +1,19 @@
+/* Tailwind with the Datum theme, for the components (`@datum/ui`) shown in
+   the stories. Same setup a consumer app uses. */
+@import 'tailwindcss';
+@import '@datum/tokens/theme.css';
+@import '@datum/ui/styles.css';
+
+@theme inline {
+  --font-sans: var(--datum-font-text);
+  --font-mono: var(--datum-font-mono);
+}
+
+/* Stories sit on the drafting board, like the site. */
+@layer base {
+  body {
+    background: var(--datum-color-board);
+    color: var(--datum-color-ink);
+    font-family: var(--datum-font-text);
+  }
+}

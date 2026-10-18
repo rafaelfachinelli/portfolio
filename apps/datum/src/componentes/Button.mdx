@@ -1,0 +1,60 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as ButtonStories from './Button.stories'
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Dispara uma ação: enviar um formulário, baixar um arquivo, abrir um diálogo. Para navegar até outra página, use um link com a aparência de botão (`asChild`, mais abaixo).
+
+<Canvas of={ButtonStories.Primary} />
+
+<Controls of={ButtonStories.Primary} />
+
+## Variantes
+
+<Canvas of={ButtonStories.Variants} />
+
+| Variante    | Quando usar                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| `primary`   | A ação principal da tela. Uma por área visível; usa a cor da temporada. |
+| `secondary` | Ações de apoio, ao lado da principal.                                   |
+| `outline`   | Ações neutras em listas e cards, quando várias aparecem juntas.         |
+| `ghost`     | Ações discretas em barras e menus.                                      |
+| `link`      | Uma ação no meio do texto.                                              |
+| `danger`    | Ações que apagam ou desfazem algo. Peça confirmação antes.              |
+
+## Tamanhos
+
+`sm`, `md` (padrão) e `lg`, mais `icon` para botões só com ícone. Botão só com ícone precisa de `aria-label`, que é o que o leitor de tela anuncia.
+
+<Canvas of={ButtonStories.Sizes} />
+
+## Com ícone
+
+Os ícones herdam o tamanho de 16 px e o espaçamento. Ícone à esquerda reforça a ação (baixar); à direita, indica continuidade (ver mais).
+
+<Canvas of={ButtonStories.WithIcon} />
+
+## Estados
+
+**Carregando** (`loading`): mostra um indicador, bloqueia novos cliques e marca o botão como ocupado (`aria-busy`). Use enquanto a ação não terminou, para evitar envio duplicado.
+
+<Canvas of={ButtonStories.Loading} />
+
+**Desabilitado** (`disabled`): para quando a ação ainda não é possível. Se o motivo não for óbvio, explique perto do botão.
+
+<Canvas of={ButtonStories.Disabled} />
+
+## Como link
+
+Com `asChild`, o Button aplica o visual ao elemento filho, por exemplo um `<a>` ou o `Link` do Next.js. A semântica continua a de link: abre em nova aba, aparece no histórico, funciona sem JavaScript.
+
+<Canvas of={ButtonStories.AsLink} />
+
+## Acessibilidade
+
+- O foco pelo teclado mostra um anel na cor da temporada, separado do fundo.
+- O texto do botão diz o que acontece ("Baixar currículo"), não "Clique aqui".
+- O contraste das variantes passa o WCAG AA em todas as temporadas.
