@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
     root: monorepoRoot,
   },
   outputFileTracingRoot: monorepoRoot,
+  experimental: {
+    // The Tailwind CSS (~14 KiB gzip) goes inline in <head>, so the first
+    // paint no longer waits for a second request (HTML → CSS chain).
+    inlineCss: true,
+  },
   images: {
     remotePatterns: [
       {
