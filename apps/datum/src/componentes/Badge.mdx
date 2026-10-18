@@ -1,0 +1,45 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as BadgeStories from './Badge.stories'
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Um rótulo curto que classifica ou informa o estado de algo: uma tecnologia, uma categoria, "publicado". Não é clicável, a não ser que vire link (`asChild`).
+
+<Canvas of={BadgeStories.Accent} />
+
+<Controls of={BadgeStories.Accent} />
+
+## Variantes
+
+<Canvas of={BadgeStories.Variants} />
+
+| Variante                       | Quando usar                                                                        |
+| ------------------------------ | ---------------------------------------------------------------------------------- |
+| `accent`                       | Um destaque por área, na cor da temporada (por exemplo o cargo no topo da página). |
+| `neutral`                      | Categorias e contagens, sem chamar atenção.                                        |
+| `outline`                      | Listas de etiquetas, como tecnologias de um projeto.                               |
+| `success`, `warning`, `danger` | Estados: concluído, atenção, problema.                                             |
+
+Os estados usam a cor com fundo translúcido: leem bem sobre a prancheta sem competir com o conteúdo.
+
+## Com ícone
+
+Para estados, um ícone ao lado do texto garante que a informação não dependa só da cor.
+
+<Canvas of={BadgeStories.WithIcon} />
+
+## Lista de etiquetas
+
+<Canvas of={BadgeStories.Tags} />
+
+## Como link
+
+<Canvas of={BadgeStories.AsLink} />
+
+## Boas práticas
+
+- Uma ou duas palavras. Frases longas pedem outro componente.
+- Não use o Badge como botão: para ações, use o Button.

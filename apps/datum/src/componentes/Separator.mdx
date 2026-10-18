@@ -1,0 +1,27 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+
+import * as SeparatorStories from './Separator.stories'
+
+<Meta of={SeparatorStories} />
+
+# Separator
+
+Uma linha fina que separa grupos de conteúdo, na cor das linhas de desenho da prancheta.
+
+<Canvas of={SeparatorStories.Horizontal} />
+
+## Vertical
+
+Entre itens em linha, como links de navegação. Precisa de um contêiner com altura definida.
+
+<Canvas of={SeparatorStories.Vertical} />
+
+## Decorativo ou semântico
+
+Por padrão o Separator é **decorativo**: leitores de tela o ignoram, porque a separação já está nos títulos e parágrafos. Quando ele marca de fato a troca de seção e não há título, use `decorative={false}`; ele vira `role="separator"`.
+
+<Canvas of={SeparatorStories.Semantic} />
+
+## Boas práticas
+
+- Prefira espaço a linhas. Use o Separator quando o espaço sozinho não deixa claro onde um grupo termina.

@@ -1,0 +1,42 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+
+import * as CardStories from './Card.stories'
+
+<Meta of={CardStories} />
+
+# Card
+
+Uma superfície que agrupa conteúdo relacionado: um artigo, um projeto, um número. O Card é montado com partes, e cada tela usa só as que precisa.
+
+<Canvas of={CardStories.Basic} />
+
+## Partes
+
+| Parte             | Papel                                                                                                                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Card`            | A superfície: fundo, borda e espaçamento vertical.                                                                                                                              |
+| `CardHeader`      | Título, descrição e, opcionalmente, uma ação no canto.                                                                                                                          |
+| `CardTitle`       | O título, na fonte de títulos (Archivo). É um `h3`; se a hierarquia da página pedir outro nível, use `asChild` com o seu elemento: `<CardTitle asChild><h2>…</h2></CardTitle>`. |
+| `CardDescription` | Uma linha de contexto, em tom mais baixo.                                                                                                                                       |
+| `CardAction`      | Um botão ou selo no canto superior direito do cabeçalho.                                                                                                                        |
+| `CardContent`     | O corpo.                                                                                                                                                                        |
+| `CardFooter`      | Ações no rodapé.                                                                                                                                                                |
+
+## Com ação no cabeçalho
+
+<Canvas of={CardStories.WithAction} />
+
+## Só conteúdo
+
+Para números e destaques curtos, só o `CardContent`.
+
+<Canvas of={CardStories.ContentOnly} />
+
+## Em grade
+
+<Canvas of={CardStories.Grid} />
+
+## Boas práticas
+
+- Um card, um assunto. Se precisar de abas ou rolagem interna, provavelmente é uma página.
+- A ação principal do card fica no rodapé; o card inteiro clicável só quando ele é um link para um único destino.

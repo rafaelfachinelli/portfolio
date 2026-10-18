@@ -1,0 +1,34 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+
+import * as LabelStories from './Label.stories'
+
+<Meta of={LabelStories} />
+
+# Label
+
+O nome de um campo de formulário. Ligado ao campo pelo `htmlFor` (o `id` do campo), ele é lido pelo leitor de tela e aumenta a área de clique: clicar no texto foca o campo.
+
+<Canvas of={LabelStories.WithInput} />
+
+## Obrigatório
+
+Marque o campo com `required` e, no Label, um asterisco escondido do leitor de tela (`aria-hidden`), porque o próprio campo já anuncia que é obrigatório.
+
+<Canvas of={LabelStories.Required} />
+
+## Com caixa de seleção
+
+O Label vem depois da caixa, na mesma linha.
+
+<Canvas of={LabelStories.WithCheckbox} />
+
+## Desabilitado
+
+Quando o campo vem antes do Label no código e está desabilitado (`peer-disabled`), o Label fica esmaecido junto. Use `flex-col-reverse` para manter o Label em cima visualmente.
+
+<Canvas of={LabelStories.Disabled} />
+
+## Boas práticas
+
+- Sempre um Label visível. Placeholder não substitui o rótulo: some quando a pessoa começa a digitar.
+- Rótulos curtos e diretos: "E-mail", não "Digite aqui o seu e-mail".
