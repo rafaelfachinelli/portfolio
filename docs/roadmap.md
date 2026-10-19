@@ -128,7 +128,7 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
 - **2.5 (done).** [design.rafaelfachinelli.com](https://design.rafaelfachinelli.com) serves the 13 components (64 stories); Coolify deploys it on every push to `production`. After the adoption the home prefetched the contact page (form and tooltip, ~26 KiB); its two contact links have prefetch off (PR #25), and the home is back to 154 KiB of JS (Lighthouse simulated mobile: Performance 89, TBT 140 ms, CLS 0).
 
 ### Phase 3: tools
-1. CLT x PJ calculator (first). Official INSS / IRRF / Simples Nacional tables, with the reference year on the page; not financial advice notice; explanation of the math, FAQ, Umami events.
+1. CLT x PJ calculator (first). Official INSS / IRRF / Simples Nacional tables, with the reference year on the page; not financial advice notice; explanation of the math, FAQ, Umami events. Specification: [tools/clt-x-pj.md](./tools/clt-x-pj.md) (draft).
 2. Financial planner: compound interest, emergency fund, financial independence goal.
 3. Architecture decision helper: questions about team, scale, domain and deadline; recommendation with trade-offs and when not to use it; generates an ADR draft.
 
