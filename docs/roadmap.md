@@ -1,6 +1,6 @@
 # Portfolio roadmap: brand, design system and tools
 
-Status: planning · Last updated: 2026-10-17
+Status: Phases 0-2 done, Phase 3 (tools) in planning · Last updated: 2026-10-19
 
 ## Goal
 
@@ -112,7 +112,7 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
 - Static site (nginx) on a Coolify app at `design.rafaelfachinelli.com`.
 - Rules home: [docs/datum/README.md](./datum/README.md).
 
-### Phase 2: components
+### Phase 2: components (done 2026-10-18)
 - `packages/ui` (`@datum/ui`): components on shadcn/ui and Radix, one story per state, starting with what the site already uses and growing with the tools.
 - Decision (2026-10-18): Datum holds **only primitives and general-purpose patterns**. It is shown publicly as a portfolio piece, so every component must make sense to any project. Compositions specific to one page (article card, home metrics, page title, resume card) are built in `apps/site` from Datum pieces.
 - Plan, one PR each:
@@ -120,11 +120,12 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
   2. Forms: Input, Textarea, Select, Tooltip and the **Field** pattern (label, control, hint, error) (done, see below).
   3. General patterns the site already uses: **Callout** (generalizes the article summary and lessons boxes) and **Stat** (number and caption, generalizes the home metrics) (done, see below).
   4. The site adopts `@datum/ui`, its `components/ui` copies are deleted, and site-specific pieces are recomposed in the site; visual check of every page and Lighthouse with no regression (done, see below).
-  5. Storybook deployed with the components; roadmap updated.
+  5. Storybook deployed with the components; roadmap updated (done, see below).
 - **2.1 (done).** `@datum/ui` with Button (primary, secondary, outline, ghost, link, danger; sizes; loading; disabled; as link), Badge (accent, neutral, outline, success, warning, danger), Card (header, title, description, action, content, footer), Separator and Label. Storybook gets Tailwind 4 (`@tailwindcss/vite`) and `@storybook/addon-a11y`; 23 stories pass axe, and the color variants pass contrast in all 8 seasons.
 - **2.2 (done).** Input, Textarea, Select (Radix; groups, sizes) and Tooltip (Radix; inverted surface, provider for groups), sharing one control style (border, focus halo in the season color, invalid, disabled). **Field** wires label, control, hint and error through context: generated ids, `aria-describedby` to the hint or the error, `aria-invalid`, `required` (as `aria-required` on the Select trigger) and `disabled`; props passed to the control win. A contact-form story validates on submit. 51 component stories pass axe; the only flag is the forced-open Select, where Radix hides the page behind the open list as a modal does.
 - **2.3 (done).** **Callout**: a box with a side stripe and a light tint in five tones (accent in the season color, neutral, success, warning, danger), optional icon, `CalloutTitle` (with `asChild` for heading levels) and `CalloutContent` styled for text, lists and links. **Stat**: a number with label, optional icon, description and trend; a `dl` so screen readers read "label: value"; the trend color says good or bad news (`positive`), which is not always going up, and its screen reader text (`label`) is written by the consumer in the page's language. Callout and Stat stories pass axe in all 8 seasons.
 - **2.4 (done).** The site uses `@datum/ui` (`transpilePackages`, `@datum/ui/styles.css` in `globals.css`, `optimizePackageImports` so a page imports only the modules it uses). Its shadcn copies (badge, button, card, input, label, select, separator, sheet, textarea, tooltip) and six Radix packages plus `class-variance-authority` are gone. **Sheet** joined Datum (Radix Dialog; entrance animations in CSS, off with reduced motion; `closeLabel` required, so no fixed text). Recomposed in the site: home metrics as Stats in Cards, the article summary as a Callout. Card titles that start a page section render as `h2` (`asChild`). Lighthouse on the local build: Performance 91-92 on home, article, contact, timeline and case study; Accessibility 100 on every page checked except the timeline (heading order, already on production). The repositories page went from 85 to 100 in Accessibility: refresh button named, topic badge readable over the banner, the live preview is a link styled as a button instead of a link inside a button.
+- **2.5 (done).** [design.rafaelfachinelli.com](https://design.rafaelfachinelli.com) serves the 13 components (64 stories); Coolify deploys it on every push to `production`. After the adoption the home prefetched the contact page (form and tooltip, ~26 KiB); its two contact links have prefetch off (PR #25), and the home is back to 154 KiB of JS (Lighthouse simulated mobile: Performance 89, TBT 140 ms, CLS 0).
 
 ### Phase 3: tools
 1. CLT x PJ calculator (first). Official INSS / IRRF / Simples Nacional tables, with the reference year on the page; not financial advice notice; explanation of the math, FAQ, Umami events.
@@ -135,5 +136,4 @@ Each tool and the design system get a case study or article (see `.claude/skills
 
 ## Open questions
 
-- Approve the Phase 1 steps above (nothing is implemented before that).
-- Package scope: `@datum/*` (proposed; workspace-only, not published to npm, so an existing public scope does not matter) or `@rafaelfachinelli/*`.
+None. Phase 1 was approved, and the package scope is `@datum/*` (workspace-only, not published to npm).
