@@ -444,8 +444,10 @@ async function renderPng(bounds: Rect, caption: string): Promise<string> {
   }
   const diagram = await toCanvas(viewport, options)
 
-  // A caption band at the bottom, so a shared image says where it came from.
-  const band = 40 * scale
+  // A band at the bottom, so a shared image says where it came from: the
+  // address on the left, the RF mark on the right.
+  const band = 48 * scale
+  const margin = 24 * scale
   const canvas = document.createElement('canvas')
   canvas.width = diagram.width
   canvas.height = diagram.height + band
@@ -459,8 +461,46 @@ async function renderPng(bounds: Rect, caption: string): Promise<string> {
     ) || '#94a3b8'
   context.font = `${13 * scale}px "IBM Plex Mono", monospace`
   context.textBaseline = 'middle'
-  context.fillText(caption, 24 * scale, diagram.height + band / 2)
+  context.fillText(caption, margin, diagram.height + band / 2)
+
+  const logoSize = 28 * scale
+  const logo = await seasonLogo(logoSize)
+  context.drawImage(
+    logo,
+    canvas.width - margin - logoSize,
+    diagram.height + (band - logoSize) / 2,
+  )
   return canvas.toDataURL('image/png')
+}
+
+/**
+ * The RF mark as the site draws it: the current season's gradient, cut by the
+ * logo mask (see `.datum-logo` in globals.css).
+ */
+async function seasonLogo(size: number): Promise<HTMLCanvasElement> {
+  const mask = new Image()
+  mask.src = '/logo-mask.png'
+  await mask.decode()
+
+  const root = getComputedStyle(document.documentElement)
+  const canvas = document.createElement('canvas')
+  canvas.width = size
+  canvas.height = size
+  const context = canvas.getContext('2d')!
+  const gradient = context.createLinearGradient(0, 0, size, size)
+  gradient.addColorStop(
+    0,
+    root.getPropertyValue('--datum-season-a') || '#38bdf8',
+  )
+  gradient.addColorStop(
+    1,
+    root.getPropertyValue('--datum-season-b') || '#6366f1',
+  )
+  context.fillStyle = gradient
+  context.fillRect(0, 0, size, size)
+  context.globalCompositeOperation = 'destination-in'
+  context.drawImage(mask, 0, 0, size, size)
+  return canvas
 }
 
 export default function ArchitectureDiagram(props: ArchitectureDiagramProps) {
