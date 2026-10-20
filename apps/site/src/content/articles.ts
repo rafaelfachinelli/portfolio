@@ -91,6 +91,8 @@ Escrever essa pergunta em regras foi o ponto de partida do [Esboço de arquitetu
 
 Uma aplicação, um banco de dados relacional gerenciado com backup automático, e logs e métricas. Só isso.
 
+![O ponto de partida no Esboço de arquitetura: usuários, aplicação e banco de dados, com logs e métricas ao lado](/images/articles/quanta-arquitetura-inicio-pt.svg)
+
 Parece pouco, mas aguenta muito mais do que costumamos imaginar. Um banco bem indexado responde milhares de consultas por segundo, e uma aplicação bem escrita atende muita gente numa máquina só. O que esse desenho não tem é redundância: se a aplicação ou o banco caem, tudo cai. E isso pode ser aceitável. Um sistema interno, um projeto em validação ou um produto que aguenta algumas horas fora do ar por mês não precisam pagar por mais.
 
 ## O que muda com cada resposta
@@ -107,6 +109,10 @@ Cada resposta acrescenta só o que resolve um problema que ela mesma cria:
 - **Conversa nos dois sentidos** (chat, colaboração): um **gateway de tempo real** e um **pub/sub** entre as cópias. Se o servidor só avisa, eventos do servidor saindo da própria aplicação bastam.
 
 Os números (mil, dez mil) são regras práticas, não leis. Eles servem para mostrar a ordem de grandeza em que cada peça começa a se pagar.
+
+Para comparar com o ponto de partida: com as respostas de uma loja na Black Friday (até 100 mil pessoas ao mesmo tempo, 99,99% de disponibilidade, busca completa, dados de pagamento e vários times), o mesmo questionário chega a 16 peças.
+
+![A arquitetura de uma loja na Black Friday no Esboço de arquitetura: entrada com WAF, CDN, balanceador e API gateway, serviços por domínio, cache, fila e workers, banco com réplicas e prontidão, motor de busca e armazenamento de arquivos](/images/articles/quanta-arquitetura-loja-pt.svg)
 
 ## "Ao mesmo tempo" é o número que importa
 
@@ -127,9 +133,12 @@ Abaixo do diagrama há uma lista com o que ficou de fora e o que faria cada peç
 ## Como a ferramenta foi feita
 
 - **Regras fixas, não IA.** As mesmas respostas sempre geram o mesmo diagrama, e cada regra tem um teste automático.
-- **Dados em movimento.** O diagrama usa React Flow. As setas mostram o sentido dos dados, cada tipo de fluxo tem o seu estilo, e cenários como "abrir uma página" ou "enviar um arquivo" acendem o caminho passo a passo, com uma legenda para cada salto.
-- **Para levar ao projeto.** Dá para baixar o diagrama em PNG, copiar o código Mermaid (que vira diagrama no GitHub e no Notion) e baixar um rascunho de ADR, o registro de decisão de arquitetura que Michael Nygard popularizou.
-- **Nada sai do navegador.** As respostas ficam no link, que você pode compartilhar.
+- **Cada peça com a sua cor e o seu formato.** A cor diz a categoria (entrada e rede, processamento, mensageria, dados, apoio), e o formato diz o tipo: banco de dados é cilindro, fila guarda as mensagens enfileiradas, o tópico de pub/sub é um tubo, o cache é um chip de memória, o armazenamento de arquivos é um balde. Dá para reconhecer a peça antes de ler o nome.
+- **Dados em movimento.** O diagrama usa React Flow. As setas mostram o sentido dos dados, e cenários como "abrir uma página" ou "enviar um arquivo" percorrem o caminho um salto por vez: só a peça que recebe os dados brilha, na cor dela, com uma legenda para cada passo e narração opcional.
+- **Para levar ao projeto.** Dá para baixar o diagrama em PNG, copiar o código Mermaid (que vira diagrama no GitHub e no Notion) e baixar um ADR, o registro de decisão de arquitetura que Michael Nygard popularizou, já com contexto, decisão, prós e contras e quando revisar.
+- **Nada sai do navegador.** As respostas ficam no endereço da página: dá para recarregar, guardar ou compartilhar o link.
+
+![Os formatos e as cores das peças: pessoas, entrada e rede, processamento, mensageria (fila e pub/sub), dados (cache, banco e arquivos) e apoio](/images/articles/quanta-arquitetura-formatos-pt.svg)
 
 As peças são genéricas de propósito: balanceador, cache, fila e réplica são os mesmos conceitos há mais de dez anos, em qualquer nuvem ou servidor próprio. Escolher o produto é o passo seguinte, e depende de coisas que um questionário não sabe: o time, o orçamento, o que vocês já operam bem.
 
@@ -185,6 +194,8 @@ Turning that question into rules was the starting point of the [Architecture ske
 
 One application, a managed relational database with automatic backups, and logs and metrics. That is all.
 
+![The starting point in the Architecture sketch: users, application and database, with logs and metrics beside them](/images/articles/quanta-arquitetura-inicio-en.svg)
+
 It looks small, but it carries much more than we tend to think. A well-indexed database answers thousands of queries per second, and a well-written application serves a lot of people from a single machine. What this design lacks is redundancy: if the application or the database fails, everything fails. And that can be fine. An internal system, a project still being validated or a product that can be down a few hours a month does not need to pay for more.
 
 ## What each answer changes
@@ -201,6 +212,10 @@ Each answer adds only what solves a problem the answer itself creates:
 - **Two-way conversation** (chat, collaboration): a **real-time gateway** and **pub/sub** between the copies. If the server only notifies, server-sent events from the application itself are enough.
 
 The numbers (a thousand, ten thousand) are rules of thumb, not laws. They show the order of magnitude at which each piece starts to pay for itself.
+
+To compare with the starting point: with the answers of an online store on Black Friday (up to 100,000 people at once, 99.99% availability, full search, payment data and several teams), the same questionnaire reaches 16 pieces.
+
+![The architecture of a store on Black Friday in the Architecture sketch: entry with WAF, CDN, load balancer and API gateway, services by domain, cache, queue and workers, a database with replicas and a standby, a search engine and file storage](/images/articles/quanta-arquitetura-loja-en.svg)
 
 ## "At the same time" is the number that matters
 
@@ -221,9 +236,12 @@ Under the diagram there is a list of what was left out and what would bring each
 ## How the tool was built
 
 - **Fixed rules, not AI.** The same answers always give the same diagram, and every rule has an automated test.
-- **Data in motion.** The diagram uses React Flow. Arrows show which way data goes, each kind of flow has its own style, and scenarios such as "open a page" or "upload a file" light up the path step by step, with a caption for each hop.
-- **Take it to your project.** You can download the diagram as PNG, copy the Mermaid code (which renders as a diagram on GitHub and Notion) and download an ADR draft, the architecture decision record Michael Nygard popularized.
-- **Nothing leaves the browser.** The answers live in the link, which you can share.
+- **Each piece with its own color and shape.** The color tells the category (entry and network, compute, messaging, data, support), and the shape tells the type: a database is a cylinder, a queue holds its messages in line, a pub/sub topic is a pipe, the cache is a memory chip, file storage is a bucket. You recognize the piece before reading its name.
+- **Data in motion.** The diagram uses React Flow. Arrows show which way data goes, and scenarios such as "open a page" or "upload a file" walk the path one hop at a time: only the piece receiving the data glows, in its own color, with a caption for each step and optional narration.
+- **Take it to your project.** You can download the diagram as PNG, copy the Mermaid code (which renders as a diagram on GitHub and Notion) and download an ADR, the architecture decision record Michael Nygard popularized, with context, decision, pros and cons and when to revisit.
+- **Nothing leaves the browser.** The answers live in the page address: you can reload, bookmark or share the link.
+
+![The shapes and colors of the pieces: people, entry and network, compute, messaging (queue and pub/sub), data (cache, database and files) and support](/images/articles/quanta-arquitetura-formatos-en.svg)
 
 The pieces are generic on purpose: load balancer, cache, queue and replica have been the same concepts for over a decade, on any cloud or your own servers. Choosing the product is the next step, and it depends on things a questionnaire cannot know: the team, the budget, what you already run well.
 
