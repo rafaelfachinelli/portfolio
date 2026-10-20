@@ -1,7 +1,7 @@
 # Architecture sketch: specification
 
 Audience: Rafael and AI agents building the first tool of Phase 3.
-Status: approved, in build · Last updated: 2026-10-19
+Status: done, live at /<lang>/tools/architecture · Last updated: 2026-10-20
 
 The first tool of [Phase 3](../roadmap.md#phase-3-tools) (decision D15).
 
@@ -23,7 +23,7 @@ Developers, tech leads, founders and students preparing for system design interv
 
 ## The questionnaire
 
-Nine questions, one per screen on the phone and all on one page on the desktop, each with three to five options and a short hint. Every answer has a default, so "see the result" works at any point.
+Eleven questions on one page, each with two to five options as cards (Datum RadioGroup). Every answer has a default, so the diagram is there from the start and changes with each answer.
 
 | # | Question | Options |
 | --- | --- | --- |
@@ -35,7 +35,9 @@ Nine questions, one per screen on the phone and all on one page on the desktop, 
 | 6 | Does it do heavy work in the background? | No · Sometimes (e-mails, reports) · A lot (video, imports, AI) |
 | 7 | Does it store files from users? | No · Some (avatars, documents) · A lot (photos, video) |
 | 8 | Does it need text search? | No · Simple filters · Full text search |
-| 9 | Where are the users, and who builds it? | Users: one country · several countries. Team: up to 10 people · several teams |
+| 9 | Where are the people? | One country · Several countries |
+| 10 | Who builds it? | One team (up to about 10 people) · Several teams |
+| 11 | Does it store sensitive personal or payment data? | No · Yes (adds the security pieces) |
 
 A tenth optional question: does it handle sensitive personal or payment data (LGPD)? It adds security pieces.
 
@@ -77,18 +79,20 @@ The goal is a tool that is quick to use, clear, and does something other archite
 - **Single points of failure.** Boxes whose loss takes the whole application down carry a mark, and the side panel says what happens if each one fails. For a small product the answer can be "acceptable, restore from backup", and the tool says so.
 - **Each box explains itself.** Click or tab to a box: what it is, the answer that put it there, cost and complexity (low, medium, high), when it would be too much.
 - **What you do not need yet.** A list under the diagram, each item with the answer that would change it.
+- **Colors and shapes.** Each box has a color by category (entry and network: indigo; compute: sky; messaging: amber; data: green; support: slate, dashed) and a shape by type: cylinder for databases and indexes, a box holding messages for the queue, a pipe for the pub/sub topic, a memory chip for the cache, a bucket for file storage, a hexagon for entry pieces, a pill for people. The same colors and shapes go to the legend, the Mermaid export and the preview image (`apps/site/src/lib/tools/architecture/categories.ts`). During a scenario the lit box glows in its own category color, and the hop in progress takes that color; the season color marks the selected box.
+- **Narration.** Each scenario caption has a clip in Rafael's cloned voice (ElevenLabs, model `eleven_multilingual_v2`), in pt-BR and English. A "Narração" switch in the player turns it on; it is off by default and the choice is kept in the browser. With narration on, the hops spread over the spoken caption and the next step starts when the voice ends. The clips are generated once, on Rafael's machine, by `npm run narration -w @rafaelfachinelli/site` (`apps/site/scripts/generate-narration.ts`, key in `ELEVENLABS_API_KEY`), into `apps/site/public/audio/architecture/<locale>/<step>.mp3`; `architecture-narration.json` keeps each clip's fingerprint (caption, voice, model). The script only redoes missing or changed clips, and a test fails when a caption changes without its clip.
 - **Reduced motion.** With `prefers-reduced-motion` the dots stop and the scenario steps change without animation.
 
 ## The result and export
 
-- **Diagram**: React Flow (`@xyflow/react`, MIT). Boxes in fixed layers (users, edge, entry, application, fast data, storage, cross-cutting), left to right on the desktop and top to bottom on the phone; positions come from the layers, so no layout library is needed. Pan and zoom; no free editing.
+- **Diagram**: React Flow (`@xyflow/react`, MIT). Boxes in fixed layers (users, edge, entry, application, fast data, storage, cross-cutting), top to bottom on every screen (left to right made the boxes too small on a laptop); positions come from the layers, so no layout library is needed. Pan and zoom; no free editing.
 - **Text version**: the same architecture as a list of components and connections, for screen readers and for copying.
 - **Export, from v1**:
   - **PNG** of the diagram.
   - **Mermaid** code, to paste into a README, GitHub or Notion, where it renders as a diagram.
   - **ADR draft** in Markdown: context from the answers, the decision, consequences, what was left out and when to revisit.
   - **Share link**: `/<lang>/tools/architecture/r/<code>`, where the code holds the answers. The link opens the same result, and its preview image (Open Graph) draws that architecture. Result pages are `noindex` with the tool as canonical, so they do not compete with it in search.
-- Nothing is stored and there is no account or backend: the answers live in the URL.
+- Nothing is stored and there is no account or backend: the answers live in the URL. While the person answers, the address follows: `?a=<code>` on the tool page (read in the browser, since the page is static), the code itself on a shared page, and a clean address when the answers are the defaults. A reload or a copied address keeps the answers; an invalid code falls back to the defaults.
 
 ## Page and SEO
 

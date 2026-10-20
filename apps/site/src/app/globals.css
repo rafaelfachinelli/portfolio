@@ -146,3 +146,8 @@
     transform: translateY(0);
   }
 }
+
+/* Pages that need room (the tools) widen the main column. */
+main:has([data-layout='wide']) {
+  max-width: 1440px;
+}

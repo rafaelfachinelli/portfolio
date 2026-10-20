@@ -879,6 +879,12 @@
       "shareText": "I read this article by Rafael Fachinelli:",
       "summaryTitle": "Quick summary",
       "faqTitle": "Frequently asked questions"
+    },
+    "tools": {
+      "title": "Tools",
+      "description": "Free tools for people who build software: architecture, technical decisions and more.",
+      "lead": "Small, useful tools built with Datum, my design system. Everything runs in your browser.",
+      "open": "Open"
     }
   },
   "components": {
@@ -928,6 +934,10 @@
               "description": "A collection of various projects and applications."
             }
           }
+        },
+        "tools": {
+          "title": "Tools",
+          "description": "Free tools for people who build software."
         },
         "contact": {
           "title": "Contact",

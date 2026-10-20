@@ -26,6 +26,8 @@ export const SITE_PATHS = [
   '/projects/flex-sewing-machine',
   '/projects/more',
   '/articles',
+  '/tools',
+  '/tools/architecture',
   '/contact',
 ] as const
 
@@ -42,7 +44,7 @@ export function resolveLocale(lang: string): Locale {
     : i18n.defaultLocale
 }
 
-function canonicalLocale(locale: Locale) {
+export function canonicalLocale(locale: Locale) {
   return locale.startsWith('pt') ? 'pt-BR' : 'en-US'
 }
 
