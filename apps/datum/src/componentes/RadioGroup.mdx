@@ -1,0 +1,40 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks'
+
+import * as RadioGroupStories from './RadioGroup.stories'
+
+<Meta of={RadioGroupStories} />
+
+# RadioGroup
+
+Um conjunto de opções em que exatamente uma fica escolhida. Use quando as opções são poucas (até seis, mais ou menos) e vale a pena mostrar todas de uma vez; com muitas opções, prefira o [Select](?path=/docs/componentes-select--docs).
+
+<Canvas of={RadioGroupStories.Default} />
+
+<Controls of={RadioGroupStories.Default} />
+
+## Variantes
+
+**Cartões** (`RadioCard`): a opção inteira é clicável, com título e uma linha de descrição. Bom para questionários e escolhas que precisam de explicação, e fácil de acertar no celular.
+
+<Canvas of={RadioGroupStories.Cards} />
+
+**Cartões com ícone**: o ícone ajuda a reconhecer a opção; ele fica na cor da temporada quando a opção está escolhida.
+
+<Canvas of={RadioGroupStories.CardsWithIcons} />
+
+**Grade**: opções curtas lado a lado. O layout vem do `className` do grupo; `orientation="horizontal"` faz as setas esquerda e direita navegarem.
+
+<Canvas of={RadioGroupStories.Grid} />
+
+## Estados
+
+**Opção desabilitada**: aparece, mas não pode ser escolhida. Diga o motivo na descrição.
+
+<Canvas of={RadioGroupStories.DisabledOption} />
+
+## Acessibilidade
+
+- Dê um nome ao grupo: um título visível ligado por `aria-labelledby`, ou `aria-label`.
+- Tab entra e sai do grupo; as setas mudam a opção escolhida, como num grupo de rádio nativo.
+- No `RadioCard`, o título e a descrição formam o nome lido pelo leitor de tela. O ícone e a bolinha são decorativos.
+- No `RadioGroupItem`, ligue um [Label](?path=/docs/componentes-label--docs) pelo `htmlFor`.

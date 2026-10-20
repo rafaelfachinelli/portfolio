@@ -879,6 +879,12 @@
       "shareText": "Li este artigo do Rafael Fachinelli:",
       "summaryTitle": "Resumo rápido",
       "faqTitle": "Perguntas frequentes"
+    },
+    "tools": {
+      "title": "Ferramentas",
+      "description": "Ferramentas gratuitas para quem constrói software: arquitetura, decisões técnicas e mais.",
+      "lead": "Ferramentas pequenas e úteis, feitas com o Datum, o meu design system. Tudo roda no seu navegador.",
+      "open": "Abrir"
     }
   },
   "components": {
@@ -928,6 +934,10 @@
               "description": "Uma coleção de vários projetos e aplicações."
             }
           }
+        },
+        "tools": {
+          "title": "Ferramentas",
+          "description": "Ferramentas gratuitas para quem constrói software."
         },
         "contact": {
           "title": "Contato",

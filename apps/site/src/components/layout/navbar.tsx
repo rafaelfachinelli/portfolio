@@ -14,6 +14,7 @@ import {
   MoreHorizontal,
   Presentation,
   Scroll,
+  Wrench,
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -200,6 +201,16 @@ export function Navbar({ lang, translation }: NavbarProps) {
             <li>
               <Link
                 prefetch={false}
+                href={`/${lang}/tools`}
+                className={drawerLinkClass}
+              >
+                <Wrench className="text-season-accent" />
+                {options.tools.title}
+              </Link>
+            </li>
+            <li>
+              <Link
+                prefetch={false}
                 href={`/${lang}/contact`}
                 className={drawerLinkClass}
               >
@@ -264,6 +275,16 @@ export function Navbar({ lang, translation }: NavbarProps) {
               >
                 <BookOpen className="text-season-accent mr-2 h-4 w-4" />
                 {options.articles.title}
+              </Link>
+            </li>
+            <li>
+              <Link
+                prefetch={false}
+                href={`/${lang}/tools`}
+                className={triggerClass}
+              >
+                <Wrench className="text-season-accent mr-2 h-4 w-4" />
+                {options.tools.title}
               </Link>
             </li>
             <li>

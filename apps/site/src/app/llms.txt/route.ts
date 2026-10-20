@@ -1,4 +1,5 @@
 import { articles } from '@/content/articles'
+import { architectureCopy } from '@/content/tools/architecture'
 import { SITE_URL } from '@/lib/seo'
 
 export const dynamic = 'force-static'
@@ -23,6 +24,10 @@ The site is available in Portuguese (pt-BR) and English (en-US).
 - [Resume](${SITE_URL}/en-US/about/resume): downloadable PDF resume
 - [Timeline](${SITE_URL}/en-US/about/timeline): career timeline (Kruzer, Leroy Merlin via Develcode, Flex, and earlier roles)
 - [Contact](${SITE_URL}/en-US/contact): contact form and links
+
+## Tools
+
+- [Architecture sketch](${SITE_URL}/en-US/tools/architecture): ${architectureCopy['en-US'].meta.description} Free, runs in the browser, exports PNG, Mermaid and an ADR draft.
 
 ## Case studies
 
