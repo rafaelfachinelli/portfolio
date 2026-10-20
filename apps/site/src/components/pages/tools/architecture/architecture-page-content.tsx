@@ -67,6 +67,7 @@ export function ArchitecturePageContent({
           locale={locale}
           initialAnswers={initialAnswers}
           shared={shared}
+          articleHref={article && `/${locale}/articles/${article.slug}`}
         />
 
         <div className="grid gap-10 lg:grid-cols-2">

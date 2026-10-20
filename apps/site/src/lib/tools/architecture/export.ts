@@ -6,6 +6,7 @@ import {
   type ArchNode,
   type EdgeKind,
   NODE_COST,
+  type NodeId,
 } from './rules'
 
 // Text exports of an architecture: Mermaid (renders as a diagram on GitHub,
@@ -60,50 +61,90 @@ export function toMermaid(
   return lines.join('\n')
 }
 
+const BASE_NODES = new Set<NodeId>(['app', 'db', 'observability'])
+
+const REFERENCES = {
+  adr: 'https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions',
+  monolith: 'https://martinfowler.com/bliki/MonolithFirst.html',
+  sre: 'https://sre.google/sre-book/embracing-risk/',
+}
+
+/**
+ * An architecture decision record (after Michael Nygard): context written from
+ * the answers, the decision and why each piece is in, pros and cons, when to
+ * revisit what was left out, and references.
+ */
 export function toAdr(
   architecture: Architecture,
   answers: Answers,
   copy: ArchitectureCopy,
-  { date, url }: { date: string; url: string },
+  { date, url, articleUrl }: { date: string; url: string; articleUrl?: string },
 ): string {
   const { adr } = copy
   const nodes = architecture.nodes.filter(node => node.id !== 'users')
+  const name = (node: ArchNode) => copy.nodes[node.id].name
+
+  const context = QUESTION_IDS.reduce(
+    (text, question) =>
+      text.replace(`{${question}}`, adr.phrases[question][answers[question]]),
+    adr.contextText,
+  )
   const answerLines = QUESTION_IDS.map(question => {
     const entry = copy.questions[question]
     return `- ${entry.title} ${entry.options[answers[question]].title}`
   })
-  const componentLines = nodes.map(
-    node => `- **${nodeLabel(node, copy)}**: ${copy.nodes[node.id].what}`,
+
+  const pieces = new Intl.ListFormat(adr.lang, { type: 'conjunction' }).format(
+    nodes.map(node => nodeLabel(node, copy)),
   )
-  const gains = nodes
-    .filter(node => node.reasons.length > 0)
-    .map(node => `- ${copy.nodes[node.id].name}: ${copy.nodes[node.id].what}`)
-  const costs = [
+  const whyLines = nodes.map(node => {
+    // Base pieces are always there; their answers only add tags to them.
+    const reasons =
+      node.reasons.length === 0 || BASE_NODES.has(node.id)
+        ? copy.ui.panelBase
+        : `${adr.reasonPrefix}: ${node.reasons
+            .map(question => {
+              const entry = copy.questions[question]
+              return `${entry.title} ${entry.options[answers[question]].title}`
+            })
+            .join('; ')}`
+    return `- **${name(node)}** (${copy.costs[NODE_COST[node.id]].toLowerCase()}): ${copy.nodes[node.id].what} ${reasons}`
+  })
+
+  const pros = nodes.map(
+    node => `- **${name(node)}**: ${copy.nodes[node.id].pro}`,
+  )
+  const cons = [
     ...nodes
       .filter(node => node.spof)
       .map(
         node =>
-          `- ${copy.ui.spof}: ${copy.nodes[node.id].name}. ${copy.nodes[node.id].ifFails}`,
+          `- **${name(node)}** (${copy.ui.spof.toLowerCase()}): ${copy.nodes[node.id].ifFails}`,
       ),
-    ...nodes
-      .filter(node => node.reasons.length > 0)
-      .map(
-        node =>
-          `- ${copy.nodes[node.id].name}: ${copy.costs[NODE_COST[node.id]]}.`,
-      ),
+    ...nodes.map(node => `- **${name(node)}**: ${copy.nodes[node.id].con}`),
     ...architecture.notes.map(note => `- ${copy.notes[note]}`),
   ]
-  const leftOut = architecture.notNeeded
+  const revisit = architecture.notNeeded
     .filter(id => copy.notNeeded[id])
     .map(id => `- **${copy.nodes[id].name}**: ${copy.notNeeded[id]}`)
+
+  const references = [
+    `- [${adr.referenceTool}](${url})`,
+    ...(articleUrl ? [`- [${adr.referenceArticle}](${articleUrl})`] : []),
+    `- [${adr.referenceAdr}](${REFERENCES.adr})`,
+    `- [${adr.referenceMonolith}](${REFERENCES.monolith})`,
+    `- [${adr.referenceSre}](${REFERENCES.sre})`,
+  ]
 
   return [
     `# ${adr.title}`,
     '',
-    adr.status,
-    `${adr.date}: ${date}`,
+    `- ${adr.status}`,
+    `- ${adr.date}: ${date}`,
     '',
     `## ${adr.context}`,
+    '',
+    context,
     '',
     `### ${adr.answers}`,
     '',
@@ -111,9 +152,13 @@ export function toAdr(
     '',
     `## ${adr.decision}`,
     '',
-    `### ${adr.components}`,
+    adr.decisionText.replace('{pieces}', pieces),
     '',
-    ...componentLines,
+    `### ${adr.why}`,
+    '',
+    ...whyLines,
+    '',
+    `### ${adr.diagram}`,
     '',
     '```mermaid',
     toMermaid(architecture, copy),
@@ -121,21 +166,25 @@ export function toAdr(
     '',
     `## ${adr.consequences}`,
     '',
-    `### ${adr.positive}`,
+    `### ${adr.pros}`,
     '',
-    ...(gains.length > 0 ? gains : [`- ${copy.nodes.app.what}`]),
+    ...pros,
     '',
-    `### ${adr.negative}`,
+    `### ${adr.cons}`,
     '',
-    ...costs,
+    ...cons,
     '',
-    `## ${adr.leftOut}`,
+    `## ${adr.revisit}`,
     '',
-    ...(leftOut.length > 0 ? leftOut : [`- ${copy.ui.notNeededEmpty}`]),
+    ...(revisit.length > 0 ? revisit : [`- ${adr.revisitEmpty}`]),
+    '',
+    `## ${adr.references}`,
+    '',
+    ...references,
     '',
     '---',
     '',
-    `${adr.footer}: ${url}`,
+    `_${adr.footer}_`,
     '',
   ].join('\n')
 }

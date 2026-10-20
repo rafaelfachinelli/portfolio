@@ -30,7 +30,16 @@ export type ArchitectureCopy = {
   >
   nodes: Record<
     NodeId,
-    { name: string; what: string; tooMuch: string; ifFails: string }
+    {
+      name: string
+      what: string
+      tooMuch: string
+      ifFails: string
+      /** What the piece gives, for the ADR's pros. */
+      pro: string
+      /** What it costs, for the ADR's cons. */
+      con: string
+    }
   >
   tags: Record<NodeTag, string>
   costs: Record<Cost, string>
@@ -91,17 +100,33 @@ export type ArchitectureCopy = {
   howItWorks: { title: string; paragraphs: string[] }
   faq: { question: string; answer: string }[]
   adr: {
+    /** Locale for joining lists ("a, b e c"). */
+    lang: string
     title: string
     status: string
     date: string
     context: string
+    /** `{kind}`, `{users}`… are replaced by the phrases below. */
+    contextText: string
+    phrases: Record<QuestionId, Record<string, string>>
     answers: string
     decision: string
-    components: string
+    /** `{pieces}` is replaced by the list of pieces. */
+    decisionText: string
+    why: string
+    reasonPrefix: string
+    diagram: string
     consequences: string
-    positive: string
-    negative: string
-    leftOut: string
+    pros: string
+    cons: string
+    revisit: string
+    revisitEmpty: string
+    references: string
+    referenceTool: string
+    referenceArticle: string
+    referenceAdr: string
+    referenceMonolith: string
+    referenceSre: string
     footer: string
   }
 }
@@ -286,12 +311,16 @@ const ptBR: ArchitectureCopy = {
   nodes: {
     users: {
       name: 'Usuários',
+      pro: '',
+      con: '',
       what: 'Navegadores e apps que usam a aplicação.',
       tooMuch: '',
       ifFails: '',
     },
     dns: {
       name: 'Roteamento global',
+      pro: 'Tira uma região inteira do caminho quando ela falha.',
+      con: 'Mais uma camada para configurar, e o failover precisa ser ensaiado.',
       what: 'DNS que manda cada pessoa para a região saudável mais próxima e tira uma região do ar quando ela falha.',
       tooMuch: 'Com uma região só, o DNS comum basta.',
       ifFails:
@@ -299,6 +328,8 @@ const ptBR: ArchitectureCopy = {
     },
     waf: {
       name: 'WAF',
+      pro: 'Barra ataques comuns antes de chegarem ao código.',
+      con: 'Regras mal ajustadas podem bloquear tráfego legítimo.',
       what: 'Firewall de aplicação: barra ataques conhecidos (injeção, robôs, excesso de requisições) antes de chegarem ao código.',
       tooMuch: 'Num sistema interno, atrás de VPN, raramente compensa.',
       ifFails:
@@ -306,6 +337,8 @@ const ptBR: ArchitectureCopy = {
     },
     cdn: {
       name: 'CDN',
+      pro: 'Arquivos e páginas públicas chegam rápido, de perto de cada pessoa.',
+      con: 'O que está em cache pode ficar velho; é preciso invalidar ao publicar.',
       what: 'Rede de servidores perto das pessoas que guarda cópias de imagens, CSS, JS e páginas públicas.',
       tooMuch:
         'Raramente é exagero: é barata. Só sobra quando quase nada é público ou estático.',
@@ -314,6 +347,8 @@ const ptBR: ArchitectureCopy = {
     },
     lb: {
       name: 'Balanceador de carga',
+      pro: 'A aplicação aguenta mais gente e sobrevive à queda de uma cópia.',
+      con: 'A aplicação não pode guardar estado em memória; sessões vão para fora dela.',
       what: 'Divide as requisições entre várias cópias da aplicação e tira do caminho as que estão doentes.',
       tooMuch: 'Com uma instância e pouca gente, é uma peça a mais sem ganho.',
       ifFails:
@@ -321,6 +356,8 @@ const ptBR: ArchitectureCopy = {
     },
     realtime: {
       name: 'Gateway de tempo real',
+      pro: 'Mensagens chegam na hora, sem a página perguntar de tempos em tempos.',
+      con: 'Conexões abertas consomem recursos e pedem cuidado com reconexão.',
       what: 'Mantém conexões abertas (WebSocket) com quem está usando e empurra mensagens na hora.',
       tooMuch:
         'Se o servidor só avisa e a pessoa não responde pelo mesmo canal, eventos do servidor (SSE) direto da aplicação bastam.',
@@ -329,6 +366,8 @@ const ptBR: ArchitectureCopy = {
     },
     gateway: {
       name: 'API gateway',
+      pro: 'Autenticação, limites e rotas num lugar só, para todos os serviços.',
+      con: 'Vira peça crítica: se cair ou ficar lento, todos os serviços sentem.',
       what: 'Uma porta única para os serviços: rota cada chamada ao serviço certo e cuida de autenticação e limites num lugar só.',
       tooMuch:
         'Com uma aplicação só, o balanceador e a própria aplicação fazem esse papel.',
@@ -336,6 +375,8 @@ const ptBR: ArchitectureCopy = {
     },
     app: {
       name: 'Aplicação',
+      pro: 'Um deploy e um código para entender e testar; módulos separados permitem dividir depois.',
+      con: 'Tudo é publicado junto: um módulo com problema pode atrasar a publicação dos outros.',
       what: 'Um monólito modular: um só deploy, com módulos bem separados por assunto. Simples de entender, testar e publicar.',
       tooMuch: 'Nunca é exagero. É o começo certo para quase tudo.',
       ifFails:
@@ -343,6 +384,8 @@ const ptBR: ArchitectureCopy = {
     },
     services: {
       name: 'Serviços por domínio',
+      pro: 'Cada time publica a sua parte sem esperar os outros.',
+      con: 'Rede, deploys, observabilidade e dados espalhados custam caro, e chamadas entre serviços precisam de plano B.',
       what: 'A aplicação dividida em serviços, um por área do negócio, cada um com o seu time e o seu deploy.',
       tooMuch:
         'Com um time só, custa mais (rede, deploy, observabilidade, dados espalhados) do que entrega.',
@@ -351,6 +394,8 @@ const ptBR: ArchitectureCopy = {
     },
     pubsub: {
       name: 'Pub/sub',
+      pro: 'Mensagens chegam a quem está conectado em qualquer cópia do gateway.',
+      con: 'Mais uma peça para operar; mensagens podem se perder numa falha.',
       what: 'Canal de mensagens entre as cópias do gateway: o que chega numa instância é entregue a quem está conectado nas outras.',
       tooMuch: 'Com uma instância só, as mensagens nem saem da memória.',
       ifFails:
@@ -358,6 +403,8 @@ const ptBR: ArchitectureCopy = {
     },
     cache: {
       name: 'Cache',
+      pro: 'Respostas repetidas em milissegundos e menos carga no banco.',
+      con: 'Risco de dado desatualizado: é preciso decidir quando invalidar.',
       what: 'Memória rápida com as respostas mais pedidas, para não perguntar ao banco a mesma coisa mil vezes.',
       tooMuch:
         'Com pouca gente, o banco responde rápido sozinho, e cache traz um problema novo: dado velho.',
@@ -366,6 +413,8 @@ const ptBR: ArchitectureCopy = {
     },
     queue: {
       name: 'Fila',
+      pro: 'Trabalho lento sai da requisição e é refeito quando falha.',
+      con: 'O resultado chega depois; a interface precisa mostrar o andamento.',
       what: 'Guarda tarefas para depois: a requisição responde na hora e o trabalho pesado acontece em segundo plano.',
       tooMuch:
         'Se toda tarefa leva milissegundos, fazer na própria requisição é mais simples.',
@@ -374,12 +423,16 @@ const ptBR: ArchitectureCopy = {
     },
     workers: {
       name: 'Workers',
+      pro: 'Escalam separados da aplicação, conforme o volume de tarefas.',
+      con: 'Cada tarefa precisa poder rodar mais de uma vez sem estragar dados.',
       what: 'Processos que pegam tarefas da fila e as executam, com novas tentativas quando algo falha.',
       tooMuch: 'Sem fila, não há o que consumir.',
       ifFails: 'As tarefas acumulam na fila e são feitas quando eles voltam.',
     },
     db: {
       name: 'Banco de dados',
+      pro: 'Fonte da verdade, com transações e backup automático.',
+      con: 'Um banco só tem um limite de escrita; passar dele exige particionar os dados.',
       what: 'Banco relacional gerenciado, com backup automático. A fonte da verdade.',
       tooMuch: 'Nunca é exagero.',
       ifFails:
@@ -387,6 +440,8 @@ const ptBR: ArchitectureCopy = {
     },
     replica: {
       name: 'Réplicas de leitura',
+      pro: 'Divide a carga de leitura sem mexer nas escritas.',
+      con: 'Réplicas atrasam alguns instantes: uma leitura logo depois de gravar pode vir antiga.',
       what: 'Cópias do banco que só respondem leituras, para dividir a carga. Escritas continuam indo ao principal.',
       tooMuch:
         'Com pouca leitura, só aumentam custo e trazem atraso de réplica para explicar.',
@@ -394,6 +449,8 @@ const ptBR: ArchitectureCopy = {
     },
     standby: {
       name: 'Banco de prontidão',
+      pro: 'Se o banco principal cair, a cópia assume em minutos, sem restaurar backup.',
+      con: 'Paga-se um segundo banco que fica parado a maior parte do tempo.',
       what: 'Uma cópia do banco em outra zona, atualizada o tempo todo, que assume sozinha se o principal cair.',
       tooMuch:
         'Se algumas horas fora do ar são aceitáveis, backup e restauração bastam.',
@@ -401,6 +458,8 @@ const ptBR: ArchitectureCopy = {
     },
     search: {
       name: 'Motor de busca',
+      pro: 'Busca rápida, com relevância e tolerância a erros de digitação.',
+      con: 'Outro sistema para manter sincronizado com o banco.',
       what: 'Índice próprio para busca por texto, com relevância e tolerância a erro. Alimentado a partir do banco.',
       tooMuch:
         'Para filtros simples, o banco resolve (inclusive com índice de texto).',
@@ -408,6 +467,8 @@ const ptBR: ArchitectureCopy = {
     },
     storage: {
       name: 'Armazenamento de arquivos',
+      pro: 'Arquivos guardados de forma barata e durável, fora do banco.',
+      con: 'As permissões de acesso aos arquivos precisam de cuidado.',
       what: 'Object storage para fotos, vídeos e documentos. Arquivo não fica no banco nem no disco da aplicação.',
       tooMuch: 'Sem arquivos, não é preciso.',
       ifFails:
@@ -415,6 +476,8 @@ const ptBR: ArchitectureCopy = {
     },
     region2: {
       name: 'Segunda região',
+      pro: 'O serviço continua mesmo com uma região inteira fora do ar.',
+      con: 'Custo e complexidade dobram, e escritas entre regiões são um problema difícil.',
       what: 'Uma cópia da aplicação e do banco em outra região, pronta para assumir se a primeira cair inteira.',
       tooMuch:
         'Na maioria dos produtos, várias zonas numa região já dão 99,99%. Duas regiões dobram custo e complexidade.',
@@ -422,12 +485,16 @@ const ptBR: ArchitectureCopy = {
     },
     observability: {
       name: 'Logs e métricas',
+      pro: 'Você descobre o problema antes do cliente.',
+      con: 'Logs e métricas também custam; defina o que guardar e por quanto tempo.',
       what: 'Logs, métricas e alertas: como você descobre que algo quebrou antes do cliente avisar.',
       tooMuch: 'Nunca é exagero, mesmo pequeno.',
       ifFails: 'A aplicação segue, mas você fica sem enxergar o que acontece.',
     },
     secrets: {
       name: 'Cofre de segredos',
+      pro: 'Senhas e chaves fora do código, com acesso registrado.',
+      con: 'Mais um serviço do qual a aplicação depende para subir.',
       what: 'Guarda senhas, chaves e tokens fora do código, com acesso registrado e troca periódica.',
       tooMuch:
         'Variáveis de ambiente bem cuidadas bastam quando não há dado sensível.',
@@ -436,6 +503,8 @@ const ptBR: ArchitectureCopy = {
     },
     audit: {
       name: 'Log de auditoria',
+      pro: 'Registro de quem acessou dados sensíveis, como a LGPD pede.',
+      con: 'O volume de registros cresce; é preciso definir a retenção.',
       what: 'Registro de quem acessou ou mudou cada dado sensível, que ninguém consegue apagar.',
       tooMuch: 'Sem dado sensível, os logs comuns bastam.',
       ifFails:
@@ -622,17 +691,88 @@ const ptBR: ArchitectureCopy = {
     },
   ],
   adr: {
+    lang: 'pt-BR',
     title: 'ADR: arquitetura inicial',
     status: 'Status: proposta',
     date: 'Data',
     context: 'Contexto',
-    answers: 'Respostas que guiaram a decisão',
+    contextText:
+      'Estamos construindo {kind} para {users}. A aplicação {uptime}, {load} e {live}. Ela {jobs}, {files} e {search}. As pessoas estão {reach}, e o sistema é construído por {team}. {sensitive}.',
+    phrases: {
+      kind: {
+        content: 'um site de conteúdo',
+        saas: 'uma aplicação web (SaaS, sistema de gestão ou painel)',
+        mobileApi: 'uma API que atende apps e parceiros',
+        store: 'uma loja online',
+        realtime: 'uma aplicação de tempo real',
+      },
+      users: {
+        u100: 'até 100 pessoas ao mesmo tempo no pico',
+        u1k: 'até mil pessoas ao mesmo tempo no pico',
+        u10k: 'até 10 mil pessoas ao mesmo tempo no pico',
+        u100k: 'até 100 mil pessoas ao mesmo tempo no pico',
+        u1m: 'mais de 100 mil pessoas ao mesmo tempo no pico',
+      },
+      uptime: {
+        some: 'pode ficar algumas horas fora do ar por mês',
+        little:
+          'precisa de 99,9% de disponibilidade (cerca de 45 minutos fora do ar por mês)',
+        minimal:
+          'precisa de 99,99% de disponibilidade (cerca de 4 minutos fora do ar por mês)',
+        region: 'não pode parar nem se uma região inteira da nuvem cair',
+      },
+      load: {
+        read: 'mais lê do que grava dados',
+        balanced: 'lê e grava dados na mesma medida',
+        write: 'mais grava do que lê dados',
+      },
+      live: {
+        none: 'não precisa de atualização ao vivo',
+        push: 'precisa enviar avisos do servidor para as pessoas',
+        twoWay: 'precisa de comunicação ao vivo nos dois sentidos',
+      },
+      jobs: {
+        none: 'não faz trabalho pesado em segundo plano',
+        some: 'faz algum trabalho em segundo plano, como e-mails e relatórios',
+        heavy:
+          'faz muito trabalho pesado em segundo plano, como vídeo ou importações',
+      },
+      files: {
+        none: 'não guarda arquivos enviados pelas pessoas',
+        some: 'guarda alguns arquivos enviados pelas pessoas',
+        many: 'tem fotos e vídeos das pessoas como parte central do produto',
+      },
+      search: {
+        none: 'não precisa de busca por texto',
+        filters: 'precisa só de filtros simples',
+        fullText: 'precisa de busca completa por texto',
+      },
+      reach: { country: 'em um país', global: 'em vários países' },
+      team: { small: 'um time', teams: 'vários times' },
+      sensitive: {
+        no: 'Não há dados pessoais sensíveis nem de pagamento',
+        yes: 'Há dados pessoais sensíveis ou de pagamento, sujeitos à LGPD',
+      },
+    },
+    answers: 'Respostas',
     decision: 'Decisão',
-    components: 'Componentes',
+    decisionText:
+      'Vamos começar com {pieces}. Cada peça entra para atender uma necessidade descrita no contexto; o que não tem uma necessidade concreta agora fica de fora, com um gatilho claro para revisar.',
+    why: 'Por que cada peça',
+    reasonPrefix: 'Entrou por',
+    diagram: 'Diagrama',
     consequences: 'Consequências',
-    positive: 'Ganhamos',
-    negative: 'Pagamos',
-    leftOut: 'Deixado de fora por enquanto (e quando rever)',
+    pros: 'Prós',
+    cons: 'Contras',
+    revisit: 'Quando revisar',
+    revisitEmpty:
+      'Todas as peças já fazem parte da arquitetura; revise quando as respostas mudarem.',
+    references: 'Referências',
+    referenceTool: 'Esboço de arquitetura (esta arquitetura)',
+    referenceArticle: 'Quanta arquitetura a sua aplicação precisa?',
+    referenceAdr: 'Documenting Architecture Decisions, Michael Nygard',
+    referenceMonolith: 'MonolithFirst, Martin Fowler',
+    referenceSre: 'Embracing Risk, Site Reliability Engineering (Google)',
     footer: 'Gerado pelo Esboço de arquitetura',
   },
 }
@@ -814,12 +954,16 @@ const enUS: ArchitectureCopy = {
   nodes: {
     users: {
       name: 'Users',
+      pro: '',
+      con: '',
       what: 'Browsers and apps that use the application.',
       tooMuch: '',
       ifFails: '',
     },
     dns: {
       name: 'Global routing',
+      pro: 'Takes a whole region out of the path when it fails.',
+      con: 'One more layer to configure, and failover has to be rehearsed.',
       what: 'DNS that sends each person to the nearest healthy region and takes a region out when it fails.',
       tooMuch: 'With one region, plain DNS is enough.',
       ifFails:
@@ -827,6 +971,8 @@ const enUS: ArchitectureCopy = {
     },
     waf: {
       name: 'WAF',
+      pro: 'Blocks common attacks before they reach the code.',
+      con: 'Badly tuned rules can block legitimate traffic.',
       what: 'Web application firewall: blocks known attacks (injection, bots, request floods) before they reach the code.',
       tooMuch: 'For an internal system behind a VPN, it rarely pays off.',
       ifFails:
@@ -834,6 +980,8 @@ const enUS: ArchitectureCopy = {
     },
     cdn: {
       name: 'CDN',
+      pro: 'Files and public pages arrive fast, from close to each person.',
+      con: 'Cached content can go stale; it must be invalidated on publish.',
       what: 'A network of servers close to people that keeps copies of images, CSS, JS and public pages.',
       tooMuch:
         'Rarely too much: it is cheap. Only skip it when almost nothing is public or static.',
@@ -842,6 +990,8 @@ const enUS: ArchitectureCopy = {
     },
     lb: {
       name: 'Load balancer',
+      pro: 'The application takes more people and survives losing a copy.',
+      con: 'The application cannot keep state in memory; sessions move out of it.',
       what: 'Spreads requests across several copies of the application and takes unhealthy ones out of the path.',
       tooMuch:
         'With one instance and few people, it is one more piece with no gain.',
@@ -850,6 +1000,8 @@ const enUS: ArchitectureCopy = {
     },
     realtime: {
       name: 'Real-time gateway',
+      pro: 'Messages arrive instantly, without the page polling.',
+      con: 'Open connections use resources and need careful reconnection.',
       what: 'Keeps connections open (WebSocket) with the people using the app and pushes messages instantly.',
       tooMuch:
         'If the server only notifies and the person does not answer on the same channel, server-sent events from the application are enough.',
@@ -858,6 +1010,8 @@ const enUS: ArchitectureCopy = {
     },
     gateway: {
       name: 'API gateway',
+      pro: 'Authentication, limits and routing in one place for every service.',
+      con: 'It becomes critical: if it fails or slows down, every service feels it.',
       what: 'One door to the services: routes each call to the right service and handles authentication and limits in one place.',
       tooMuch:
         'With a single application, the load balancer and the application itself do this job.',
@@ -865,6 +1019,8 @@ const enUS: ArchitectureCopy = {
     },
     app: {
       name: 'Application',
+      pro: 'One deploy and one codebase to understand and test; separate modules allow a split later.',
+      con: 'Everything ships together: one troubled module can delay the release of the others.',
       what: 'A modular monolith: one deployable, with modules clearly split by subject. Simple to understand, test and ship.',
       tooMuch: 'Never too much. It is the right start for almost everything.',
       ifFails:
@@ -872,6 +1028,8 @@ const enUS: ArchitectureCopy = {
     },
     services: {
       name: 'Services by domain',
+      pro: 'Each team ships its part without waiting for the others.',
+      con: 'Network, deploys, observability and scattered data are expensive, and calls between services need a fallback.',
       what: 'The application split into services, one per business area, each with its own team and deploy.',
       tooMuch:
         'With one team, it costs more (network, deploys, observability, scattered data) than it gives.',
@@ -880,6 +1038,8 @@ const enUS: ArchitectureCopy = {
     },
     pubsub: {
       name: 'Pub/sub',
+      pro: 'Messages reach people connected to any gateway copy.',
+      con: 'One more piece to run; messages can be lost in a failure.',
       what: 'A message channel between the gateway copies: what arrives at one instance reaches people connected to the others.',
       tooMuch: 'With a single instance, messages never leave memory.',
       ifFails:
@@ -887,6 +1047,8 @@ const enUS: ArchitectureCopy = {
     },
     cache: {
       name: 'Cache',
+      pro: 'Repeated answers in milliseconds and less load on the database.',
+      con: 'Risk of stale data: you must decide when to invalidate.',
       what: 'Fast memory with the most requested answers, so the database is not asked the same thing a thousand times.',
       tooMuch:
         'With few people, the database answers quickly on its own, and a cache brings a new problem: stale data.',
@@ -895,6 +1057,8 @@ const enUS: ArchitectureCopy = {
     },
     queue: {
       name: 'Queue',
+      pro: 'Slow work leaves the request and is retried when it fails.',
+      con: 'The result arrives later; the interface has to show progress.',
       what: 'Stores tasks for later: the request answers right away and the heavy work happens in the background.',
       tooMuch:
         'If every task takes milliseconds, doing it in the request is simpler.',
@@ -903,12 +1067,16 @@ const enUS: ArchitectureCopy = {
     },
     workers: {
       name: 'Workers',
+      pro: 'They scale apart from the application, with the volume of tasks.',
+      con: 'Each task must be safe to run more than once.',
       what: 'Processes that take tasks from the queue and run them, retrying when something fails.',
       tooMuch: 'Without a queue, there is nothing to consume.',
       ifFails: 'Tasks pile up in the queue and run when the workers are back.',
     },
     db: {
       name: 'Database',
+      pro: 'The source of truth, with transactions and automatic backups.',
+      con: 'A single database has a write ceiling; going past it means partitioning the data.',
       what: 'A managed relational database with automatic backups. The source of truth.',
       tooMuch: 'Never too much.',
       ifFails:
@@ -916,6 +1084,8 @@ const enUS: ArchitectureCopy = {
     },
     replica: {
       name: 'Read replicas',
+      pro: 'Shares the read load without touching writes.',
+      con: 'Replicas lag a little: a read right after a write can come back old.',
       what: 'Copies of the database that only answer reads, to share the load. Writes still go to the primary.',
       tooMuch:
         'With few reads, they only add cost and replication lag to explain.',
@@ -923,6 +1093,8 @@ const enUS: ArchitectureCopy = {
     },
     standby: {
       name: 'Standby database',
+      pro: 'If the primary fails, the copy takes over in minutes, without restoring a backup.',
+      con: 'You pay for a second database that sits idle most of the time.',
       what: 'A copy of the database in another zone, always up to date, that takes over on its own if the primary fails.',
       tooMuch:
         'If a few hours down are acceptable, backup and restore are enough.',
@@ -930,6 +1102,8 @@ const enUS: ArchitectureCopy = {
     },
     search: {
       name: 'Search engine',
+      pro: 'Fast search with relevance and typo tolerance.',
+      con: 'Another system to keep in sync with the database.',
       what: 'Its own index for text search, with relevance and typo tolerance. Fed from the database.',
       tooMuch:
         'For simple filters, the database does it (text indexes included).',
@@ -937,6 +1111,8 @@ const enUS: ArchitectureCopy = {
     },
     storage: {
       name: 'File storage',
+      pro: 'Files stored cheaply and durably, outside the database.',
+      con: 'Access permissions to the files need care.',
       what: 'Object storage for photos, videos and documents. Files do not belong in the database or on the application disk.',
       tooMuch: 'Without files, it is not needed.',
       ifFails:
@@ -944,6 +1120,8 @@ const enUS: ArchitectureCopy = {
     },
     region2: {
       name: 'Second region',
+      pro: 'The service keeps running even with a whole region down.',
+      con: 'Cost and complexity double, and writes across regions are a hard problem.',
       what: 'A copy of the application and database in another region, ready to take over if the first one fails entirely.',
       tooMuch:
         'For most products, several zones in one region already give 99.99%. Two regions double cost and complexity.',
@@ -951,6 +1129,8 @@ const enUS: ArchitectureCopy = {
     },
     observability: {
       name: 'Logs and metrics',
+      pro: 'You find the problem before the customer does.',
+      con: 'Logs and metrics cost too; decide what to keep and for how long.',
       what: 'Logs, metrics and alerts: how you learn something broke before a customer tells you.',
       tooMuch: 'Never too much, even when small.',
       ifFails:
@@ -958,6 +1138,8 @@ const enUS: ArchitectureCopy = {
     },
     secrets: {
       name: 'Secrets manager',
+      pro: 'Passwords and keys out of the code, with logged access.',
+      con: 'One more service the application needs in order to start.',
       what: 'Keeps passwords, keys and tokens out of the code, with logged access and rotation.',
       tooMuch:
         'Well-kept environment variables are enough when there is no sensitive data.',
@@ -965,6 +1147,8 @@ const enUS: ArchitectureCopy = {
     },
     audit: {
       name: 'Audit log',
+      pro: 'A record of who accessed sensitive data, as privacy laws ask.',
+      con: 'The volume of records grows; retention must be defined.',
       what: 'A record of who read or changed each piece of sensitive data, that nobody can erase.',
       tooMuch: 'Without sensitive data, regular logs are enough.',
       ifFails:
@@ -1151,17 +1335,85 @@ const enUS: ArchitectureCopy = {
     },
   ],
   adr: {
+    lang: 'en-US',
     title: 'ADR: starting architecture',
     status: 'Status: proposed',
     date: 'Date',
     context: 'Context',
-    answers: 'Answers that guided the decision',
+    contextText:
+      'We are building {kind} for {users}. The application {uptime}, {load} and {live}. It {jobs}, {files} and {search}. The people are {reach}, and the system is built by {team}. {sensitive}.',
+    phrases: {
+      kind: {
+        content: 'a content site',
+        saas: 'a web application (SaaS, back office or dashboard)',
+        mobileApi: 'an API serving apps and partners',
+        store: 'an online store',
+        realtime: 'a real-time application',
+      },
+      users: {
+        u100: 'up to 100 people at the same time at peak',
+        u1k: 'up to 1,000 people at the same time at peak',
+        u10k: 'up to 10,000 people at the same time at peak',
+        u100k: 'up to 100,000 people at the same time at peak',
+        u1m: 'more than 100,000 people at the same time at peak',
+      },
+      uptime: {
+        some: 'can be down a few hours a month',
+        little: 'needs 99.9% availability (about 45 minutes down a month)',
+        minimal: 'needs 99.99% availability (about 4 minutes down a month)',
+        region: 'cannot stop even if a whole cloud region fails',
+      },
+      load: {
+        read: 'reads more data than it writes',
+        balanced: 'reads and writes data in equal measure',
+        write: 'writes more data than it reads',
+      },
+      live: {
+        none: 'needs no live updates',
+        push: 'needs to push notifications from the server',
+        twoWay: 'needs live two-way communication',
+      },
+      jobs: {
+        none: 'does no heavy background work',
+        some: 'does some background work, such as e-mails and reports',
+        heavy: 'does a lot of heavy background work, such as video or imports',
+      },
+      files: {
+        none: 'stores no files from people',
+        some: 'stores some files people upload',
+        many: 'has people’s photos and videos at the core of the product',
+      },
+      search: {
+        none: 'needs no text search',
+        filters: 'needs only simple filters',
+        fullText: 'needs full text search',
+      },
+      reach: { country: 'in one country', global: 'in several countries' },
+      team: { small: 'one team', teams: 'several teams' },
+      sensitive: {
+        no: 'There is no sensitive personal or payment data',
+        yes: 'There is sensitive personal or payment data, subject to privacy laws',
+      },
+    },
+    answers: 'Answers',
     decision: 'Decision',
-    components: 'Components',
+    decisionText:
+      'We will start with {pieces}. Each piece meets a need described in the context; anything without a concrete need now stays out, with a clear trigger to revisit.',
+    why: 'Why each piece',
+    reasonPrefix: 'Added because of',
+    diagram: 'Diagram',
     consequences: 'Consequences',
-    positive: 'We gain',
-    negative: 'We pay',
-    leftOut: 'Left out for now (and when to revisit)',
+    pros: 'Pros',
+    cons: 'Cons',
+    revisit: 'When to revisit',
+    revisitEmpty:
+      'Every piece is already part of the architecture; revisit when the answers change.',
+    references: 'References',
+    referenceTool: 'Architecture sketch (this architecture)',
+    referenceArticle: 'How much architecture does your application need?',
+    referenceAdr: 'Documenting Architecture Decisions, Michael Nygard',
+    referenceMonolith: 'MonolithFirst, Martin Fowler',
+    referenceSre: 'Embracing Risk, Site Reliability Engineering (Google)',
     footer: 'Generated by the Architecture sketch',
   },
 }

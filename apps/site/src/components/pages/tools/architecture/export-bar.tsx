@@ -27,12 +27,15 @@ export function ExportBar({
   answers,
   architecture,
   diagram,
+  articleHref,
 }: Readonly<{
   copy: ArchitectureCopy
   locale: string
   answers: Answers
   architecture: Architecture
   diagram: DiagramApi | null
+  /** Path of the article about the tool, when it is published. */
+  articleHref?: string
 }>) {
   const [done, setDone] = useState<Format | null>(null)
 
@@ -57,6 +60,7 @@ export function ExportBar({
       const markdown = toAdr(architecture, answers, copy, {
         date: new Date().toISOString().slice(0, 10),
         url: shareUrl(),
+        articleUrl: articleHref && window.location.origin + articleHref,
       })
       const url = URL.createObjectURL(
         new Blob([markdown], { type: 'text/markdown;charset=utf-8' }),

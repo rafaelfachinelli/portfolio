@@ -77,6 +77,8 @@ export type ArchitectureToolProps = {
   locale: string
   initialAnswers?: Answers
   shared?: boolean
+  /** Path of the article about the tool, when it is published. */
+  articleHref?: string
 }
 
 export function ArchitectureTool({
@@ -84,6 +86,7 @@ export function ArchitectureTool({
   locale,
   initialAnswers,
   shared = false,
+  articleHref,
 }: Readonly<ArchitectureToolProps>) {
   const [answers, setAnswers] = useState<Answers>(
     initialAnswers ?? DEFAULT_ANSWERS,
@@ -425,6 +428,7 @@ export function ArchitectureTool({
             answers={answers}
             architecture={architecture}
             diagram={diagram}
+            articleHref={articleHref}
           />
         </div>
       </div>
