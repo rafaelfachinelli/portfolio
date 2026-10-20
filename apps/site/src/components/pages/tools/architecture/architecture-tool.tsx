@@ -138,7 +138,9 @@ export function ArchitectureTool({
   const scenario = scenarios.find(item => item.id === scenarioId) ?? null
   const step = scenario?.steps[stepIndex] ?? null
 
-  // A new architecture can drop the selected box or change a scenario's steps.
+  // A new architecture can drop the selected box, and it ends any scenario:
+  // its steps may have changed, and nothing should light up or speak until the
+  // person picks a scenario again.
   useEffect(() => {
     setSelected(current =>
       current && architecture.nodes.some(node => node.id === current)
@@ -147,10 +149,8 @@ export function ArchitectureTool({
     )
     setStepIndex(0)
     setPlaying(false)
-    setScenarioId(current =>
-      current && scenarios.some(item => item.id === current) ? current : null,
-    )
-  }, [architecture, scenarios])
+    setScenarioId(null)
+  }, [architecture])
 
   // Narration in Rafael's voice: off by default, remembered per visitor.
   const narration = useMemo(() => narrationFor(locale), [locale])
