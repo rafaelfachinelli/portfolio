@@ -19,6 +19,11 @@ import type { ArchitectureCopy } from '@/content/tools/architecture'
 import { usePrefersReducedMotion } from '@/hooks/use-media-query'
 import { track } from '@/lib/analytics'
 import {
+  decodeAnswers,
+  encodeAnswers,
+  sameAnswers,
+} from '@/lib/tools/architecture/code'
+import {
   type Answers,
   DEFAULT_ANSWERS,
   PRESET_IDS,
@@ -83,7 +88,6 @@ export function ArchitectureTool({
   const [answers, setAnswers] = useState<Answers>(
     initialAnswers ?? DEFAULT_ANSWERS,
   )
-  const [preset, setPreset] = useState<PresetId | null>(null)
   const [selected, setSelected] = useState<NodeId | null>(null)
   const [scenarioId, setScenarioId] = useState<ScenarioId | null>(null)
   const [stepIndex, setStepIndex] = useState(0)
@@ -91,6 +95,35 @@ export function ArchitectureTool({
   const [diagram, setDiagram] = useState<DiagramApi | null>(null)
 
   const reducedMotion = usePrefersReducedMotion()
+  // The example whose answers are on screen, if any.
+  const preset =
+    PRESET_IDS.find(id => sameAnswers(PRESETS[id], answers)) ?? null
+
+  // The answers live in the address: `?a=<code>` on the tool page, the code
+  // itself on a shared page. A reload or a copied address keeps them. The page
+  // is static, so the code is read in the browser, once, before writing it.
+  const [urlReady, setUrlReady] = useState(shared)
+  useEffect(() => {
+    if (shared) return
+    const code = new URLSearchParams(window.location.search).get('a')
+    const fromUrl = code ? decodeAnswers(code) : null
+    if (fromUrl) setAnswers(fromUrl)
+    setUrlReady(true)
+  }, [shared])
+
+  useEffect(() => {
+    if (!urlReady) return
+    const tool = `/${locale}/tools/architecture`
+    const code = encodeAnswers(answers)
+    const url = sameAnswers(answers, DEFAULT_ANSWERS)
+      ? tool
+      : shared
+        ? `${tool}/r/${code}`
+        : `${tool}?a=${code}`
+    if (url !== window.location.pathname + window.location.search) {
+      window.history.replaceState(window.history.state, '', url)
+    }
+  }, [answers, urlReady, shared, locale])
 
   const architecture = useMemo(() => buildArchitecture(answers), [answers])
   const scenarios = useMemo(() => buildScenarios(architecture), [architecture])
@@ -144,12 +177,10 @@ export function ArchitectureTool({
 
   const answer = (question: QuestionId, value: string) => {
     setAnswers(current => ({ ...current, [question]: value }))
-    setPreset(null)
   }
 
   const applyPreset = (id: PresetId) => {
     setAnswers(PRESETS[id])
-    setPreset(id)
     track('architecture-preset', { preset: id })
   }
 
@@ -172,10 +203,7 @@ export function ArchitectureTool({
             <Button
               size="sm"
               variant="outline"
-              onClick={() => {
-                setAnswers(DEFAULT_ANSWERS)
-                setPreset(null)
-              }}
+              onClick={() => setAnswers(DEFAULT_ANSWERS)}
             >
               {copy.ui.startOver}
             </Button>

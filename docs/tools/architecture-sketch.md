@@ -90,7 +90,7 @@ The goal is a tool that is quick to use, clear, and does something other archite
   - **Mermaid** code, to paste into a README, GitHub or Notion, where it renders as a diagram.
   - **ADR draft** in Markdown: context from the answers, the decision, consequences, what was left out and when to revisit.
   - **Share link**: `/<lang>/tools/architecture/r/<code>`, where the code holds the answers. The link opens the same result, and its preview image (Open Graph) draws that architecture. Result pages are `noindex` with the tool as canonical, so they do not compete with it in search.
-- Nothing is stored and there is no account or backend: the answers live in the URL.
+- Nothing is stored and there is no account or backend: the answers live in the URL. While the person answers, the address follows: `?a=<code>` on the tool page (read in the browser, since the page is static), the code itself on a shared page, and a clean address when the answers are the defaults. A reload or a copied address keeps the answers; an invalid code falls back to the defaults.
 
 ## Page and SEO
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { architectureCopy } from '@/content/tools/architecture'
 
-import { decodeAnswers, encodeAnswers } from './code'
+import { decodeAnswers, encodeAnswers, sameAnswers } from './code'
 import { toAdr, toMermaid } from './export'
 import { layoutArchitecture } from './layout'
 import {
@@ -218,6 +218,13 @@ describe('share code', () => {
 
   it('has one digit per question after the version', () => {
     expect(encodeAnswers(DEFAULT_ANSWERS)).toHaveLength(QUESTION_IDS.length + 1)
+  })
+
+  it('compares answers question by question', () => {
+    expect(sameAnswers(PRESETS.blog, { ...PRESETS.blog })).toBe(true)
+    expect(sameAnswers(PRESETS.blog, { ...PRESETS.blog, team: 'teams' })).toBe(
+      false,
+    )
   })
 
   it('rejects malformed codes', () => {

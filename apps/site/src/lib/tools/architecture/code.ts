@@ -19,6 +19,10 @@ export function encodeAnswers(answers: Answers): string {
   )
 }
 
+export function sameAnswers(a: Answers, b: Answers) {
+  return QUESTION_IDS.every(question => a[question] === b[question])
+}
+
 /** The answers in a share code, or null when the code is not valid. */
 export function decodeAnswers(code: string): Answers | null {
   if (code.length !== QUESTION_IDS.length + 1 || code[0] !== VERSION) {
