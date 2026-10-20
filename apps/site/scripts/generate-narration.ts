@@ -4,7 +4,9 @@
 // clip's fingerprint. Only missing or changed clips are generated.
 //
 // Usage (from apps/site; Node 24 runs TypeScript directly):
-//   ELEVENLABS_API_KEY=... node scripts/generate-narration.ts [--force] [--only pt-BR]
+//   npm run narration -- [--force] [--only pt-BR]
+// with the key in apps/site/.env.narration (ELEVENLABS_API_KEY=...) or in the
+// terminal environment.
 //
 // Optional: ELEVENLABS_VOICE_ID (default: Rafael's clone), ELEVENLABS_MODEL
 // (default: eleven_multilingual_v2). The key never leaves this machine.
@@ -23,7 +25,13 @@ import { narrationHash } from '../src/lib/tools/architecture/narration-hash.ts'
 
 const RAFAEL_VOICE = 'lqRd7tFtb70CBHtbzdof'
 
-const apiKey = process.env.ELEVENLABS_API_KEY
+// The key comes from the terminal or from apps/site/.env.narration (ignored by
+// Git), so it never needs to be typed into a command.
+const envFile = fileURLToPath(new URL('../.env.narration', import.meta.url))
+if (!process.env.ELEVENLABS_API_KEY && existsSync(envFile)) {
+  process.loadEnvFile(envFile)
+}
+const apiKey = process.env.ELEVENLABS_API_KEY?.trim()
 const voice = process.env.ELEVENLABS_VOICE_ID ?? RAFAEL_VOICE
 const model = process.env.ELEVENLABS_MODEL ?? 'eleven_multilingual_v2'
 const force = process.argv.includes('--force')
@@ -32,7 +40,9 @@ const only = process.argv.includes('--only')
   : null
 
 if (!apiKey) {
-  console.error('Set ELEVENLABS_API_KEY in this terminal first.')
+  console.error(
+    'No key: paste it after ELEVENLABS_API_KEY= in apps/site/.env.narration.',
+  )
   process.exit(1)
 }
 
