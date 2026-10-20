@@ -64,6 +64,8 @@ export type ArchitectureCopy = {
     spofHint: string
     scenariosTitle: string
     scenariosHint: string
+    narration: string
+    narrationCredit: string
     play: string
     pause: string
     previous: string
@@ -629,6 +631,8 @@ const ptBR: ArchitectureCopy = {
     spofHint: 'Se esta peça cair, a aplicação inteira cai.',
     scenariosTitle: 'Veja os dados andando',
     scenariosHint: 'Escolha uma situação e acompanhe o caminho, passo a passo.',
+    narration: 'Narração',
+    narrationCredit: 'Voz do Rafael, gerada com IA.',
     play: 'Reproduzir',
     pause: 'Pausar',
     previous: 'Passo anterior',
@@ -1281,6 +1285,8 @@ const enUS: ArchitectureCopy = {
     spofHint: 'If this piece fails, the whole application fails.',
     scenariosTitle: 'Watch the data move',
     scenariosHint: 'Pick a situation and follow the path, step by step.',
+    narration: 'Narration',
+    narrationCredit: 'Rafael’s voice, generated with AI.',
     play: 'Play',
     pause: 'Pause',
     previous: 'Previous step',

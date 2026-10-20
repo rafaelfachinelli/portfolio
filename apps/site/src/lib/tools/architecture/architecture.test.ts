@@ -1,10 +1,14 @@
+import { existsSync } from 'node:fs'
+
 import { describe, expect, it } from 'vitest'
 
 import { architectureCopy } from '@/content/tools/architecture'
+import narrationManifest from '@/content/tools/architecture-narration.json'
 
 import { decodeAnswers, encodeAnswers, sameAnswers } from './code'
 import { toAdr, toMermaid } from './export'
 import { layoutArchitecture } from './layout'
+import { narrationHash } from './narration-hash'
 import {
   type Answers,
   DEFAULT_ANSWERS,
@@ -337,5 +341,30 @@ describe('exports', () => {
     expect(adr).toContain('```mermaid')
     expect(adr).toContain(copy.notNeeded.cache)
     expect(adr).toContain('https://example.com/r/1')
+  })
+})
+
+describe('narration', () => {
+  it('has a fresh clip for every caption of a language that has any', () => {
+    const { voice, model, clips } = narrationManifest as {
+      voice: string
+      model: string
+      clips: Record<string, Record<string, string>>
+    }
+    for (const [locale, entries] of Object.entries(clips)) {
+      if (Object.keys(entries).length === 0) continue
+      const steps =
+        architectureCopy[locale as keyof typeof architectureCopy].steps
+      for (const [key, text] of Object.entries(steps)) {
+        // A changed caption needs a new clip: npm run narration -w @rafaelfachinelli/site
+        expect(entries[key], `${locale} ${key}`).toBe(
+          narrationHash(text, voice, model),
+        )
+        expect(
+          existsSync(`public/audio/architecture/${locale}/${key}.mp3`),
+          `${locale} ${key}.mp3`,
+        ).toBe(true)
+      }
+    }
   })
 })

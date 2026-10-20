@@ -1,5 +1,13 @@
 import { Button } from '@datum/ui'
-import { Pause, Play, SkipBack, SkipForward, Square } from 'lucide-react'
+import {
+  Pause,
+  Play,
+  SkipBack,
+  SkipForward,
+  Square,
+  Volume2,
+  VolumeOff,
+} from 'lucide-react'
 
 import type { ArchitectureCopy } from '@/content/tools/architecture'
 import type { Scenario, ScenarioId } from '@/lib/tools/architecture/scenarios'
@@ -11,6 +19,8 @@ type ScenarioPlayerProps = Readonly<{
   stepIndex: number
   playing: boolean
   onChoose: (id: ScenarioId) => void
+  /** The narration switch, when this language has clips. */
+  narration: { on: boolean; onToggle: () => void } | null
   onPlay: () => void
   onPause: () => void
   onStep: (delta: number) => void
@@ -25,6 +35,7 @@ export function ScenarioPlayer({
   stepIndex,
   playing,
   onChoose,
+  narration,
   onPlay,
   onPause,
   onStep,
@@ -60,6 +71,24 @@ export function ScenarioPlayer({
             {copy.scenarios[item.id]}
           </Button>
         ))}
+        {narration && (
+          <span className="ml-auto inline-flex items-center gap-2">
+            {narration.on && (
+              <span className="text-ink-subtle hidden text-xs sm:inline">
+                {copy.ui.narrationCredit}
+              </span>
+            )}
+            <Button
+              size="sm"
+              variant={narration.on ? 'secondary' : 'ghost'}
+              aria-pressed={narration.on}
+              onClick={narration.onToggle}
+            >
+              {narration.on ? <Volume2 /> : <VolumeOff />}
+              {copy.ui.narration}
+            </Button>
+          </span>
+        )}
       </div>
       {scenario && (
         <div className="flex items-center gap-1">

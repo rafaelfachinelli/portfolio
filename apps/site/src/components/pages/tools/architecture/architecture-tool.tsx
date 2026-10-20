@@ -23,6 +23,7 @@ import {
   encodeAnswers,
   sameAnswers,
 } from '@/lib/tools/architecture/code'
+import { narrationFor } from '@/lib/tools/architecture/narration'
 import {
   type Answers,
   DEFAULT_ANSWERS,
@@ -45,6 +46,7 @@ import { ExportBar } from './export-bar'
 import { NodeDetails } from './node-details'
 import { ScenarioPlayer } from './scenario-player'
 import { TextVersion } from './text-version'
+import { useNarration } from './use-narration'
 
 // React Flow loads in the browser, after the questions are on screen.
 const ArchitectureDiagram = dynamic(() => import('./architecture-diagram'), {
@@ -70,6 +72,9 @@ const OPTION_COLUMNS: Partial<Record<QuestionId, string>> = {
 /** Time for the data to cross one edge, and to read a step's caption. */
 const HOP_MS = 900
 const READ_MS = 1800
+/** With narration, the step ends when the voice does; a short breath follows. */
+const NARRATED_GAP_MS = 450
+const NARRATION_KEY = 'architecture-narration'
 
 export type ArchitectureToolProps = {
   copy: ArchitectureCopy
@@ -147,36 +152,68 @@ export function ArchitectureTool({
     )
   }, [architecture, scenarios])
 
+  // Narration in Rafael's voice: off by default, remembered per visitor.
+  const narration = useMemo(() => narrationFor(locale), [locale])
+  const [narrationOn, setNarrationOn] = useState(false)
+  useEffect(() => {
+    try {
+      setNarrationOn(localStorage.getItem(NARRATION_KEY) === 'on')
+    } catch {
+      // Storage blocked: narration stays off.
+    }
+  }, [])
+  const toggleNarration = () => {
+    const next = !narrationOn
+    setNarrationOn(next)
+    track('architecture-narration', { on: next })
+    try {
+      localStorage.setItem(NARRATION_KEY, next ? 'on' : 'off')
+    } catch {
+      // Storage blocked: the choice lasts for this visit.
+    }
+  }
+
   // Within a step, the data moves one hop (one edge) at a time, so only one box
-  // is lit at once. The hop belongs to the step it was counted in; a new step
-  // starts again from its first hop.
-  const stepKey = `${scenarioId}:${stepIndex}`
+  // is lit at once. The hop belongs to the step it was counted in; a new step,
+  // or a new run of the same scenario, starts again from its first hop.
+  const [run, setRun] = useState(0)
+  const stepKey = `${run}:${scenarioId}:${stepIndex}`
   const [hop, setHop] = useState({ key: stepKey, index: 0 })
   const hopIndex = hop.key === stepKey ? hop.index : 0
   const lastHop = (step?.edges.length ?? 1) - 1
+
+  const clip = narrationOn && step ? (narration?.[step.key] ?? null) : null
+  const voice = useNarration(stepKey, clip, !playing)
+  // With narration, the hops spread over the spoken caption.
+  const hopMs =
+    clip && voice.duration && step
+      ? Math.min(Math.max(voice.duration / step.edges.length, 450), 1400)
+      : HOP_MS
 
   useEffect(() => {
     if (!step || hopIndex >= lastHop) return
     const timer = window.setTimeout(
       () => setHop({ key: stepKey, index: hopIndex + 1 }),
-      HOP_MS,
+      hopMs,
     )
     return () => window.clearTimeout(timer)
-  }, [step, stepKey, hopIndex, lastHop])
+  }, [step, stepKey, hopIndex, lastHop, hopMs])
 
-  // Playback: after the last hop of a step, a pause to read, then the next step.
+  // Playback: after the last hop of a step (and the end of its narration), a
+  // pause, then the next step.
+  const stepDone = hopIndex >= lastHop && (!clip || voice.ended)
   useEffect(() => {
-    if (!playing || !scenario || hopIndex < lastHop) return
+    if (!playing || !scenario || !stepDone) return
     if (stepIndex >= scenario.steps.length - 1) {
       setPlaying(false)
       return
     }
     const timer = window.setTimeout(
       () => setStepIndex(index => index + 1),
-      READ_MS,
+      clip ? NARRATED_GAP_MS : READ_MS,
     )
     return () => window.clearTimeout(timer)
-  }, [playing, scenario, stepIndex, hopIndex, lastHop])
+  }, [playing, scenario, stepIndex, stepDone, clip])
 
   const answer = (question: QuestionId, value: string) => {
     setAnswers(current => ({ ...current, [question]: value }))
@@ -190,6 +227,7 @@ export function ArchitectureTool({
   const chooseScenario = (id: ScenarioId) => {
     setScenarioId(id)
     setStepIndex(0)
+    setRun(current => current + 1)
     setPlaying(true)
     setSelected(null)
     track('architecture-scenario', { scenario: id })
@@ -316,9 +354,16 @@ export function ArchitectureTool({
             stepIndex={stepIndex}
             playing={playing}
             onChoose={chooseScenario}
+            narration={
+              narration && {
+                on: narrationOn,
+                onToggle: toggleNarration,
+              }
+            }
             onPlay={() => {
               if (scenario && stepIndex >= scenario.steps.length - 1) {
                 setStepIndex(0)
+                setRun(current => current + 1)
               }
               setPlaying(true)
             }}
