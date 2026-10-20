@@ -71,23 +71,23 @@ export function ScenarioPlayer({
             {copy.scenarios[item.id]}
           </Button>
         ))}
+        {/* Narration stands apart in rose (Datum palette), so it is not lost
+            among the scenarios: outlined when off, filled when on. */}
         {narration && (
-          <span className="ml-auto inline-flex items-center gap-2">
-            {narration.on && (
-              <span className="text-ink-subtle hidden text-xs sm:inline">
-                {copy.ui.narrationCredit}
-              </span>
-            )}
-            <Button
-              size="sm"
-              variant={narration.on ? 'secondary' : 'ghost'}
-              aria-pressed={narration.on}
-              onClick={narration.onToggle}
-            >
-              {narration.on ? <Volume2 /> : <VolumeOff />}
-              {copy.ui.narration}
-            </Button>
-          </span>
+          <Button
+            size="sm"
+            variant="outline"
+            aria-pressed={narration.on}
+            onClick={narration.onToggle}
+            className={
+              narration.on
+                ? 'ml-auto border-[#fb7185] bg-[#fb7185] text-[#1f0a10] hover:bg-[#fb7185] hover:brightness-110'
+                : 'ml-auto border-[#fb7185]/70 text-[#fb7185] hover:bg-[#fb7185]/10'
+            }
+          >
+            {narration.on ? <Volume2 /> : <VolumeOff />}
+            {copy.ui.narration}
+          </Button>
         )}
       </div>
       {scenario && (

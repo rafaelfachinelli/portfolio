@@ -65,7 +65,6 @@ export type ArchitectureCopy = {
     scenariosTitle: string
     scenariosHint: string
     narration: string
-    narrationCredit: string
     play: string
     pause: string
     previous: string
@@ -574,50 +573,57 @@ const ptBR: ArchitectureCopy = {
   },
   steps: {
     'cdn-assets':
-      'Imagens, CSS e JS vêm da CDN, de um servidor perto da pessoa.',
-    'via-dns': 'O roteamento global escolhe a região saudável mais próxima.',
-    'via-waf': 'O WAF confere a requisição e barra ataques conhecidos.',
-    'via-lb': 'O balanceador escolhe uma cópia saudável da aplicação.',
+      'As imagens e os arquivos da página chegam pela CDN, de um servidor pertinho de quem está acessando.',
+    'via-dns':
+      'O roteamento global manda a pessoa para a região mais próxima que está funcionando.',
+    'via-waf': 'O WAF dá uma olhada na requisição e barra o que parece ataque.',
+    'via-lb': 'O balanceador escolhe uma cópia da aplicação que está saudável.',
     'via-gateway':
-      'O API gateway confere a autenticação e encaminha ao serviço certo.',
-    'via-app': 'A requisição chega à aplicação.',
-    'via-services': 'A requisição chega ao serviço responsável.',
-    cache: 'Primeiro, procura no cache. Se achar, responde em milissegundos.',
+      'O API gateway confere quem está pedindo e manda o pedido para o serviço certo.',
+    'via-app': 'O pedido chega na aplicação, que vai montar a resposta.',
+    'via-services':
+      'O pedido chega no serviço que cuida dessa parte do produto.',
+    cache:
+      'Antes de ir ao banco, a aplicação olha no cache. Se a resposta já estiver lá, ela volta em milissegundos.',
     'read-replica':
-      'Se não achou, lê de uma réplica, sem pesar no banco principal.',
-    'read-db': 'Lê do banco de dados.',
-    respond: 'A resposta volta pelo mesmo caminho.',
-    arrive: 'A requisição atravessa a entrada e chega à aplicação.',
-    'write-db': 'Grava no banco principal, a fonte da verdade.',
-    replicate: 'O banco copia a mudança para as réplicas e para a prontidão.',
-    invalidate: 'Apaga do cache a versão antiga, para ninguém ver dado velho.',
-    'enqueue-index': 'Coloca na fila um pedido para atualizar a busca.',
-    index: 'Um worker pega o pedido e atualiza o índice de busca.',
+      'Se não estiver, ela lê de uma réplica, sem pesar no banco principal.',
+    'read-db': 'A aplicação busca os dados no banco.',
+    respond: 'E a resposta faz o caminho de volta até a pessoa.',
+    arrive: 'O pedido passa pela entrada e chega na aplicação.',
+    'write-db':
+      'A aplicação grava a mudança no banco principal, que é a fonte da verdade.',
+    replicate: 'O banco principal repassa essa mudança para as cópias dele.',
+    invalidate:
+      'A versão antiga sai do cache, para ninguém ver um dado desatualizado.',
+    'enqueue-index':
+      'A aplicação deixa na fila um pedido para atualizar a busca.',
+    index: 'Um worker pega esse pedido e atualiza o índice de busca.',
     'ask-upload':
-      'O navegador pede à aplicação permissão para enviar um arquivo.',
+      'Para enviar um arquivo, o navegador primeiro pede permissão para a aplicação.',
     'signed-url':
-      'A aplicação gera um link de envio temporário no armazenamento.',
-    'return-url': 'O link volta para o navegador.',
+      'A aplicação cria um link temporário no armazenamento, que só serve para esse envio.',
+    'return-url': 'Esse link volta para o navegador.',
     'direct-upload':
-      'O navegador envia o arquivo direto ao armazenamento, sem passar pela aplicação.',
-    'enqueue-media': 'A aplicação coloca na fila o processamento do arquivo.',
+      'Com o link em mãos, o navegador manda o arquivo direto para o armazenamento, sem passar pela aplicação.',
+    'enqueue-media':
+      'A aplicação coloca na fila o processamento desse arquivo.',
     'process-media':
-      'Um worker gera miniaturas ou converte o vídeo e salva o resultado.',
+      'Um worker cria as miniaturas ou converte o vídeo, e guarda o resultado.',
     'serve-cdn':
-      'Quem abre o arquivo recebe da CDN, que busca no armazenamento só na primeira vez.',
+      'Quando alguém abre o arquivo, ele vem da CDN, que só vai buscar no armazenamento na primeira vez.',
     connect:
-      'O app abre uma conexão que fica aberta com o gateway de tempo real.',
-    publish: 'A mensagem enviada é publicada no pub/sub.',
+      'O app abre uma conexão com o gateway de tempo real e deixa ela aberta.',
+    publish: 'Quando alguém manda uma mensagem, ela é publicada no pub/sub.',
     'fan-out':
-      'O pub/sub entrega a todas as cópias do gateway, que empurram para quem está conectado.',
+      'O pub/sub entrega a mensagem para todas as cópias do gateway, e elas repassam na hora para quem está conectado.',
     'server-event':
-      'A aplicação também publica eventos (um pedido aprovado, uma menção).',
+      'A própria aplicação também publica avisos por ali, como um pedido aprovado ou uma menção.',
     enqueue: 'A aplicação coloca a tarefa na fila.',
     'respond-early':
-      'E responde na hora: a pessoa não espera o trabalho pesado.',
+      'E já responde na hora. A pessoa não fica esperando o trabalho pesado.',
     consume:
-      'Um worker pega a tarefa. Se falhar, ela volta para a fila e é tentada de novo.',
-    'job-write': 'O resultado é gravado no banco.',
+      'Em segundo plano, um worker pega a tarefa. Se der erro, ela volta para a fila e é tentada de novo.',
+    'job-write': 'No fim, o resultado é gravado no banco.',
   },
   ui: {
     diagramLabel: 'Diagrama da arquitetura',
@@ -632,7 +638,6 @@ const ptBR: ArchitectureCopy = {
     scenariosTitle: 'Veja os dados andando',
     scenariosHint: 'Escolha uma situação e acompanhe o caminho, passo a passo.',
     narration: 'Narração',
-    narrationCredit: 'Voz do Rafael, gerada com IA.',
     play: 'Reproduzir',
     pause: 'Pausar',
     previous: 'Passo anterior',
@@ -1226,52 +1231,58 @@ const enUS: ArchitectureCopy = {
   },
   steps: {
     'cdn-assets':
-      'Images, CSS and JS come from the CDN, from a server close to the person.',
-    'via-dns': 'Global routing picks the nearest healthy region.',
-    'via-waf': 'The WAF checks the request and blocks known attacks.',
+      'The page’s images and files come from the CDN, from a server close to whoever is visiting.',
+    'via-dns':
+      'Global routing sends the person to the nearest region that is up.',
+    'via-waf':
+      'The WAF takes a look at the request and blocks anything that looks like an attack.',
     'via-lb': 'The load balancer picks a healthy copy of the application.',
     'via-gateway':
-      'The API gateway checks authentication and forwards to the right service.',
-    'via-app': 'The request reaches the application.',
-    'via-services': 'The request reaches the service in charge.',
+      'The API gateway checks who is asking and sends the request to the right service.',
+    'via-app':
+      'The request reaches the application, which puts the answer together.',
+    'via-services':
+      'The request reaches the service in charge of that part of the product.',
     cache:
-      'First, it looks in the cache. If it is there, the answer takes milliseconds.',
+      'Before going to the database, the application checks the cache. If the answer is already there, it comes back in milliseconds.',
     'read-replica':
-      'If not, it reads from a replica, without loading the primary database.',
-    'read-db': 'It reads from the database.',
-    respond: 'The response goes back the same way.',
-    arrive: 'The request crosses the entry and reaches the application.',
-    'write-db': 'It writes to the primary database, the source of truth.',
-    replicate:
-      'The database copies the change to the replicas and the standby.',
-    invalidate:
-      'It drops the old version from the cache, so nobody sees stale data.',
-    'enqueue-index': 'It puts a request to update search in the queue.',
-    index: 'A worker takes it and updates the search index.',
+      'If it isn’t, it reads from a replica, without loading the primary database.',
+    'read-db': 'The application fetches the data from the database.',
+    respond: 'And the response travels back to the person.',
+    arrive:
+      'The request goes through the entrance and reaches the application.',
+    'write-db':
+      'The application writes the change to the primary database, the source of truth.',
+    replicate: 'The primary database passes that change on to its copies.',
+    invalidate: 'The old version leaves the cache, so nobody sees stale data.',
+    'enqueue-index':
+      'The application leaves a request in the queue to update search.',
+    index: 'A worker picks up that request and updates the search index.',
     'ask-upload':
-      'The browser asks the application for permission to upload a file.',
-    'signed-url': 'The application creates a temporary upload link in storage.',
-    'return-url': 'The link goes back to the browser.',
+      'To upload a file, the browser first asks the application for permission.',
+    'signed-url':
+      'The application creates a temporary link in storage, good for this upload only.',
+    'return-url': 'That link goes back to the browser.',
     'direct-upload':
-      'The browser sends the file straight to storage, without going through the application.',
-    'enqueue-media': 'The application queues the file processing.',
+      'Link in hand, the browser sends the file straight to storage, without going through the application.',
+    'enqueue-media': 'The application queues the processing of that file.',
     'process-media':
-      'A worker makes thumbnails or converts the video and saves the result.',
+      'A worker makes the thumbnails or converts the video, and saves the result.',
     'serve-cdn':
-      'Whoever opens the file gets it from the CDN, which fetches from storage only the first time.',
+      'When someone opens the file, it comes from the CDN, which only goes to storage the first time.',
     connect:
-      'The app opens a connection that stays open with the real-time gateway.',
-    publish: 'The message sent is published to pub/sub.',
+      'The app opens a connection to the real-time gateway and keeps it open.',
+    publish: 'When someone sends a message, it is published to pub/sub.',
     'fan-out':
-      'Pub/sub delivers it to every gateway copy, which pushes it to the people connected.',
+      'Pub/sub delivers the message to every gateway copy, and they push it right away to whoever is connected.',
     'server-event':
-      'The application publishes events too (an order approved, a mention).',
+      'The application publishes notices that way too, like an approved order or a mention.',
     enqueue: 'The application puts the task in the queue.',
     'respond-early':
-      'And answers right away: the person does not wait for the heavy work.',
+      'And it answers right away. The person doesn’t wait for the heavy work.',
     consume:
-      'A worker takes the task. If it fails, it goes back to the queue and is tried again.',
-    'job-write': 'The result is written to the database.',
+      'In the background, a worker picks up the task. If it fails, it goes back to the queue and is tried again.',
+    'job-write': 'In the end, the result is written to the database.',
   },
   ui: {
     diagramLabel: 'Architecture diagram',
@@ -1286,7 +1297,6 @@ const enUS: ArchitectureCopy = {
     scenariosTitle: 'Watch the data move',
     scenariosHint: 'Pick a situation and follow the path, step by step.',
     narration: 'Narration',
-    narrationCredit: 'Rafael’s voice, generated with AI.',
     play: 'Play',
     pause: 'Pause',
     previous: 'Previous step',

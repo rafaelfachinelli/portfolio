@@ -408,18 +408,24 @@ export function ArchitectureTool({
                 reducedMotion={reducedMotion}
                 onReady={onReady}
               />
+              {/* Subtitles, as in a film: white on black, centered at the bottom.
+                  The step count is in the player's progress bar; screen readers
+                  hear it here. */}
               {step && scenario && (
-                <p
-                  aria-live="polite"
-                  className="bg-surface/95 border-line-strong absolute right-3 bottom-3 left-3 rounded-[var(--datum-radius-md)] border px-3 py-2 text-sm shadow-lg backdrop-blur"
-                >
-                  <span className="text-season-accent mr-2 font-mono text-xs">
-                    {copy.ui.step
-                      .replace('{current}', String(stepIndex + 1))
-                      .replace('{total}', String(scenario.steps.length))}
-                  </span>
-                  {copy.steps[step.key]}
-                </p>
+                <div className="pointer-events-none absolute inset-x-4 bottom-5 flex justify-center">
+                  <p
+                    aria-live="polite"
+                    className="max-w-2xl rounded-[3px] bg-black/80 px-3 py-1.5 text-center text-[15px] leading-snug font-medium text-white md:text-base"
+                  >
+                    <span className="sr-only">
+                      {copy.ui.step
+                        .replace('{current}', String(stepIndex + 1))
+                        .replace('{total}', String(scenario.steps.length))}
+                      .{' '}
+                    </span>
+                    {copy.steps[step.key]}
+                  </p>
+                </div>
               )}
             </div>
             <NodeDetails
