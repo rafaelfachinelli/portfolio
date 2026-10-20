@@ -24,6 +24,7 @@ Turn rafaelfachinelli.com into a public lab where every piece is useful on its o
 | D12 | Component base | Keep shadcn/ui (Radix) as the base, with the Blueprint personality layer on top; not stock shadcn | 2026-10-17 |
 | D13 | Season calendar | Approved as listed in brand.md | 2026-10-17 |
 | D14 | "See inside" mode | Dropped. Storybook already ships Measure and Outline tools for designers and devs; on the site it stays a parked idea | 2026-10-17 |
+| D15 | First tool | The **architecture sketch** (questionnaire → React Flow diagram) replaces the CLT x PJ calculator as the first tool: it does not go stale with yearly tax tables and it reaches the audience of Rafael's profile. The calculator is parked; its draft spec stays in the closed PR #27. Replaces D5's choice of first tool | 2026-10-19 |
 
 Brand principles: [brand.md](./brand.md).
 
@@ -128,9 +129,9 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
 - **2.5 (done).** [design.rafaelfachinelli.com](https://design.rafaelfachinelli.com) serves the 13 components (64 stories); Coolify deploys it on every push to `production`. After the adoption the home prefetched the contact page (form and tooltip, ~26 KiB); its two contact links have prefetch off (PR #25), and the home is back to 154 KiB of JS (Lighthouse simulated mobile: Performance 89, TBT 140 ms, CLS 0).
 
 ### Phase 3: tools
-1. CLT x PJ calculator (first). Official INSS / IRRF / Simples Nacional tables, with the reference year on the page; not financial advice notice; explanation of the math, FAQ, Umami events.
+1. Architecture sketch (first, D15): a short questionnaire (kind of application, users at the same time, downtime, reads and writes, live updates, background work, files, search, team) returns a starting architecture as a React Flow diagram, with why each box is there, what it costs and what is not needed yet; share link and ADR draft. Specification: [tools/architecture-sketch.md](./tools/architecture-sketch.md) (approved, in build).
 2. Financial planner: compound interest, emergency fund, financial independence goal.
-3. Architecture decision helper: questions about team, scale, domain and deadline; recommendation with trade-offs and when not to use it; generates an ADR draft.
+3. CLT x PJ calculator (parked, D15): depends on tax tables that change every year; draft spec in the closed PR #27.
 
 Each tool and the design system get a case study or article (see `.claude/skills/new-article`).
 
