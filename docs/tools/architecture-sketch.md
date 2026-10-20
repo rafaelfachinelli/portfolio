@@ -1,9 +1,9 @@
 # Architecture sketch: specification
 
 Audience: Rafael and AI agents building the first tool of Phase 3.
-Status: draft, waiting for Rafael's approval · Last updated: 2026-10-19
+Status: approved, in build · Last updated: 2026-10-19
 
-The first tool of [Phase 3](../roadmap.md#phase-3-tools) (decision D15). Nothing is built before this page is approved.
+The first tool of [Phase 3](../roadmap.md#phase-3-tools) (decision D15).
 
 ## What it does
 
@@ -66,37 +66,63 @@ The starting point for every answer: **users → application (one instance) → 
 
 The result also lists **what you do not need yet**, with the answer that would change it. For example, at 500 users: "no cache, no replicas, no microservices; revisit at 10,000 people at the same time".
 
-## The result
+## The experience
 
-- **Diagram** (React Flow, `@xyflow/react`, MIT): boxes in fixed layers (users → edge → application → data → background), left to right on the desktop and top to bottom on the phone. Pan and zoom, no free editing in v1. Positions come from the layers, so no layout library is needed.
-- **Each box**: click or tab to it and a side panel shows why it is there (the answer that added it), cost and complexity (low, medium, high) and when it would be too much.
-- **Text version**: the same architecture as a list of components and connections, for screen readers and for copying. A diagram alone is not accessible.
-- **Share link**: the answers go in the URL (`?a=…`), so a link opens the same result. No account, no backend, nothing stored.
-- **Export**: the diagram as PNG, and an **ADR draft** in Markdown (context from the answers, decision, consequences, what was left out), from the original Phase 3 idea.
+The goal is a tool that is quick to use, clear, and does something other architecture pages do not: it shows the data moving.
 
-## Page
+- **Live diagram.** On the desktop the questions sit on the left and the diagram on the right; every answer changes the diagram at once, and new boxes enter with a short animation. On the phone the questions come first, then the result.
+- **Start from an example.** One click fills the answers for a blog, a B2B SaaS, an online store on Black Friday, a chat app or a video platform. The person adjusts from there.
+- **Data in motion.** Edges show which way data goes, with a small animated dot per flow, and each kind of flow has its own style: request and response, writes, replication, queue messages, live connections.
+- **Play a scenario.** "Open a page", "Save something", "Upload a file", "Send a chat message", "Run a background job": the path lights up step by step, with a numbered caption for each hop ("2. The load balancer sends the request to a healthy instance"). Play, pause, step.
+- **Single points of failure.** Boxes whose loss takes the whole application down carry a mark, and the side panel says what happens if each one fails. For a small product the answer can be "acceptable, restore from backup", and the tool says so.
+- **Each box explains itself.** Click or tab to a box: what it is, the answer that put it there, cost and complexity (low, medium, high), when it would be too much.
+- **What you do not need yet.** A list under the diagram, each item with the answer that would change it.
+- **Reduced motion.** With `prefers-reduced-motion` the dots stop and the scenario steps change without animation.
 
-- Route: `/<lang>/tools/architecture` (open question 2), pt-BR and English.
-- Built from Datum. Pieces the questionnaire needs and Datum does not have yet, both general purpose, enter Datum first with their stories: a **RadioGroup** with card-style options (Radix Radio Group), and a **Progress** or step indicator. The diagram nodes are a composition of the site.
-- Performance: the questionnaire is light; React Flow (~50 KB gzip, to be measured) loads only when the result opens (dynamic import), so the page opens within the brand budget (Performance 90+).
-- Umami events without personal data: `architecture-started`, `architecture-result` (with the answers, which are not personal), `architecture-shared`, `architecture-exported`.
-- SEO: "system design", "arquitetura de software", "alta disponibilidade"; entry in the sitemap and `llms.txt`.
+## The result and export
+
+- **Diagram**: React Flow (`@xyflow/react`, MIT). Boxes in fixed layers (users, edge, entry, application, fast data, storage, cross-cutting), left to right on the desktop and top to bottom on the phone; positions come from the layers, so no layout library is needed. Pan and zoom; no free editing.
+- **Text version**: the same architecture as a list of components and connections, for screen readers and for copying.
+- **Export, from v1**:
+  - **PNG** of the diagram.
+  - **Mermaid** code, to paste into a README, GitHub or Notion, where it renders as a diagram.
+  - **ADR draft** in Markdown: context from the answers, the decision, consequences, what was left out and when to revisit.
+  - **Share link**: `/<lang>/tools/architecture/r/<code>`, where the code holds the answers. The link opens the same result, and its preview image (Open Graph) draws that architecture. Result pages are `noindex` with the tool as canonical, so they do not compete with it in search.
+- Nothing is stored and there is no account or backend: the answers live in the URL.
+
+## Page and SEO
+
+- Routes: `/<lang>/tools` (index of tools, one for now) and `/<lang>/tools/architecture`, in pt-BR and English. A "Tools" item joins the main menu.
+- Working name: "Esboço de arquitetura" / "Architecture sketch".
+- Built from Datum. General pieces Datum does not have yet enter it first, with their stories: a **RadioGroup** with card-style options (Radix Radio Group). The diagram nodes and the scenario player are compositions of the site.
+- Performance: the questions render on the server; React Flow loads in the browser after them, so the page opens within the brand budget (Performance 90+).
+- SEO:
+  - Title, description, canonical and `hreflang` per language; its own Open Graph image (a drawn diagram, not the site default).
+  - JSON-LD: `WebApplication` (free, developer tool), `FAQPage` for the tool's FAQ, `BreadcrumbList`.
+  - Text on the page that search engines read: how the rules work, the FAQ (system design questions people search for), a link to the article.
+  - Sitemap, `llms.txt` and `llms-full.txt`; IndexNow after the deploy.
+- Umami events, with no personal data: `architecture-preset`, `architecture-scenario`, `architecture-export` (with the format), `architecture-share`.
 - The page says what the tool is: a starting point for a conversation, not a design review.
+
+## The article
+
+A first-person article that leads to the tool: how much architecture a product needs at each size, why the tool says "you do not need it yet", and the rules behind it, with diagrams from the tool. Cover image 1200×630, FAQ, references, pt-BR and English, following the `new-article` skill. The tool links to the article and the article to the tool.
 
 ## Build plan
 
-| PR | Content |
+One branch, run locally for Rafael to try, then reviewed and merged in this order:
+
+| Step | Content |
 | --- | --- |
-| A | This specification (docs only) |
-| B | Rules module and its tests (one per rule, plus whole scenarios: blog, SaaS, store at peak, chat) |
-| C | Datum: RadioGroup (card options) and Progress, with stories |
-| D | The page: questionnaire, diagram, side panel, text version, share link, Umami, pt-BR and English |
-| E | Export: PNG and the ADR draft |
-| F | An article: how the rules were chosen and why the tool says "you do not need it yet" |
+| A | This specification |
+| B | Datum: RadioGroup (default and card), with stories |
+| C | Rules module, scenarios, Mermaid and ADR generators, URL code, with Vitest tests (one per rule, plus whole examples) |
+| D | The page: questions, live diagram, animated flows, scenario player, side panel, text version, export, share page with its image, menu item, tools index |
+| E | SEO: metadata, Open Graph images, JSON-LD, sitemap, `llms.txt` |
+| F | The article and its cover |
 
-## Open questions
+## Decisions
 
-1. Name. Proposals: "Esboço de arquitetura" / "Architecture sketch", "Prancheta de arquitetura" (ties to the Blueprint direction), or another.
-2. Route: `/<lang>/tools/architecture`, like the site's other routes in English, or `/<lang>/ferramentas/arquitetura`.
-3. Vendor examples: keep the boxes generic (proposal), or add examples per box (for instance "Redis, Valkey" for the cache, "S3, R2" for object storage) in the side panel. Examples help beginners but are the one part that can age.
-4. Export in v1 (PR E), or after the first release.
+- Route in English: `/<lang>/tools/architecture` (Rafael, 2026-10-19).
+- Export in the first version (Rafael, 2026-10-19).
+- Generic boxes, no vendor names (proposal kept; vendor examples can come later in the side panel).

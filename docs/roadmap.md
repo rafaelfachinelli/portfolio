@@ -129,7 +129,7 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
 - **2.5 (done).** [design.rafaelfachinelli.com](https://design.rafaelfachinelli.com) serves the 13 components (64 stories); Coolify deploys it on every push to `production`. After the adoption the home prefetched the contact page (form and tooltip, ~26 KiB); its two contact links have prefetch off (PR #25), and the home is back to 154 KiB of JS (Lighthouse simulated mobile: Performance 89, TBT 140 ms, CLS 0).
 
 ### Phase 3: tools
-1. Architecture sketch (first, D15): a short questionnaire (kind of application, users at the same time, downtime, reads and writes, live updates, background work, files, search, team) returns a starting architecture as a React Flow diagram, with why each box is there, what it costs and what is not needed yet; share link and ADR draft. Specification: [tools/architecture-sketch.md](./tools/architecture-sketch.md) (draft).
+1. Architecture sketch (first, D15): a short questionnaire (kind of application, users at the same time, downtime, reads and writes, live updates, background work, files, search, team) returns a starting architecture as a React Flow diagram, with why each box is there, what it costs and what is not needed yet; share link and ADR draft. Specification: [tools/architecture-sketch.md](./tools/architecture-sketch.md) (approved, in build).
 2. Financial planner: compound interest, emergency fund, financial independence goal.
 3. CLT x PJ calculator (parked, D15): depends on tax tables that change every year; draft spec in the closed PR #27.
 
