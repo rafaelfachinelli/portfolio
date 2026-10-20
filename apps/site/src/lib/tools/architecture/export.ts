@@ -1,5 +1,13 @@
 import type { ArchitectureCopy } from '@/content/tools/architecture'
 
+import {
+  CATEGORY_COLOR,
+  CATEGORY_ORDER,
+  isDashed,
+  NODE_CATEGORY,
+  NODE_SHAPE,
+  type NodeShape,
+} from './categories'
 import { type Answers, QUESTION_IDS } from './questions'
 import {
   type Architecture,
@@ -30,6 +38,24 @@ function nodeLabel(node: ArchNode, copy: ArchitectureCopy) {
 
 const quote = (text: string) => `"${text.replaceAll('"', '#quot;')}"`
 
+// The diagram's shapes in Mermaid's classic syntax, which GitHub and Notion render.
+const MERMAID_SHAPE: Record<NodeShape, [string, string]> = {
+  pill: ['([', '])'],
+  hexagon: ['{{', '}}'],
+  rect: ['[', ']'],
+  queue: ['[[', ']]'],
+  pipe: ['>', ']'],
+  chip: ['[', ']'],
+  cylinder: ['[(', ')]'],
+  bucket: ['[\\', '/]'],
+  group: ['[', ']'],
+}
+
+function mermaidNode(node: ArchNode, copy: ArchitectureCopy) {
+  const [open, close] = MERMAID_SHAPE[NODE_SHAPE[node.id]]
+  return `${node.id}${open}${quote(nodeLabel(node, copy))}${close}`
+}
+
 export function toMermaid(
   architecture: Architecture,
   copy: ArchitectureCopy,
@@ -40,23 +66,36 @@ export function toMermaid(
     CROSS_CUTTING.has(node.id),
   )
 
-  for (const node of flow) {
-    const label = quote(nodeLabel(node, copy))
-    lines.push(
-      node.id === 'db' || node.id === 'replica' || node.id === 'standby'
-        ? `  ${node.id}[(${label})]`
-        : `  ${node.id}[${label}]`,
-    )
-  }
+  for (const node of flow) lines.push(`  ${mermaidNode(node, copy)}`)
   for (const edge of architecture.edges) {
     lines.push(`  ${edge.from} ${MERMAID_ARROW[edge.kind]} ${edge.to}`)
   }
   if (crossCutting.length > 0) {
     lines.push('  subgraph cross[" "]')
     for (const node of crossCutting) {
-      lines.push(`    ${node.id}[${quote(nodeLabel(node, copy))}]`)
+      lines.push(`    ${mermaidNode(node, copy)}`)
     }
     lines.push('  end')
+  }
+
+  // Colors by category, as in the diagram; dashed for pieces beside the flow.
+  for (const category of ['client' as const, ...CATEGORY_ORDER]) {
+    const ids = architecture.nodes
+      .filter(node => NODE_CATEGORY[node.id] === category)
+      .map(node => node.id)
+    if (ids.length === 0) continue
+    const color = CATEGORY_COLOR[category]
+    lines.push(
+      `  classDef ${category} stroke:${color},fill:${color}26,stroke-width:2px`,
+      `  class ${ids.join(',')} ${category}`,
+    )
+  }
+  const dashed = architecture.nodes.filter(node => isDashed(node.id))
+  if (dashed.length > 0) {
+    lines.push(
+      '  classDef dashed stroke-dasharray:5 4',
+      `  class ${dashed.map(node => node.id).join(',')} dashed`,
+    )
   }
   return lines.join('\n')
 }

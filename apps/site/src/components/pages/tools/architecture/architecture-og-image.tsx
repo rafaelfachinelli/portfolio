@@ -1,6 +1,10 @@
 import { ImageResponse } from 'next/og'
 
 import type { ArchitectureCopy } from '@/content/tools/architecture'
+import {
+  CATEGORY_COLOR,
+  NODE_CATEGORY,
+} from '@/lib/tools/architecture/categories'
 import { flowLayers } from '@/lib/tools/architecture/layout'
 import type { Architecture } from '@/lib/tools/architecture/rules'
 
@@ -102,7 +106,6 @@ export function architectureOgImage({
                 }}
               >
                 {layer.map(id => {
-                  const node = architecture.nodes.find(item => item.id === id)
                   return (
                     <div
                       key={id}
@@ -113,7 +116,7 @@ export function architectureOgImage({
                         width: 116,
                         padding: '0 10px',
                         borderRadius: 6,
-                        border: `1.5px solid ${node?.spof ? COLORS.warning : COLORS.line}`,
+                        border: `2px solid ${CATEGORY_COLOR[NODE_CATEGORY[id]]}`,
                         backgroundColor: COLORS.surface,
                         fontSize: 15,
                         fontWeight: 600,

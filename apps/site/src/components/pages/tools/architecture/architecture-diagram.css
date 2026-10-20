@@ -73,3 +73,32 @@
     animation: none;
   }
 }
+
+/* Box outlines in the category color; the season color marks the selected box. */
+.architecture-flow .arch-shape {
+  fill: var(--datum-color-surface);
+  stroke: var(--arch-color);
+  stroke-width: 1.5;
+  transition:
+    stroke 300ms,
+    stroke-width 300ms,
+    filter 300ms;
+}
+
+.architecture-flow .arch-shape-detail {
+  fill: none;
+  stroke: var(--arch-color);
+  stroke-width: 1.25;
+  opacity: 0.8;
+}
+
+.architecture-flow .arch-node[data-selected] .arch-shape {
+  stroke: var(--datum-season-accent);
+  stroke-width: 2.5;
+}
+
+/* The box receiving the data glows in its own category color. */
+.architecture-flow .arch-node[data-state='focus'] .arch-shape {
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 10px var(--arch-color));
+}

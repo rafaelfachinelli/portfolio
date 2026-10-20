@@ -27,6 +27,12 @@ import { useEffect, useMemo } from 'react'
 
 import type { ArchitectureCopy } from '@/content/tools/architecture'
 import {
+  CATEGORY_COLOR,
+  isDashed,
+  NODE_CATEGORY,
+  NODE_SHAPE,
+} from '@/lib/tools/architecture/categories'
+import {
   type Direction,
   layoutArchitecture,
   NODE_HEIGHT,
@@ -39,8 +45,9 @@ import type {
 } from '@/lib/tools/architecture/rules'
 import type { ScenarioStep } from '@/lib/tools/architecture/scenarios'
 
-import { ACTIVE_COLOR, EDGE_STYLE } from './edge-styles'
+import { EDGE_STYLE, TRAIL_COLOR } from './edge-styles'
 import { NODE_ICONS } from './node-icons'
+import { NodeShapeOutline, SHAPE_INSET } from './node-shape'
 
 export type DiagramApi = { toPng: (caption: string) => Promise<string> }
 
@@ -57,6 +64,7 @@ type ArchNodeData = {
 
 type FlowEdgeData = {
   kind: EdgeKind
+  color: string
   /** active: the hop in progress; trail: hops already made in this step. */
   state: 'idle' | 'active' | 'trail' | 'dim'
   reverse: boolean
@@ -76,20 +84,36 @@ function ArchitectureNode({ data, selected }: NodeProps<ArchFlowNode>) {
     ? { target: Position.Top, source: Position.Bottom }
     : { target: Position.Left, source: Position.Right }
 
+  const shape = NODE_SHAPE[data.nodeId]
+  const [top, right, bottom, left] = SHAPE_INSET[shape]
+
   return (
     <div
       data-state={data.state}
       data-selected={selected || undefined}
-      style={{ width: NODE_WIDTH, height: NODE_HEIGHT }}
-      className="arch-node border-line-strong bg-surface text-ink data-[selected]:border-season-accent data-[selected]:ring-season-accent/40 data-[state=focus]:border-season-accent relative flex items-center gap-2.5 rounded-[var(--datum-radius-md)] border px-3 shadow-sm transition-[opacity,border-color,box-shadow,scale] duration-300 data-[selected]:ring-2 data-[state=dim]:opacity-35 data-[state=focus]:scale-[1.04] data-[state=focus]:shadow-[0_0_22px_-2px_var(--datum-season-accent)]"
+      style={
+        {
+          width: NODE_WIDTH,
+          height: NODE_HEIGHT,
+          padding: `${top}px ${right}px ${bottom}px ${left}px`,
+          '--arch-color': CATEGORY_COLOR[NODE_CATEGORY[data.nodeId]],
+        } as React.CSSProperties
+      }
+      className="arch-node text-ink relative flex items-center gap-2.5 transition-[opacity,scale] duration-300 data-[state=dim]:opacity-35 data-[state=focus]:scale-[1.04]"
     >
+      <NodeShapeOutline
+        shape={shape}
+        width={NODE_WIDTH}
+        height={NODE_HEIGHT}
+        dashed={isDashed(data.nodeId)}
+      />
       <Handle type="target" id="main" position={main.target} />
       <Handle type="target" id="side" position={side.target} />
       <Handle type="target" id="back" position={side.source} />
-      <span className="bg-well text-season-accent grid size-8 shrink-0 place-items-center rounded-[var(--datum-radius-sm)]">
+      <span className="relative grid size-8 shrink-0 place-items-center rounded-[var(--datum-radius-sm)] bg-[color-mix(in_srgb,var(--arch-color)_16%,transparent)] text-[var(--arch-color)]">
         <Icon className="size-4" aria-hidden="true" />
       </span>
-      <span className="grid min-w-0 gap-0.5">
+      <span className="relative grid min-w-0 gap-0.5">
         <span className="line-clamp-2 text-[13px] leading-tight font-semibold">
           {data.title}
         </span>
@@ -138,7 +162,7 @@ function FlowEdge({
   const style = EDGE_STYLE[data.kind]
   const active = data.state === 'active'
   const lit = active || data.state === 'trail'
-  const color = lit ? ACTIVE_COLOR : style.color
+  const color = data.color
   // Moving dots only while idle; during a scenario the active hop marches instead.
   const showDots = !data.reducedMotion && data.state === 'idle'
   const directions = data.kind === 'live' ? [false, true] : [false]
@@ -287,10 +311,14 @@ function Diagram({
             : flow.trail.has(edge.id)
               ? 'trail'
               : 'dim'
+        // The hop in progress takes the color of the box it reaches, so the
+        // line and the lit box read as one; crossed hops fade to a neutral trail.
         const color =
-          state === 'active' || state === 'trail'
-            ? ACTIVE_COLOR
-            : EDGE_STYLE[edge.kind].color
+          state === 'active' && flow?.focus
+            ? CATEGORY_COLOR[NODE_CATEGORY[flow.focus as NodeId]]
+            : state === 'trail'
+              ? TRAIL_COLOR
+              : EDGE_STYLE[edge.kind].color
         const marker = {
           type: MarkerType.ArrowClosed,
           color,
@@ -310,6 +338,7 @@ function Diagram({
           data: {
             kind: edge.kind,
             state,
+            color,
             reverse: Boolean(step?.reverse),
             reducedMotion,
           },

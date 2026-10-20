@@ -22,4 +22,5 @@ export const EDGE_STYLE: Record<
   assets: { color: 'var(--datum-color-ink-muted)', width: 1, seconds: 3 },
 }
 
-export const ACTIVE_COLOR = 'var(--datum-season-accent)'
+/** Hops already crossed in a scenario step: a quiet trail behind the lit one. */
+export const TRAIL_COLOR = 'var(--datum-color-ink-subtle)'

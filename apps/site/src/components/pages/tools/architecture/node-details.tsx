@@ -2,6 +2,10 @@ import { Badge, Button, Card, CardContent } from '@datum/ui'
 import { TriangleAlert, X } from 'lucide-react'
 
 import type { ArchitectureCopy } from '@/content/tools/architecture'
+import {
+  CATEGORY_COLOR,
+  NODE_CATEGORY,
+} from '@/lib/tools/architecture/categories'
 import type { Answers } from '@/lib/tools/architecture/questions'
 import { type ArchNode, NODE_COST } from '@/lib/tools/architecture/rules'
 
@@ -33,12 +37,19 @@ export function NodeDetails({
   const Icon = NODE_ICONS[node.id]
   const isUsers = node.id === 'users'
   const cost = NODE_COST[node.id]
+  const color = CATEGORY_COLOR[NODE_CATEGORY[node.id]]
 
   return (
     <Card aria-live="polite" className={className}>
       <CardContent className="grid gap-3 text-sm">
         <div className="flex items-start gap-3">
-          <span className="bg-well text-season-accent grid size-9 shrink-0 place-items-center rounded-[var(--datum-radius-sm)]">
+          <span
+            className="grid size-9 shrink-0 place-items-center rounded-[var(--datum-radius-sm)]"
+            style={{
+              color,
+              backgroundColor: `color-mix(in srgb, ${color} 16%, transparent)`,
+            }}
+          >
             <Icon className="size-5" aria-hidden="true" />
           </span>
           <div className="grid flex-1 gap-1">

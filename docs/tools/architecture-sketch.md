@@ -79,6 +79,7 @@ The goal is a tool that is quick to use, clear, and does something other archite
 - **Single points of failure.** Boxes whose loss takes the whole application down carry a mark, and the side panel says what happens if each one fails. For a small product the answer can be "acceptable, restore from backup", and the tool says so.
 - **Each box explains itself.** Click or tab to a box: what it is, the answer that put it there, cost and complexity (low, medium, high), when it would be too much.
 - **What you do not need yet.** A list under the diagram, each item with the answer that would change it.
+- **Colors and shapes.** Each box has a color by category (entry and network: indigo; compute: sky; messaging: amber; data: green; support: slate, dashed) and a shape by type: cylinder for databases and indexes, a box holding messages for the queue, a pipe for the pub/sub topic, a memory chip for the cache, a bucket for file storage, a hexagon for entry pieces, a pill for people. The same colors and shapes go to the legend, the Mermaid export and the preview image (`apps/site/src/lib/tools/architecture/categories.ts`). During a scenario the lit box glows in its own category color, and the hop in progress takes that color; the season color marks the selected box.
 - **Reduced motion.** With `prefers-reduced-motion` the dots stop and the scenario steps change without animation.
 
 ## The result and export

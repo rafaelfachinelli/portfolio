@@ -1,4 +1,5 @@
 import type { ArticleLocale } from '@/content/articles'
+import type { NodeCategory } from '@/lib/tools/architecture/categories'
 import type { PresetId, QuestionId } from '@/lib/tools/architecture/questions'
 import type {
   Cost,
@@ -44,6 +45,7 @@ export type ArchitectureCopy = {
   tags: Record<NodeTag, string>
   costs: Record<Cost, string>
   edges: Record<EdgeKind, string>
+  categories: Record<NodeCategory, string>
   notNeeded: Partial<Record<NodeId, string>>
   notes: Record<NoteId, string>
   scenarios: Record<ScenarioId, string>
@@ -526,6 +528,14 @@ const ptBR: ArchitectureCopy = {
     replication: 'Replicação',
     live: 'Conexão ao vivo',
     assets: 'Arquivos',
+  },
+  categories: {
+    client: 'Pessoas',
+    entry: 'Entrada e rede',
+    compute: 'Processamento',
+    messaging: 'Mensageria',
+    data: 'Dados',
+    support: 'Apoio',
   },
   notNeeded: {
     lb: 'Quando chegar a mil pessoas ao mesmo tempo, ou quando ficar fora do ar deixar de ser aceitável.',
@@ -1170,6 +1180,14 @@ const enUS: ArchitectureCopy = {
     replication: 'Replication',
     live: 'Live connection',
     assets: 'Files',
+  },
+  categories: {
+    client: 'People',
+    entry: 'Entry and network',
+    compute: 'Compute',
+    messaging: 'Messaging',
+    data: 'Data',
+    support: 'Support',
   },
   notNeeded: {
     lb: 'At 1,000 people at the same time, or when downtime stops being acceptable.',
