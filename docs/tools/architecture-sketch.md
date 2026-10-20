@@ -1,7 +1,7 @@
 # Architecture sketch: specification
 
 Audience: Rafael and AI agents building the first tool of Phase 3.
-Status: approved, in build · Last updated: 2026-10-19
+Status: done, live at /<lang>/tools/architecture · Last updated: 2026-10-20
 
 The first tool of [Phase 3](../roadmap.md#phase-3-tools) (decision D15).
 

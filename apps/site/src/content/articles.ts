@@ -50,7 +50,7 @@ export function getReadingMinutes(body: string) {
 export const articles: Article[] = [
   {
     slug: 'quanta-arquitetura-sua-aplicacao-precisa',
-    date: '2026-10-19',
+    date: '2026-10-20',
     cover: '/images/articles/quanta-arquitetura-cover-v1.webp',
     tags: ['Arquitetura', 'System design', 'Ferramentas'],
     references: [
