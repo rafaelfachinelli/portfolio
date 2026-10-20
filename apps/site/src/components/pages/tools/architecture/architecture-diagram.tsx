@@ -50,13 +50,15 @@ type ArchNodeData = {
   tags: string[]
   spof: boolean
   spofLabel: string
-  state: 'idle' | 'active' | 'dim'
+  /** focus: receiving the data right now (the only lit box); path: on the step's way. */
+  state: 'idle' | 'focus' | 'path' | 'dim'
   direction: Direction
 }
 
 type FlowEdgeData = {
   kind: EdgeKind
-  state: 'idle' | 'active' | 'dim'
+  /** active: the hop in progress; trail: hops already made in this step. */
+  state: 'idle' | 'active' | 'trail' | 'dim'
   reverse: boolean
   reducedMotion: boolean
 }
@@ -79,7 +81,7 @@ function ArchitectureNode({ data, selected }: NodeProps<ArchFlowNode>) {
       data-state={data.state}
       data-selected={selected || undefined}
       style={{ width: NODE_WIDTH, height: NODE_HEIGHT }}
-      className="arch-node border-line-strong bg-surface text-ink data-[selected]:border-season-accent data-[selected]:ring-season-accent/40 data-[state=active]:border-season-accent relative flex items-center gap-2.5 rounded-[var(--datum-radius-md)] border px-3 shadow-sm transition-[opacity,border-color,box-shadow] duration-300 data-[selected]:ring-2 data-[state=active]:shadow-[0_0_18px_-4px_var(--datum-season-accent)] data-[state=dim]:opacity-35"
+      className="arch-node border-line-strong bg-surface text-ink data-[selected]:border-season-accent data-[selected]:ring-season-accent/40 data-[state=focus]:border-season-accent relative flex items-center gap-2.5 rounded-[var(--datum-radius-md)] border px-3 shadow-sm transition-[opacity,border-color,box-shadow,scale] duration-300 data-[selected]:ring-2 data-[state=dim]:opacity-35 data-[state=focus]:scale-[1.04] data-[state=focus]:shadow-[0_0_22px_-2px_var(--datum-season-accent)]"
     >
       <Handle type="target" id="main" position={main.target} />
       <Handle type="target" id="side" position={side.target} />
@@ -135,11 +137,12 @@ function FlowEdge({
   if (!data) return null
   const style = EDGE_STYLE[data.kind]
   const active = data.state === 'active'
-  const color = active ? ACTIVE_COLOR : style.color
-  const seconds = active ? 1.1 : style.seconds
-  const showDots = !data.reducedMotion && data.state !== 'dim'
-  const directions =
-    data.kind === 'live' && !active ? [false, true] : [data.reverse]
+  const lit = active || data.state === 'trail'
+  const color = lit ? ACTIVE_COLOR : style.color
+  // Moving dots only while idle; during a scenario the active hop marches instead.
+  const showDots = !data.reducedMotion && data.state === 'idle'
+  const directions = data.kind === 'live' ? [false, true] : [false]
+  const opacity = { idle: 0.7, active: 1, trail: 0.45, dim: 0.12 }[data.state]
 
   return (
     <>
@@ -148,12 +151,16 @@ function FlowEdge({
         path={path}
         markerEnd={markerEnd}
         markerStart={markerStart}
-        className="transition-opacity duration-300"
+        className={
+          active
+            ? `flow-march ${data.reverse ? 'flow-march-reverse' : ''}`
+            : 'transition-opacity duration-300'
+        }
         style={{
           stroke: color,
-          strokeWidth: active ? 2.5 : style.width,
-          strokeDasharray: active ? undefined : style.dash,
-          opacity: data.state === 'dim' ? 0.18 : active ? 1 : 0.7,
+          strokeWidth: active ? 2.5 : lit ? 1.75 : style.width,
+          strokeDasharray: lit ? undefined : style.dash,
+          opacity,
         }}
       />
       {showDots &&
@@ -161,15 +168,12 @@ function FlowEdge({
           <circle
             key={String(reverse)}
             className="flow-dot"
-            r={active ? 4.5 : 2.5}
+            r={2.5}
             fill={color}
-            opacity={active ? 1 : 0.85}
-            style={
-              active ? { filter: `drop-shadow(0 0 4px ${color})` } : undefined
-            }
+            opacity={0.85}
           >
             <animateMotion
-              dur={`${seconds}s`}
+              dur={`${style.seconds}s`}
               repeatCount="indefinite"
               path={path}
               keyPoints={reverse ? '1;0' : '0;1'}
@@ -192,6 +196,8 @@ export type ArchitectureDiagramProps = {
   selected: NodeId | null
   onSelect: (id: NodeId | null) => void
   step: ScenarioStep | null
+  /** The hop of the step in progress (one edge at a time). */
+  hop: number
   reducedMotion: boolean
   onReady?: (api: DiagramApi) => void
 }
@@ -203,6 +209,7 @@ function Diagram({
   selected,
   onSelect,
   step,
+  hop,
   reducedMotion,
   onReady,
 }: ArchitectureDiagramProps) {
@@ -212,18 +219,25 @@ function Diagram({
     [architecture, direction],
   )
 
-  // Boxes and edges touched by the current scenario step.
-  const activeEdges = useMemo(() => new Set(step?.edges ?? []), [step])
-  const activeNodes = useMemo(() => {
-    const ids = new Set<string>()
-    for (const edge of architecture.edges) {
-      if (activeEdges.has(edge.id)) {
-        ids.add(edge.from)
-        ids.add(edge.to)
-      }
+  // A scenario step moves the data one edge at a time: the edge in progress,
+  // the ones already crossed, and the single box receiving the data now.
+  const flow = useMemo(() => {
+    if (!step) return null
+    const current = Math.min(hop, step.edges.length - 1)
+    const byId = new Map(architecture.edges.map(edge => [edge.id, edge]))
+    const crossed = step.edges.slice(0, current + 1).map(id => byId.get(id))
+    const now = crossed.at(-1)
+    const path = new Set<string>()
+    for (const edge of crossed) {
+      if (edge) path.add(edge.from).add(edge.to)
     }
-    return ids
-  }, [architecture.edges, activeEdges])
+    return {
+      active: step.edges[current],
+      trail: new Set(step.edges.slice(0, current)),
+      path,
+      focus: now ? (step.reverse ? now.from : now.to) : null,
+    }
+  }, [step, hop, architecture.edges])
 
   const nodes: ArchFlowNode[] = useMemo(
     () =>
@@ -250,18 +264,33 @@ function Diagram({
           spof: node.spof,
           spofLabel: copy.ui.spofHint,
           direction,
-          state: step ? (activeNodes.has(node.id) ? 'active' : 'dim') : 'idle',
+          state: !flow
+            ? 'idle'
+            : node.id === flow.focus
+              ? 'focus'
+              : flow.path.has(node.id)
+                ? 'path'
+                : 'dim',
         },
       })),
-    [architecture.nodes, layout, selected, copy, direction, step, activeNodes],
+    [architecture.nodes, layout, selected, copy, direction, flow],
   )
 
   const edges: ArchFlowEdge[] = useMemo(
     () =>
       architecture.edges.map(edge => {
         const handles = layout.handles[edge.id]
-        const active = activeEdges.has(edge.id)
-        const color = active ? ACTIVE_COLOR : EDGE_STYLE[edge.kind].color
+        const state: FlowEdgeData['state'] = !flow
+          ? 'idle'
+          : edge.id === flow.active
+            ? 'active'
+            : flow.trail.has(edge.id)
+              ? 'trail'
+              : 'dim'
+        const color =
+          state === 'active' || state === 'trail'
+            ? ACTIVE_COLOR
+            : EDGE_STYLE[edge.kind].color
         const marker = {
           type: MarkerType.ArrowClosed,
           color,
@@ -280,13 +309,13 @@ function Diagram({
           markerStart: edge.kind === 'live' ? marker : undefined,
           data: {
             kind: edge.kind,
-            state: step ? (active ? 'active' : 'dim') : 'idle',
-            reverse: Boolean(step?.reverse && active),
+            state,
+            reverse: Boolean(step?.reverse),
             reducedMotion,
           },
         }
       }),
-    [architecture.edges, layout, activeEdges, step, reducedMotion],
+    [architecture.edges, layout, flow, step, reducedMotion],
   )
 
   // Reframe when boxes come or go, or the direction changes.

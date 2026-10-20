@@ -62,7 +62,9 @@ const OPTION_COLUMNS: Partial<Record<QuestionId, string>> = {
   search: 'sm:grid-cols-3 lg:grid-cols-1',
 }
 
-const STEP_MS = 2400
+/** Time for the data to cross one edge, and to read a step's caption. */
+const HOP_MS = 900
+const READ_MS = 1800
 
 export type ArchitectureToolProps = {
   copy: ArchitectureCopy
@@ -109,19 +111,36 @@ export function ArchitectureTool({
     )
   }, [architecture, scenarios])
 
-  // Playback: one step every STEP_MS, stopping on the last one.
+  // Within a step, the data moves one hop (one edge) at a time, so only one box
+  // is lit at once. The hop belongs to the step it was counted in; a new step
+  // starts again from its first hop.
+  const stepKey = `${scenarioId}:${stepIndex}`
+  const [hop, setHop] = useState({ key: stepKey, index: 0 })
+  const hopIndex = hop.key === stepKey ? hop.index : 0
+  const lastHop = (step?.edges.length ?? 1) - 1
+
   useEffect(() => {
-    if (!playing || !scenario) return
+    if (!step || hopIndex >= lastHop) return
+    const timer = window.setTimeout(
+      () => setHop({ key: stepKey, index: hopIndex + 1 }),
+      HOP_MS,
+    )
+    return () => window.clearTimeout(timer)
+  }, [step, stepKey, hopIndex, lastHop])
+
+  // Playback: after the last hop of a step, a pause to read, then the next step.
+  useEffect(() => {
+    if (!playing || !scenario || hopIndex < lastHop) return
     if (stepIndex >= scenario.steps.length - 1) {
       setPlaying(false)
       return
     }
     const timer = window.setTimeout(
       () => setStepIndex(index => index + 1),
-      STEP_MS,
+      READ_MS,
     )
     return () => window.clearTimeout(timer)
-  }, [playing, scenario, stepIndex])
+  }, [playing, scenario, stepIndex, hopIndex, lastHop])
 
   const answer = (question: QuestionId, value: string) => {
     setAnswers(current => ({ ...current, [question]: value }))
@@ -303,6 +322,7 @@ export function ArchitectureTool({
                 selected={selected}
                 onSelect={setSelected}
                 step={step}
+                hop={hopIndex}
                 reducedMotion={reducedMotion}
                 onReady={onReady}
               />

@@ -48,3 +48,28 @@
     animation: none;
   }
 }
+
+/* The hop in progress: dashes march the way the data goes. */
+.architecture-flow .flow-march {
+  stroke-dasharray: 8 6;
+  animation: flow-march 0.6s linear infinite;
+}
+
+.architecture-flow .flow-march-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes flow-march {
+  from {
+    stroke-dashoffset: 14;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .architecture-flow .flow-march {
+    animation: none;
+  }
+}
