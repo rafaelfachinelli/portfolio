@@ -200,16 +200,22 @@ export function ArchitectureTool({
   }, [step, stepKey, hopIndex, lastHop, hopMs])
 
   // Playback: after the last hop of a step (and the end of its narration), a
-  // pause, then the next step.
+  // pause, then the next step. After the last step the scenario ends and the
+  // diagram goes back to rest.
   const stepDone = hopIndex >= lastHop && (!clip || voice.ended)
   useEffect(() => {
     if (!playing || !scenario || !stepDone) return
-    if (stepIndex >= scenario.steps.length - 1) {
-      setPlaying(false)
-      return
-    }
+    const last = stepIndex >= scenario.steps.length - 1
     const timer = window.setTimeout(
-      () => setStepIndex(index => index + 1),
+      () => {
+        if (!last) {
+          setStepIndex(index => index + 1)
+          return
+        }
+        setPlaying(false)
+        setScenarioId(null)
+        setStepIndex(0)
+      },
       clip ? NARRATED_GAP_MS : READ_MS,
     )
     return () => window.clearTimeout(timer)
