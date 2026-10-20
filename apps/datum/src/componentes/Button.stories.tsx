@@ -26,7 +26,10 @@ const meta = {
     },
     disabled: { description: 'Desabilita o botão.', control: 'boolean' },
     asChild: {
-      description: 'Aplica o visual ao elemento filho (por exemplo um link).',
+      // No control: with plain-text children, Slot has no element to style.
+      description:
+        'Aplica o visual ao elemento filho (por exemplo um link). Veja a história **As Link**.',
+      control: false,
     },
     children: { description: 'O texto e, se houver, o ícone.' },
   },
