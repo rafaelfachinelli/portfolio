@@ -23,7 +23,7 @@ Developers, tech leads, founders and students preparing for system design interv
 
 ## The questionnaire
 
-Nine questions, one per screen on the phone and all on one page on the desktop, each with three to five options and a short hint. Every answer has a default, so "see the result" works at any point.
+Eleven questions on one page, each with two to five options as cards (Datum RadioGroup). Every answer has a default, so the diagram is there from the start and changes with each answer.
 
 | # | Question | Options |
 | --- | --- | --- |
@@ -35,7 +35,9 @@ Nine questions, one per screen on the phone and all on one page on the desktop, 
 | 6 | Does it do heavy work in the background? | No · Sometimes (e-mails, reports) · A lot (video, imports, AI) |
 | 7 | Does it store files from users? | No · Some (avatars, documents) · A lot (photos, video) |
 | 8 | Does it need text search? | No · Simple filters · Full text search |
-| 9 | Where are the users, and who builds it? | Users: one country · several countries. Team: up to 10 people · several teams |
+| 9 | Where are the people? | One country · Several countries |
+| 10 | Who builds it? | One team (up to about 10 people) · Several teams |
+| 11 | Does it store sensitive personal or payment data? | No · Yes (adds the security pieces) |
 
 A tenth optional question: does it handle sensitive personal or payment data (LGPD)? It adds security pieces.
 
@@ -81,7 +83,7 @@ The goal is a tool that is quick to use, clear, and does something other archite
 
 ## The result and export
 
-- **Diagram**: React Flow (`@xyflow/react`, MIT). Boxes in fixed layers (users, edge, entry, application, fast data, storage, cross-cutting), left to right on the desktop and top to bottom on the phone; positions come from the layers, so no layout library is needed. Pan and zoom; no free editing.
+- **Diagram**: React Flow (`@xyflow/react`, MIT). Boxes in fixed layers (users, edge, entry, application, fast data, storage, cross-cutting), top to bottom on every screen (left to right made the boxes too small on a laptop); positions come from the layers, so no layout library is needed. Pan and zoom; no free editing.
 - **Text version**: the same architecture as a list of components and connections, for screen readers and for copying.
 - **Export, from v1**:
   - **PNG** of the diagram.
