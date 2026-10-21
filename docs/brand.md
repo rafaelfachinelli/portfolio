@@ -62,5 +62,5 @@ A drafting board: faint grid, dimension marks, corner registration ticks, monosp
 ## Performance budget (approved 2026-10-17)
 
 - No continuous JavaScript animation in the background; decorative motion in CSS only, paused when off screen.
-- `prefers-reduced-motion` turns decorative motion off.
+- `prefers-reduced-motion` turns decorative motion off. Motion that reports status, such as the loading spinner, keeps running, only slower.
 - Mobile Lighthouse: Performance 90+, LCP under 2.5 s, CLS under 0.1, measured on a throttled mid-range phone profile.
