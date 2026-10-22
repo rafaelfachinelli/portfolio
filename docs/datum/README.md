@@ -1,7 +1,7 @@
 # Datum
 
 Audience: developers and AI agents working on the Datum design system.
-Status: Phase 2 done (14 components) · Last updated: 2026-10-19
+Status: version 0.3.1 (15 components); changelog on the Novidades page · Last updated: 2026-10-21
 
 Datum is the design system of Rafael Fachinelli, in the **Blueprint** visual direction (the drafting board). In technical drawing, the datum is the reference every dimension is measured from; the design system plays the same role for color, space and type.
 
@@ -46,3 +46,9 @@ Packages are workspace-only (not published to npm). The site consumes them throu
 - Run locally: `npm run dev -w @datum/storybook` (port 6006). Build: `npx turbo run build --filter=@datum/storybook`.
 - Story titles stay ASCII (stable ids and URLs); `.storybook/manager.ts` maps them to accented labels in the sidebar.
 - Deploy: Coolify app "Datum (Storybook)", Dockerfile `apps/datum/Dockerfile`, build context the repository root, branch `production`.
+- Sharing card: `.storybook/manager-head.html` holds the Open Graph and Twitter tags (crawlers do not run JavaScript, so every Storybook URL shares the same card). The image `public/og.png` (1200×630) is drawn in `og/og.html`; after changing it, run `npm run og -w @datum/storybook` (headless Chrome; `CHROME=<path>` to pick the browser).
+
+## Versions and Novidades
+
+- One version for `@datum/tokens` and `@datum/ui`; they move together. Patch for fixes, minor for a new component, token, variant or optional prop, major for a breaking change.
+- The changelog is the Storybook page **Datum / Novidades** (`apps/datum/src/Novidades.mdx`), written by hand in the PR that makes the change. Process: [.claude/skills/datum-release](../../.claude/skills/datum-release/SKILL.md).

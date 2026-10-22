@@ -1,0 +1,220 @@
+<!doctype html>
+<!--
+  Sharing card of the Storybook (1200x630). Rendered to ../public/og.png with
+  headless Chrome; see docs/datum/README.md ("Sharing card").
+-->
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@500;600&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #071027;
+      }
+      .sheet {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        background-color: #071027;
+        background-image:
+          radial-gradient(
+            ellipse 55% 60% at 78% 50%,
+            rgba(56, 189, 248, 0.1),
+            transparent 70%
+          ),
+          linear-gradient(rgba(125, 211, 252, 0.09) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(125, 211, 252, 0.09) 1px,
+            transparent 1px
+          ),
+          linear-gradient(rgba(125, 211, 252, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(125, 211, 252, 0.04) 1px, transparent 1px);
+        background-size:
+          100% 100%,
+          120px 120px,
+          120px 120px,
+          24px 24px,
+          24px 24px;
+      }
+      .corner {
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        border-color: rgba(56, 189, 248, 0.55);
+        border-style: solid;
+      }
+      .tl {
+        left: 40px;
+        top: 40px;
+        border-width: 2px 0 0 2px;
+      }
+      .tr {
+        right: 40px;
+        top: 40px;
+        border-width: 2px 2px 0 0;
+      }
+      .bl {
+        left: 40px;
+        bottom: 40px;
+        border-width: 0 0 2px 2px;
+      }
+      .br {
+        right: 40px;
+        bottom: 40px;
+        border-width: 0 2px 2px 0;
+      }
+      .label {
+        position: absolute;
+        top: 46px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 15px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(132, 148, 176, 0.85);
+      }
+      .label.a {
+        left: 96px;
+      }
+      .label.b {
+        right: 96px;
+      }
+      .text {
+        position: absolute;
+        left: 96px;
+        top: 150px;
+        width: 640px;
+      }
+      .kicker {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 22px;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: #38bdf8;
+      }
+      .name {
+        margin-top: 14px;
+        font-family: 'Archivo', sans-serif;
+        font-weight: 800;
+        font-size: 132px;
+        line-height: 1;
+        letter-spacing: -3px;
+        color: #e6edf8;
+      }
+      .tagline {
+        margin-top: 22px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 1.3;
+        color: #c5d0e3;
+      }
+      .parts {
+        margin-top: 30px;
+        display: flex;
+        gap: 12px;
+      }
+      .part {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 18px;
+        color: #e6edf8;
+        border: 1px solid rgba(125, 211, 252, 0.35);
+        background: rgba(7, 16, 39, 0.85);
+        padding: 8px 14px;
+        border-radius: 2px;
+      }
+      .site {
+        position: absolute;
+        left: 96px;
+        bottom: 70px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 20px;
+        color: #8494b0;
+      }
+      .symbol {
+        position: absolute;
+        right: 120px;
+        top: 120px;
+        width: 360px;
+        height: 390px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <div class="label a">Blueprint · Design system</div>
+      <div class="label b">Folha 01 / 01</div>
+      <div class="text">
+        <div class="kicker">Rafael Fachinelli</div>
+        <div class="name">Datum</div>
+        <div class="tagline">
+          A referência de onde cor, espaço e tipografia são medidos.
+        </div>
+        <div class="parts">
+          <span class="part">tokens</span>
+          <span class="part">8 temporadas</span>
+          <span class="part">componentes</span>
+        </div>
+      </div>
+      <div class="site">design.rafaelfachinelli.com</div>
+      <!-- The datum feature symbol of the wordmark, drawn large with its dimension lines. -->
+      <svg class="symbol" viewBox="0 0 360 390" fill="none">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#38bdf8" />
+            <stop offset="1" stop-color="#6366f1" />
+          </linearGradient>
+        </defs>
+        <rect
+          x="110"
+          y="20"
+          width="140"
+          height="80"
+          stroke="#7dd3fc"
+          stroke-width="3"
+        />
+        <text
+          x="180"
+          y="72"
+          text-anchor="middle"
+          font-family="IBM Plex Mono, monospace"
+          font-size="38"
+          font-weight="500"
+          fill="#e6edf8"
+        >
+          A
+        </text>
+        <path d="M180 100 V190" stroke="#7dd3fc" stroke-width="3" />
+        <path d="M180 320 L110 190 L250 190 Z" fill="url(#g)" />
+        <path d="M20 320 H340" stroke="#7dd3fc" stroke-width="3" />
+        <path
+          d="M20 360 H340"
+          stroke="rgba(132,148,176,0.7)"
+          stroke-width="1.5"
+          stroke-dasharray="6 6"
+        />
+        <path
+          d="M20 348 V372 M340 348 V372"
+          stroke="rgba(132,148,176,0.7)"
+          stroke-width="1.5"
+        />
+      </svg>
+    </div>
+  </body>
+</html>

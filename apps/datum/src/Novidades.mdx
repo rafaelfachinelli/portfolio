@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Datum/Novidades" />
+
+# Novidades
+
+O que mudou em cada versão do Datum, da mais nova para a mais antiga. Os pacotes `@datum/tokens` e `@datum/ui` andam juntos, com uma versão só.
+
+| Mudança                                                   | Versão |
+| --------------------------------------------------------- | ------ |
+| Correção                                                  | patch  |
+| Componente, token ou variante nova                        | minor  |
+| Algo que quebra quem usa (prop removida, token renomeado) | major  |
+
+## 0.3.1 · 20 de outubro de 2026
+
+- **Button e Badge:** o controle `asChild` saiu do painel. Ligado com um texto simples dentro, a história quebrava, porque o `asChild` precisa de um elemento filho para receber o visual. A história **As Link** mostra o uso certo. ([#31](https://github.com/rafaelfachinelli/portfolio/pull/31))
+- **Button:** com movimento reduzido no sistema, o indicador de carregamento continua girando, só mais devagar. Ele mostra que algo está acontecendo; não é decoração. ([#32](https://github.com/rafaelfachinelli/portfolio/pull/32))
+
+## 0.3.0 · 19 de outubro de 2026
+
+- **RadioGroup**, em cartões, para escolhas com título e descrição. Nasceu para as perguntas do [Esboço de arquitetura](https://rafaelfachinelli.com/pt-BR/tools/architecture). ([#29](https://github.com/rafaelfachinelli/portfolio/pull/29))
+
+## 0.2.0 · 18 de outubro de 2026
+
+- **`@datum/ui`**, os componentes: Button, Badge, Card, Separator, Label, Input, Textarea, Select, Tooltip e os padrões Field, Callout e Stat. ([#21](https://github.com/rafaelfachinelli/portfolio/pull/21), [#22](https://github.com/rafaelfachinelli/portfolio/pull/22), [#23](https://github.com/rafaelfachinelli/portfolio/pull/23))
+- **Sheet**, o painel lateral. O [rafaelfachinelli.com](https://rafaelfachinelli.com) troca as cópias do shadcn pelos componentes do Datum. ([#24](https://github.com/rafaelfachinelli/portfolio/pull/24))
+
+## 0.1.0 · 17 de outubro de 2026
+
+- **`@datum/tokens`:** paleta, tema escuro, tipografia, espaço de 4 px e raio de 2 px no formato do W3C DTCG, com as 8 temporadas. Testes de contraste reprovam a build se um par de texto e fundo ficar abaixo do WCAG AA. ([#5](https://github.com/rafaelfachinelli/portfolio/pull/5))
+- Este Storybook, com os fundamentos e a barra de temporadas. ([#7](https://github.com/rafaelfachinelli/portfolio/pull/7))
