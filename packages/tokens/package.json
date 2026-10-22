@@ -1,6 +1,6 @@
 {
   "name": "@datum/tokens",
-  "version": "0.1.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Datum design tokens (W3C DTCG): Blueprint palette, base theme and seasons, built to CSS variables, a Tailwind 4 theme and a typed module.",
   "type": "module",

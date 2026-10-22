@@ -44,7 +44,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Datum',
-          ['Introducao', 'Principios'],
+          ['Introducao', 'Principios', 'Novidades'],
           'Fundamentos',
           ['Cores', 'Tipografia', 'Espaco e forma', 'Temporadas'],
           'Componentes',
