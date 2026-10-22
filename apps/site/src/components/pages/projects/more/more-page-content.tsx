@@ -124,8 +124,6 @@ export function MorePageContent({
       <PageTitle icon={Presentation} title={title} description={description} />
 
       <PageContent className="gap-4">
-        <h1 className="text-center text-3xl font-bold">{text.title}</h1>
-
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="flex items-center justify-center gap-4">
             <Filters

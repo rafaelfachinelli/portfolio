@@ -114,24 +114,17 @@ export function HomePageContent({
     },
   ]
 
+  const projectItems = translation.pages.projects.items
   const featuredProjects = [
+    { href: `/${lang}/projects/datum`, ...projectItems.datum },
     {
       href: `/${lang}/projects/instalacoes-e-reformas`,
-      title: home.featuredProjects.instalacoesEReformas.title,
-      description: home.featuredProjects.instalacoesEReformas.description,
-      tags: home.featuredProjects.instalacoesEReformas.tags,
+      ...projectItems.instalacoesEReformas,
     },
-    {
-      href: `/${lang}/projects/markit3d`,
-      title: home.featuredProjects.markit3d.title,
-      description: home.featuredProjects.markit3d.description,
-      tags: home.featuredProjects.markit3d.tags,
-    },
+    { href: `/${lang}/projects/markit3d`, ...projectItems.markit3d },
     {
       href: `/${lang}/projects/flex-sewing-machine`,
-      title: home.featuredProjects.flexSewingMachine.title,
-      description: home.featuredProjects.flexSewingMachine.description,
-      tags: home.featuredProjects.flexSewingMachine.tags,
+      ...projectItems.flexSewingMachine,
     },
   ]
 
@@ -210,7 +203,7 @@ export function HomePageContent({
         featuredProjects={featuredProjects}
         viewProjectDetailsButton={home.viewProjectDetailsButton}
         viewAllProjectsButton={home.viewAllProjectsButton}
-        allProjectsHref={`/${lang}/projects/more`}
+        allProjectsHref={`/${lang}/projects`}
       />
 
       {latestArticles.length > 0 && (

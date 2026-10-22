@@ -1,4 +1,5 @@
 import { articles } from '@/content/articles'
+import { DATUM_STORYBOOK_URL, datumCopy } from '@/content/projects/datum'
 import { architectureCopy } from '@/content/tools/architecture'
 import { SITE_URL } from '@/lib/seo'
 
@@ -29,8 +30,11 @@ The site is available in Portuguese (pt-BR) and English (en-US).
 
 - [Architecture sketch](${SITE_URL}/en-US/tools/architecture): ${architectureCopy['en-US'].meta.description} Free, runs in the browser, exports PNG, Mermaid and an ADR draft.
 
-## Case studies
+## Projects
 
+All projects: ${SITE_URL}/en-US/projects
+
+- [Datum](${SITE_URL}/en-US/projects/datum): ${datumCopy['en-US'].meta.description} Storybook at ${DATUM_STORYBOOK_URL}
 - [Instalações e Reformas](${SITE_URL}/en-US/projects/instalacoes-e-reformas): technical leadership of a 40+ microservices ecosystem at Leroy Merlin
 - [Markit3D](${SITE_URL}/en-US/projects/markit3d): business website for a 3D printing company
 - [Flex Sewing Machine](${SITE_URL}/en-US/projects/flex-sewing-machine): systems and embedded software for industrial automation

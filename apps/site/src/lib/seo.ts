@@ -21,6 +21,8 @@ export const SITE_PATHS = [
   '/about/resume',
   '/about/timeline',
   '/about/personal-manifesto',
+  '/projects',
+  '/projects/datum',
   '/projects/instalacoes-e-reformas',
   '/projects/markit3d',
   '/projects/flex-sewing-machine',
