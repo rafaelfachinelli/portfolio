@@ -136,8 +136,11 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
 Each tool and the design system get a case study or article (see `.claude/skills/new-article`).
 
 ### Datum showcase
-Datum becomes a visible project: Storybook sharing card, Novidades page and versioning; a projects index at `/<lang>/projects` with Datum first and the GitHub repositories as a smaller section; the project page `/<lang>/projects/datum`; and the article on how it was made. Specification: [datum/showcase.md](./datum/showcase.md). Done: the Storybook finish (PR #34, version 0.3.1), the projects index and the Datum page. Next: the article.
+Datum becomes a visible project: Storybook sharing card, Novidades page and versioning; a projects index at `/<lang>/projects` with Datum first and the GitHub repositories as a smaller section; the project page `/<lang>/projects/datum`; and the article on how it was made. Specification: [datum/showcase.md](./datum/showcase.md). Done: the Storybook finish (PR #34, version 0.3.1), the projects index and the Datum page (PR #35), the article (PR #36).
+
+### Datum in its own repository, on npm
+Datum moves to the public repository `rafaelfachinelli/datum` and is published as `@rafaelfachinelli/datum-ui` and `@rafaelfachinelli/datum-tokens` (MIT, with a note that the name, logo and Blueprint identity are not licensed); the site installs it from npm and this repository becomes private. Replaces the earlier "workspace-only, not published to npm" choice. Specification: [datum/own-repo-and-npm.md](./datum/own-repo-and-npm.md) (draft 2026-10-23).
 
 ## Open questions
 
-None. Phase 1 was approved, and the package scope is `@datum/*` (workspace-only, not published to npm).
+None. Phase 1 was approved. The package scope was `@datum/*` (workspace-only); see "Datum in its own repository, on npm" for the move to npm.
