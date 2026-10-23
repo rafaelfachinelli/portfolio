@@ -55,39 +55,7 @@
       },
       "projectsEyebrow": "Projetos em destaque",
       "projectsTitle": "Projetos que mostram amplitude técnica e contexto de negócio",
-      "projectsOverview": "Um case profundo de liderança técnica e dois projetos que mostram minha base em web e sistemas.",
-      "featuredProjects": {
-        "instalacoesEReformas": {
-          "title": "Instalações e Reformas",
-          "description": "Case sobre liderança técnica em um ecossistema de serviços com onboarding de parceiros, orquestração, observabilidade e qualidade de entrega.",
-          "tags": [
-            "Tech Lead",
-            "React",
-            "Spring Boot",
-            "GCP"
-          ]
-        },
-        "markit3d": {
-          "title": "Markit3D",
-          "description": "Experiência web orientada a negócio para um serviço de impressão 3D, com foco em apresentação e conversão.",
-          "tags": [
-            "Landing Page",
-            "Frontend",
-            "Marca",
-            "Conversão"
-          ]
-        },
-        "flexSewingMachine": {
-          "title": "Flex Sewing Machine",
-          "description": "Projeto que reflete minha base em sistemas e automação, incluindo visão de produto e construção de MVP.",
-          "tags": [
-            "Automação",
-            "Embarcados",
-            "MVP",
-            "Sistemas"
-          ]
-        }
-      },
+      "projectsOverview": "O meu design system, um case profundo de liderança técnica e dois projetos que mostram minha base em web e sistemas.",
       "viewProjectDetailsButton": "Ver detalhes do projeto",
       "viewAllProjectsButton": "Ver todos os projetos",
       "aboutEyebrow": "Perfil",
@@ -107,7 +75,41 @@
     },
     "projects": {
       "title": "Projetos",
-      "description": "Explore meus projetos e veja as tecnologias com as quais trabalhei.",
+      "description": "Estudos de caso, o meu design system e as ferramentas que construí.",
+      "index": {
+        "openProject": "Ver projeto",
+        "openTool": "Abrir a ferramenta",
+        "repositoriesTitle": "Todos os repositórios no GitHub",
+        "repositoriesDescription": "Estudos, eventos e experimentos: tudo o que é público no meu GitHub, com filtros por tipo, linguagem e ano.",
+        "repositoriesButton": "Ver os repositórios"
+      },
+      "items": {
+        "datum": {
+          "title": "Datum",
+          "description": "O meu design system: tokens no formato do W3C, oito temporadas e componentes React acessíveis. Dá a mesma personalidade ao site e às ferramentas.",
+          "tags": ["Design system", "Tokens", "React", "Acessibilidade"]
+        },
+        "instalacoesEReformas": {
+          "title": "Instalações e Reformas",
+          "description": "Case sobre liderança técnica em um ecossistema de serviços com onboarding de parceiros, orquestração, observabilidade e qualidade de entrega.",
+          "tags": ["Tech Lead", "React", "Spring Boot", "GCP"]
+        },
+        "markit3d": {
+          "title": "Markit3D",
+          "description": "Experiência web orientada a negócio para um serviço de impressão 3D, com foco em apresentação e conversão.",
+          "tags": ["Landing Page", "Frontend", "Marca", "Conversão"]
+        },
+        "flexSewingMachine": {
+          "title": "Flex Sewing Machine",
+          "description": "Projeto que reflete minha base em sistemas e automação, incluindo visão de produto e construção de MVP.",
+          "tags": ["Automação", "Embarcados", "MVP", "Sistemas"]
+        },
+        "architecture": {
+          "title": "Esboço de arquitetura",
+          "description": "Uma ferramenta gratuita: responda 11 perguntas e veja a arquitetura de partida da sua aplicação, com o porquê de cada peça.",
+          "tags": ["Ferramenta", "System design", "React Flow"]
+        }
+      },
       "repositories": {
         "title": "Repositórios GitHub",
         "description": "Exibindo {count} repositório(s) público(s).",
@@ -157,7 +159,8 @@
           "eventProjectBadgeDescription": "Este projeto foi desenvolvido durante um evento. Pode não estar totalmente funcional ou otimizado para uso em produção.",
           "portfolioProjectBadgeDescription": "Este projeto faz parte do meu portfólio. Ele demonstra minhas habilidades e pode não estar totalmente funcional ou otimizado para uso em produção."
         },
-        "refresh": "Atualizar a lista"
+        "refresh": "Atualizar a lista",
+        "pageDescription": "Todos os repositórios públicos do meu GitHub: estudos, eventos e projetos, com filtros por tipo, linguagem e ano."
       },
       "caseStudyNextStep": {
         "eyebrow": "Vamos conversar",
@@ -917,6 +920,14 @@
         "projects": {
           "title": "Projetos",
           "items": {
+            "all": {
+              "title": "Todos os projetos",
+              "description": "Estudos de caso, o design system e as ferramentas."
+            },
+            "datum": {
+              "title": "Datum",
+              "description": "O meu design system: tokens, temporadas e componentes."
+            },
             "instalacoes-e-reformas": {
               "title": "Instalações e Reformas",
               "description": "Case sobre liderança técnica no ecossistema de serviços de instalações e reformas da Leroy Merlin."
@@ -930,8 +941,8 @@
               "description": "Um projeto que apresenta uma máquina de costura com recursos avançados e capacidades."
             },
             "more": {
-              "title": "Todos os projetos no GitHub",
-              "description": "Uma coleção de vários projetos e aplicações."
+              "title": "Repositórios no GitHub",
+              "description": "Estudos, eventos e experimentos públicos."
             }
           }
         },

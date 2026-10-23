@@ -38,7 +38,7 @@ export function HomeProjectsSection({
         <p className="max-w-2xl text-white/75">{overview}</p>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2">
         {featuredProjects.map(project => (
           <Card
             key={project.title}
@@ -86,7 +86,6 @@ export function HomeProjectsSection({
         variant="outline"
         className="cursor-pointer border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
       >
-        {/* No prefetch: the repository page code (Select, Tooltip) is heavy. */}
         <Link href={allProjectsHref} prefetch={false}>
           {viewAllProjectsButton}
         </Link>

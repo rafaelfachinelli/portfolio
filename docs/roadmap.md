@@ -136,7 +136,7 @@ Lighthouse 12.6.1 simulated mobile from the local machine, live site, 2026-10-18
 Each tool and the design system get a case study or article (see `.claude/skills/new-article`).
 
 ### Datum showcase
-Datum becomes a visible project: Storybook sharing card, Novidades page and versioning; a projects index at `/<lang>/projects` with Datum first and the GitHub repositories as a smaller section; the project page `/<lang>/projects/datum`; and the article on how it was made. Specification: [datum/showcase.md](./datum/showcase.md) (draft 2026-10-21).
+Datum becomes a visible project: Storybook sharing card, Novidades page and versioning; a projects index at `/<lang>/projects` with Datum first and the GitHub repositories as a smaller section; the project page `/<lang>/projects/datum`; and the article on how it was made. Specification: [datum/showcase.md](./datum/showcase.md). Done: the Storybook finish (PR #34, version 0.3.1), the projects index and the Datum page. Next: the article.
 
 ## Open questions
 

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Flex card background: an industrial sewing machine drawn as a blueprint. -->
+  <g stroke="#7dd3fc" stroke-width="2.5">
+    <!-- table -->
+    <path d="M60 300h480" stroke-width="4" />
+    <path d="M90 300v60M510 300v60" stroke-opacity="0.6" />
+    <!-- base -->
+    <rect x="120" y="262" width="360" height="38" />
+    <!-- pillar and arm -->
+    <path d="M410 262V96a26 26 0 0 0-26-26H170a26 26 0 0 0-26 26v48" />
+    <path d="M380 262V122a18 18 0 0 0-18-18H198a18 18 0 0 0-18 18v22" stroke-opacity="0.6" />
+    <!-- head, needle bar and needle -->
+    <rect x="136" y="144" width="52" height="56" />
+    <path d="M162 200v40" />
+    <path d="M162 240v14" stroke-width="1.5" />
+    <!-- presser foot and fabric -->
+    <path d="M146 254h34" />
+    <path d="M120 262c40-8 80 8 120 0s80 8 120 0" stroke-opacity="0.5" />
+    <!-- handwheel and motor -->
+    <circle cx="452" cy="150" r="40" />
+    <circle cx="452" cy="150" r="8" />
+    <rect x="440" y="320" width="70" height="40" stroke-opacity="0.6" />
+    <path d="M475 320L452 190" stroke-dasharray="6 6" stroke-opacity="0.7" />
+    <!-- control board (the embedded part) -->
+    <rect x="232" y="128" width="104" height="56" stroke-opacity="0.8" />
+    <path d="M248 146h20M248 160h40M248 174h28M300 146h20" stroke-opacity="0.6" />
+  </g>
+  <g stroke="#8494b0" stroke-width="1.5">
+    <path d="M120 386h360M120 378v16M480 378v16" />
+  </g>
+</svg>

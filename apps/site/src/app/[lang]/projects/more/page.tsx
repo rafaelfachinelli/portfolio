@@ -16,8 +16,8 @@ export async function generateMetadata({
     lang,
     path: '/projects/more',
     getCopy: t => ({
-      title: t.pages.projects.title,
-      description: t.pages.projects.description,
+      title: t.pages.projects.repositories.title,
+      description: t.pages.projects.repositories.pageDescription,
     }),
   })
 }
@@ -31,8 +31,8 @@ export default async function Page({
   return (
     <Suspense>
       <MorePageContent
-        title={translation.pages.projects.title}
-        description={translation.pages.projects.description}
+        title={translation.pages.projects.repositories.title}
+        description={translation.pages.projects.repositories.pageDescription}
         text={translation.pages.projects.repositories}
       />
     </Suspense>

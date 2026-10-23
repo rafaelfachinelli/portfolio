@@ -1,7 +1,7 @@
 # Datum as a portfolio piece: specification
 
 Audience: Rafael and AI agents building the Datum showcase.
-Status: draft · Last updated: 2026-10-21
+Status: steps 1 and 2 done; the article is next · Last updated: 2026-10-22
 
 Datum is live (Storybook at design.rafaelfachinelli.com, used by the whole site), but the portfolio barely points to it: only the tools page names it, with no link. This plan turns it into a visible project: a project page, an article that tells how it was made, a real projects index, and a Storybook that looks finished when someone shares it.
 
@@ -16,7 +16,7 @@ Datum is live (Storybook at design.rafaelfachinelli.com, used by the whole site)
 
 One PR each, in this order.
 
-### 1. Storybook finish
+### 1. Storybook finish (done, PR #34)
 
 - **Sharing.** Open Graph and Twitter tags in `apps/datum/.storybook/manager-head.html`: `og:title` "Datum, o design system de Rafael Fachinelli", `og:description`, `og:image` (absolute URL, 1200×630 PNG in `apps/datum/public/og.png`, drawn in HTML in the Blueprint style and rendered with headless Chrome, like the site covers), `og:url`, `og:locale` `pt_BR`, `twitter:card` `summary_large_image`. Crawlers do not run JavaScript; these tags are in the static `index.html`, so every Storybook link shares the same card.
 - **Novidades page** (`Datum/Novidades`, `apps/datum/src/Novidades.mdx`), written by hand, newest first. One version for Datum as a whole: `@datum/tokens` and `@datum/ui` move together. Semantic versioning: patch for fixes, minor for a new component, token or variant, major for a breaking change (a removed prop, a renamed token). Starting history, from the git log:
@@ -31,13 +31,15 @@ One PR each, in this order.
   Both `package.json` move to `0.3.1` in this PR.
 - **Skill** `.claude/skills/datum-release/SKILL.md`: when a PR changes `packages/tokens`, `packages/ui` or a component page in `apps/datum`, pick the version bump, update both `package.json`, write the Novidades entry (pt-BR, one line per change, the PR number) and the status line of `docs/datum/README.md`.
 
-### 2. Projects index and the Datum project page
+### 2. Projects index and the Datum project page (done)
+
+As built: the Datum card spans the first row of the index and the other four go two by two; the copy of the project cards lives in `pages.projects.items` (one source for the index and the home); the navbar key `all` is the index; `/projects/more` is titled "Repositórios GitHub". The Datum page copy is in `apps/site/src/content/projects/datum.ts`, its images in `apps/site/public/images/projects/datum/`, and its article button appears once `DATUM_ARTICLE_SLUG` exists in `articles.ts`.
 
 - **`/<lang>/projects`** (new): the projects in cards, Datum first, then Instalações e Reformas, Markit3D, Flex and the architecture sketch (links to the tool). The GitHub repositories become a smaller section at the end ("Todos os repositórios no GitHub", linking to `/projects/more`). The home hero button and the navbar "Projetos" point here; the navbar menu gains Datum. In the sitemap, with metadata and JSON-LD like the other pages.
 - **Home:** Datum joins the featured projects (four cards, two by two).
 - **`/<lang>/projects/datum`**: short, and it points to the article for the story, so the two do not repeat each other.
   - Hero: name, one line ("O design system deste site: tokens, temporadas e componentes"), three buttons: Storybook, GitHub and the article (the article button appears when it is published).
-  - Numbers as Datum Stats: 15 components, 69 stories, 8 seasons, every text pair WCAG AA (the build fails otherwise), home LCP 8.2 s → 2.3 s on a throttled phone, Lighthouse Performance 54 → 90+ on the home.
+  - Numbers as Datum Stats: 14 components, 69 stories, 8 seasons, every text pair WCAG AA (the build fails otherwise), home LCP 8.2 s → 2.3 s on a throttled phone, Lighthouse Performance 54 → 90+ on the home.
   - Three to five screenshots with captions: before (the old site), after, the Storybook, one component in three seasons.
   - What is inside: tokens, components, seasons, the Storybook; stack (DTCG, Tailwind 4, Radix, shadcn as a base, Storybook 10, Vitest).
 - The page is built from Datum pieces (Card, Stat, Button, Badge) in `apps/site`, not with the long case study template, which fits client projects.

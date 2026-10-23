@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Markit3D card background: a 3D printer drawn as a blueprint. -->
+  <g stroke="#7dd3fc" stroke-width="2.5">
+    <!-- frame -->
+    <rect x="170" y="40" width="300" height="300" />
+    <path d="M170 70h300M170 310h300" stroke-opacity="0.6" />
+    <!-- gantry and nozzle -->
+    <path d="M190 130h260" />
+    <rect x="296" y="112" width="48" height="36" />
+    <path d="M312 148l8 18 8-18" />
+    <!-- bed -->
+    <path d="M200 290h240" stroke-width="4" />
+    <!-- printed piece, layer by layer -->
+    <path d="M262 290v-70l58-30 58 30v70" />
+    <path d="M262 276h116M262 262h116M262 248h116M262 234h116" stroke-opacity="0.5" />
+    <path d="M320 190v100" stroke-opacity="0.5" />
+    <!-- filament spool -->
+    <circle cx="520" cy="110" r="34" />
+    <circle cx="520" cy="110" r="10" />
+    <path d="M490 130 C420 150 380 90 344 120" stroke-dasharray="6 6" stroke-opacity="0.7" />
+  </g>
+  <!-- dimension lines -->
+  <g stroke="#8494b0" stroke-width="1.5">
+    <path d="M170 368h300M170 360v16M470 360v16" />
+    <path d="M128 40v300M120 40h16M120 340h16" />
+  </g>
+  <g fill="#8494b0" font-family="IBM Plex Mono, monospace" font-size="16">
+    <text x="300" y="392">300</text>
+    <text x="84" y="196">300</text>
+  </g>
+</svg>

@@ -125,7 +125,11 @@ export function Navbar({ lang, translation }: NavbarProps) {
     ([key, item]) => ({ href: `/${lang}/about/${key}`, ...item }),
   )
   const projectItems: MenuItem[] = Object.entries(options.projects.items).map(
-    ([key, item]) => ({ href: `/${lang}/projects/${key}`, ...item }),
+    ([key, item]) => ({
+      // "all" is the projects index; the other keys are its sub-pages.
+      href: key === 'all' ? `/${lang}/projects` : `/${lang}/projects/${key}`,
+      ...item,
+    }),
   )
 
   return (
