@@ -33,7 +33,7 @@ One PR each, in this order.
 
 ### 2. Projects index and the Datum project page (done)
 
-As built: the Datum card spans the first row of the index and the other four go two by two; the copy of the project cards lives in `pages.projects.items` (one source for the index and the home); the navbar key `all` is the index; `/projects/more` is titled "Repositórios GitHub". The Datum page copy is in `apps/site/src/content/projects/datum.ts`, its images in `apps/site/public/images/projects/datum/`, and its article button appears once `DATUM_ARTICLE_SLUG` exists in `articles.ts`.
+As built: the Datum card spans the first row of the index and the other four go two by two; the copy of the project cards lives in `pages.projects.items` (one source for the index and the home); "Projetos" in the navbar is a direct link to the index (no dropdown); `/projects/more` is titled "Repositórios GitHub". The Datum page copy is in `apps/site/src/content/projects/datum.ts`, its images in `apps/site/public/images/projects/datum/`, and its article button appears once `DATUM_ARTICLE_SLUG` exists in `articles.ts`.
 
 - **`/<lang>/projects`** (new): the projects in cards, Datum first, then Instalações e Reformas, Markit3D, Flex and the architecture sketch (links to the tool). The GitHub repositories become a smaller section at the end ("Todos os repositórios no GitHub", linking to `/projects/more`). The home hero button and the navbar "Projetos" point here; the navbar menu gains Datum. In the sitemap, with metadata and JSON-LD like the other pages.
 - **Home:** Datum joins the featured projects (four cards, two by two).
