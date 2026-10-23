@@ -11,7 +11,6 @@ import {
   Instagram,
   Linkedin,
   type LucideIcon,
-  MoreHorizontal,
   Presentation,
   Scroll,
   Wrench,
@@ -124,13 +123,6 @@ export function Navbar({ lang, translation }: NavbarProps) {
   const aboutItems: MenuItem[] = Object.entries(options.about.items).map(
     ([key, item]) => ({ href: `/${lang}/about/${key}`, ...item }),
   )
-  const projectItems: MenuItem[] = Object.entries(options.projects.items).map(
-    ([key, item]) => ({
-      // "all" is the projects index; the other keys are its sub-pages.
-      href: key === 'all' ? `/${lang}/projects` : `/${lang}/projects/${key}`,
-      ...item,
-    }),
-  )
 
   return (
     <div className="bg-board/95 border-line-strong sticky top-0 z-50 flex w-full items-center justify-center border-b px-4 py-2">
@@ -173,25 +165,17 @@ export function Navbar({ lang, translation }: NavbarProps) {
               )
             })}
           </DrawerGroup>
-          <DrawerGroup label={options.projects.title}>
-            {projectItems.map(item => (
-              <li key={item.href}>
-                <Link
-                  prefetch={false}
-                  href={item.href}
-                  className={drawerLinkClass}
-                >
-                  {item.href.endsWith('/more') ? (
-                    <MoreHorizontal className="text-season-accent" />
-                  ) : (
-                    <Presentation className="text-season-accent" />
-                  )}
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </DrawerGroup>
           <DrawerGroup>
+            <li>
+              <Link
+                prefetch={false}
+                href={`/${lang}/projects`}
+                className={drawerLinkClass}
+              >
+                <Presentation className="text-season-accent" />
+                {options.projects.title}
+              </Link>
+            </li>
             <li>
               <Link
                 prefetch={false}
@@ -266,11 +250,16 @@ export function Navbar({ lang, translation }: NavbarProps) {
               title={options.about.title}
               items={aboutItems}
             />
-            <DesktopMenu
-              icon={Presentation}
-              title={options.projects.title}
-              items={projectItems}
-            />
+            <li>
+              <Link
+                prefetch={false}
+                href={`/${lang}/projects`}
+                className={triggerClass}
+              >
+                <Presentation className="text-season-accent mr-2 h-4 w-4" />
+                {options.projects.title}
+              </Link>
+            </li>
             <li>
               <Link
                 prefetch={false}

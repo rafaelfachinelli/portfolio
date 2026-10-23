@@ -918,33 +918,7 @@
           }
         },
         "projects": {
-          "title": "Projects",
-          "items": {
-            "all": {
-              "title": "All projects",
-              "description": "Case studies, the design system and the tools."
-            },
-            "datum": {
-              "title": "Datum",
-              "description": "My design system: tokens, seasons and components."
-            },
-            "instalacoes-e-reformas": {
-              "title": "Instalações e Reformas",
-              "description": "Case study about technical leadership in Leroy Merlin's installation and reform services ecosystem."
-            },
-            "markit3d": {
-              "title": "Markit3D",
-              "description": "Landing page for a 3D printing service that offers a wide range of products."
-            },
-            "flex-sewing-machine": {
-              "title": "Flex Sewing Machine",
-              "description": "A project showcasing a sewing machine with advanced features and capabilities."
-            },
-            "more": {
-              "title": "Repositories on GitHub",
-              "description": "Public studies, events and experiments."
-            }
-          }
+          "title": "Projects"
         },
         "tools": {
           "title": "Tools",
