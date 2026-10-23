@@ -49,6 +49,282 @@ export function getReadingMinutes(body: string) {
 
 export const articles: Article[] = [
   {
+    slug: 'como-criei-o-datum-design-system',
+    date: '2026-10-22',
+    cover: '/images/articles/datum-cover-v1.webp',
+    tags: ['Design system', 'Frontend', 'Acessibilidade'],
+    references: [
+      {
+        title: 'shadcn/ui: Introduction',
+        url: 'https://ui.shadcn.com/docs',
+      },
+      {
+        title:
+          'Design Tokens Format Module 2025.10 (W3C Design Tokens Community Group)',
+        url: 'https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/',
+      },
+      {
+        title: 'Radix Primitives',
+        url: 'https://www.radix-ui.com/primitives',
+      },
+      {
+        title: 'Understanding WCAG 2.2: Contrast (Minimum)',
+        url: 'https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html',
+      },
+    ],
+    content: {
+      'pt-BR': {
+        title:
+          'Componentes bonitos, mas sem personalidade: como criei o Datum, o design system do meu portfólio',
+        description:
+          'Meu site era moderno, mas podia ser o de qualquer pessoa. Conto por que um design system vale a pena até para uma pessoa só, por que comecei pelo shadcn e como dirigi a IA para construí-lo.',
+        summary: [
+          'Um design system não é sobre o tamanho do time: é sobre **não decidir tudo de novo** a cada coisa que você constrói.',
+          'Comecei pelo **shadcn/ui** porque ele entrega o código do componente para você evoluir, em vez de uma caixa preta no `node_modules`.',
+          'As regras importantes **se defendem sozinhas**: contraste abaixo do WCAG AA reprova a build.',
+          'A IA escreveu rápido; o que fez o resultado sair certo foi **saber o que pedir**.',
+        ],
+        body: `Meu site antigo era bonito. Escuro, moderno, com os componentes do shadcn/ui bem montados. O problema é que ele podia ser o site de qualquer pessoa: os botões, os cards e os menus eram exatamente os que vêm na instalação, sem nenhum trabalho em cima que dissesse quem eu sou. E ainda travava o celular: o fundo tinha umas cem estrelas animadas em JavaScript, para sempre.
+
+![A home antiga: fundo de espaço com estrelas e nuvens, botões e cards genéricos do shadcn](/images/projects/datum/antes.webp)
+
+O [Datum](/pt-BR/projects/datum) nasceu para resolver as duas coisas. É o design system do meu portfólio: tokens, temporadas e componentes que dão a mesma personalidade a tudo o que eu construo, do site às ferramentas.
+
+## Por que um design system para uma pessoa só
+
+Parece coisa de empresa grande, mas design system não é sobre o tamanho do time. É sobre não decidir tudo de novo. Com ele, cada coisa que eu construo, uma página ou uma ferramenta, já nasce sabendo a cor, o espaço, a tipografia e a mensagem que quero passar. Eu paro de perguntar "como isso deveria parecer?" e começo direto no problema.
+
+E tem o outro lado: quem encontra o meu trabalho, no site, numa ferramenta ou num post, reconhece a mesma personalidade em qualquer lugar. Identidade visual consistente é o que faz as pessoas lerem a marca como uma personalidade, e não como um amontoado de telas.
+
+## Por que comecei pelo shadcn (e não pelo MUI)
+
+Bibliotecas como MUI, Chakra e Mantine entregam componentes prontos dentro do \`node_modules\`. Funcionam bem, mas o componente fica numa caixa preta: dá para configurar, não para evoluir. O shadcn/ui faz o contrário e copia o código-fonte do componente para o seu projeto. A própria documentação resume: não é uma biblioteca de componentes, é o jeito de construir a sua.
+
+Isso decidiu a base. Os componentes do Datum partem do shadcn e do Radix, que cuida do teclado, do foco e do leitor de tela, e ganham por cima uma camada de personalidade. Quando um componente precisa mudar, eu mudo o código dele, em vez de brigar com ele.
+
+## Uma fonte só para cor, espaço e tipografia
+
+Os tokens, as decisões de base do sistema, ficam em arquivos JSON no formato do Design Tokens Community Group do W3C, que ganhou a primeira versão estável em 2025. Ele não é um padrão oficial do W3C, mas é um formato aberto e independente de ferramenta, e é isso que importa: cor, tipografia, espaço de 4 px e raio de 2 px descritos uma vez só.
+
+\`\`\`json
+"color": {
+  "board": { "$value": "{palette.navy.900}", "$description": "Page background, the drafting board" },
+  "ink": { "$value": "{palette.slate.50}", "$description": "Main text" },
+  "line": { "$value": "#7dd3fc24", "$description": "Hairline borders" }
+}
+\`\`\`
+
+Um build transforma esses arquivos em três saídas: variáveis CSS, um tema do Tailwind 4 e um módulo TypeScript. Os componentes usam só os nomes semânticos (\`bg-board\`, \`text-ink\`), nunca a cor crua.
+
+## A personalidade: uma prancheta
+
+Antes do código, escrevi os princípios da marca. O central é cuidar do que ninguém vê: o lado de dentro do trabalho recebe a mesma atenção que o de fora. Com isso, comparei três direções visuais: Blueprint, Órbita e Constelação. Venceu a Blueprint, uma prancheta de projeto com grade fina, cotas e anotações em fonte monoespaçada, porque ela mostra justamente o lado de dentro.
+
+O nome também vem do desenho técnico. Numa planta, o datum é a referência de onde todas as medidas partem. As cotas não se medem umas das outras, todas saem do mesmo ponto, e é isso que faz a peça encaixar. Um design system faz o mesmo papel para cor, espaço e tipografia.
+
+## Temporadas: o mesmo site, com a cor da data
+
+O Datum tem oito temporadas: a base, Ano-Novo, Carnaval, Páscoa, Festa Junina, Dia do Programador, Halloween e Natal. Só a cor de destaque e o degradê do logo mudam. Layout, contraste e regras ficam iguais.
+
+![O mesmo card na temporada base, no Halloween e no Natal: o botão muda de azul para laranja e vermelho](/images/projects/datum/temporadas.webp)
+
+O detalhe técnico: as páginas são estáticas e ficam um ano em cache, então decidir a temporada no build faria o site ficar preso na data em que foi publicado. Um script pequeno no \`<head>\` lê a data de quem visita e marca a temporada antes da primeira pintura, sem o site piscar.
+
+## Regras que se defendem sozinhas
+
+Regra que depende de alguém lembrar é regra que um dia se perde. No Datum, as importantes estão no código:
+
+- **Contraste.** Todo par de texto e fundo precisa passar no WCAG AA (4,5:1), inclusive a cor de cada temporada. Os testes reprovam a build se um token novo quebrar isso.
+- **Só peças gerais.** O Datum é público, então só entra o que faria sentido em qualquer projeto. O card de artigo e as métricas da home são montados no site, com peças do Datum, e nunca entram nele.
+- **Desempenho faz parte da marca.** Nada de animação contínua em JavaScript. Com movimento reduzido no sistema, o movimento decorativo para.
+
+## IA executando, eu orquestrando
+
+Construí o Datum com agentes de IA, e o trabalho que mais pesou foi direcionar. Eu defini as tecnologias (o shadcn como base, o formato do W3C para os tokens, o Storybook para documentar), a personalidade e as regras do sistema, e pedi três direções para escolher, em vez de aceitar a primeira.
+
+Não foi o meu primeiro design system. Contribuí no Mozaic, o design system do grupo ADEO, e construí o do Castle Raiders. Essa bagagem fez diferença: eu sabia quais decisões tomar e em que ordem, e o agente acelerou a parte de escrever. Do primeiro token ao site inteiro usando os componentes foram três dias, sem retrabalho grande. Se eu começasse de novo, faria igual.
+
+## O que deu errado mesmo assim
+
+Dois bugs só apareceram com gente usando:
+
+- **O \`asChild\` que quebrava a página.** No Storybook, ligar o \`asChild\` no painel de controles fazia o exemplo do Button cair: o \`asChild\` aplica o visual ao elemento filho, e ali o filho era só um texto. O componente estava certo; o painel é que oferecia um controle que não tinha como funcionar sozinho.
+- **O indicador de carregamento parado.** Com o modo de desempenho do Windows, o sistema pede movimento reduzido, e o botão parava o indicador. Só que ele não é decoração: mostra que algo está acontecendo. Agora ele continua girando, mais devagar.
+
+Os dois viraram regra escrita e entrada na [página de Novidades](https://design.rafaelfachinelli.com/?path=/docs/datum-novidades--docs) do Storybook.
+
+## Os números
+
+O Datum chegou junto com um orçamento de desempenho, e a mudança foi visível. Parte veio de trocar o fundo animado pela grade da prancheta, que é só CSS; parte de renderizar as páginas no servidor e cortar o JavaScript do primeiro carregamento. Na home, no Lighthouse com perfil de celular:
+
+- **Performance:** de 54 para 90 ou mais.
+- **Bloqueio da página (TBT):** de 1.424 ms para menos de 100 ms.
+
+E o sistema em si: 14 componentes, 69 histórias no Storybook, cada uma checada com axe, 8 temporadas e contraste AA em todo par de cor.
+
+![A home com o Datum: grade de prancheta azul-marinho, títulos em Archivo e destaque na cor da temporada](/images/projects/datum/depois.webp)
+
+Tudo está aberto: os componentes no [Storybook do Datum](https://design.rafaelfachinelli.com) e o código no [GitHub](https://github.com/rafaelfachinelli/portfolio).`,
+        lessons: [
+          'Um design system serve para **não decidir tudo de novo**: vale até para uma pessoa só.',
+          'Prefira uma base que **entrega o código** do componente quando você quer personalidade, não só configuração.',
+          'Descreva cor, espaço e tipografia **uma vez só**, em tokens, e gere o resto a partir deles.',
+          'Coloque as regras importantes **no código**: um teste de contraste lembra por você.',
+          'Com IA, o resultado depende de **saber o que pedir**: tecnologias, regras e opções para escolher.',
+        ],
+        cta: 'Quer conversar sobre o design system do seu produto?',
+        faq: [
+          {
+            question:
+              'Vale a pena criar um design system para um projeto pessoal?',
+            answer:
+              'Vale quando a sua marca aparece em mais de um lugar, como um site, ferramentas e posts. O ganho é não decidir cor, espaço e tipografia de novo a cada peça, e manter a mesma personalidade em todas.',
+          },
+          {
+            question: 'O shadcn/ui é uma biblioteca de componentes?',
+            answer:
+              'Não no sentido tradicional. Ele copia o código-fonte de cada componente para o seu projeto, então você pode mudar e criar componentes a partir dele, em vez de depender de um pacote fechado no node_modules.',
+          },
+          {
+            question: 'O que são design tokens?',
+            answer:
+              'São as decisões de base de um design system, como cores, fontes, espaços e raios, guardadas num formato neutro. O formato do Design Tokens Community Group do W3C permite gerar a partir deles variáveis CSS, temas do Tailwind e código para outras plataformas.',
+          },
+          {
+            question: 'Como garantir contraste acessível em um design system?',
+            answer:
+              'Teste cada par de texto e fundo contra o WCAG AA (4,5:1) de forma automática e faça a build falhar quando um par não passar. Assim um token novo não quebra a acessibilidade sem ninguém perceber.',
+          },
+        ],
+      },
+      'en-US': {
+        title:
+          'Good-looking components with no personality: how I built Datum, the design system of my portfolio',
+        description:
+          'My site looked modern but could have been anyone’s. Why a design system pays off even for one person, why I started from shadcn, and how I steered AI to build it.',
+        summary: [
+          'A design system is not about team size: it is about **not deciding everything again** for each thing you build.',
+          'I started from **shadcn/ui** because it hands you the component code to evolve, instead of a black box in `node_modules`.',
+          'The important rules **defend themselves**: contrast below WCAG AA fails the build.',
+          'AI wrote fast; what made it come out right was **knowing what to ask for**.',
+        ],
+        body: `My old site looked good. Dark, modern, with well-assembled shadcn/ui components. The problem is that it could have been anyone’s site: the buttons, cards and menus were exactly what comes with the install, with no work on top to say who I am. And it froze phones: the background had about a hundred stars animated in JavaScript, forever.
+
+![The old home page: a space background with stars and clouds, generic shadcn buttons and cards](/images/projects/datum/antes.webp)
+
+[Datum](/en-US/projects/datum) was born to fix both. It is the design system of my portfolio: tokens, seasons and components that give everything I build the same personality, from the site to the tools.
+
+## Why a design system for one person
+
+It sounds like a big-company thing, but a design system is not about team size. It is about not deciding everything again. With it, everything I build, a page or a tool, starts out knowing the color, the spacing, the type and the message I want to send. I stop asking "what should this look like?" and go straight to the problem.
+
+There is another side: whoever finds my work, on the site, in a tool or in a post, recognizes the same personality everywhere. A consistent visual identity is what makes people read a brand as a personality, not as a pile of screens.
+
+## Why I started from shadcn (and not MUI)
+
+Libraries like MUI, Chakra and Mantine ship ready components inside \`node_modules\`. They work well, but the component lives in a black box: you can configure it, not evolve it. shadcn/ui does the opposite and copies the component’s source code into your project. Its own docs put it this way: it is not a component library, it is how you build yours.
+
+That settled the base. Datum’s components start from shadcn and Radix, which handles keyboard, focus and screen readers, and get a personality layer on top. When a component needs to change, I change its code instead of fighting it.
+
+## One source for color, space and type
+
+The tokens, the base decisions of the system, live in JSON files in the format of the W3C Design Tokens Community Group, which reached its first stable version in 2025. It is not an official W3C standard, but it is an open, tool-neutral format, and that is what matters: color, type, a 4 px spacing scale and a 2 px radius described once.
+
+\`\`\`json
+"color": {
+  "board": { "$value": "{palette.navy.900}", "$description": "Page background, the drafting board" },
+  "ink": { "$value": "{palette.slate.50}", "$description": "Main text" },
+  "line": { "$value": "#7dd3fc24", "$description": "Hairline borders" }
+}
+\`\`\`
+
+A build turns those files into three outputs: CSS variables, a Tailwind 4 theme and a TypeScript module. Components use only the semantic names (\`bg-board\`, \`text-ink\`), never the raw color.
+
+## The personality: a drafting board
+
+Before any code, I wrote the brand principles. The central one is to care for what nobody sees: the inside of the work gets the same attention as the outside. With that, I compared three visual directions: Blueprint, Órbita and Constelação. Blueprint won, a drafting board with a faint grid, dimension marks and monospaced notes, because it shows exactly that inside.
+
+The name comes from technical drawing too. On a drawing, the datum is the reference every dimension is measured from. Dimensions are not measured from each other; they all start at the same point, and that is what makes the part fit. A design system plays the same role for color, space and type.
+
+## Seasons: the same site, in the color of the date
+
+Datum has eight seasons: the base one, New Year, Carnival, Easter, Festa Junina, Programmer’s Day, Halloween and Christmas. Only the accent color and the logo gradient change. Layout, contrast and rules stay the same.
+
+![The same card in the base season, at Halloween and at Christmas: the button turns from blue to orange and red](/images/projects/datum/temporadas.webp)
+
+The technical detail: pages are static and cached for a year, so choosing the season at build time would freeze the site on the day it was published. A small script in the \`<head>\` reads the visitor’s date and sets the season before the first paint, with no flash.
+
+## Rules that defend themselves
+
+A rule that depends on someone remembering it gets lost one day. In Datum, the important ones live in code:
+
+- **Contrast.** Every text and background pair must pass WCAG AA (4.5:1), including the color of each season. The tests fail the build if a new token breaks it.
+- **General pieces only.** Datum is public, so only what would make sense in any project goes in. The article card and the home metrics are built in the site, from Datum pieces, and never move into it.
+- **Performance is part of the brand.** No continuous JavaScript animation. With reduced motion turned on, decorative motion stops.
+
+## AI executing, me orchestrating
+
+I built Datum with AI agents, and the work that mattered most was steering. I set the technologies (shadcn as the base, the W3C format for tokens, Storybook for the docs), the personality and the rules of the system, and asked for three directions to choose from instead of taking the first one.
+
+It was not my first design system. I contributed to Mozaic, the design system of the ADEO group, and built the one for Castle Raiders. That background made the difference: I knew which decisions to make and in what order, and the agent sped up the writing. From the first token to the whole site using the components took three days, with no major rework. If I started again, I would do it the same way.
+
+## What still went wrong
+
+Two bugs only showed up with people using it:
+
+- **The \`asChild\` that crashed the page.** In the Storybook, turning \`asChild\` on in the controls panel crashed the Button example: \`asChild\` passes the styles to the child element, and there the child was plain text. The component was right; the panel offered a control that could not work on its own.
+- **The loading spinner that stopped.** With Windows’ performance mode, the system asks for reduced motion, and the button stopped its spinner. But the spinner is not decoration: it shows something is happening. Now it keeps turning, slower.
+
+Both became written rules and entries on the Storybook’s [release notes page](https://design.rafaelfachinelli.com/?path=/docs/datum-novidades--docs).
+
+## The numbers
+
+Datum came with a performance budget, and the change showed. Part of it came from swapping the animated background for the drafting grid, which is CSS only; part from rendering pages on the server and cutting first-load JavaScript. On the home page, in Lighthouse with the mobile profile:
+
+- **Performance:** from 54 to 90 or more.
+- **Total Blocking Time:** from 1,424 ms to under 100 ms.
+
+And the system itself: 14 components, 69 Storybook stories, each checked with axe, 8 seasons and AA contrast on every color pair.
+
+![The home page with Datum: a navy drafting grid, Archivo headings and the accent in the season color](/images/projects/datum/depois.webp)
+
+Everything is open: the components in the [Datum Storybook](https://design.rafaelfachinelli.com) and the code on [GitHub](https://github.com/rafaelfachinelli/portfolio).`,
+        lessons: [
+          'A design system is for **not deciding everything again**: it pays off even for one person.',
+          'Pick a base that **hands you the component code** when you want personality, not just configuration.',
+          'Describe color, space and type **once**, as tokens, and generate the rest from them.',
+          'Put the important rules **in code**: a contrast test remembers for you.',
+          'With AI, the result depends on **knowing what to ask for**: technologies, rules and options to choose from.',
+        ],
+        cta: 'Want to talk about the design system of your product?',
+        faq: [
+          {
+            question:
+              'Is it worth building a design system for a personal project?',
+            answer:
+              'It is when your brand shows up in more than one place, like a site, tools and posts. You stop deciding color, spacing and type again for each piece, and every piece keeps the same personality.',
+          },
+          {
+            question: 'Is shadcn/ui a component library?',
+            answer:
+              'Not in the traditional sense. It copies the source code of each component into your project, so you can change it and build new components from it instead of depending on a closed package in node_modules.',
+          },
+          {
+            question: 'What are design tokens?',
+            answer:
+              'They are the base decisions of a design system, such as colors, fonts, spacing and radii, stored in a neutral format. The W3C Design Tokens Community Group format lets you generate CSS variables, Tailwind themes and code for other platforms from them.',
+          },
+          {
+            question:
+              'How do you guarantee accessible contrast in a design system?',
+            answer:
+              'Test every text and background pair against WCAG AA (4.5:1) automatically and make the build fail when a pair does not pass. That way a new token cannot break accessibility without anyone noticing.',
+          },
+        ],
+      },
+    },
+  },
+  {
     slug: 'quanta-arquitetura-sua-aplicacao-precisa',
     date: '2026-10-20',
     cover: '/images/articles/quanta-arquitetura-cover-v1.webp',

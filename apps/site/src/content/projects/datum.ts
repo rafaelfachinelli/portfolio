@@ -4,7 +4,7 @@ export const DATUM_STORYBOOK_URL = 'https://design.rafaelfachinelli.com'
 export const DATUM_SOURCE_URL =
   'https://github.com/rafaelfachinelli/portfolio/tree/production/packages'
 /** The article on how Datum was made; its button appears once it is published. */
-export const DATUM_ARTICLE_SLUG = 'datum-design-system-do-portfolio'
+export const DATUM_ARTICLE_SLUG = 'como-criei-o-datum-design-system'
 
 type Item = { title: string; description: string }
 
@@ -87,10 +87,10 @@ export const datumCopy: Record<ArticleLocale, DatumCopy> = {
           'Em todo par de texto e fundo: os testes reprovam a build abaixo de 4,5:1.',
       },
       lcp: {
-        title: 'LCP da home no celular',
-        description: 'Medido com CPU e rede limitadas.',
-        trend: 'era 8,2 s',
-        trendLabel: 'caiu de 8,2 s',
+        title: 'Bloqueio da página (TBT)',
+        description: 'Home no Lighthouse, perfil de celular.',
+        trend: 'era 1.424 ms',
+        trendLabel: 'caiu de 1.424 ms',
       },
       performance: {
         title: 'Performance no Lighthouse',
@@ -188,10 +188,10 @@ export const datumCopy: Record<ArticleLocale, DatumCopy> = {
           'On every text and background pair: the tests fail the build below 4.5:1.',
       },
       lcp: {
-        title: 'Home page LCP on a phone',
-        description: 'Measured with throttled CPU and network.',
-        trend: 'was 8.2 s',
-        trendLabel: 'down from 8.2 s',
+        title: 'Total Blocking Time',
+        description: 'Home page in Lighthouse, mobile profile.',
+        trend: 'was 1,424 ms',
+        trendLabel: 'down from 1,424 ms',
       },
       performance: {
         title: 'Lighthouse Performance',

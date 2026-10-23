@@ -39,7 +39,7 @@ As built: the Datum card spans the first row of the index and the other four go 
 - **Home:** Datum joins the featured projects (four cards, two by two).
 - **`/<lang>/projects/datum`**: short, and it points to the article for the story, so the two do not repeat each other.
   - Hero: name, one line ("O design system deste site: tokens, temporadas e componentes"), three buttons: Storybook, GitHub and the article (the article button appears when it is published).
-  - Numbers as Datum Stats: 14 components, 69 stories, 8 seasons, every text pair WCAG AA (the build fails otherwise), home LCP 8.2 s → 2.3 s on a throttled phone, Lighthouse Performance 54 → 90+ on the home.
+  - Numbers as Datum Stats: 14 components, 69 stories, 8 seasons, every text pair WCAG AA (the build fails otherwise), Lighthouse on the home, mobile profile: Total Blocking Time 1,424 ms → under 100 ms and Performance 54 → 90+ (the 8.2 s LCP in the roadmap was measured after the first Datum step, so it does not compare the old site).
   - Three to five screenshots with captions: before (the old site), after, the Storybook, one component in three seasons.
   - What is inside: tokens, components, seasons, the Storybook; stack (DTCG, Tailwind 4, Radix, shadcn as a base, Storybook 10, Vitest).
 - The page is built from Datum pieces (Card, Stat, Button, Badge) in `apps/site`, not with the long case study template, which fits client projects.
@@ -48,7 +48,7 @@ As built: the Datum card spans the first row of the index and the other four go 
 
 pt-BR and en-US, following the `new-article` skill (interview first: facts come only from Rafael). Working title: "Como criei o design system do meu portfólio (e por que comecei pelo shadcn)". Outline to confirm in the interview:
 
-1. The starting point: a generic shadcn site that froze phones (an animated background of ~100 framer-motion stars) and a home LCP of 8.2 s.
+1. The starting point: a generic shadcn site that froze phones (an animated background of ~100 framer-motion stars) and Lighthouse Performance 54 on the home.
 2. Why a design system for a one-person portfolio.
 3. The base: shadcn/ui and Radix (own the code, accessible primitives) and why not stock shadcn: the Blueprint personality layer on top.
 4. Tokens in the W3C format, one source for CSS variables, the Tailwind 4 theme and TypeScript.
