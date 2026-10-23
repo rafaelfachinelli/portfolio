@@ -158,7 +158,7 @@ export function DatumPageContent({
               <CardContent className="px-5">
                 <Stat
                   label={numbers.lcp.title}
-                  value={locale === 'pt-BR' ? '2,3 s' : '2.3 s'}
+                  value="< 100 ms"
                   description={numbers.lcp.description}
                   trend={{
                     direction: 'down',
